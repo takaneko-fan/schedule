@@ -3,6 +3,8 @@
 使い方:
     python fetch_schedule.py                       # 今日以降の予定
     python fetch_schedule.py --start 2026-01-01    # 期間指定
+
+開始日より前の予定は既存の CSV から引き継ぎ、終わった予定には「済」を付ける。
 """
 
 import argparse
@@ -395,11 +397,12 @@ def md_escape(text):
 
 
 def md_table(rows, show_members):
-    head = "| 日付 | 時間 | タイトル | 会場 |" + (" 出演 |" if show_members else "")
-    sep = "|---|---|---|---|" + ("---|" if show_members else "")
+    head = "| 済 | 日付 | 時間 | タイトル | 会場 |" + (" 出演 |" if show_members else "")
+    sep = "|:-:|---|---|---|---|" + ("---|" if show_members else "")
     lines = [head, sep]
     for r in rows:
         cells = [
+            "✅" if r["done"] else "",
             f"{r['date']}({r['weekday']})",
             time_label(r) or "",
             f"[{md_escape(r['title'])}]({r['url']})",
@@ -420,7 +423,9 @@ def write_markdown(rows, path, start, end):
         f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、Eventernote （公式X等の告知の補完・非公式）",
         f"- 対象期間: {start} 〜 {end - timedelta(days=1)}",
         f"- 取得日時: {now} (JST)",
-        f"- 件数: {len(rows)} 件",
+        f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
+        "",
+        "「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。",
         "",
         "「グループ（全員）」はタイトル等に個別メンバーの記載がないイベントです。"
         "各メンバーの一覧にはグループ出演分も含めています。"
@@ -448,11 +453,20 @@ def write_markdown(rows, path, start, end):
 
 
 def write_csv(rows, path):
-    fields = ["date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url"]
+    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url"]
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
         writer.writerows(rows)
+
+
+def load_past_rows(path, before):
+    """前回出力した CSV から、指定日より前の予定を読み込む。"""
+    try:
+        with open(path, encoding="utf-8-sig", newline="") as f:
+            return [r for r in csv.DictReader(f) if r["date"] < before.isoformat()]
+    except FileNotFoundError:
+        return []
 
 
 def main():
@@ -484,7 +498,11 @@ def main():
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
-    rows = sort_rows(rows)
+    past = load_past_rows(args.csv, args.start)
+    print(f"{len(past)} 件の過去の予定を引き継ぎ")
+    rows = sort_rows(past + rows)
+    for r in rows:
+        r["done"] = "済" if r["date"] < today.isoformat() else ""
     write_markdown(rows, args.md, args.start, args.end)
     write_csv(rows, args.csv)
     print(f"出力: {args.md}, {args.csv}")
