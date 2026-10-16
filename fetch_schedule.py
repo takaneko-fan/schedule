@@ -91,6 +91,10 @@ def find_part_times(lines):
     """「1部 12:00 START」「第一部[OPEN/START] 15:00/16:00」形式の時間を拾う。"""
     parts = [re.sub(r"\s+", " ", ln) for ln in lines
              if PART_RE.match(ln) and re.search(r"\d{1,2}[:：]\d{2}", ln)]
+    if not parts:
+        # 部の表記がなく「12:30 START（優先エリア入場12:10）」が並ぶ形式
+        parts = [re.sub(r"\s+", " ", ln) for ln in lines
+                 if re.match(r"^\d{1,2}[:：]\d{2}\s*START", ln, re.I)]
     if len(parts) > 3:
         parts = parts[:1] + ["…"] + parts[-1:]
     return " ／ ".join(parts)
@@ -349,11 +353,17 @@ def shares_phrase(a, b, n=4):
     return any(a[i:i + n] in b for i in range(len(a) - n + 1))
 
 
+def is_release(row):
+    """「…2026年11月18日(水)リリース」のような発売日の行か。"""
+    return row["title"].rstrip().endswith(("リリース", "発売"))
+
+
 def merge_post_rows(rows, post_rows):
     """カレンダーと同じ予定は統合し、カレンダーにないものだけ追加する。"""
     added = []
     for pr in post_rows:
-        same_day = [r for r in rows + added if r["date"] == pr["date"]]
+        # 発売日とその日のリリースイベントは別の予定として残す
+        same_day = [r for r in rows + added if r["date"] == pr["date"] and is_release(r) == is_release(pr)]
         dup = next((r for r in same_day
                     if shares_phrase(pr["title"].split("：")[-1] + pr["venue"], r["title"] + r["venue"])
                     or shares_phrase(r["title"], pr["title"])
