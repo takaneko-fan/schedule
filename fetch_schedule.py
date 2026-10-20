@@ -5,10 +5,12 @@
     python fetch_schedule.py --start 2026-01-01    # 期間指定
 
 開始日より前の予定は既存の CSV から引き継ぎ、終わった予定には「済」を付ける。
+カレンダーアプリ用の iCalendar（.ics）も同時に出力する。
 """
 
 import argparse
 import csv
+import hashlib
 import html
 import json
 import re
@@ -470,6 +472,131 @@ def write_csv(rows, path):
         writer.writerows(rows)
 
 
+# ---- iCalendar（Mac / iPhone のカレンダー照会用） ----
+
+DEFAULT_DURATION = timedelta(hours=2)  # 終了時刻の記載がない予定の長さ
+TIME_RE = r"(\d{1,2})[:：](\d{2})"
+
+
+def to_datetime(day, hm):
+    h, m = (int(x) for x in re.match(TIME_RE, hm).groups())
+    return datetime.combine(day, datetime.min.time()) + timedelta(hours=h, minutes=m)
+
+
+def event_period(row):
+    """(開始, 終了) を返す。時刻が分からなければ None（終日扱い）。"""
+    day = date.fromisoformat(row["date"])
+    if row["start"] or row["open"]:
+        start = to_datetime(day, row["start"] or row["open"])
+        end = to_datetime(day, row["end"]) if row["end"] else start + DEFAULT_DURATION
+        return start, end if end > start else end + timedelta(days=1)
+    note = row["time_note"]
+    if not note:
+        return None
+    # 部ごとの時間: 最初の部の開始〜最後の部の終了
+    ranges = re.findall(rf"{TIME_RE}\s*[-~〜～－]\s*{TIME_RE}", note)
+    if ranges:
+        start = to_datetime(day, "%s:%s" % ranges[0][:2])
+        end = to_datetime(day, "%s:%s" % ranges[-1][2:])
+        return start, end if end > start else end + timedelta(days=1)
+    # 「1部 12:30 START（優先エリア入場12:10）」「[OPEN/START] 15:00/16:00」は START の時刻を使う
+    note = re.sub(r"[（(][^）)]*[）)]", "", note)
+    note = re.sub(rf"{TIME_RE}\s*/\s*({TIME_RE})", r"\3", note)
+    times = re.findall(TIME_RE, note)
+    if not times:
+        return None
+    return to_datetime(day, "%s:%s" % times[0]), to_datetime(day, "%s:%s" % times[-1]) + DEFAULT_DURATION
+
+
+def ics_escape(text):
+    return (text.replace("\\", "\\\\").replace(";", "\\;").replace(",", "\\,")
+            .replace("\r", "").replace("\n", "\\n"))
+
+
+def ics_fold(line):
+    """1 行 75 オクテット以内に折り返す（マルチバイト文字の途中では切らない）。"""
+    out, cur = [], ""
+    for ch in line:
+        limit = 75 if not out else 74  # 継続行は先頭の空白 1 文字分短くする
+        if len((cur + ch).encode("utf-8")) > limit:
+            out.append(cur)
+            cur = ""
+        cur += ch
+    out.append(cur)
+    return "\r\n ".join(out)
+
+
+def ics_summary(row):
+    title = re.sub(r"\s+", " ", row["title"]).strip()
+    if row["members"] != GROUP:
+        names = [last for full, last, _ in MEMBERS if full in row["members"]]
+        if not all(n in title for n in names):
+            title = f"【{'・'.join(names)}】{title}"
+    if row["category"].startswith("Eventernote"):
+        title += "（非公式）"
+    return title
+
+
+def ics_description(row):
+    lines = []
+    if time_label(row):
+        lines.append(f"時間: {time_label(row)}")
+    lines += [f"出演: {row['members']}", f"カテゴリ: {row['category']}", f"情報元: {row['url']}"]
+    if row["category"].startswith("Eventernote"):
+        lines.append("※公式サイト未掲載（Eventernote の情報）")
+    return "\n".join(lines)
+
+
+def write_ics(rows, path):
+    stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    out = [
+        "BEGIN:VCALENDAR",
+        "VERSION:2.0",
+        "PRODID:-//takaneko-data//fetch_schedule.py//JA",
+        "CALSCALE:GREGORIAN",
+        "METHOD:PUBLISH",
+        "X-WR-CALNAME:高嶺のなでしこ",
+        "X-WR-TIMEZONE:Asia/Tokyo",
+        "REFRESH-INTERVAL;VALUE=DURATION:PT6H",
+        "X-PUBLISHED-TTL:PT6H",
+        "BEGIN:VTIMEZONE",
+        "TZID:Asia/Tokyo",
+        "BEGIN:STANDARD",
+        "DTSTART:19700101T000000",
+        "TZOFFSETFROM:+0900",
+        "TZOFFSETTO:+0900",
+        "TZNAME:JST",
+        "END:STANDARD",
+        "END:VTIMEZONE",
+    ]
+    seen = set()
+    for r in rows:
+        uid = hashlib.sha1(f"{r['date']}|{r['url']}".encode()).hexdigest()[:16]
+        while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
+            uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
+        seen.add(uid)
+        out += ["BEGIN:VEVENT", f"UID:{uid}@takaneko-data", f"DTSTAMP:{stamp}"]
+        period = event_period(r)
+        if period:
+            out += [f"DTSTART;TZID=Asia/Tokyo:{period[0]:%Y%m%dT%H%M%S}",
+                    f"DTEND;TZID=Asia/Tokyo:{period[1]:%Y%m%dT%H%M%S}"]
+        else:
+            day = date.fromisoformat(r["date"])
+            out += [f"DTSTART;VALUE=DATE:{day:%Y%m%d}",
+                    f"DTEND;VALUE=DATE:{day + timedelta(days=1):%Y%m%d}"]
+        out.append(f"SUMMARY:{ics_escape(ics_summary(r))}")
+        if r["venue"]:
+            out.append(f"LOCATION:{ics_escape(r['venue'])}")
+        out += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
+                f"URL:{r['url']}",
+                "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
+                "TRANSP:TRANSPARENT",  # 個人の予定の「空き時間」を塞がない
+                "END:VEVENT"]
+    out.append("END:VCALENDAR")
+    with open(path, "w", encoding="utf-8", newline="") as f:
+        f.write("".join(ics_fold(line) + "\r\n" for line in out))
+
+
 def load_past_rows(path, before):
     """前回出力した CSV から、指定日より前の予定を読み込む。"""
     try:
@@ -490,6 +617,7 @@ def main():
                         help="何日前までのお知らせ記事を確認するか")
     parser.add_argument("--md", default="schedule.md")
     parser.add_argument("--csv", default="schedule.csv")
+    parser.add_argument("--ics", default="schedule.ics")
     args = parser.parse_args()
 
     # API は開始日当日のイベントを含めないため 1 日前から取得して絞り込む
@@ -515,7 +643,8 @@ def main():
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     write_markdown(rows, args.md, args.start, args.end)
     write_csv(rows, args.csv)
-    print(f"出力: {args.md}, {args.csv}")
+    write_ics(rows, args.ics)
+    print(f"出力: {args.md}, {args.csv}, {args.ics}")
 
 
 if __name__ == "__main__":

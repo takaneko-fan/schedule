@@ -1,0 +1,2 @@
+# iCalendar は CRLF 改行が必須なので変換しない
+*.ics -text
