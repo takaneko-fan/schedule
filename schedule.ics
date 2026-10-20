@@ -1,0 +1,968 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-WR-CALNAME:高嶺のなでしこ
+X-WR-TIMEZONE:Asia/Tokyo
+REFRESH-INTERVAL;VALUE=DURATION:PT6H
+X-PUBLISHED-TTL:PT6H
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:998c8ea2d7529db8@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20260924T190000
+DTEND;TZID=Asia/Tokyo:20260924T223000
+SUMMARY:【城月・涼海・葉月・東山・松本】✿SPACE MAKE✿
+DESCRIPTION:時間: ①19:00-19:30 ／ … ／ ⑥22:00-22:30\n出演: 城
+ 月菜央、涼海すう、葉月紗蘭、東山恵里沙、松本もも
+ な\nカテゴリ: その他\n情報元: https://takanenonadeshiko.jp/even
+ ts/event/%e2%9c%bfspace-make%e2%9c%bf-17/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-
+ 17/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b865f8ce53c1e164@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20260925T190000
+DTEND;TZID=Asia/Tokyo:20260925T223000
+SUMMARY:【橋本・日向端・籾山】高嶺のなでしこメンバー
+ とオンライン個別お話し会
+DESCRIPTION:時間: ①19:00-19:30 ／ … ／ ⑥22:00-22:30\n出演: 橋
+ 本桃呼、日向端ひな、籾山ひめり\nカテゴリ: お知らせ
+ 記事\n情報元: https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%b
+ a%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%
+ e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5
+ %88%a5%e3%81%8a-43/
+URL:https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81
+ %aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a
+ 8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-
+ 43/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7760f7b1ca2c3196@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20260926T120000
+DTEND;TZID=Asia/Tokyo:20260926T173000
+SUMMARY:『 A World in Our Colors 』リリース記念イベントat ら
+ らぽーと横浜
+LOCATION:ららぽーと横浜1F セントラルガーデンKiLaLa
+DESCRIPTION:時間: 1部 12:00 START（優先エリア入場11:40） ／ 2
+ 部 15:30 START（優先エリア入場15:10）\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3
+ %83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%8
+ 3%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/
+URL:https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colo
+ rs-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a
+ 4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%
+ 90%e6%89%80/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f53265bf09a3013d@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20260927
+DTEND;VALUE=DATE:20260928
+SUMMARY:エンタパークフェス2026
+LOCATION:イオンモールむさし村山 つむぐ広場特設会場
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e3%82%a8%
+ e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b9202
+ 6/
+URL:https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e
+ 3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:1b8e29a215172bb2@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20260928
+DTEND;VALUE=DATE:20260929
+SUMMARY:たかねこ初恋キッチン。
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: その他 / ラ
+ イブ／イベント\n情報元: https://takanenonadeshiko.jp/events/even
+ t/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83
+ %e3%83%81%e3%83%b3%e3%80%82-5/
+URL:https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e
+ 3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-5/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:58c2d6eee8ab448e@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20260929T173000
+DTEND;TZID=Asia/Tokyo:20260929T193000
+SUMMARY:BEEEEM FES Vol.11 DX SP
+LOCATION:Zepp DiverCity (TOKYO)
+DESCRIPTION:時間: OPEN 16:30 / START 17:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/beeeem-fes-vol-11-dx-sp/
+URL:https://takanenonadeshiko.jp/events/event/beeeem-fes-vol-11-dx-sp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:bda02964c9a74d96@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261001T190000
+DTEND;TZID=Asia/Tokyo:20261001T210000
+SUMMARY:ドラマチックレコードpresents「 SPECIAL DRAMATIC POP Load
+  to LOVEZ 」
+LOCATION:GARDEN 新木場 FACTORY
+DESCRIPTION:時間: OPEN 18:15 / START 19:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%8
+ 2%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents%e3%80%8c-special-dramatic
+ -pop-load-to-lovez-%e3%80%8d/
+URL:https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e
+ 3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents%e3%8
+ 0%8c-special-dramatic-pop-load-to-lovez-%e3%80%8d/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:bbf7b9efe01df50a@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261003T123000
+DTEND;TZID=Asia/Tokyo:20261003T180000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念イベントat イオンモール常滑
+LOCATION:イオンモール常滑　ワンダーフォレストきゅりお
+ 内　ワンダーステージ
+DESCRIPTION:時間: 1部 12:30 START（優先エリア入場12:10） ／ 2
+ 部 16:00 START（優先エリア入場15:40）\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83
+ %bc/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:bf4868019b6ed1e8@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261004T150000
+DTEND;TZID=Asia/Tokyo:20261004T170000
+SUMMARY:推し寺アイドルまつり2026
+LOCATION:東別院テラスホール
+DESCRIPTION:時間: OPEN 14:00 / START 15:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e6%8e%a8%e3%81%97%e5%af%ba%e3%82%a2%e3%82%a4%e3%8
+ 3%89%e3%83%ab%e3%81%be%e3%81%a4%e3%82%8a2026/
+URL:https://takanenonadeshiko.jp/events/event/%e6%8e%a8%e3%81%97%e5%af%ba%e
+ 3%82%a2%e3%82%a4%e3%83%89%e3%83%ab%e3%81%be%e3%81%a4%e3%82%8a2026/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:140e9ffc552f7fc1@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261006T112000
+DTEND;TZID=Asia/Tokyo:20261006T132000
+SUMMARY:TOKYO GIRLS GIRLS
+LOCATION:Shibuya LOVEZ(シブヤ ラブズ)
+DESCRIPTION:時間: OPEN 11:00 / START 11:20\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/tokyo-girls-girls-2/
+URL:https://takanenonadeshiko.jp/events/event/tokyo-girls-girls-2/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:21dbec06827732ba@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261007T150000
+DTEND;TZID=Asia/Tokyo:20261007T170000
+SUMMARY:衛星とカラテアPresents 『 超 明星現象 2026 』
+LOCATION:Shibuya LOVEZ 全14会場
+DESCRIPTION:時間: OPEN 14:20 / START 15:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e8%a1%9b%e6%98%9f%e3%81%a8%e3%82%ab%e3%83%a9%e3%8
+ 3%86%e3%82%a2presents-%e3%80%8e-%e8%b6%85-%e6%98%8e%e6%98%9f%e7%8f%be%e8%b
+ 1%a1-2026-%e3%80%8f/
+URL:https://takanenonadeshiko.jp/events/event/%e8%a1%9b%e6%98%9f%e3%81%a8%e
+ 3%82%ab%e3%83%a9%e3%83%86%e3%82%a2presents-%e3%80%8e-%e8%b6%85-%e6%98%8e%e
+ 6%98%9f%e7%8f%be%e8%b1%a1-2026-%e3%80%8f/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3f798d95790834b5@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261011T123000
+DTEND;TZID=Asia/Tokyo:20261011T180000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念イベント at イオンモール幕張新都心
+LOCATION:イオンモール幕張新都心　グランドモール1F グラ
+ ンドスクエア
+DESCRIPTION:時間: 1部：12:30 START（優先エリア入場12:10） ／ 
+ 2部：16:00 START（優先エリア入場15:40）\n出演: グループ
+ （全員）\nカテゴリ: ライブ／イベント\n情報元: https://t
+ akanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%8
+ 1%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83
+ %90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3
+ %83%bc-2/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc-2/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:4e39f5f0ca8bfe6d@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261012
+DTEND;VALUE=DATE:20261013
+SUMMARY:✿松本ももな誕生日✿
+DESCRIPTION:出演: 松本ももな\nカテゴリ: 誕生日\n情報元: ht
+ tps://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%
+ 82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e
+ 3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:953cce82fbf1e1dc@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261016T170000
+DTEND;TZID=Asia/Tokyo:20261016T192000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念オンラインサイン会＆オンラインお話
+ 会
+DESCRIPTION:時間: 第1部 17:00～18:00 ／ 第2部 18:20～19:20\n出演
+ : グループ（全員）\nカテゴリ: ライブ／イベント\n情報
+ 元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae
+ %e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%
+ e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%
+ aa%e3%83%aa%e3%83%bc-3/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc-3/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:8375ecf70c32b238@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261017T113000
+DTEND;TZID=Asia/Tokyo:20261017T190000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念個別イベント
+LOCATION:大崎ブライトコアホール
+DESCRIPTION:時間: 1部 11:30-12:30 城月菜央 / 葉月紗蘭 / 日向
+ 端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 
+ 橋本桃呼 / 東山恵里沙 / 籾山ひめり\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83
+ %bc-4/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc-4/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ede069142702be5b@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261018T173000
+DTEND;TZID=Asia/Tokyo:20261018T193000
+SUMMARY:HoneyWorks Presents ハニフェス 2026 〜女子校文化祭 ハ
+ ロウィンパーティ〜
+LOCATION:渋谷 LOVEZ
+DESCRIPTION:時間: OPEN 16:30 / START 17:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/honeyworks-presents-%e3%83%8f%e3%83%8b%e3%83%95%e3
+ %82%a7%e3%82%b9-2026-%e3%80%9c%e5%a5%b3%e5%ad%90%e6%a0%a1%e6%96%87%e5%8c%9
+ 6%e7%a5%ad-%e3%83%8f%e3%83%ad%e3%82%a6%e3%82%a3%e3%83%b3%e3%83%91%e3%83%bc
+ /
+URL:https://takanenonadeshiko.jp/events/event/honeyworks-presents-%e3%83%8f
+ %e3%83%8b%e3%83%95%e3%82%a7%e3%82%b9-2026-%e3%80%9c%e5%a5%b3%e5%ad%90%e6%a
+ 0%a1%e6%96%87%e5%8c%96%e7%a5%ad-%e3%83%8f%e3%83%ad%e3%82%a6%e3%82%a3%e3%83
+ %b3%e3%83%91%e3%83%bc/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fe56db73920b2944@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:NEO JAPONISM主催イベント 『 “KASSEN” 粋 -IKI- 』
+LOCATION:Zepp Shinjuku (TOKYO)
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/neo-japoni
+ sm%e4%b8%bb%e5%82%ac%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88-%e3%80%8e-kassen-
+ %e7%b2%8b-iki-%e3%80%8f/
+URL:https://takanenonadeshiko.jp/events/event/neo-japonism%e4%b8%bb%e5%82%a
+ c%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88-%e3%80%8e-kassen-%e7%b2%8b-iki-%e3%8
+ 0%8f/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:0626c31368bb4da6@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261021T113000
+DTEND;TZID=Asia/Tokyo:20261021T133000
+SUMMARY:iLiVE! HALLOWEEN
+LOCATION:豊洲PIT
+DESCRIPTION:時間: OPEN 11:00 / START 11:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/ilive-halloween-2/
+URL:https://takanenonadeshiko.jp/events/event/ilive-halloween-2/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2919ac6fa70d0ab9@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261023T170000
+DTEND;TZID=Asia/Tokyo:20261023T192000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念オンラインサイン会＆オンラインお話
+ 会
+DESCRIPTION:時間: 第1部 17:00～18:00 ／ 第2部 18:20～19:20\n出演
+ : グループ（全員）\nカテゴリ: ライブ／イベント\n情報
+ 元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae
+ %e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%
+ e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%
+ aa%e3%83%aa%e3%83%bc-5/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc-5/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:026dc96ba3b2cef8@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261024T113000
+DTEND;TZID=Asia/Tokyo:20261024T190000
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』リリース記念個別イベント
+LOCATION:東京都内某所
+DESCRIPTION:時間: 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日
+ 向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう /
+  橋本桃呼 / 葉月紗蘭/ 籾山ひめり\n出演: グループ（全
+ 員）\nカテゴリ: ライブ／イベント\n情報元: https://takanen
+ onadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e
+ 3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3
+ %83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc
+ -6/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa
+ %e3%83%aa%e3%83%bc-6/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:64327345eaaca75e@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261025
+DTEND;VALUE=DATE:20261026
+SUMMARY:中央学院大学 第58回あびこ祭
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e4%b8%ad%
+ e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82
+ %e3%81%b3%e3%81%93%e7%a5%ad/
+URL:https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e
+ 9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%
+ e7%a5%ad/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:acd9705f6e2c47f1@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261026T180000
+DTEND;TZID=Asia/Tokyo:20261026T213000
+SUMMARY:【城月・橋本・日向端】✿SPACE MAKE✿
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 城
+ 月菜央、橋本桃呼、日向端ひな\nカテゴリ: その他\n情
+ 報元: https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9
+ c%bf-18/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-
+ 18/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cb321dc11e69476d@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261028
+DTEND;VALUE=DATE:20261029
+SUMMARY:たかねこ初恋キッチン。
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: その他\n情
+ 報元: https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81
+ %ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%8
+ 2-6/
+URL:https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e
+ 3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2c27b7ff0ab85b7f@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261029T143000
+DTEND;TZID=Asia/Tokyo:20261029T163000
+SUMMARY:ONE AND ONLY Vol.46 SP
+LOCATION:豊洲PIT
+DESCRIPTION:時間: OPEN 14:00 / START 14:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/one-and-only-vol-46-sp/
+URL:https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2ff1cc6a4d169223@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261030T180000
+DTEND;TZID=Asia/Tokyo:20261030T213000
+SUMMARY:【涼海・葉月・東山・松本・籾山】✿SPACE MAKE✿
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 涼
+ 海すう、葉月紗蘭、東山恵里沙、松本ももな、籾山ひ
+ めり\nカテゴリ: その他\n情報元: https://takanenonadeshiko.jp/e
+ vents/event/%e2%9c%bfspace-make%e2%9c%bf-19/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-
+ 19/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:105870ac6237ddb2@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:✿日向端ひな誕生日✿
+DESCRIPTION:出演: 日向端ひな\nカテゴリ: 誕生日\n情報元: ht
+ tps://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%
+ af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e
+ 7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e5a8cbefdc5efd66@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261031T140000
+DTEND;TZID=Asia/Tokyo:20261031T160000
+SUMMARY:ZOMBIE FES 2026 DAY3
+LOCATION:横須賀うみかぜ公園 特設ステージ
+DESCRIPTION:時間: OPEN 13:00 / START 14:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/zombie-fes-2026-day3/
+URL:https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7e2d92da263bb065@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon
+LOCATION:埼玉スタジアム2002 野外特設ステージ
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/idol-hallo
+ ween-japan-2026-supported-by-malymoon/
+URL:https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-sup
+ ported-by-malymoon/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:765c955873b595e7@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261102T170000
+DTEND;TZID=Asia/Tokyo:20261102T190000
+SUMMARY:成城大学 柳祭2026 中夜祭
+LOCATION:成城大学 中庭メインステージ
+DESCRIPTION:時間: 17:00〜19:00\n出演: グループ（全員）\nカテ
+ ゴリ: ライブ／イベント\n情報元: https://takanenonadeshiko.jp/
+ events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%
+ e4%b8%ad%e5%a4%9c%e7%a5%ad/
+URL:https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e
+ 5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:49a3c6367e04a19e@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261103T123000
+DTEND;TZID=Asia/Tokyo:20261103T180000
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at 汐留シオサイト
+LOCATION:汐留シオサイト地下歩道　特設ステージ
+DESCRIPTION:時間: 12:30 START（優先エリア入場12:10） ／ 16:00 S
+ TART（優先エリア入場15:40）\n出演: グループ（全員）\n
+ カテゴリ: ライブ／イベント\n情報元: https://takanenonadeshi
+ ko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%
+ e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e
+ 3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:076a97c93e0cae0a@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベ
+ ントホール〜 』
+LOCATION:Shibuya LOVEZ / Veats Shibuya / ※2会場連動
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/devil-anth
+ em-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%
+ 9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%
+ e3%83%bc%e3%83%ab%e3%80%9c/
+URL:https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%
+ 8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95
+ %e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e
+ 3%80%9c/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a665f10e9d7acc42@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261106
+DTEND;VALUE=DATE:20261107
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念オンラインサイン会＆オンラインお話
+ 会
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-3/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e1a2d278c8aa1881@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261107T123000
+DTEND;TZID=Asia/Tokyo:20261107T143000
+SUMMARY:産業能率大学 第61回産能祭
+LOCATION:産業能率大学 自由が丘キャンパス 体育館
+DESCRIPTION:時間: OPEN 12:00 / START 12:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%a
+ d%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/
+URL:https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e
+ 7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fde98d38963ea568@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261107T160000
+DTEND;TZID=Asia/Tokyo:20261107T180000
+SUMMARY:LARME FES’26︎✿城月・松本
+LOCATION:東京ガーデンシアター
+DESCRIPTION:時間: OPEN 14:30 / START 16:00\n出演: 城月菜央、松本
+ ももな\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c
+ %88%e3%83%bb%e6%9d%be%e6%9c%ac/
+URL:https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf
+ %e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:2836daa94f30129c@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261108T120000
+DTEND;TZID=Asia/Tokyo:20261108T173000
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at アリオ橋本
+LOCATION:アリオ橋本 1F屋外イベント広場
+DESCRIPTION:時間: 12:00 START（優先エリア入場11:40） ／ 15:30 S
+ TART（優先エリア入場15:10）\n出演: グループ（全員）\n
+ カテゴリ: ライブ／イベント\n情報元: https://takanenonadeshi
+ ko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%
+ e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e
+ 3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-2/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:de915654fd497dc1@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261111T170000
+DTEND;TZID=Asia/Tokyo:20261111T190000
+SUMMARY:【M.M.S】Massive Music Showcase Vol.1
+LOCATION:Spotify O-EAST(Shibuya O-EAST)
+DESCRIPTION:時間: OPEN 16:00 / START 17:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-
+ 1/
+URL:https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massiv
+ e-music-showcase-vol-1/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cef6eb78152ff190@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261114
+DTEND;VALUE=DATE:20261115
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at イオンモール津田沼
+LOCATION:イオンモール津田沼
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-4/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:5799ebdded7af6c5@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261115
+DTEND;VALUE=DATE:20261116
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念個別特典イベント
+LOCATION:東京都内某所
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-5/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f6e9c5f353ff30ec@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:MARQUEE Fes.
+LOCATION:Spotify O-EAST(Shibuya O-EAST)
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/marquee-fe
+ s-4/
+URL:https://takanenonadeshiko.jp/events/event/marquee-fes-4/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:070bcf4a728c51f6@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』2026年11月18日(水)リリース
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: お知らせ記
+ 事\n情報元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors/
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f90e02494e2ef452@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at ららぽーと立川立飛
+LOCATION:ららぽーと立川立飛
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-6/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:b6510b85ae023851@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念オンラインサイン会＆オンラインお話
+ 会
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-7/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-7/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:ea2bb8a58d9224e6@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261121
+DTEND;VALUE=DATE:20261122
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at ステラタウン大宮
+LOCATION:ステラタウン大宮
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-8/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-8/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:e0ddd46fe90b85c8@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261122
+DTEND;VALUE=DATE:20261123
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念個別特典イベント
+LOCATION:東京都内某所
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-9/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-9/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:cae3dda54cf95a66@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261124
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at 横浜ワールドポーターズ
+LOCATION:横浜ワールドポーターズ
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-10/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7e600bad7229192a@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261129
+DTEND;VALUE=DATE:20261130
+SUMMARY:Anime Festival Asia Singapore 2026✿東山・日向端
+LOCATION:SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE
+DESCRIPTION:出演: 東山恵里沙、日向端ひな\nカテゴリ: ライ
+ ブ／イベント\n情報元: https://takanenonadeshiko.jp/events/event/a
+ nime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%9
+ 7%a5%e5%90%91%e7%ab%af/
+URL:https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore
+ -2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:3a5ed64b3a809dff@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;TZID=Asia/Tokyo:20261224T160000
+DTEND;TZID=Asia/Tokyo:20261224T213000
+SUMMARY:高嶺のなでしこ たかねこクリスマスパーティ2026
+LOCATION:ヒューリックホール東京(HULIC HALL TOKYO)
+DESCRIPTION:時間: 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/ST
+ ART] 18:30/19:30\n出演: グループ（全員）\nカテゴリ: ライ
+ ブ／イベント\n情報元: https://takanenonadeshiko.jp/events/event/%
+ e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e
+ 3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%
+ 83%91%e3%83%bc%e3%83%86%e3%82%a32026/
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3
+ %82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%8
+ 2%a32026/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:72623aea04fbac76@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20261225
+DTEND;VALUE=DATE:20261226
+SUMMARY:✿城月菜央誕生日✿
+DESCRIPTION:出演: 城月菜央\nカテゴリ: 誕生日\n情報元: https
+ ://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%
+ e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e
+ 8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:a3854a40e9aa7f4b@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270303
+DTEND;VALUE=DATE:20270304
+SUMMARY:✿葉月紗蘭誕生日✿
+DESCRIPTION:出演: 葉月紗蘭\nカテゴリ: 誕生日\n情報元: https
+ ://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%
+ e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e
+ 7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:26d4e66c5b576502@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270322
+DTEND;VALUE=DATE:20270323
+SUMMARY:✿籾山ひめり誕生日✿
+DESCRIPTION:出演: 籾山ひめり\nカテゴリ: 誕生日\n情報元: ht
+ tps://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%
+ b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e
+ 3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:f6f6cb2b968c3c89@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270528
+DTEND;VALUE=DATE:20270529
+SUMMARY:✿東山恵里沙誕生日✿
+DESCRIPTION:出演: 東山恵里沙\nカテゴリ: 誕生日\n情報元: ht
+ tps://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%
+ b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e
+ 6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:168e4eb2b8efc3ac@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270628
+DTEND;VALUE=DATE:20270629
+SUMMARY:✿橋本桃呼誕生日✿
+DESCRIPTION:出演: 橋本桃呼\nカテゴリ: 誕生日\n情報元: https
+ ://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%
+ e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e
+ 6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:fea37c8fb56a7261@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270807
+DTEND;VALUE=DATE:20270808
+SUMMARY:✿高嶺のなでしこ誕生日✿
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: 誕生日\n情
+ 報元: https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6
+ %ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a
+ 5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e
+ 3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%
+ 9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:7fff18ab76e8a1ee@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20270822
+DTEND;VALUE=DATE:20270823
+SUMMARY:✿涼海すう誕生日✿
+DESCRIPTION:出演: 涼海すう\nカテゴリ: 誕生日\n情報元: https
+ ://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%
+ e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e
+ 3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+BEGIN:VEVENT
+UID:16e513691d0e4303@takaneko-data
+DTSTAMP:20261020T165841Z
+DTSTART;VALUE=DATE:20271012
+DTEND;VALUE=DATE:20271013
+SUMMARY:✿松本ももな誕生日✿
+DESCRIPTION:出演: 松本ももな\nカテゴリ: 誕生日\n情報元: ht
+ tps://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%
+ 82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e
+ 3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
