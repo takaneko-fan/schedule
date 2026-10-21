@@ -607,13 +607,34 @@ def write_ics(rows, path):
     return True
 
 
-def load_past_rows(path, before):
-    """前回出力した CSV から、指定日より前の予定を読み込む。"""
+def load_prev_rows(path):
+    """前回出力した CSV の予定を読み込む（初回は空）。"""
     try:
         with open(path, encoding="utf-8-sig", newline="") as f:
-            return [r for r in csv.DictReader(f) if r["date"] < before.isoformat()]
+            return list(csv.DictReader(f))
     except FileNotFoundError:
         return []
+
+
+# ---- 安全策（取得失敗で予定を消したまま出力しないため） ----
+
+DROP_RATIO = 0.3  # 前回あった予定のうち、この割合以上が消えたら止める
+DROP_MIN = 5      # ただし消えた件数がこれ未満なら止めない
+
+
+def check_drop(prev_rows, rows, start, end, n_events):
+    """取得結果が前回より不自然に少なければ、理由を返す（問題なければ None）。"""
+    if n_events == 0:
+        return "公式カレンダーから 1 件も取得できませんでした"
+    # Eventernote は補助ソースで取得失敗も許しているので比較しない
+    prev = [r for r in prev_rows
+            if start.isoformat() <= r["date"] < end.isoformat() and not r["category"].startswith("Eventernote")]
+    keys = {(r["date"], r["url"]) for r in rows}
+    removed = [r for r in prev if (r["date"], r["url"]) not in keys]
+    if len(removed) >= DROP_MIN and len(removed) >= len(prev) * DROP_RATIO:
+        lines = [f"  - {r['date']} {r['title']}" for r in removed]
+        return (f"前回あった予定 {len(prev)} 件のうち {len(removed)} 件が見つかりません\n" + "\n".join(lines))
+    return None
 
 
 def main():
@@ -628,6 +649,8 @@ def main():
     parser.add_argument("--md", default="schedule.md")
     parser.add_argument("--csv", default="schedule.csv")
     parser.add_argument("--ics", default="schedule.ics")
+    parser.add_argument("--force", action="store_true",
+                        help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
     args = parser.parse_args()
 
     # API は開始日当日のイベントを含めないため 1 日前から取得して絞り込む
@@ -646,7 +669,12 @@ def main():
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
-    past = load_past_rows(args.csv, args.start)
+    prev = load_prev_rows(args.csv)
+    problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
+    if problem:
+        raise SystemExit(f"中止: {problem}\n"
+                         "ファイルは書き換えていません。取得に問題がなければ --force を付けて実行してください。")
+    past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
     for r in rows:
