@@ -5,7 +5,7 @@
     python fetch_schedule.py --start 2026-01-01    # 期間指定
 
 開始日より前の予定は既存の CSV から引き継ぎ、終わった予定には「済」を付ける。
-カレンダーアプリ用の iCalendar（.ics）も同時に出力する。
+カレンダーアプリ用の iCalendar（.ics）と、お知らせ記事から読み取った申込・締切の一覧も同時に出力する。
 """
 
 import argparse
@@ -15,6 +15,7 @@ import html
 import json
 import re
 import time
+import unicodedata
 import urllib.parse
 import urllib.request
 from datetime import date, datetime, timedelta, timezone
@@ -470,6 +471,162 @@ def write_csv(rows, path):
         writer.writerows(rows)
 
 
+# ---- 申込・締切（お知らせ記事の「受付期間」などの見出しから読み取る） ----
+
+# (見出しの正規表現, 期間の開始の種別, 期間の終了の種別)。日時が 1 つだけなら開始の種別を使う。
+DEADLINE_LABELS = [
+    (r"\d回目受付|(?:受付|応募|抽選予約販売|先着販売|販売)期間", "受付開始", "受付締切"),
+    (r"受付締め?切り?|申請締切|締切", "受付締切", None),
+    (r"当落・?入金期間|抽選結果確認/入金期間", "当落発表", "入金締切"),
+    (r"抽選結果(?:発表)?|当選連絡", "当落発表", None),
+    (r"当選分お支払い?期限|支払期日|支払締め?切り?", "入金締切", None),
+    (r"チケット一般発売", "一般発売", None),
+    (r"販売開始", "受付開始", None),
+]
+DEADLINE_LABEL_RE = re.compile("|".join(f"({p})" for p, _, _ in DEADLINE_LABELS))
+DEADLINE_DT_RE = re.compile(
+    r"(?:(\d{4})[年/]\s*)?(\d{1,2})[月/]\s*(\d{1,2})日?\s*(?:[(（][^)）]{1,6}[)）])?\s*"
+    r"(?:(\d{1,2})(?:[:：]\s?(\d{2})|時(?:(\d{2})分)?))?"
+)
+DEADLINE_KINDS = ["受付開始", "受付締切", "当落発表", "入金締切", "一般発売"]
+# 見出しに使える短い行（【…】・■…・「バーチャル銀行振込」のような支払方法名）
+HEADING_RE = re.compile(r"^(?:【([^】]{2,30})】|[■◆★✿]+\s*([^■◆✿。]{2,30}?)\s*[■◆✿]*|([^\s。、:：()（）]{2,15}))$")
+# 受付の区分を表す見出しだけを使う（「〇その他ご注意」「指定席」のような見出しは使わない）
+HEADING_WORDS_RE = re.compile(r"受付|先行|抽選|予約|販売|撮影会|お話し会|サイン会|握手会|振込|ペイ|カード|コンビニ|決済")
+# 支払方法ごとの締切（「バーチャル銀行振込」の受付締め切りなど）は、販売期間の終わりと重なるので載せない
+PAYMENT_RE = re.compile(r"振込|ペイ|カード|コンビニ|決済")
+
+
+def find_deadline_dates(text, published):
+    out = []
+    for m in DEADLINE_DT_RE.finditer(text):
+        y, mo, d, h, mi, mi2 = m.groups()
+        if not (1 <= int(mo) <= 12 and 1 <= int(d) <= 31):
+            continue
+        hm = f"{int(h):02d}:{mi or mi2 or '00'}" if h is not None and int(h) <= 24 else ""
+        out.append((infer_date(y, mo, d, published), hm))
+    return out
+
+
+def find_heading(lines, i, published):
+    """i 行目の見出し行より前にある、受付の区分を表す見出し（FC先行受付・支払方法など）。"""
+    for line in reversed(lines[max(0, i - 10):i]):
+        if DEADLINE_LABEL_RE.search(line) or find_deadline_dates(line, published):
+            continue
+        m = HEADING_RE.match(line)
+        # 記号のない短い行は「バーチャル銀行振込」のような支払方法名のときだけ見出しとみなす
+        if m and not re.search(r"方法|リンク|URL|こちら|注意", line) and (
+                PAYMENT_RE.search(line) if m.group(3) else HEADING_WORDS_RE.search(line)):
+            return next(g for g in m.groups() if g).strip()
+    return ""
+
+
+def extract_deadlines(post, skipped=None):
+    """記事から申込・締切の予定（dict のリスト）を取り出す。
+    記事の公開日より前の日付（2次受付の記事に残った1次受付の日程や記載ミス）は skipped に入れる。"""
+    published = date.fromisoformat(post["date"][:10])
+    title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+    lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(post["content"]["rendered"])]
+    # 「高嶺のなでしこ」はどの予定にも付くので省き、空白の違いで別の予定にならないよう揃える
+    event = unicodedata.normalize("NFKC", clean_post_title(title))
+    event = re.sub(r"\s*([『「』」])\s*", r"\1", event)
+    event = re.sub(r"(?<=[^\x00-\x7f])at\s+", " at ", event)  # 「イベントat 会場」→「イベント at 会場」
+    event = re.sub(r"^高嶺のなでしこ\s*", "", re.sub(r"\s+", " ", event).strip()) or event
+    # 「【10月24日(土)】…」のような記事は、同じ名前の別の回と区別できるよう開催日を付ける
+    m = POST_DATE_RE.match(title)
+    if title.startswith("【") and m:
+        held = infer_date(*m.groups()[:3], published)
+        event = f"{held.month}/{held.day} {event}"
+    found = []
+    for i, line in enumerate(lines):
+        m = DEADLINE_LABEL_RE.search(line)
+        # 店舗の電話受付時間や会場での当日販売は対象外
+        if not m or re.search(r"受付時間|当日|会場", line):
+            continue
+        _, first_kind, last_kind = DEADLINE_LABELS[m.lastindex - 1]
+        text = line[m.end():]
+        dates = find_deadline_dates(text, published)
+        if not dates and i + 1 < len(lines):
+            text = lines[i + 1]
+            dates = find_deadline_dates(text, published)
+        if not dates:
+            continue
+        # 販売開始は LINE・オンラインでの販売開始だけ（イベント会場での販売は除く）
+        if m.group(0) == "販売開始" and not re.search(r"LINE|オンライン|WEB|Web|web|ストア|サイト", text):
+            continue
+        heading = find_heading(lines, i, published)
+        if PAYMENT_RE.search(heading):
+            continue
+        detail = heading or m.group(0)
+        note = re.sub(r"^[\s:：>＞】\]]+", "", text).strip()
+        pairs = [(dates[0], first_kind)]
+        if last_kind and len(dates) > 1:
+            pairs.append((dates[-1], last_kind))
+        elif last_kind and re.search(r"^[^~〜～-]*まで", text):
+            pairs = [(dates[0], last_kind)]  # 「〇月〇日 23:59まで」だけの期間は終わりの日時
+        for (day, hm), kind in pairs:
+            if day < published:
+                if skipped is not None:
+                    skipped.append((published, f"{day} {kind} {event}（{note[:40]}）"))
+                continue
+            found.append({"date": day.isoformat(), "weekday": "月火水木金土日"[day.weekday()], "time": hm,
+                          "kind": kind, "event": event, "detail": detail, "note": note, "url": post["link"]})
+    return found
+
+
+def collect_deadlines(posts, end, today):
+    """全記事の申込・締切を、同じもの（種別・日時・イベントが同じ）をまとめて日付順に返す。"""
+    seen, rows, skipped = set(), [], []
+    for p in sorted(posts, key=lambda p: p["date"], reverse=True):  # 新しい記事の記載を優先
+        for r in extract_deadlines(p, skipped):
+            key = (r["kind"], r["date"], r["time"], r["event"])
+            if r["date"] < end.isoformat() and key not in seen:
+                seen.add(key)
+                rows.append(r)
+    rows.sort(key=lambda r: (r["date"], r["time"] or "99:99", DEADLINE_KINDS.index(r["kind"]), r["event"]))
+    if skipped:
+        print(f"  記事の公開日より前の日付 {len(skipped)} 件を除外")
+        # 最近の記事のものは公式の記載ミスかもしれないので内容も出す
+        for published, text in skipped:
+            if published >= today - timedelta(days=30):
+                print(f"  ! 記載ミスの可能性: {text}")
+    return rows
+
+
+def deadline_title(row):
+    return f"【{row['kind']}】{row['event']}" + (f"（{row['detail']}）" if row["detail"] else "")
+
+
+def write_deadlines_markdown(rows, path):
+    out = [
+        "# 高嶺のなでしこ 申込・締切一覧",
+        "",
+        f"- 取得元: {BASE_URL}/news/ （お知らせ記事の「受付期間」「抽選結果」などの記載）",
+        f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
+        "",
+        "お知らせ記事から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・"
+        "プレイガイドのみの告知など）もあるので、申し込む前に必ず情報元の記事・受付ページを確認してください。",
+        "",
+        "| 済 | 日付 | 時刻 | 種別 | イベント | 区分 | 記事の記載 |",
+        "|:-:|---|---|---|---|---|---|",
+    ]
+    for r in rows:
+        out.append("| " + " | ".join([
+            "✅" if r["done"] else "", f"{r['date']}({r['weekday']})", r["time"], r["kind"],
+            f"[{md_escape(r['event'])}]({r['url']})", md_escape(r["detail"]), md_escape(r["note"]),
+        ]) + " |")
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(out) + "\n")
+
+
+def write_deadlines_csv(rows, path):
+    fields = ["done", "date", "weekday", "time", "kind", "event", "detail", "note", "url"]
+    with open(path, "w", encoding="utf-8-sig", newline="") as f:
+        writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
+        writer.writeheader()
+        writer.writerows(rows)
+
+
 # ---- iCalendar（Mac / iPhone のカレンダー照会用） ----
 
 DEFAULT_DURATION = timedelta(hours=2)  # 終了時刻の記載がない予定の長さ
@@ -545,8 +702,19 @@ def ics_description(row):
     return "\n".join(lines)
 
 
-def write_ics(rows, path):
-    """DTSTAMP 以外が前回と同じなら書き直さない（実行時刻だけの差分を出さないため）。書き直したら True。"""
+DEADLINE_DURATION = timedelta(minutes=30)  # 申込・締切の予定の長さ
+
+
+def ics_period_lines(period, day):
+    if period:
+        return [f"DTSTART;TZID=Asia/Tokyo:{period[0]:%Y%m%dT%H%M%S}",
+                f"DTEND;TZID=Asia/Tokyo:{period[1]:%Y%m%dT%H%M%S}"]
+    return [f"DTSTART;VALUE=DATE:{day:%Y%m%d}", f"DTEND;VALUE=DATE:{day + timedelta(days=1):%Y%m%d}"]
+
+
+def write_calendar(path, name, events):
+    """events は VEVENT の中身（BEGIN/END・DTSTAMP 以外）の行リストのリスト。
+    DTSTAMP 以外が前回と同じなら書き直さない（実行時刻だけの差分を出さないため）。書き直したら True。"""
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = [
         "BEGIN:VCALENDAR",
@@ -554,7 +722,7 @@ def write_ics(rows, path):
         "PRODID:-//takaneko-data//fetch_schedule.py//JA",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
-        "X-WR-CALNAME:高嶺のなでしこ",
+        f"X-WR-CALNAME:{name}",
         "X-WR-TIMEZONE:Asia/Tokyo",
         "REFRESH-INTERVAL;VALUE=DURATION:PT6H",
         "X-PUBLISHED-TTL:PT6H",
@@ -568,29 +736,8 @@ def write_ics(rows, path):
         "END:STANDARD",
         "END:VTIMEZONE",
     ]
-    seen = set()
-    for r in rows:
-        uid = hashlib.sha1(f"{r['date']}|{r['url']}".encode()).hexdigest()[:16]
-        while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
-            uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
-        seen.add(uid)
-        out += ["BEGIN:VEVENT", f"UID:{uid}@takaneko-data", f"DTSTAMP:{stamp}"]
-        period = event_period(r)
-        if period:
-            out += [f"DTSTART;TZID=Asia/Tokyo:{period[0]:%Y%m%dT%H%M%S}",
-                    f"DTEND;TZID=Asia/Tokyo:{period[1]:%Y%m%dT%H%M%S}"]
-        else:
-            day = date.fromisoformat(r["date"])
-            out += [f"DTSTART;VALUE=DATE:{day:%Y%m%d}",
-                    f"DTEND;VALUE=DATE:{day + timedelta(days=1):%Y%m%d}"]
-        out.append(f"SUMMARY:{ics_escape(ics_summary(r))}")
-        if r["venue"]:
-            out.append(f"LOCATION:{ics_escape(r['venue'])}")
-        out += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
-                f"URL:{r['url']}",
-                "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
-                "TRANSP:TRANSPARENT",  # 個人の予定の「空き時間」を塞がない
-                "END:VEVENT"]
+    for ev in events:
+        out += ["BEGIN:VEVENT", ev[0], f"DTSTAMP:{stamp}", *ev[1:], "END:VEVENT"]
     out.append("END:VCALENDAR")
     text = "".join(ics_fold(line) + "\r\n" for line in out)
 
@@ -605,6 +752,48 @@ def write_ics(rows, path):
     with open(path, "w", encoding="utf-8", newline="") as f:
         f.write(text)
     return True
+
+
+def write_ics(rows, path):
+    events, seen = [], set()
+    for r in rows:
+        uid = hashlib.sha1(f"{r['date']}|{r['url']}".encode()).hexdigest()[:16]
+        while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
+            uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
+        seen.add(uid)
+        ev = [f"UID:{uid}@takaneko-data", *ics_period_lines(event_period(r), date.fromisoformat(r["date"])),
+              f"SUMMARY:{ics_escape(ics_summary(r))}"]
+        if r["venue"]:
+            ev.append(f"LOCATION:{ics_escape(r['venue'])}")
+        ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
+               f"URL:{r['url']}",
+               "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
+               "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
+        events.append(ev)
+    return write_calendar(path, "高嶺のなでしこ", events)
+
+
+def write_deadlines_ics(rows, path):
+    events = []
+    for r in rows:
+        key = f"{r['kind']}|{r['date']}|{r['time']}|{r['event']}"
+        uid = hashlib.sha1(key.encode()).hexdigest()[:16]
+        day = date.fromisoformat(r["date"])
+        period = None
+        if r["time"]:
+            t = to_datetime(day, r["time"])
+            # 締切は締切時刻で終わるように、それ以外はその時刻から始まるように置く
+            period = (t - DEADLINE_DURATION, t) if r["kind"].endswith("締切") else (t, t + DEADLINE_DURATION)
+        desc = [f"種別: {r['kind']}", f"イベント: {r['event']}"]
+        if r["detail"]:
+            desc.append(f"区分: {r['detail']}")
+        desc += [f"記事の記載: {r['note']}", f"情報元: {r['url']}",
+                 "※お知らせ記事から自動で読み取った情報です。申し込む前に必ず受付ページを確認してください。"]
+        events.append([f"UID:{uid}@takaneko-data-deadlines", *ics_period_lines(period, day),
+                       f"SUMMARY:{ics_escape(deadline_title(r))}",
+                       f"DESCRIPTION:{ics_escape(chr(10).join(desc))}",
+                       f"URL:{r['url']}", "STATUS:CONFIRMED", "TRANSP:TRANSPARENT"])
+    return write_calendar(path, "高嶺のなでしこ 申込・締切", events)
 
 
 def load_prev_rows(path):
@@ -649,6 +838,8 @@ def main():
     parser.add_argument("--md", default="schedule.md")
     parser.add_argument("--csv", default="schedule.csv")
     parser.add_argument("--ics", default="schedule.ics")
+    parser.add_argument("--deadlines", default="deadlines",
+                        help="申込・締切の出力先（拡張子なし。.md / .csv / .ics を出力）")
     parser.add_argument("--force", action="store_true",
                         help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
     args = parser.parse_args()
@@ -683,6 +874,15 @@ def main():
     write_csv(rows, args.csv)
     ics_note = "" if write_ics(rows, args.ics) else "（予定に変更なし・書き直さず）"
     print(f"出力: {args.md}, {args.csv}, {args.ics}{ics_note}")
+
+    deadlines = collect_deadlines(posts, args.end, today)
+    for r in deadlines:
+        r["done"] = "済" if r["date"] < today.isoformat() else ""
+    base = args.deadlines
+    write_deadlines_markdown(deadlines, f"{base}.md")
+    write_deadlines_csv(deadlines, f"{base}.csv")
+    ics_note = "" if write_deadlines_ics(deadlines, f"{base}.ics") else "（変更なし・書き直さず）"
+    print(f"{len(deadlines)} 件の申込・締切 → 出力: {base}.md, {base}.csv, {base}.ics{ics_note}")
 
 
 if __name__ == "__main__":

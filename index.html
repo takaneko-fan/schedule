@@ -106,6 +106,7 @@
     background: var(--accent-soft); border-radius: 12px; font-size: .88rem;
   }
   .ics h3 { margin: 0 0 6px; font-size: .95rem; }
+  .ics h3:not(:first-child) { margin-top: 18px; }
   .ics-url { display: flex; gap: 6px; margin-top: 8px; }
   .ics-url input { flex: 1; min-width: 0; font: inherit; font-size: .8rem; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--text); }
   .ics-url button, .ics a.button {
@@ -142,10 +143,18 @@
     iPhone・Mac では、下のボタンから照会（購読）できます。予定の更新も自動で反映されます。
     <div class="ics-url">
       <a class="button" href="webcal://takaneko-fan.github.io/schedule/schedule.ics">照会する</a>
-      <input id="icsUrl" readonly value="https://takaneko-fan.github.io/schedule/schedule.ics" aria-label="iCalendar の URL">
-      <button id="copy" type="button">コピー</button>
+      <input readonly value="https://takaneko-fan.github.io/schedule/schedule.ics" aria-label="スケジュールの iCalendar の URL">
+      <button class="copy" type="button">コピー</button>
     </div>
     <p>ほかのカレンダーアプリでは、この URL を「URL で追加」してください。</p>
+    <h3>⏰ 申込・締切カレンダー</h3>
+    チケットや特典会の受付開始・受付締切・当落発表・入金締切・一般発売を、スケジュールとは別のカレンダーとして照会できます。
+    お知らせ記事から自動で読み取ったものなので、申し込む前に必ず受付ページをご確認ください（<a href="https://github.com/takaneko-fan/schedule/blob/main/deadlines.md">一覧</a>）。
+    <div class="ics-url">
+      <a class="button" href="webcal://takaneko-fan.github.io/schedule/deadlines.ics">照会する</a>
+      <input readonly value="https://takaneko-fan.github.io/schedule/deadlines.ics" aria-label="申込・締切の iCalendar の URL">
+      <button class="copy" type="button">コピー</button>
+    </div>
   </section>
 
   <footer>
@@ -314,13 +323,13 @@ function update() {
 
 document.getElementById("includeGroup").addEventListener("change", e => { state.includeGroup = e.target.checked; update(); });
 document.getElementById("showDone").addEventListener("change", e => { state.showDone = e.target.checked; update(); });
-document.getElementById("copy").addEventListener("click", async e => {
-  const input = document.getElementById("icsUrl");
+document.querySelectorAll("button.copy").forEach(btn => btn.addEventListener("click", async e => {
+  const input = e.target.parentElement.querySelector("input");
   try { await navigator.clipboard.writeText(input.value); }
   catch (err) { input.select(); document.execCommand("copy"); }
   e.target.textContent = "コピーしました";
   setTimeout(() => { e.target.textContent = "コピー"; }, 2000);
-});
+}));
 
 loadPrefs();
 fetch("schedule.csv", { cache: "no-cache" })
