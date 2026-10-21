@@ -1,0 +1,43 @@
+# 公式サイトなどから予定を取り直し、変化があれば schedule.* をコミットする
+name: スケジュール自動更新
+
+on:
+  schedule:
+    # cron は UTC（日本時間 - 9 時間）。毎時 0 分は混みやすいので避ける
+    - cron: "10 15 * * *"    # 日本時間 0:10（前日の予定に「済」を付ける）
+    - cron: "20 3,9 * * *"   # 日本時間 12:20・18:20
+    - cron: "40 12 * * *"    # 日本時間 21:40（20〜21 時台の告知）
+  workflow_dispatch:         # Actions タブから手動実行
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-schedule
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 予定を取得
+        run: python fetch_schedule.py
+
+      - name: 変化があればコミット
+        run: |
+          git add schedule.md schedule.csv schedule.ics
+          if git diff --cached --quiet; then
+            echo "予定に変化なし"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git commit -m "feat: $(TZ=Asia/Tokyo date +%F)の登録"
+          git push
