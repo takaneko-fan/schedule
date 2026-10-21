@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>高嶺のなでしこ 非公式スケジュール</title>
+<meta name="description" content="高嶺のなでしこ（たかねこ）の出演・イベント予定をメンバー別に見られる非公式のファンメイドのスケジュールです。">
+<style>
+  :root {
+    --bg: #fbf8f9;
+    --surface: #ffffff;
+    --text: #2b2427;
+    --muted: #7a6d73;
+    --line: #ece3e7;
+    --accent: #c8487a;
+    --accent-soft: #fbe6ee;
+    --accent-text: #ffffff;
+    --today: #fff3c4;
+    --sat: #2f6fb5;
+    --sun: #c8402f;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #17131a;
+      --surface: #221c25;
+      --text: #efe7ec;
+      --muted: #a698a0;
+      --line: #3a3040;
+      --accent: #f07aa8;
+      --accent-soft: #3d2533;
+      --accent-text: #1c1218;
+      --today: #3d3520;
+      --sat: #7fb2ef;
+      --sun: #f08a7a;
+      color-scheme: dark;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 15px/1.6 system-ui, -apple-system, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 16px 48px; }
+  header { padding: 28px 0 12px; }
+  h1 { font-size: 1.35rem; margin: 0; letter-spacing: .02em; }
+  h1 .flower { color: var(--accent); }
+  .note { color: var(--muted); font-size: .82rem; margin: 6px 0 0; }
+
+  .controls {
+    position: sticky; top: 0; z-index: 2;
+    background: var(--bg);
+    padding: 10px 0 8px;
+    border-bottom: 1px solid var(--line);
+  }
+  .row { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 6px; }
+  .label { font-size: .75rem; color: var(--muted); width: 100%; margin-bottom: -2px; }
+  .chip {
+    border: 1px solid var(--line);
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 4px 12px;
+    font: inherit; font-size: .85rem;
+    cursor: pointer;
+  }
+  .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--accent-text); }
+  .toggles { display: flex; flex-wrap: wrap; gap: 4px 16px; font-size: .85rem; color: var(--muted); }
+  .toggles label { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; }
+  @media (max-width: 600px) {
+    h1 { font-size: 1.15rem; }
+    .controls { position: static; }  /* スマホでは画面の半分以上を占めるので固定しない */
+  }
+  .count { font-size: .8rem; color: var(--muted); margin: 12px 0 0; }
+
+  h2 { font-size: 1rem; margin: 24px 0 8px; color: var(--muted); }
+  .event {
+    display: grid; grid-template-columns: 4.6em 1fr; gap: 0 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+  }
+  .event.today { background: var(--today); }
+  .event.done { opacity: .55; }
+  .date { font-weight: 700; line-height: 1.3; }
+  .date .wd { display: block; font-size: .78rem; font-weight: 400; color: var(--muted); }
+  .date .wd.sat { color: var(--sat); }
+  .date .wd.sun { color: var(--sun); }
+  .badge { display: inline-block; font-size: .7rem; border-radius: 4px; padding: 0 6px; margin-top: 2px; background: var(--accent); color: var(--accent-text); font-weight: 400; }
+  .title { font-weight: 600; overflow-wrap: anywhere; }
+  .meta { font-size: .85rem; color: var(--muted); overflow-wrap: anywhere; }
+  .meta a { color: inherit; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+  .tag { font-size: .72rem; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; color: var(--muted); }
+  .tag.unofficial { border-color: var(--accent); color: var(--accent); }
+  .links { font-size: .8rem; margin-top: 4px; display: flex; gap: 12px; }
+  .links a { color: var(--accent); }
+  .empty, .error { text-align: center; color: var(--muted); padding: 40px 0; }
+
+  .ics {
+    margin-top: 32px; padding: 14px 16px;
+    background: var(--accent-soft); border-radius: 12px; font-size: .88rem;
+  }
+  .ics h3 { margin: 0 0 6px; font-size: .95rem; }
+  .ics-url { display: flex; gap: 6px; margin-top: 8px; }
+  .ics-url input { flex: 1; min-width: 0; font: inherit; font-size: .8rem; padding: 6px 8px; border: 1px solid var(--line); border-radius: 6px; background: var(--surface); color: var(--text); }
+  .ics-url button, .ics a.button {
+    font: inherit; font-size: .82rem; border: 0; border-radius: 6px; padding: 6px 12px;
+    background: var(--accent); color: var(--accent-text); cursor: pointer; text-decoration: none; white-space: nowrap;
+  }
+  .ics p { margin: 6px 0 0; }
+  footer { margin-top: 24px; font-size: .78rem; color: var(--muted); }
+  footer a { color: inherit; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1><span class="flower">✿</span> 高嶺のなでしこ 非公式スケジュール</h1>
+    <p class="note">非公式のファンメイドのデータです。予定は急に変更されることがあります。参加前には必ず公式サイト・公式 X をご確認ください。</p>
+  </header>
+
+  <div class="controls">
+    <div class="row" id="members"><span class="label">メンバー</span></div>
+    <div class="row" id="categories"><span class="label">カテゴリ（複数選択可）</span></div>
+    <div class="toggles">
+      <label><input type="checkbox" id="includeGroup" checked> グループ（全員）の予定も含める</label>
+      <label><input type="checkbox" id="showDone"> 終わった予定も表示</label>
+    </div>
+  </div>
+
+  <p class="count" id="count"></p>
+  <main id="list"><p class="empty">読み込み中…</p></main>
+
+  <section class="ics">
+    <h3>📅 カレンダーアプリに登録</h3>
+    iPhone・Mac では、下のボタンから照会（購読）できます。予定の更新も自動で反映されます。
+    <div class="ics-url">
+      <a class="button" href="webcal://raw.githubusercontent.com/kanameg/takaneko-data/main/schedule.ics">照会する</a>
+      <input id="icsUrl" readonly value="https://raw.githubusercontent.com/kanameg/takaneko-data/main/schedule.ics" aria-label="iCalendar の URL">
+      <button id="copy" type="button">コピー</button>
+    </div>
+    <p>ほかのカレンダーアプリでは、この URL を「URL で追加」してください。</p>
+  </section>
+
+  <footer>
+    取得元: 高嶺のなでしこ公式サイト（カレンダー・お知らせ記事）、Eventernote（非公式）。
+    <a href="https://github.com/kanameg/takaneko-data">GitHub</a> ・ <a href="schedule.csv">CSV</a>
+  </footer>
+</div>
+
+<script>
+const MEMBERS = ["城月菜央", "涼海すう", "橋本桃呼", "葉月紗蘭", "東山恵里沙", "日向端ひな", "松本ももな", "籾山ひめり"];
+const GROUP = "グループ（全員）";
+const PREFS_KEY = "takaneko-schedule-prefs";
+
+const state = { member: "", categories: [], includeGroup: true, showDone: false };
+let rows = [];
+
+function loadPrefs() {
+  try { Object.assign(state, JSON.parse(localStorage.getItem(PREFS_KEY)) || {}); } catch (e) { /* 保存できない環境では既定値 */ }
+}
+function savePrefs() {
+  try { localStorage.setItem(PREFS_KEY, JSON.stringify(state)); } catch (e) { /* 無視 */ }
+}
+
+function parseCSV(text) {
+  const out = [];
+  let row = [], field = "", quoted = false;
+  text = text.replace(/^﻿/, "");
+  for (let i = 0; i < text.length; i++) {
+    const c = text[i];
+    if (quoted) {
+      if (c === '"' && text[i + 1] === '"') { field += '"'; i++; }
+      else if (c === '"') quoted = false;
+      else field += c;
+    } else if (c === '"') quoted = true;
+    else if (c === ",") { row.push(field); field = ""; }
+    else if (c === "\n" || c === "\r") {
+      if (c === "\r" && text[i + 1] === "\n") i++;
+      row.push(field); out.push(row); row = []; field = "";
+    } else field += c;
+  }
+  if (field || row.length) { row.push(field); out.push(row); }
+  const [header, ...body] = out;
+  return body.filter(r => r.length > 1).map(r => Object.fromEntries(header.map((h, i) => [h, r[i] || ""])));
+}
+
+// fetch_schedule.py の time_label と同じ規則
+function timeLabel(r) {
+  if (r.time_note) return r.time_note;
+  if (r.start && r.open) return `OPEN ${r.open} / START ${r.start}`;
+  if (r.start) return r.end ? `${r.start}〜${r.end}` : r.start;
+  return r.open ? `OPEN ${r.open}` : "";
+}
+
+const categoriesOf = r => r.category.split(" / ");
+const todayJST = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
+
+function esc(s) {
+  return s.replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function chip(text, pressed, onClick) {
+  const b = document.createElement("button");
+  b.type = "button";
+  b.className = "chip";
+  b.textContent = text;
+  b.setAttribute("aria-pressed", pressed);
+  b.addEventListener("click", onClick);
+  return b;
+}
+
+function renderControls() {
+  const members = document.getElementById("members");
+  members.querySelectorAll(".chip").forEach(b => b.remove());
+  members.append(chip("全員", state.member === "", () => { state.member = ""; update(); }));
+  for (const m of MEMBERS) {
+    members.append(chip(m, state.member === m, () => { state.member = m; update(); }));
+  }
+
+  const cats = [...new Set(rows.flatMap(categoriesOf))];
+  const box = document.getElementById("categories");
+  box.querySelectorAll(".chip").forEach(b => b.remove());
+  box.append(chip("すべて", state.categories.length === 0, () => { state.categories = []; update(); }));
+  for (const c of cats) {
+    const on = state.categories.includes(c);
+    box.append(chip(c, on, () => {
+      state.categories = on ? state.categories.filter(x => x !== c) : [...state.categories, c];
+      update();
+    }));
+  }
+
+  const group = document.getElementById("includeGroup");
+  group.checked = state.includeGroup;
+  group.disabled = state.member === "";
+  document.getElementById("showDone").checked = state.showDone;
+}
+
+function visible(r, today) {
+  if (!state.showDone && r.date < today) return false;
+  if (state.member) {
+    const isGroup = r.members === GROUP;
+    if (!(r.members.includes(state.member) || (state.includeGroup && isGroup))) return false;
+  }
+  if (state.categories.length && !categoriesOf(r).some(c => state.categories.includes(c))) return false;
+  return true;
+}
+
+function eventHTML(r, today) {
+  const [, m, d] = r.date.split("-").map(Number);
+  const wdClass = r.weekday === "土" ? "sat" : r.weekday === "日" ? "sun" : "";
+  const time = timeLabel(r);
+  const unofficial = r.category.startsWith("Eventernote");
+  const members = r.members === GROUP ? "全員" : r.members.split("、").join("・");
+  const cls = ["event", r.date === today && "today", r.date < today && "done"].filter(Boolean).join(" ");
+  // 「東京都内某所」「オンライン」などは地図で探せないのでリンクを付けない
+  const map = r.venue && !/某所|オンライン|未定/.test(r.venue) && `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.venue)}`;
+  return `<article class="${cls}">
+    <div class="date">${m}/${d}<span class="wd ${wdClass}">(${esc(r.weekday)})</span>${r.date === today ? '<span class="badge">今日</span>' : ""}</div>
+    <div>
+      <div class="title">${esc(r.title)}</div>
+      <div class="meta">${time ? esc(time) : "時間未定・終日"}</div>
+      ${r.venue ? `<div class="meta">📍 ${esc(r.venue)}</div>` : ""}
+      <div class="tags">
+        <span class="tag">${esc(members)}</span>
+        ${categoriesOf(r).map(c => `<span class="tag${unofficial ? " unofficial" : ""}">${esc(c)}</span>`).join("")}
+      </div>
+      <div class="links">
+        ${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">情報元</a>` : ""}
+        ${map ? `<a href="${esc(map)}" target="_blank" rel="noopener">地図</a>` : ""}
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderList() {
+  const today = todayJST();
+  const shown = rows.filter(r => visible(r, today));
+  document.getElementById("count").textContent = `${shown.length} 件の予定`;
+  const list = document.getElementById("list");
+  if (!shown.length) {
+    list.innerHTML = '<p class="empty">条件に合う予定はありません。</p>';
+    return;
+  }
+  let html = "", month = "";
+  for (const r of shown) {
+    const ym = r.date.slice(0, 7);
+    if (ym !== month) {
+      month = ym;
+      const [y, mo] = ym.split("-").map(Number);
+      html += `<h2>${y}年${mo}月</h2>`;
+    }
+    html += eventHTML(r, today);
+  }
+  list.innerHTML = html;
+}
+
+function update() {
+  savePrefs();
+  renderControls();
+  renderList();
+}
+
+document.getElementById("includeGroup").addEventListener("change", e => { state.includeGroup = e.target.checked; update(); });
+document.getElementById("showDone").addEventListener("change", e => { state.showDone = e.target.checked; update(); });
+document.getElementById("copy").addEventListener("click", async e => {
+  const input = document.getElementById("icsUrl");
+  try { await navigator.clipboard.writeText(input.value); }
+  catch (err) { input.select(); document.execCommand("copy"); }
+  e.target.textContent = "コピーしました";
+  setTimeout(() => { e.target.textContent = "コピー"; }, 2000);
+});
+
+loadPrefs();
+fetch("schedule.csv", { cache: "no-cache" })
+  .then(res => { if (!res.ok) throw new Error(res.status); return res.text(); })
+  .then(text => {
+    rows = parseCSV(text);  // fetch_schedule.py が日付順に並べて出力している
+    state.categories = state.categories.filter(c => rows.some(r => categoriesOf(r).includes(c)));
+    update();
+  })
+  .catch(() => {
+    document.getElementById("list").innerHTML = '<p class="error">予定の読み込みに失敗しました。時間をおいて再読み込みしてください。</p>';
+  });
+</script>
+</body>
+</html>
