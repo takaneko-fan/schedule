@@ -45,7 +45,7 @@ CATEGORY_LABELS = {
 
 
 def fetch(url):
-    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (takaneko-data)"})
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (takaneko-fan/schedule)"})
     with urllib.request.urlopen(req, timeout=30) as res:
         return res.read().decode("utf-8")
 

@@ -65,7 +65,7 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 2. 次の URL を入力して「照会」
 
    ```
-   https://raw.githubusercontent.com/kanameg/takaneko-data/main/schedule.ics
+   https://takaneko-fan.github.io/schedule/schedule.ics
    ```
 
 3. 名前・色を設定し、**場所を「iCloud」** にすると iPhone にも同期されます。**自動更新** は「1 時間ごと」〜「1 日ごと」がおすすめです。
