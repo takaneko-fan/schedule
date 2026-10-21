@@ -426,15 +426,13 @@ def md_table(rows, show_members):
     return "\n".join(lines)
 
 
-def write_markdown(rows, path, start, end):
-    now = datetime.now(JST).strftime("%Y-%m-%d %H:%M")
+def write_markdown(rows, path):
     group_rows = [r for r in rows if r["members"] == GROUP]
     out = [
         "# 高嶺のなでしこ メンバー別スケジュール一覧",
         "",
         f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、Eventernote （公式X等の告知の補完・非公式）",
-        f"- 対象期間: {start} 〜 {end - timedelta(days=1)}",
-        f"- 取得日時: {now} (JST)",
+        "- 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定",
         f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
         "",
         "「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。",
@@ -548,6 +546,7 @@ def ics_description(row):
 
 
 def write_ics(rows, path):
+    """DTSTAMP 以外が前回と同じなら書き直さない（実行時刻だけの差分を出さないため）。書き直したら True。"""
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = [
         "BEGIN:VCALENDAR",
@@ -593,8 +592,19 @@ def write_ics(rows, path):
                 "TRANSP:TRANSPARENT",  # 個人の予定の「空き時間」を塞がない
                 "END:VEVENT"]
     out.append("END:VCALENDAR")
+    text = "".join(ics_fold(line) + "\r\n" for line in out)
+
+    def without_stamp(s):
+        return [line for line in s.split("\r\n") if not line.startswith("DTSTAMP:")]
+    try:
+        with open(path, encoding="utf-8", newline="") as f:
+            if without_stamp(f.read()) == without_stamp(text):
+                return False
+    except FileNotFoundError:
+        pass
     with open(path, "w", encoding="utf-8", newline="") as f:
-        f.write("".join(ics_fold(line) + "\r\n" for line in out))
+        f.write(text)
+    return True
 
 
 def load_past_rows(path, before):
@@ -641,10 +651,10 @@ def main():
     rows = sort_rows(past + rows)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
-    write_markdown(rows, args.md, args.start, args.end)
+    write_markdown(rows, args.md)
     write_csv(rows, args.csv)
-    write_ics(rows, args.ics)
-    print(f"出力: {args.md}, {args.csv}, {args.ics}")
+    ics_note = "" if write_ics(rows, args.ics) else "（予定に変更なし・書き直さず）"
+    print(f"出力: {args.md}, {args.csv}, {args.ics}{ics_note}")
 
 
 if __name__ == "__main__":
