@@ -14,6 +14,7 @@
 | [`deadlines.md`](deadlines.md) | 申込・締切の一覧（受付開始・受付締切・当落発表・入金締切・一般発売） |
 | [`deadlines.csv`](deadlines.csv) / [`deadlines.ics`](deadlines.ics) | 同じ内容の CSV と、カレンダーアプリ用の iCalendar ファイル |
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
+| [`docs/spec.md`](docs/spec.md) | 仕様書 |
 
 ## 取得元
 
