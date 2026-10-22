@@ -356,6 +356,47 @@ def shares_phrase(a, b, n=4):
     return any(a[i:i + n] in b for i in range(len(a) - n + 1))
 
 
+TBD_VENUE_RE = re.compile(r"某所|後日|未定|調整中")
+
+
+def venue_from_post(post):
+    """記事タイトルの「… at 会場名 当日販売のお知らせ」や本文の「会場：…」から会場名を取り出す。"""
+    title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+    candidates = []
+    m = re.search(r"(?:^|[^A-Za-z])at\s*(.+)$", title)
+    if m:
+        candidates.append(re.split(r"\s*(?:当日|のお知らせ|お知らせ|開催|詳細|決定|変更|【|[(（])", m.group(1))[0])
+    lines = html_to_lines(post["content"]["rendered"])
+    for i, line in enumerate(lines):
+        # 「【会場】…」「会場：…」の形だけ（「会場CD販売ブースにて…」のような文は除く）
+        m = re.match(r"^[◆■●・\s]*(?:[【\[<＜](?:会場|場所)[】\]>＞]|(?:会場|場所)\s*[:：])\s*(.*)$", line)
+        if m:
+            candidates.append(m.group(1) or (lines[i + 1] if i + 1 < len(lines) else ""))
+    for v in candidates:
+        v = re.sub(r"\s+", " ", v).strip()
+        if v and not TBD_VENUE_RE.search(v):
+            return v
+    return ""
+
+
+def fill_tbd_venues(rows, posts):
+    """会場が「東京都内某所（詳細は後日発表）」の予定に、後から出た記事の会場名を入れる。
+    記事タイトルが【M月D日(曜)】で始まり、日付とイベント名が一致するものだけを使う（新しい記事を優先）。"""
+    for post in sorted(posts, key=lambda p: p["date"], reverse=True):
+        title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+        m = POST_DATE_RE.match(title)
+        if not (title.startswith("【") and m):
+            continue
+        day = infer_date(*m.groups()[:3], date.fromisoformat(post["date"][:10])).isoformat()
+        targets = [r for r in rows if r["date"] == day and TBD_VENUE_RE.search(r["venue"])
+                   # どのタイトルにも付く「高嶺のなでしこ」以外で共通の語句がある予定だけ
+                   and shares_phrase(r["title"].replace("高嶺のなでしこ", ""), title.replace("高嶺のなでしこ", ""))]
+        venue = venue_from_post(post) if targets else ""
+        for r in targets if venue else []:
+            print(f"  会場を補完: {r['date']} {r['venue']} → {venue}")
+            r["venue"] = venue
+
+
 def is_release(row):
     """「…2026年11月18日(水)リリース」のような発売日の行か。"""
     return row["title"].rstrip().endswith(("リリース", "発売"))
@@ -860,6 +901,7 @@ def main():
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
+    fill_tbd_venues(rows, posts)
     prev = load_prev_rows(args.csv)
     problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
     if problem:
