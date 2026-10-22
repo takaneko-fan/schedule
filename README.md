@@ -130,3 +130,4 @@ https://takaneko-fan.github.io/schedule/deadlines.ics
 | `members` | 出演メンバー。個別メンバーの記載がなければ「グループ（全員）」 |
 | `venue` | 会場 |
 | `url` | 情報元のページ |
+| `venue_url` | 会場を別の記事から補った場合、その記事（それ以外は空） |

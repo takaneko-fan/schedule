@@ -395,6 +395,7 @@ def fill_tbd_venues(rows, posts):
         for r in targets if venue else []:
             print(f"  会場を補完: {r['date']} {r['venue']} → {venue}")
             r["venue"] = venue
+            r["venue_url"] = post["link"]  # 情報元（url）とは別の記事から補ったので出どころを残す
 
 
 def is_release(row):
@@ -460,7 +461,7 @@ def md_table(rows, show_members):
             f"{r['date']}({r['weekday']})",
             time_label(r) or "",
             f"[{md_escape(r['title'])}]({r['url']})",
-            md_escape(r["venue"]),
+            f"[{md_escape(r['venue'])}]({r['venue_url']})" if r.get("venue_url") else md_escape(r["venue"]),
         ]
         if show_members:
             cells.append(r["members"])
@@ -505,7 +506,7 @@ def write_markdown(rows, path):
 
 
 def write_csv(rows, path):
-    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url"]
+    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url", "venue_url"]
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
@@ -738,6 +739,8 @@ def ics_description(row):
     if time_label(row):
         lines.append(f"時間: {time_label(row)}")
     lines += [f"出演: {row['members']}", f"カテゴリ: {row['category']}", f"情報元: {row['url']}"]
+    if row.get("venue_url"):
+        lines.append(f"会場の情報元: {row['venue_url']}")
     if row["category"].startswith("Eventernote"):
         lines.append("※公式サイト未掲載（Eventernote の情報）")
     return "\n".join(lines)

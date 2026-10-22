@@ -287,6 +287,7 @@ function eventHTML(r, today) {
       </div>
       <div class="links">
         ${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">情報元</a>` : ""}
+        ${r.venue_url ? `<a href="${esc(r.venue_url)}" target="_blank" rel="noopener">会場の情報元</a>` : ""}
         ${map ? `<a href="${esc(map)}" target="_blank" rel="noopener">地図</a>` : ""}
       </div>
     </div>
