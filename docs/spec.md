@@ -38,7 +38,8 @@ flowchart TD
 | ファイル | 役割 |
 | --- | --- |
 | `fetch_schedule.py` | 取得・統合・出力のすべて（約 890 行、標準ライブラリのみ） |
-| `run_update.sh` | 取得 → 差分があればコミット・push（手動・cron 兼用） |
+| `run_update.sh` | 取得 → 差分があればコミット・push（GitHub Actions・手動兼用） |
+| `.github/workflows/update.yml` | `run_update.sh` を 6 時間ごとにセルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
 
@@ -155,12 +156,32 @@ flowchart TD
 
 ## 運用手順
 
-更新は `run_update.sh` を 1 回実行するだけです。予定に変化があれば自動でコミット・ push され、GitHub Pages と照会カレンダーに反映されます。
+更新は GitHub Actions（`.github/workflows/update.yml`）が 6 時間ごとに `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、Actions の「Run workflow」か、手元で `run_update.sh` を実行します。
+
+`run_update.sh` の処理：
 
 1. `git pull --ff-only` で最新にする。
 2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。
-3. `schedule.*` と `deadlines.*` の 6 ファイルを `git add` する。差分がなければ「予定に変化なし」で終了。
+3. `schedule.*` と `deadlines.*` の 6 ファイルと `memos.json` を `git add` する。差分がなければ「予定に変化なし」で終了。
 4. `feat: YYYY-MM-DDの登録`（日本時間の日付）でコミットし、push する。
+
+### 自動更新（GitHub Actions・セルフホストランナー）
+
+公式サイトは国外からの REST API・管理画面（`/wp-json/`、`/wp-admin/admin-ajax.php`）へのアクセスを受け付けないため、GitHub のサーバー（主に米国）では取得できません。国内の VPS に置いたセルフホストランナーで実行します。
+
+| 項目 | 内容 |
+| --- | --- |
+| 実行時刻 | 日本時間 0:17 / 6:17 / 12:17 / 18:17（cron `17 3,9,15,21 * * *`、UTC）。混雑時は遅れることがある |
+| 手動実行 | Actions → 予定の更新 → Run workflow（`workflow_dispatch`） |
+| 実行先 | `runs-on: [self-hosted, conoha]`。ConoHa VPS 1GB（大阪、Ubuntu 24.04、Python 3.12）、ランナー名 `conoha-osaka` |
+| サーバー | ランナーは専用ユーザー `runner`（sudo なし）のサービスとして常駐。ssh は鍵のみ、ufw で外からは 22 番だけ許可 |
+| 権限 | `contents: write`（`GITHUB_TOKEN` で push する） |
+| 同時実行 | `concurrency: update` で 1 つずつ実行し、push の衝突を防ぐ |
+| API キー | リポジトリの Secrets の `OPENAI_API_KEY` / `GEMINI_API_KEY`。未登録なら既存の参加メモだけを使う |
+| 失敗時 | 安全策の停止や取得エラーで実行が失敗し、GitHub から通知メールが届く |
+| 公開リポジトリの対策 | 外部からのプルリクエストのワークフロー実行は、毎回承認が必要な設定にしている |
+
+公開リポジトリでは、60 日間リポジトリに動きがないと定期実行が自動で止まります。止まったら Actions の画面から再開します。ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
 
 ### 主なオプション
 
@@ -185,7 +206,7 @@ flowchart TD
 
 ### コミット名義
 
-コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。このリポジトリの `.git/config` に `user.name` / `user.email` を設定済みで、個人のグローバル設定より優先されます。新しい環境で clone したときは同じ設定をやり直します。
+コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。GitHub Actions ではワークフロー内で設定します。手元では、このリポジトリの `.git/config` に `user.name` / `user.email` を設定済みで、個人のグローバル設定より優先されます。新しい環境で clone したときは同じ設定をやり直します。
 
 ```
 git config --local user.name "takaneko-fan"

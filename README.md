@@ -71,6 +71,16 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 
 `schedule.csv` を削除・リネームすると過去の予定は引き継がれないので注意してください。
 
+### 自動更新（GitHub Actions）
+
+[`.github/workflows/update.yml`](.github/workflows/update.yml) が 6 時間ごと（日本時間 0:17 / 6:17 / 12:17 / 18:17）に `run_update.sh` を実行し、予定に変化があれば `takaneko-fan` 名義でコミットして push します。
+
+- 公式サイトは国外からのアクセスの一部を受け付けないため、GitHub のサーバーではなく、国内の VPS に置いたセルフホストランナー（ラベル `conoha`）で実行します。
+- すぐに更新したいときは、GitHub の **Actions → 予定の更新 → Run workflow** から手動で実行できます。
+- 参加メモ用の API キーは、リポジトリの **Settings → Secrets and variables → Actions** の `OPENAI_API_KEY`（または `GEMINI_API_KEY`）を使います。
+- 上の「安全策」で止まったときなど、実行に失敗すると GitHub から通知メールが届きます。
+- 公開リポジトリでは、60 日間リポジトリに動きがないと定期実行が自動で止まります。止まったら Actions の画面から再開してください。
+
 ## カレンダー（Mac / iPhone）に登録する
 
 `schedule.ics` を URL で「照会（購読）」すると、個人の予定とは別の「高嶺のなでしこ」カレンダーとして表示され、更新も自動で反映されます（重複登録は起きません）。

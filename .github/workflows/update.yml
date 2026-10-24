@@ -1,0 +1,36 @@
+# 予定を定期的に取り直し、変化があれば takaneko-fan 名義でコミットして push する。
+# 公式サイトは国外からの REST API・管理画面へのアクセスを受け付けないため、
+# GitHub のサーバーではなく ConoHa VPS（大阪）のセルフホストランナーで動かす。
+name: 予定の更新
+
+on:
+  schedule:
+    - cron: "17 3,9,15,21 * * *"  # 日本時間 0:17 / 6:17 / 12:17 / 18:17
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# 手動実行と定時実行が重なっても、push がぶつからないよう 1 つずつ動かす
+concurrency:
+  group: update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: [self-hosted, conoha]
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: コミット名義を設定
+        run: |
+          git config user.name "takaneko-fan"
+          git config user.email "bot@example.invalid"
+
+      - name: 予定を取得してコミット・push
+        env:
+          # 未登録なら空になり、参加メモは memos.json の既存分だけを使う
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: ./run_update.sh

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # 予定を取り直し、変化があれば schedule.* と deadlines.* をコミットして push する。
-# 手動実行・cron のどちらでも使える。引数は fetch_schedule.py にそのまま渡す。
+# 手動実行・GitHub Actions（.github/workflows/update.yml）のどちらでも使える。引数は fetch_schedule.py にそのまま渡す。
 set -euo pipefail
 
 cd "$(dirname "$0")"
