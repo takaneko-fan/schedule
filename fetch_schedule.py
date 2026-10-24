@@ -686,6 +686,9 @@ def write_deadlines_csv(rows, path):
 OPENAI_URL = "https://api.openai.com/v1/chat/completions"
 GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
 MEMO_MODELS = {"openai": "gpt-5-mini", "gemini": "gemini-3.1-flash-lite"}
+# 100 万トークンあたりの料金（米ドル）: (入力, キャッシュされた入力, 出力)。値上げ・値下げがあれば直す
+MEMO_PRICES = {"gpt-5-mini": (0.25, 0.025, 2.00), "gemini-3.1-flash-lite": (0.25, 0.025, 1.50)}
+USD_JPY = 150  # 料金を円で表示するときの目安のレート
 MEMO_PROMPT_VERSION = 3   # 指示文を変えたら上げる（全メモを作り直す）
 MEMO_MAX_CALLS = 30       # 1 回の実行で AI を呼ぶ上限（不具合で大量に呼ばないため）
 MEMO_SOURCE_LIMIT = 30000  # AI に渡す文章の上限（文字数）
@@ -807,7 +810,8 @@ def call_openai(model, key, row, source):
     }, {"Authorization": f"Bearer {key}"})
     usage = data.get("usage", {})
     memo = json.loads(data["choices"][0]["message"]["content"])
-    return memo, (usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0))
+    cached = usage.get("prompt_tokens_details", {}).get("cached_tokens", 0)
+    return memo, (usage.get("prompt_tokens", 0), cached, usage.get("completion_tokens", 0))
 
 
 def call_gemini(model, key, row, source):
@@ -822,7 +826,7 @@ def call_gemini(model, key, row, source):
     }, {"x-goog-api-key": key})
     usage = data.get("usageMetadata", {})
     memo = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
-    return memo, (usage.get("promptTokenCount", 0),
+    return memo, (usage.get("promptTokenCount", 0), usage.get("cachedContentTokenCount", 0),
                   usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0))
 
 
@@ -858,7 +862,8 @@ def memo_text(memo):
 
 
 def add_memos(rows, posts, today, cache_path="memos.json"):
-    """これからの予定に参加メモ（row["memo"]）を付ける。材料の文章が変わっていなければ前回のメモを使う。"""
+    """これからの予定に参加メモ（row["memo"]）を付ける。材料の文章が変わっていなければ前回のメモを使う。
+    今回 AI で作った予定を (row, "新規" または "更新") のリストで返す。"""
     try:
         with open(cache_path, encoding="utf-8") as f:
             cache = json.load(f)
@@ -866,7 +871,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         cache = {}
     provider, key, call = memo_provider()
     model = MEMO_MODELS.get(provider, "")
-    calls, tokens, kept = 0, [0, 0], {}
+    calls, tokens, kept, created = 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
         if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日"))
                 or is_release(r)):  # 発売日の行は参加する予定ではない
@@ -881,11 +886,11 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         entry = cache.get(cid)
         if not (entry and entry["hash"] == digest) and key and calls < MEMO_MAX_CALLS:
             try:
-                memo, (n_in, n_out) = call(model, key, r, source)
+                memo, usage = call(model, key, r, source)
                 calls += 1
-                tokens[0] += n_in
-                tokens[1] += n_out
+                tokens = [t + u for t, u in zip(tokens, usage)]
                 memo = clean_memo(memo)
+                created.append((r, "更新" if entry else "新規"))
                 entry = {"hash": digest, "model": model, "generated": today.isoformat(), "memo": memo}
                 print(f"  参加メモを作成: {r['date']} {r['title'][:40]}")
                 time.sleep(1)
@@ -900,7 +905,18 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         f.write("\n")
     if not key:
         print("  （OPENAI_API_KEY・GEMINI_API_KEY がないため、参加メモは新しく作りません）")
-    print(f"参加メモ: {len(kept)} 件（今回 {model or 'AI'} で作成 {calls} 件、入力 {tokens[0]} / 出力 {tokens[1]} トークン）")
+    print(f"参加メモ: {len(kept)} 件（今回 {model or 'AI'} で作成 {calls} 件、"
+          f"入力 {tokens[0]:,}（うちキャッシュ {tokens[1]:,}）/ 出力 {tokens[2]:,} トークン）")
+    if key and not calls:
+        print("AI 利用料: なし（今回は AI を呼んでいません）")
+    if calls:
+        price = MEMO_PRICES.get(model)
+        if price:
+            usd = ((tokens[0] - tokens[1]) * price[0] + tokens[1] * price[1] + tokens[2] * price[2]) / 1_000_000
+            print(f"AI 利用料（概算）: ${usd:.4f}（約 {usd * USD_JPY:.1f} 円、1 ドル {USD_JPY} 円で換算）")
+        else:
+            print(f"AI 利用料: {model} の料金が MEMO_PRICES にないため計算できません")
+    return created
 
 
 # ---- iCalendar（Mac / iPhone のカレンダー照会用） ----
@@ -1106,6 +1122,25 @@ def check_drop(prev_rows, rows, start, end, n_events):
     return None
 
 
+def row_label(r):
+    note = f" ［{r['category']}］" if r["category"].startswith(("Eventernote", "お知らせ記事")) else ""
+    title = re.sub(r"\s+", " ", r["title"]).strip()
+    return f"{r['date']}({r['weekday']}) {title}{note}"
+
+
+def print_changes(prev_rows, rows, memo_created):
+    """前回の CSV になかった予定と、今回 AI で参加メモを作った予定を最後にまとめて表示する。"""
+    prev_keys = {(r["date"], r["url"]) for r in prev_rows}
+    added = [r for r in rows if (r["date"], r["url"]) not in prev_keys]
+    print("\n=== 今回の変更 ===")
+    print(f"追加された予定: {len(added)} 件")
+    for r in added:
+        print(f"  + {row_label(r)}")
+    print(f"参加メモを作成した予定: {len(memo_created)} 件")
+    for r, kind in memo_created:
+        print(f"  ✎ {row_label(r)}（{kind}）")
+
+
 def main():
     today = datetime.now(JST).date()
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -1151,8 +1186,9 @@ def main():
     past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
+    memo_created = []
     if not args.no_memo:
-        add_memos(rows, posts, today)
+        memo_created = add_memos(rows, posts, today)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     write_markdown(rows, args.md)
@@ -1168,6 +1204,7 @@ def main():
     write_deadlines_csv(deadlines, f"{base}.csv")
     ics_note = "" if write_deadlines_ics(deadlines, f"{base}.ics") else "（変更なし・書き直さず）"
     print(f"{len(deadlines)} 件の申込・締切 → 出力: {base}.md, {base}.csv, {base}.ics{ics_note}")
+    print_changes(prev, rows, memo_created)
 
 
 if __name__ == "__main__":
