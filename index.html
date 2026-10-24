@@ -99,6 +99,11 @@
   .tag.unofficial { border-color: var(--accent); color: var(--accent); }
   .links { font-size: .8rem; margin-top: 4px; display: flex; gap: 12px; }
   .links a { color: var(--accent); }
+  details.memo { margin-top: 6px; font-size: .82rem; }
+  details.memo summary { cursor: pointer; color: var(--accent); width: fit-content; }
+  details.memo ul { margin: 6px 0 0; padding-left: 1.1em; line-height: 1.55; overflow-wrap: anywhere; }
+  details.memo li { margin: 2px 0; }
+  details.memo .ai { margin: 6px 0 0; color: var(--muted); font-size: .75rem; }
   .empty, .error { text-align: center; color: var(--muted); padding: 40px 0; }
 
   .ics {
@@ -266,6 +271,16 @@ function visible(r, today) {
   return true;
 }
 
+// 参加メモ（AI の要約）。最後の行は「AI が要約しました」の注意書き
+function memoHTML(memo) {
+  if (!memo) return "";
+  const lines = memo.split("\n").filter(Boolean);
+  const note = lines.pop();
+  return `<details class="memo"><summary>参加メモ</summary>
+    <ul>${lines.map(l => `<li>${esc(l)}</li>`).join("")}</ul>
+    <p class="ai">${esc(note)}</p></details>`;
+}
+
 function eventHTML(r, today) {
   const [, m, d] = r.date.split("-").map(Number);
   const wdClass = r.weekday === "土" ? "sat" : r.weekday === "日" ? "sun" : "";
@@ -290,6 +305,7 @@ function eventHTML(r, today) {
         ${r.venue_url ? `<a href="${esc(r.venue_url)}" target="_blank" rel="noopener">会場の情報元</a>` : ""}
         ${map ? `<a href="${esc(map)}" target="_blank" rel="noopener">地図</a>` : ""}
       </div>
+      ${memoHTML(r.memo)}
     </div>
   </article>`;
 }

@@ -13,6 +13,7 @@
 | [`schedule.ics`](schedule.ics) | カレンダーアプリ用の iCalendar ファイル |
 | [`deadlines.md`](deadlines.md) | 申込・締切の一覧（受付開始・受付締切・当落発表・入金締切・一般発売） |
 | [`deadlines.csv`](deadlines.csv) / [`deadlines.ics`](deadlines.ics) | 同じ内容の CSV と、カレンダーアプリ用の iCalendar ファイル |
+| [`memos.json`](memos.json) | 参加メモ（AI による要約）の保存先。材料が変わらない限り再利用する |
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
 
@@ -117,6 +118,23 @@ https://takaneko-fan.github.io/schedule/deadlines.ics
 - 店舗の電話受付時間、会場での当日販売、支払方法ごとの締切（バーチャル銀行振込など）は載せません。記事の公開日より前の日付も、前の告知文が残ったものとみなして除外します。
 - 自動で読み取ったものなので、申し込む前に必ず情報元の記事・受付ページを確認してください。
 
+## 参加メモ（AI による要約）
+
+これからの予定のうち、公式サイトに案内（イベントページ・お知らせ記事）がある予定に、当日に必要なこと（会場・当日の流れ・部とメンバー・参加方法・料金・支払い・持ち物・ルール・注意）を短くまとめた「参加メモ」を付けます。カレンダーのメモ欄、Web 版の「参加メモ」、`schedule.md` の「参加メモ」の節、`schedule.csv` の `memo` 列に入ります。
+
+- 公式の案内を AI（OpenAI の `gpt-5-mini`、または Gemini）が要約したものです。読み間違いがありうるので、必ず情報元で確認してください。
+- 作ったメモは `memos.json` に保存し、材料の文章が変わったときだけ作り直します（1 日に何回実行しても、AI を呼ぶのは記事が増えた・変わったときだけ）。
+- 「詳細は後日発表」だけの予定、発売日の行、Eventernote（非公式）の予定には付けません。
+- 使うには、リポジトリ直下に `.env` を作り、API キーを書きます（`.env` は Git の対象外です。公開リポジトリに入れないでください）。
+
+  ```
+  OPENAI_API_KEY=sk-...
+  # または
+  GEMINI_API_KEY=...
+  ```
+
+  キーがなければメモは新しく作らず、`memos.json` にある既存のメモだけを使います。`--no-memo` でメモを付けずに出力できます。
+
 ## CSV の列
 
 | 列 | 内容 |
@@ -131,3 +149,4 @@ https://takaneko-fan.github.io/schedule/deadlines.ics
 | `venue` | 会場 |
 | `url` | 情報元のページ |
 | `venue_url` | 会場を別の記事から補った場合、その記事（それ以外は空） |
+| `memo` | 参加メモ（AI による要約。1 行 1 項目、最終行は注意書き） |

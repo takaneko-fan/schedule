@@ -13,6 +13,7 @@ import csv
 import hashlib
 import html
 import json
+import os
 import re
 import time
 import unicodedata
@@ -185,6 +186,8 @@ def build_rows(events, with_detail=True):
             "time_note": "" if times else find_part_times(detail.get("本文", [])),
             "venue": find_venue(detail),
             "url": ev["url"],
+            # 参加メモの材料（CSV には出力しない）
+            "source_text": "\n".join(f"[{k}]\n" + "\n".join(v) for k, v in detail.items()),
         })
         print(f"[{i + 1}/{len(events)}] {rows[-1]['date']} {title} -> {rows[-1]['members']}")
     return rows
@@ -490,6 +493,8 @@ def write_markdown(rows, path):
         f"- [{GROUP}](#{re.sub(r'[（）]', '', GROUP)})",
     ]
     out += [f"- [{full}](#{full})" for full, _, _ in MEMBERS]
+    if any(r.get("memo") and not r["done"] for r in rows):
+        out.append("- [参加メモ](#参加メモ)")
     out += ["- [全予定（日付順）](#全予定日付順)", "", f"## {GROUP}", "",
             md_table(group_rows, show_members=False) if group_rows else "予定なし", ""]
     for full, _, _ in MEMBERS:
@@ -500,13 +505,19 @@ def write_markdown(rows, path):
             out += ["### 個別スケジュール", "", md_table(personal, show_members=False), ""]
         out += ["### 全スケジュール（グループ含む）", "",
                 md_table(mine, show_members=False) if mine else "予定なし", ""]
+    memo_rows = [r for r in rows if r.get("memo") and not r["done"]]
+    if memo_rows:
+        out += ["## 参加メモ", "", "これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。", ""]
+        for r in memo_rows:
+            out += [f"### {r['date']}({r['weekday']}) [{md_escape(r['title'])}]({r['url']})", ""]
+            out += [f"- {ln}" for ln in r["memo"].split("\n")[:-1]] + ["", f"> {MEMO_FOOTER}", ""]
     out += ["## 全予定（日付順）", "", md_table(rows, show_members=True), ""]
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out))
 
 
 def write_csv(rows, path):
-    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url", "venue_url"]
+    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url", "venue_url", "memo"]
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
@@ -669,6 +680,229 @@ def write_deadlines_csv(rows, path):
         writer.writerows(rows)
 
 
+# ---- 参加メモ（公式の案内を AI で要約。API キーがなければ作らない） ----
+
+# .env に OPENAI_API_KEY があれば OpenAI、なければ GEMINI_API_KEY で Gemini を使う
+OPENAI_URL = "https://api.openai.com/v1/chat/completions"
+GEMINI_URL = "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
+MEMO_MODELS = {"openai": "gpt-5-mini", "gemini": "gemini-3.1-flash-lite"}
+MEMO_PROMPT_VERSION = 3   # 指示文を変えたら上げる（全メモを作り直す）
+MEMO_MAX_CALLS = 30       # 1 回の実行で AI を呼ぶ上限（不具合で大量に呼ばないため）
+MEMO_SOURCE_LIMIT = 30000  # AI に渡す文章の上限（文字数）
+# (キー, 表示名)。この順でメモに並べる
+MEMO_FIELDS = [
+    ("venue", "📍 会場"), ("flow", "🕙 当日の流れ"), ("parts", "👥 部とメンバー"),
+    ("join", "🎫 参加方法・当日券"), ("price", "💴 料金"), ("payment", "💳 支払い"),
+    ("items", "🎒 持ち物"), ("rules", "📸 ルール"), ("notes", "⚠️ 注意"), ("other", "ℹ️ その他"),
+]
+MEMO_FOOTER = "🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。"
+# 個人情報の取り扱い・問い合わせ先など、どのイベントにも付く定型文
+MEMO_BOILERPLATE_RE = re.compile(
+    r"個人情報|第三者|反社会|安全管理措置|お申込者様|当社|ドメイン設定|受信設定|お問い?合わせ|相談室|"
+    r"^\[TEL\]|^\[受付時間\]|^https?://\S+$")
+MEMO_INSTRUCTION = """\
+あなたはアイドルグループ「高嶺のなでしこ」のイベントに参加するファン向けに、公式の案内文から
+当日に必要なことだけを短くまとめるアシスタントです。
+
+規則:
+- 案内文に書かれている事実だけを使う。書かれていないことは推測せず、その項目は空文字にする。
+- 「記載なし」「未発表」「後日発表」「要確認」のように、書かれていないことを説明する文は書かない（空文字にする）。
+- 日時・時刻・金額・枚数・締切は案内文の通りに正確に書く。
+- 各項目は 80 文字程度まで（parts と rules は 150 文字程度まで）。箇条書きにしたい場合は「／」で区切る。
+- 案内文を長く引用せず、要点だけを自分の言葉でまとめる。同じ内容を複数の項目に書かない。
+- parts は同じメンバー構成の部をまとめる（例:「1・3・5部（11:30/14:30/16:50）：城月・東山・日向端・松本」）。メンバーは姓だけでよい。
+- URL は書かない。ただし外部イベントで主催者サイトを案内する場合だけ、そのトップページの URL を書く（takanenonadeshiko.jp は主催者サイトではない）。
+- 個人情報の取り扱い、問い合わせ先、一般的な禁止事項の羅列は省く。参加者が特に気をつけるべき点だけを notes に書く。
+- 出演時間・入場ルールなどが主催者のサイトにしか書かれていない外部イベントは、other に「詳細は主催者サイト（URL）で確認」と書く。
+- 開催済みの販売や受付（締切が過ぎたもの）は書かなくてよい。
+
+項目:
+- venue: 会場名と住所
+- flow: 当日の時系列（販売開始・開場・開演・各部の開始など）
+- parts: 部ごとのメンバーや時間
+- join: 参加方法、参加券の入手方法、当日券・当日販売の有無と場所
+- price: 料金（券種・商品と金額）
+- payment: 支払い方法
+- items: 持ち物（本人確認書類・スマホ・マスクなど）
+- rules: 撮影・握手・トークなどのルール
+- notes: 特に注意すること
+- other: その他（オンラインのアプリ、主催者サイトの案内、商品の受け取り方法など）
+"""
+
+
+def load_env(path=".env"):
+    """.env の KEY=VALUE を環境変数に読み込む（すでに設定されていれば上書きしない）。"""
+    try:
+        with open(path, encoding="utf-8") as f:
+            for line in f:
+                key, sep, value = line.strip().partition("=")
+                if sep and not key.startswith("#"):
+                    os.environ.setdefault(key.strip(), value.strip())
+    except FileNotFoundError:
+        pass
+
+
+def post_title(post):
+    return html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+
+
+def related_posts(row, posts):
+    """予定に関係するお知らせ記事（情報元そのもの、または同じ日付・同じイベント名の記事）。"""
+    day = date.fromisoformat(row["date"])
+    found = []
+    for p in posts:
+        title = post_title(p)
+        if p["link"] in (row["url"], row.get("venue_url")):
+            found.append(p)
+            continue
+        m = POST_DATE_RE.match(title)
+        published = date.fromisoformat(p["date"][:10])
+        if title.startswith("【") and m:
+            # タイトルに開催日がある記事は、その日の予定の記事
+            same_day = infer_date(*m.groups()[:3], published) == day
+        else:
+            # 本文に開催日が書かれている（「2026年11月18日(水)発売」のような発売日の記載は除く）
+            same_day = re.search(rf"{day.year}年{day.month}月{day.day}日(?!\s*[(（][^)）]*[)）]\s*(発売|リリース))",
+                                 unicodedata.normalize("NFKC", html.unescape(p["content"]["rendered"])))
+        if same_day and shares_phrase(row["title"].replace("高嶺のなでしこ", ""), title.replace("高嶺のなでしこ", ""), n=5):
+            found.append(p)
+    return sorted(found, key=lambda p: p["date"])
+
+
+def memo_source(row, posts):
+    """AI に渡す文章（詳細ページ＋関係する記事。定型文は除く）。"""
+    parts = []
+    if row.get("source_text"):
+        parts.append(f"# イベントページ {row['url']}\n{row['source_text']}")
+    for p in related_posts(row, posts):
+        lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(p["content"]["rendered"])]
+        body = "\n".join(ln for ln in lines if not MEMO_BOILERPLATE_RE.search(ln))
+        parts.append(f"# お知らせ記事（{p['date'][:10]} 公開）{post_title(p)}\n{p['link']}\n{body}")
+    return "\n\n".join(parts)[:MEMO_SOURCE_LIMIT]
+
+
+def memo_prompt(row, source):
+    return (f"イベント: {row['title']}\n日付: {row['date']}（{row['weekday']}）\n会場: {row['venue']}\n\n"
+            f"--- 公式の案内 ---\n{source}")
+
+
+def post_json(url, body, headers):
+    req = urllib.request.Request(url, data=json.dumps(body).encode(),
+                                 headers={"Content-Type": "application/json", **headers})
+    with urllib.request.urlopen(req, timeout=180) as res:
+        return json.load(res)
+
+
+def call_openai(model, key, row, source):
+    """(メモの dict, (入力トークン, 出力トークン)) を返す。"""
+    schema = {"type": "object", "additionalProperties": False,
+              "properties": {k: {"type": "string"} for k, _ in MEMO_FIELDS},
+              "required": [k for k, _ in MEMO_FIELDS]}
+    data = post_json(OPENAI_URL, {
+        "model": model,
+        "messages": [{"role": "system", "content": MEMO_INSTRUCTION},
+                     {"role": "user", "content": memo_prompt(row, source)}],
+        "response_format": {"type": "json_schema", "json_schema": {"name": "memo", "strict": True, "schema": schema}},
+        "reasoning_effort": "low",
+    }, {"Authorization": f"Bearer {key}"})
+    usage = data.get("usage", {})
+    memo = json.loads(data["choices"][0]["message"]["content"])
+    return memo, (usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0))
+
+
+def call_gemini(model, key, row, source):
+    """(メモの dict, (入力トークン, 出力トークン)) を返す。"""
+    schema = {"type": "OBJECT", "properties": {k: {"type": "STRING"} for k, _ in MEMO_FIELDS},
+              "required": [k for k, _ in MEMO_FIELDS]}
+    data = post_json(GEMINI_URL.format(model=model), {
+        "systemInstruction": {"parts": [{"text": MEMO_INSTRUCTION}]},
+        "contents": [{"role": "user", "parts": [{"text": memo_prompt(row, source)}]}],
+        "generationConfig": {"temperature": 0.2, "responseMimeType": "application/json",
+                             "responseSchema": schema},
+    }, {"x-goog-api-key": key})
+    usage = data.get("usageMetadata", {})
+    memo = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
+    return memo, (usage.get("promptTokenCount", 0),
+                  usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0))
+
+
+def memo_provider():
+    """(名前, API キー, 呼び出し関数)。キーがなければ (None, "", None)。"""
+    if os.environ.get("OPENAI_API_KEY"):
+        return "openai", os.environ["OPENAI_API_KEY"], call_openai
+    if os.environ.get("GEMINI_API_KEY"):
+        return "gemini", os.environ["GEMINI_API_KEY"], call_gemini
+    return None, "", None
+
+
+MEMO_EMPTY_RE = re.compile(r"^(詳細は?)?(後日発表|未発表|未定|記載なし|不明|要確認)")
+MEMO_NOTE_RE = re.compile(r"記載なし|記載がない|記載されていない|明記されていない")
+
+
+def clean_memo(memo):
+    """AI の出力を整える（改行をまとめ、公式サイトの URL と「後日発表」だけの項目を除く）。"""
+    out = {}
+    for k, _ in MEMO_FIELDS:
+        v = re.sub(r"\s*\n\s*", "／", (memo.get(k) or "").strip())
+        v = re.sub(r"[（(]?\s*https?://(www\.)?takanenonadeshiko\.jp\S*?\s*[)）]?(?=[／\s]|$)", "", v).strip(" ／")
+        # 「／」区切りの一部が「記載なし」などの説明なら、その部分だけ除く
+        v = "／".join(x for x in v.split("／") if not MEMO_NOTE_RE.search(x))
+        # URL を除いた結果「詳細は主催者サイト（URL）で確認」だけが残ったものも除く
+        out[k] = "" if MEMO_EMPTY_RE.match(v) or ("URL" in v and "http" not in v) else v
+    return out
+
+
+def memo_text(memo):
+    lines = [f"{label}: {memo[k]}" for k, label in MEMO_FIELDS if memo.get(k)]
+    return "\n".join(lines + [MEMO_FOOTER]) if lines else ""
+
+
+def add_memos(rows, posts, today, cache_path="memos.json"):
+    """これからの予定に参加メモ（row["memo"]）を付ける。材料の文章が変わっていなければ前回のメモを使う。"""
+    try:
+        with open(cache_path, encoding="utf-8") as f:
+            cache = json.load(f)
+    except FileNotFoundError:
+        cache = {}
+    provider, key, call = memo_provider()
+    model = MEMO_MODELS.get(provider, "")
+    calls, tokens, kept = 0, [0, 0], {}
+    for r in rows:
+        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日"))
+                or is_release(r)):  # 発売日の行は参加する予定ではない
+            continue
+        source = memo_source(r, posts)
+        # 日時と会場くらいしか書かれていない、または「詳細は後日発表」だけの予定（見出しと URL の行は数えない）
+        content = len(re.sub(r"(?m)^(#.*|https?://\S+)$", "", source).strip())
+        if content < 80 or "後日発表" in source and content < 600:
+            continue
+        cid = f"{r['date']}|{r['url']}"
+        digest = hashlib.sha1(f"{MEMO_PROMPT_VERSION}|{model}|{source}".encode()).hexdigest()
+        entry = cache.get(cid)
+        if not (entry and entry["hash"] == digest) and key and calls < MEMO_MAX_CALLS:
+            try:
+                memo, (n_in, n_out) = call(model, key, r, source)
+                calls += 1
+                tokens[0] += n_in
+                tokens[1] += n_out
+                memo = clean_memo(memo)
+                entry = {"hash": digest, "model": model, "generated": today.isoformat(), "memo": memo}
+                print(f"  参加メモを作成: {r['date']} {r['title'][:40]}")
+                time.sleep(1)
+            except Exception as e:  # noqa: BLE001 — メモは補助的な情報なので失敗しても続行（前回のメモを使う）
+                print(f"  ! 参加メモの作成失敗: {r['date']} {r['title'][:40]} ({e})")
+        if entry:
+            kept[cid] = entry
+            r["memo"] = memo_text(clean_memo(entry["memo"]))
+    # 過去の予定のメモは CSV に残るので、キャッシュからは消す
+    with open(cache_path, "w", encoding="utf-8") as f:
+        json.dump(kept, f, ensure_ascii=False, indent=1, sort_keys=True)
+        f.write("\n")
+    if not key:
+        print("  （OPENAI_API_KEY・GEMINI_API_KEY がないため、参加メモは新しく作りません）")
+    print(f"参加メモ: {len(kept)} 件（今回 {model or 'AI'} で作成 {calls} 件、入力 {tokens[0]} / 出力 {tokens[1]} トークン）")
+
+
 # ---- iCalendar（Mac / iPhone のカレンダー照会用） ----
 
 DEFAULT_DURATION = timedelta(hours=2)  # 終了時刻の記載がない予定の長さ
@@ -741,6 +975,8 @@ def ics_description(row):
     lines += [f"出演: {row['members']}", f"カテゴリ: {row['category']}", f"情報元: {row['url']}"]
     if row.get("venue_url"):
         lines.append(f"会場の情報元: {row['venue_url']}")
+    if row.get("memo"):
+        lines += ["", "【参加メモ】", row["memo"]]
     if row["category"].startswith("Eventernote"):
         lines.append("※公式サイト未掲載（Eventernote の情報）")
     return "\n".join(lines)
@@ -886,7 +1122,9 @@ def main():
                         help="申込・締切の出力先（拡張子なし。.md / .csv / .ics を出力）")
     parser.add_argument("--force", action="store_true",
                         help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
+    parser.add_argument("--no-memo", action="store_true", help="参加メモを作らない（前回のメモも付けない）")
     args = parser.parse_args()
+    load_env()
 
     # API は開始日当日のイベントを含めないため 1 日前から取得して絞り込む
     events = [ev for ev in fetch_events(args.start - timedelta(days=1), args.end)
@@ -913,6 +1151,8 @@ def main():
     past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
+    if not args.no_memo:
+        add_memos(rows, posts, today)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     write_markdown(rows, args.md)
