@@ -539,7 +539,7 @@ def write_markdown(rows, path):
 
 
 def write_csv(rows, path):
-    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url", "venue_url", "memo"]
+    fields = ["done", "date", "weekday", "open", "start", "end", "time_note", "title", "category", "members", "venue", "url", "venue_url", "memo", "uid"]
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
@@ -1032,6 +1032,7 @@ def ics_period_lines(period, day):
 
 def write_calendar(path, name, events):
     """events は VEVENT の中身（BEGIN/END・DTSTAMP 以外）の行リストのリスト。
+    name が None なら照会用のカレンダー名・更新間隔を付けない（1 件ずつ取り込む用）。
     DTSTAMP 以外が前回と同じなら書き直さない（実行時刻だけの差分を出さないため）。書き直したら True。"""
     stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     out = [
@@ -1040,10 +1041,13 @@ def write_calendar(path, name, events):
         "PRODID:-//takaneko-data//fetch_schedule.py//JA",
         "CALSCALE:GREGORIAN",
         "METHOD:PUBLISH",
-        f"X-WR-CALNAME:{name}",
-        "X-WR-TIMEZONE:Asia/Tokyo",
-        "REFRESH-INTERVAL;VALUE=DURATION:PT6H",
-        "X-PUBLISHED-TTL:PT6H",
+    ]
+    if name:
+        out += [f"X-WR-CALNAME:{name}",
+                "X-WR-TIMEZONE:Asia/Tokyo",
+                "REFRESH-INTERVAL;VALUE=DURATION:PT6H",
+                "X-PUBLISHED-TTL:PT6H"]
+    out += [
         "BEGIN:VTIMEZONE",
         "TZID:Asia/Tokyo",
         "BEGIN:STANDARD",
@@ -1072,23 +1076,50 @@ def write_calendar(path, name, events):
     return True
 
 
-def write_ics(rows, path):
-    events, seen = [], set()
+def assign_uids(rows):
+    """予定ごとの ID（iCalendar の UID・Web 版の「行く」の印・1 件ずつの .ics のファイル名）を r["uid"] に入れる。"""
+    seen = set()
     for r in rows:
         uid = hashlib.sha1(f"{r['date']}|{r.get('event_url', r['url'])}".encode()).hexdigest()[:16]
         while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
             uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
         seen.add(uid)
-        ev = [f"UID:{uid}@takaneko-data", *ics_period_lines(event_period(r), date.fromisoformat(r["date"])),
-              f"SUMMARY:{ics_escape(ics_summary(r))}"]
-        if r["venue"]:
-            ev.append(f"LOCATION:{ics_escape(r['venue'])}")
-        ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
-               f"URL:{r['url']}",
-               "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
-               "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
-        events.append(ev)
-    return write_calendar(path, "高嶺のなでしこ", events)
+        r["uid"] = uid
+
+
+def ics_event(r, suffix="takaneko-data"):
+    ev = [f"UID:{r['uid']}@{suffix}", *ics_period_lines(event_period(r), date.fromisoformat(r["date"])),
+          f"SUMMARY:{ics_escape(ics_summary(r))}"]
+    if r["venue"]:
+        ev.append(f"LOCATION:{ics_escape(r['venue'])}")
+    ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
+           f"URL:{r['url']}",
+           "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
+           "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
+    return ev
+
+
+def write_ics(rows, path):
+    return write_calendar(path, "高嶺のなでしこ", [ics_event(r) for r in rows])
+
+
+def write_event_files(rows, folder):
+    """これからの予定を 1 件ずつ folder/<uid>.ics に書き出す（Web 版の「カレンダーに追加」用）。
+    照会カレンダーと同じ予定として扱われないよう UID を変え、終わった・消えた予定のファイルは消す。
+    書き直した・消したファイルの数を返す。"""
+    os.makedirs(folder, exist_ok=True)
+    keep, changed = set(), 0
+    for r in rows:
+        if r["done"]:
+            continue
+        name = f"{r['uid']}.ics"
+        keep.add(name)
+        changed += write_calendar(os.path.join(folder, name), None, [ics_event(r, "takaneko-data-mine")])
+    for name in os.listdir(folder):
+        if name.endswith(".ics") and name not in keep:
+            os.remove(os.path.join(folder, name))
+            changed += 1
+    return changed
 
 
 def write_deadlines_ics(rows, path):
@@ -1214,10 +1245,14 @@ def main():
         memo_created = add_memos(rows, posts, today)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
+    assign_uids(rows)
     write_markdown(rows, args.md)
     write_csv(rows, args.csv)
     ics_note = "" if write_ics(rows, args.ics) else "（予定に変更なし・書き直さず）"
     print(f"出力: {args.md}, {args.csv}, {args.ics}{ics_note}")
+    events_dir = os.path.join(os.path.dirname(args.ics), "events")
+    n = write_event_files(rows, events_dir)
+    print(f"1 件ずつの .ics: {events_dir}/（{n} 件を更新）")
 
     deadlines = collect_deadlines(posts, args.end, today)
     for r in deadlines:
