@@ -1,7 +1,7 @@
 # 高嶺のなでしこ 申込・締切一覧
 
 - 取得元: https://takanenonadeshiko.jp/news/ （お知らせ記事の「受付期間」「抽選結果」などの記載）
-- 件数: 291 件（うち済 291 件）
+- 件数: 295 件（うち済 292 件）
 
 お知らせ記事から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・プレイガイドのみの告知など）もあるので、申し込む前に必ず情報元の記事・受付ページを確認してください。
 
@@ -298,3 +298,7 @@
 | ✅ | 2026-10-23(金) |  | 受付締切 | [10/23 ニューアルバム『A World in Our Colors』発売記念オンラインお話し会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1023-2/) | 先着販売期間 | 2026年10月15日(木) 20:00~2026年10月23日(金) 各部開始10分後まで |
 | ✅ | 2026-10-23(金) |  | 受付締切 | [10/23 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1023-1/) | 先着販売期間 | 2026年10月20日(火)21:00~2026年10月23日(金)各部開始10分後まで |
 | ✅ | 2026-10-24(土) | 10:00 | 一般発売 | [「たかねこクリスマスパーティ2026」](https://takanenonadeshiko.jp/takaneko-christmasparty-2026/) | チケット一般発売 | 2026年10月24日(土)10:00〜 |
+| ✅ | 2026-10-26(月) | 18:00 | 受付開始 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 10月26日(月) 18:00 〜 11月2日(月)23:59 |
+|  | 2026-11-02(月) | 23:59 | 受付締切 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 10月26日(月) 18:00 〜 11月2日(月)23:59 |
+|  | 2026-11-05(木) | 18:00 | 当落発表 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 11月5日(木)18:00 以降順次発表 |
+|  | 2026-11-09(月) | 23:59 | 入金締切 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 11月9日(月)23:59 まで |
