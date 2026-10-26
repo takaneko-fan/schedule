@@ -382,23 +382,45 @@ def venue_from_post(post):
     return ""
 
 
-def fill_tbd_venues(rows, posts):
-    """会場が「東京都内某所（詳細は後日発表）」の予定に、後から出た記事の会場名を入れる。
-    記事タイトルが【M月D日(曜)】で始まり、日付とイベント名が一致するものだけを使う（新しい記事を優先）。"""
+def dated_posts(rows, posts):
+    """タイトルが【M月D日(曜)】で始まる記事と、日付とイベント名が一致する予定の組（新しい記事から順に）。"""
     for post in sorted(posts, key=lambda p: p["date"], reverse=True):
         title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
         m = POST_DATE_RE.match(title)
         if not (title.startswith("【") and m):
             continue
         day = infer_date(*m.groups()[:3], date.fromisoformat(post["date"][:10])).isoformat()
-        targets = [r for r in rows if r["date"] == day and TBD_VENUE_RE.search(r["venue"])
+        targets = [r for r in rows if r["date"] == day
                    # どのタイトルにも付く「高嶺のなでしこ」以外で共通の語句がある予定だけ
                    and shares_phrase(r["title"].replace("高嶺のなでしこ", ""), title.replace("高嶺のなでしこ", ""))]
+        yield post, targets
+
+
+def fill_tbd_venues(rows, posts):
+    """会場が「東京都内某所（詳細は後日発表）」の予定に、後から出た記事の会場名を入れる（新しい記事を優先）。"""
+    for post, targets in dated_posts(rows, posts):
+        targets = [r for r in targets if TBD_VENUE_RE.search(r["venue"])]
         venue = venue_from_post(post) if targets else ""
         for r in targets if venue else []:
             print(f"  会場を補完: {r['date']} {r['venue']} → {venue}")
             r["venue"] = venue
             r["venue_url"] = post["link"]  # 情報元（url）とは別の記事から補ったので出どころを残す
+
+
+def link_detail_posts(rows, posts):
+    """公式カレンダーのイベントページが「詳細は後日発表」のままで、詳細がお知らせ記事で出ている予定は、
+    情報元（url）をその記事にする（新しい記事を優先）。公式がイベントページを更新すれば元に戻る。
+    カレンダーの UID・参加メモのキャッシュが変わらないよう、元のイベントページは event_url に残す。"""
+    for post, targets in dated_posts(rows, posts):
+        for r in targets:
+            # イベントページの本文が「詳細は後日発表！」くらいしかない予定だけ（詳しい本文の一部に出てくる「後日発表」は除く）
+            text = r.get("source_text", "")
+            if "event_url" in r or "後日発表" not in text or len(text) > 100:
+                continue
+            print(f"  情報元を記事に変更: {r['date']} {r['title'][:40]} → {post['link']}")
+            r["event_url"], r["url"] = r["url"], post["link"]
+            if r.get("venue_url") == r["url"]:
+                r["venue_url"] = ""  # 会場も同じ記事から補ったなら、情報元のリンクだけで足りる
 
 
 def is_release(row):
@@ -776,7 +798,7 @@ def memo_source(row, posts):
     """AI に渡す文章（詳細ページ＋関係する記事。定型文は除く）。"""
     parts = []
     if row.get("source_text"):
-        parts.append(f"# イベントページ {row['url']}\n{row['source_text']}")
+        parts.append(f"# イベントページ {row.get('event_url', row['url'])}\n{row['source_text']}")
     for p in related_posts(row, posts):
         lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(p["content"]["rendered"])]
         body = "\n".join(ln for ln in lines if not MEMO_BOILERPLATE_RE.search(ln))
@@ -881,7 +903,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         content = len(re.sub(r"(?m)^(#.*|https?://\S+)$", "", source).strip())
         if content < 80 or "後日発表" in source and content < 600:
             continue
-        cid = f"{r['date']}|{r['url']}"
+        cid = f"{r['date']}|{r.get('event_url', r['url'])}"
         digest = hashlib.sha1(f"{MEMO_PROMPT_VERSION}|{model}|{source}".encode()).hexdigest()
         entry = cache.get(cid)
         if not (entry and entry["hash"] == digest) and key and calls < MEMO_MAX_CALLS:
@@ -1053,7 +1075,7 @@ def write_calendar(path, name, events):
 def write_ics(rows, path):
     events, seen = [], set()
     for r in rows:
-        uid = hashlib.sha1(f"{r['date']}|{r['url']}".encode()).hexdigest()[:16]
+        uid = hashlib.sha1(f"{r['date']}|{r.get('event_url', r['url'])}".encode()).hexdigest()[:16]
         while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
             uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
         seen.add(uid)
@@ -1114,7 +1136,7 @@ def check_drop(prev_rows, rows, start, end, n_events):
     # Eventernote は補助ソースで取得失敗も許しているので比較しない
     prev = [r for r in prev_rows
             if start.isoformat() <= r["date"] < end.isoformat() and not r["category"].startswith("Eventernote")]
-    keys = {(r["date"], r["url"]) for r in rows}
+    keys = {(r["date"], u) for r in rows for u in (r["url"], r.get("event_url"))}
     removed = [r for r in prev if (r["date"], r["url"]) not in keys]
     if len(removed) >= DROP_MIN and len(removed) >= len(prev) * DROP_RATIO:
         lines = [f"  - {r['date']} {r['title']}" for r in removed]
@@ -1131,7 +1153,7 @@ def row_label(r):
 def print_changes(prev_rows, rows, memo_created):
     """前回の CSV になかった予定と、今回 AI で参加メモを作った予定を最後にまとめて表示する。"""
     prev_keys = {(r["date"], r["url"]) for r in prev_rows}
-    added = [r for r in rows if (r["date"], r["url"]) not in prev_keys]
+    added = [r for r in rows if not prev_keys & {(r["date"], r["url"]), (r["date"], r.get("event_url"))}]
     print("\n=== 今回の変更 ===")
     print(f"追加された予定: {len(added)} 件")
     for r in added:
@@ -1178,6 +1200,7 @@ def main():
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
     fill_tbd_venues(rows, posts)
+    link_detail_posts(rows, posts)
     prev = load_prev_rows(args.csv)
     problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
     if problem:
