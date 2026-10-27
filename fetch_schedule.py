@@ -1076,15 +1076,47 @@ def write_calendar(path, name, events):
     return True
 
 
-def assign_uids(rows):
-    """予定ごとの ID（iCalendar の UID・Web 版の「行く」の印・1 件ずつの .ics のファイル名）を r["uid"] に入れる。"""
+def same_event(a, b):
+    """同じ日の 2 つの予定が、情報元は違っても同じ予定に見えるか（タイトルか会場が近い）。"""
+    return (shares_phrase(a["title"], b["title"])
+            or bool(a["venue"] and b["venue"]) and normalize(a["venue"]) == normalize(b["venue"]))
+
+
+def assign_uids(rows, prev_rows=()):
+    """予定ごとの ID（iCalendar の UID・Web 版の「行く」の印・1 件ずつの .ics のファイル名）を r["uid"] に入れる。
+
+    ID は日付と情報元から作るが、情報元が変わった予定（Eventernote → 公式カレンダーなど）は
+    前回の schedule.csv の ID を引き継ぐ。カレンダーの予定が作り直されたり「行く」の印が外れたりしないように。"""
     seen = set()
     for r in rows:
+        if r.get("uid"):  # 前回の CSV から引き継いだ過去の予定
+            seen.add(r["uid"])
+    for r in rows:
+        if r.get("uid"):
+            continue
         uid = hashlib.sha1(f"{r['date']}|{r.get('event_url', r['url'])}".encode()).hexdigest()[:16]
         while uid in seen:  # 同じ日・同じ情報元の予定が複数ある場合
             uid = hashlib.sha1((uid + r["title"]).encode()).hexdigest()[:16]
         seen.add(uid)
         r["uid"] = uid
+
+    # 前回なかった ID の予定に、前回あって今回消えた同じ日の予定の ID を引き継ぐ。
+    # 取り違えないよう、どちらから見ても候補が 1 件だけのときに限る。
+    prev_uids = {p["uid"] for p in prev_rows if p.get("uid")}
+    new_rows = [r for r in rows if r["uid"] not in prev_uids]
+    gone = [p for p in prev_rows if p.get("uid") and p["uid"] not in seen]
+    for r in new_rows:
+        cands = [p for p in gone if p["date"] == r["date"] and same_event(p, r)]
+        if not cands:
+            continue
+        rivals = [x for x in new_rows if x["date"] == r["date"] and same_event(cands[0], x)]
+        if len(cands) > 1 or len(rivals) > 1:
+            print(f"  ! ID を引き継がず（候補が複数）: {r['date']} {r['title']}")
+            continue
+        p = cands[0]
+        print(f"  = ID を引き継ぎ: {r['date']} {r['title']}（{p['url']} → {r['url']}）")
+        r["uid"] = p["uid"]
+        gone.remove(p)
 
 
 def ics_event(r, suffix="takaneko-data"):
@@ -1183,8 +1215,8 @@ def row_label(r):
 
 def print_changes(prev_rows, rows, memo_created):
     """前回の CSV になかった予定と、今回 AI で参加メモを作った予定を最後にまとめて表示する。"""
-    prev_keys = {(r["date"], r["url"]) for r in prev_rows}
-    added = [r for r in rows if not prev_keys & {(r["date"], r["url"]), (r["date"], r.get("event_url"))}]
+    prev_uids = {r["uid"] for r in prev_rows if r.get("uid")}
+    added = [r for r in rows if r["uid"] not in prev_uids]
     print("\n=== 今回の変更 ===")
     print(f"追加された予定: {len(added)} 件")
     for r in added:
@@ -1245,7 +1277,7 @@ def main():
         memo_created = add_memos(rows, posts, today)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
-    assign_uids(rows)
+    assign_uids(rows, prev)
     write_markdown(rows, args.md)
     write_csv(rows, args.csv)
     ics_note = "" if write_ics(rows, args.ics) else "（予定に変更なし・書き直さず）"

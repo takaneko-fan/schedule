@@ -198,4 +198,4 @@ https://takaneko-fan.github.io/schedule/deadlines.ics
 | `url` | 情報元のページ |
 | `venue_url` | 会場を別の記事から補った場合、その記事（それ以外は空） |
 | `memo` | 参加メモ（AI による要約。1 行 1 項目、最終行は注意書き） |
-| `uid` | 予定の ID（日付と情報元から作る 16 桁の英数字）。カレンダーの予定の識別、Web 版の印、`events/<uid>.ics` に使う |
+| `uid` | 予定の ID（日付と情報元から作る 16 桁の英数字）。カレンダーの予定の識別、Web 版の印、`events/<uid>.ics` に使う。情報元が変わった予定（Eventernote → 公式カレンダーなど）は前回の ID を引き継ぐ |
