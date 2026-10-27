@@ -1,3 +1,6 @@
 __pycache__/
 # API キーなど（公開リポジトリに入れない）
 .env
+
+# macOS が作るフォルダ情報
+.DS_Store
