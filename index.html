@@ -124,6 +124,7 @@
     font-size: .82rem; color: var(--muted);
   }
   .going-bar[hidden] { display: none; }  /* display: flex が hidden 属性より優先されるため */
+  .notice { margin: 10px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); font-size: .82rem; }
   body.has-going .wrap { padding-bottom: 120px; }  /* 最後の予定やフッターがバーに隠れないように */
   .going-bar button {
     font: inherit; font-size: .78rem; border: 1px solid var(--accent); color: var(--accent); background: var(--surface);
@@ -179,6 +180,7 @@
     </div>
   </div>
 
+  <p class="notice" id="notice" hidden></p>
   <div class="going-bar" id="goingBar" hidden></div>
   <p class="count" id="count"></p>
   <main id="list"><p class="empty">読み込み中…</p></main>
@@ -237,6 +239,20 @@ function pruneMarks(today) {
   const upcoming = new Set(rows.filter(r => r.uid && r.date >= today).map(r => r.uid));
   going = new Set([...going].filter(u => upcoming.has(u)));
   added = new Set([...added].filter(u => upcoming.has(u)));
+}
+
+// iPhone や別のブラウザに「行く予定」を移すリンク。URL の #going=uid.uid… で受け取る（# 以降はサーバーに送られない）
+function importGoingFromHash() {
+  const m = location.hash.match(/^#going=([0-9a-f.]*)$/);
+  if (!m) return 0;
+  const uids = m[1].split(".").filter(Boolean);
+  uids.forEach(u => going.add(u));
+  history.replaceState(null, "", location.pathname + location.search);
+  return uids.length;
+}
+function goingLink(today) {
+  const uids = rows.filter(r => going.has(r.uid) && r.date >= today).map(r => r.uid);
+  return `${location.origin}${location.pathname}#going=${uids.join(".")}`;
 }
 
 function savePrefs() {
@@ -489,7 +505,17 @@ function renderGoingBar(today) {
     ${toAdd.length
       ? `<button type="button" id="addGoing">まとめてカレンダーに追加（未追加 ${toAdd.length} 件）</button>`
       : "<span>すべてカレンダーに追加済み</span>"}
-    ${upcoming.some(r => added.has(r.uid)) ? '<button type="button" id="resetAdded">追加済みの印を消す</button>' : ""}`;
+    ${upcoming.some(r => added.has(r.uid)) ? '<button type="button" id="resetAdded">追加済みの印を消す</button>' : ""}
+    <button type="button" id="copyGoing">iPhone・他のブラウザに移すリンクをコピー</button>`;
+  document.getElementById("copyGoing").addEventListener("click", async e => {
+    const link = goingLink(today);
+    try {
+      await navigator.clipboard.writeText(link);
+      e.target.textContent = "コピーしました（メモや AirDrop で送って開く）";
+    } catch (err) {
+      window.prompt("このリンクをコピーしてください", link);
+    }
+  });
   document.getElementById("addGoing")?.addEventListener("click", async e => {
     e.target.disabled = true;
     try {
@@ -539,6 +565,7 @@ document.querySelectorAll("button.copy").forEach(btn => btn.addEventListener("cl
 }));
 
 loadPrefs();
+const imported = importGoingFromHash();
 // 申込・締切は補助的な表示なので、読み込めなくても予定は表示する
 const loadDeadlines = fetch("deadlines.csv", { cache: "no-cache" })
   .then(res => res.ok ? res.text() : "")
@@ -555,6 +582,11 @@ Promise.all([fetch("schedule.csv", { cache: "no-cache" }), loadDeadlines])
     rows = parseCSV(text);  // fetch_schedule.py が日付順に並べて出力している
     state.categories = state.categories.filter(c => rows.some(r => categoriesOf(r).includes(c)));
     pruneMarks(todayJST());
+    if (imported) {
+      const notice = document.getElementById("notice");
+      notice.textContent = `リンクから行く予定を読み込みました（これからの行く予定は ${rows.filter(r => going.has(r.uid)).length} 件になりました）。`;
+      notice.hidden = false;
+    }
     update();
   })
   .catch(() => {
