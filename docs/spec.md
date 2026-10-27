@@ -308,4 +308,4 @@ git config --local user.email "bot@example.invalid"
 - 各取得元の利用規約と robots.txt に沿って、サーバーに負担をかけない頻度で取得します（2026年10月時点で確認）。User-Agent に `takaneko-fan/schedule` を名乗ります。
 - 公式・権利者・各サイトの運営から掲載の停止や修正の要望があれば、速やかに対応・削除します。
 
-未決事項：連絡先は README で「準備中」のままです。
+連絡先は `takaneko-fan@proton.me`（README と Web 版のフッターに記載）。
