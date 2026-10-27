@@ -1,0 +1,32 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:f6e9c5f353ff30ec@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:MARQUEE Fes.
+LOCATION:Spotify O-EAST(Shibuya O-EAST)
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/marquee-fe
+ s-4/\n\n【参加メモ】\n📍 会場: Spotify O-EAST（Shibuya O-EAST
+ ）\n🕙 当日の流れ: 2026年11月17日（火）／会場：Spotify O
+ -EAST\n🤖 公式の案内を AI が要約したものです。必ず情
+ 報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/marquee-fes-4/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

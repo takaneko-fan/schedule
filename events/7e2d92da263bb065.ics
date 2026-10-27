@@ -1,0 +1,34 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:7e2d92da263bb065@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20261101
+DTEND;VALUE=DATE:20261102
+SUMMARY:IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon
+LOCATION:埼玉スタジアム2002 野外特設ステージ
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/idol-hallo
+ ween-japan-2026-supported-by-malymoon/\n\n【参加メモ】\n📍 会場:
+  埼玉スタジアム2002 野外特設ステージ\n🕙 当日の流れ:
+  2026年11月1日（日）\n🎫 参加方法・当日券: チケット販
+ 売あり（ticketdiveで販売）\n🤖 公式の案内を AI が要約
+ したものです。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-sup
+ ported-by-malymoon/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

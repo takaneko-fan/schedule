@@ -1,0 +1,28 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:070bcf4a728c51f6@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
+ s 』2026年11月18日(水)リリース
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: お知らせ記
+ 事\n情報元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors/
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

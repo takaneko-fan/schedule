@@ -1,0 +1,37 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:de915654fd497dc1@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;TZID=Asia/Tokyo:20261111T170000
+DTEND;TZID=Asia/Tokyo:20261111T190000
+SUMMARY:【M.M.S】Massive Music Showcase Vol.1
+LOCATION:Spotify O-EAST(Shibuya O-EAST)
+DESCRIPTION:時間: OPEN 16:00 / START 17:00\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-
+ 1/\n\n【参加メモ】\n📍 会場: Spotify O-EAST（Shibuya O-EAST）\
+ n🕙 当日の流れ: 2026年11月11日／OPEN 16:00／START 17:00\n👥 
+ 部とメンバー: 出演：JamsCollection／高嶺のなでしこ／NEVE
+ R END ROLL／フルコース／僕が見たかった青空／fav me／Rain
+  Tree\n🎫 参加方法・当日券: チケットあり（案内ページ
+ で販売）\n🤖 公式の案内を AI が要約したものです。必
+ ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massiv
+ e-music-showcase-vol-1/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

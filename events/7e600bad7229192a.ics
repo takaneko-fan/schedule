@@ -1,0 +1,36 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:7e600bad7229192a@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20261129
+DTEND;VALUE=DATE:20261130
+SUMMARY:Anime Festival Asia Singapore 2026✿東山・日向端
+LOCATION:SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE
+DESCRIPTION:出演: 東山恵里沙、日向端ひな\nカテゴリ: ライ
+ ブ／イベント\n情報元: https://takanenonadeshiko.jp/events/event/a
+ nime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%9
+ 7%a5%e5%90%91%e7%ab%af/\n\n【参加メモ】\n📍 会場: SUNTEC SINGAPO
+ RE CONVENTION & EXHIBITION CENTRE（Singapore）\n👥 部とメンバー:
+  出演：東山・日向端（HoneyWorks Vocal All Stars）\nℹ️ そ
+ の他: 詳細は主催者サイト（https://animefestival.asia/afasg26/
+ ）で確認\n🤖 公式の案内を AI が要約したものです。必
+ ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore
+ -2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:fea37c8fb56a7261@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20270807
+DTEND;VALUE=DATE:20270808
+SUMMARY:✿高嶺のなでしこ誕生日✿
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: 誕生日\n情
+ 報元: https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6
+ %ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a
+ 5%e2%9c%bf/
+URL:https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e
+ 3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%
+ 9c%bf/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

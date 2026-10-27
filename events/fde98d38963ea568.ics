@@ -1,0 +1,37 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:fde98d38963ea568@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;TZID=Asia/Tokyo:20261107T160000
+DTEND;TZID=Asia/Tokyo:20261107T180000
+SUMMARY:LARME FES’26︎✿城月・松本
+LOCATION:東京ガーデンシアター
+DESCRIPTION:時間: OPEN 14:30 / START 16:00\n出演: 城月菜央、松本
+ ももな\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c
+ %88%e3%83%bb%e6%9d%be%e6%9c%ac/\n\n【参加メモ】\n📍 会場: 東京
+ ガーデンシアター\n🕙 当日の流れ: 2026年11月7日(土)／OP
+ EN 14:30／START 16:00\n👥 部とメンバー: 16:00開始：城月・
+ 松本\n🎫 参加方法・当日券: ローソンチケットのイベ
+ ントページでチケット販売\nℹ️ その他: 公式イベント
+ ページあり\n🤖 公式の案内を AI が要約したものです。
+ 必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf
+ %e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

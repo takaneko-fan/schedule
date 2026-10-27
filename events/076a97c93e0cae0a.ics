@@ -1,0 +1,41 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:076a97c93e0cae0a@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;VALUE=DATE:20261105
+DTEND;VALUE=DATE:20261106
+SUMMARY:Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベ
+ ントホール〜 』
+LOCATION:Shibuya LOVEZ / Veats Shibuya / ※2会場連動
+DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/devil-anth
+ em-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%
+ 9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%
+ e3%83%bc%e3%83%ab%e3%80%9c/\n\n【参加メモ】\n📍 会場: Shibuya LO
+ VEZ / Veats Shibuya（2会場連動）\n🕙 当日の流れ: 2026年11月
+ 5日（木）に開催。会場はShibuya LOVEZとVeats Shibuyaの2会場
+ 連動。\n🎫 参加方法・当日券: 出演は出演リストに記
+ 載／チケットはticketvillageで販売\n🤖 公式の案内を AI 
+ が要約したものです。必ず情報元で確認してください
+ 。
+URL:https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%
+ 8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95
+ %e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e
+ 3%80%9c/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

@@ -1,0 +1,60 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:49a3c6367e04a19e@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;TZID=Asia/Tokyo:20261103T123000
+DTEND;TZID=Asia/Tokyo:20261103T180000
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』 リリース記念イベント at 汐留シオサイト
+LOCATION:汐留シオサイト地下歩道　特設ステージ
+DESCRIPTION:時間: 12:30 START（優先エリア入場12:10） ／ 16:00 S
+ TART（優先エリア入場15:40）\n出演: グループ（全員）\n
+ カテゴリ: ライブ／イベント\n情報元: https://takanenonadeshi
+ ko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%
+ e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e
+ 3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/\n\n【
+ 参加メモ】\n📍 会場: 汐留シオサイト地下歩道 特設ス
+ テージ／〒105-0021 東京都港区東新橋1-5 他\n🕙 当日の流
+ れ: CD販売 10:00開始／優先エリア入場12:10→12:30 START（ミ
+ ニライブ＆グループショット）／優先入場15:40→16:00 STA
+ RT（ミニライブ＆グループ握手）\n👥 部とメンバー: 1
+ 部（12:30）：涼海・日向端・松本・籾山（グループショ
+ ット対象）／2部（16:00）：城月・橋本・葉月・東山（
+ グループ握手対象）\n🎫 参加方法・当日券: 対象商品
+ を会場CD販売ブースで予約購入し参加券・整理番号付き
+ 優先エリア入場券を先着で配布／配布は1会計につき規
+ 定枚数でランダム配布\n💴 料金: 初回限定盤 VIZL-2561 税
+ 込¥4\,950／たかねこ盤 VICL-66184 税込¥3\,300\n💳 支払い: 
+ 現金・クレジットカード・電子マネー・QR決済\n🎒 持
+ ち物: スマートフォン（撮影用）／マスク着用必須／ご
+ 予約用紙(お客様控え)（引換に必要）\n📸 ルール: マス
+ ク必須／入場時手荷物検査・金属探知あり／撮影はス
+ マホ縦向きのみ・フラッシュ・他機材禁止／録音録画
+ 禁止／ミニライブ中のジャンプ禁止\n⚠️ 注意: 購入は
+ 会場CD販売ブースで10:00開始／予約受取は店頭もしくは
+ 配送（送料¥1\,000）／店頭受取は11/17夕方以降、取り置
+ きは11/30まで\nℹ️ その他: ご予約商品の受け取りはLIBR
+ O汐留シオサイト店または配送（送料1\,000円）\n🤖 公式
+ の案内を AI が要約したものです。必ず情報元で確認し
+ てください。
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

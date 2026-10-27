@@ -1,0 +1,54 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:3a5ed64b3a809dff@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;TZID=Asia/Tokyo:20261224T160000
+DTEND;TZID=Asia/Tokyo:20261224T213000
+SUMMARY:高嶺のなでしこ たかねこクリスマスパーティ2026
+LOCATION:ヒューリックホール東京(HULIC HALL TOKYO)
+DESCRIPTION:時間: 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/ST
+ ART] 18:30/19:30\n出演: グループ（全員）\nカテゴリ: ライ
+ ブ／イベント\n情報元: https://takanenonadeshiko.jp/events/event/%
+ e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e
+ 3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%
+ 83%91%e3%83%bc%e3%83%86%e3%82%a32026/\n\n【参加メモ】\n📍 会場: 
+ ヒューリックホール東京 (HULIC HALL TOKYO)\n🕙 当日の流れ
+ : 第一部　開場15:00／開演16:00／第二部　開場18:30／開演
+ 19:30\n🎫 参加方法・当日券: チケットはイープラスで販
+ 売／ファンクラブ先行・オフィシャル先行・海外受付
+ あり（案内参照）\n💴 料金: 通常指定席 FC¥5\,500(税込)/
+ 一般¥6\,000(税込)／女性専用エリア指定席 FC¥5\,500(税込)
+ /一般¥6\,000(税込)／カメねこエリア指定席 ¥9\,000(税込)
+ （FC限定）／入場時ドリンク代別途必要／全席指定／未
+ 就学児童入場不可\n🎒 持ち物: チケット（氏名印字）
+ ／主催者指定の本人確認書類（現物）／必要であれば
+ カメラ（カメねこ該当者）\n📸 ルール: 全席指定／未
+ 就学児童入場不可／再入場禁止／持込み飲酒禁止／持
+ 物検査・金属探知機による身体検査あり／転売無効・
+ 来場者本人確認あり／カメねこ以外での撮影・録音禁
+ 止\n⚠️ 注意: 本人確認書類は現物のみ有効（コピー不
+ 可）／開演直前は混雑が予想されるため早め入場推奨\n
+ ℹ️ その他: 問い合わせ先：DISK GARAGE（https://info.diskgara
+ ge.com/）\n🤖 公式の案内を AI が要約したものです。必
+ ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3
+ %82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%8
+ 2%a32026/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

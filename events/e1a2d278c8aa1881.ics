@@ -1,0 +1,37 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:e1a2d278c8aa1881@takaneko-data-mine
+DTSTAMP:20261027T084338Z
+DTSTART;TZID=Asia/Tokyo:20261107T123000
+DTEND;TZID=Asia/Tokyo:20261107T143000
+SUMMARY:産業能率大学 第61回産能祭
+LOCATION:産業能率大学 自由が丘キャンパス 体育館
+DESCRIPTION:時間: OPEN 12:00 / START 12:30\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%a
+ d%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/\n\n【参加メモ
+ 】\n📍 会場: 産業能率大学 自由が丘キャンパス 体育館
+ \n🕙 当日の流れ: 2026年11月7日(土)　OPEN 12:00／START 12:30\n
+ 🎫 参加方法・当日券: チケットは案内のLivePocketで取得
+ （ページ案内あり）\nℹ️ その他: 詳細は主催者サイト
+ で確認：https://www.sannofes.com/\n🤖 公式の案内を AI が要
+ 約したものです。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e
+ 7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
