@@ -1,21 +1,4 @@
 {
- "2026-10-28|https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/": {
-  "generated": "2026-10-24",
-  "hash": "7b1ec6bab7834cac811e0213b451b95865a97e4c",
-  "memo": {
-   "flow": "2026年10月28日（水）19:00〜",
-   "items": "",
-   "join": "観覧方法は案内の専用ページからの手続き／詳細は告知ページ参照",
-   "notes": "",
-   "other": "視聴はNATSLIVEでの配信（エピソード18194）",
-   "parts": "1部（19:00）：涼海・葉月・日向端",
-   "payment": "",
-   "price": "",
-   "rules": "",
-   "venue": ""
-  },
-  "model": "gpt-5-mini"
- },
  "2026-10-29|https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/": {
   "generated": "2026-10-24",
   "hash": "61036161b41517c2207b4a20b923655a6a9877aa",
