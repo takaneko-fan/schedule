@@ -18,6 +18,7 @@
 | [`events/`](events/) | これからの予定を 1 件ずつ入れた iCalendar ファイル（Web 版の「カレンダーに追加」用） |
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
+| [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー） |
 | [`assets/`](assets/) | アイコンなどの素材（`X_icon_takaneko_fanweb.jpeg` は X @takaneko_fanweb のプロフィール画像） |
 
 ## 取得元

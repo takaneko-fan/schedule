@@ -1,0 +1,10 @@
+# 「予定の更新」を GitHub App の名義で起動する（takaneko-dispatch.timer から実行）
+[Unit]
+Description=takaneko-fan/schedule: GitHub Actions の予定の更新を起動
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=runner
+ExecStart=/home/runner/bin/dispatch_update.sh

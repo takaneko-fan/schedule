@@ -4,6 +4,8 @@
 name: 予定の更新
 
 on:
+  # ふだんは VPS の systemd タイマーが同じ時刻に workflow_dispatch で起動する（ops/dispatch_update.sh）。
+  # GitHub の定時実行は遅れたり抜けたりするため、こちらは予備として残す
   schedule:
     - cron: "17 3,9,15,21 * * *"  # 日本時間 0:17 / 6:17 / 12:17 / 18:17
   workflow_dispatch:
