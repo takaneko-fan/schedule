@@ -327,6 +327,13 @@ X_DATE_RE = re.compile(r"(?:(\d{4})[年/.])?(\d{1,2})(?:月\s*|/)(\d{1,2})日?\s
 # 日付を書かずに「明日」「このあと」の予定を告知する投稿（タグ・語 → 投稿日からの日数）
 X_RELATIVE_WORDS = {"#あしたのたかねこ": 1, "このあと": 0, "本日": 0}
 X_MARK_RE = re.compile(r"^[📍⏰🔗🎫🛒🎤🎥🎧📱💬]")
+X_NIGHT_HOUR = 5  # この時刻（日本時間）より前の「#あしたのたかねこ」は前日の夜の投稿とみなす
+
+
+def strip_emoji(text):
+    """絵文字と、絵文字をつなぐ記号（ZWJ・異体字セレクタ）を外す。
+    Python が知らない新しい絵文字は未定義（Cn）になるので、それも外す。"""
+    return "".join(c for c in text if unicodedata.category(c) not in ("So", "Cn") and c not in "\u200d\ufe0f")
 
 
 def fetch_x_posts(token, since_id=None):
@@ -361,8 +368,10 @@ def x_lines(tweet):
 def x_title(lines):
     """見出しの行をつないで予定名にする（グループ名のタグ・# は外す）。"""
     text = " ".join(ln for ln in lines if ln and not X_MARK_RE.match(ln))
-    text = re.sub(r"#(高嶺のなでしこ|たかねこ)(?=\s|$)", "", text).replace("#", "")
-    return re.sub(r"\s+", " ", re.sub(r"([『「])\s+|\s+([』」])", r"\1\2", text)).strip()
+    text = re.sub(r"#(高嶺のなでしこ|たかねこ)(?=\s|$)", "", strip_emoji(text)).replace("#", "")
+    text = re.sub(r"\s+", " ", re.sub(r"([『「])\s+|\s+([』」])", r"\1\2", text)).strip()
+    m = re.fullmatch(r"[『「]([^』」]+)[』」]", text)  # 全体が『』で囲まれていれば外す
+    return m.group(1) if m else text
 
 
 def x_headline(lines):
@@ -379,7 +388,12 @@ def x_headline(lines):
 def x_details(lines):
     """📍会場・時間を拾う。"""
     venue = next((ln.lstrip("📍").strip() for ln in lines if ln.startswith("📍")), "")
-    lines = [ln.lstrip("⏰").strip() for ln in lines if not X_MARK_RE.match(ln) or ln.startswith("⏰")]
+    lines = [strip_emoji(ln).strip() for ln in lines if not X_MARK_RE.match(ln) or ln.startswith("⏰")]
+    # 「1部」と時間が別の行に書かれていればつなぐ
+    for i in range(len(lines) - 1, 0, -1):
+        if (PART_RE.match(lines[i - 1]) and not re.search(r"\d[:：]\d", lines[i - 1])
+                and re.match(r"\d{1,2}[:：]\d{2}", lines[i])):
+            lines[i - 1:i + 1] = [f"{lines[i - 1]} {lines[i]}"]
     times = find_times([ln for ln in lines if "OPEN" in ln and "START" in ln][:1])
     note = "" if times else find_part_times(lines)
     if not times and not note:
@@ -392,7 +406,8 @@ def x_details(lines):
 
 def extract_x_candidates(tweet):
     """投稿から予定候補を取り出す。sure=False は抽出に自信がないもの（実行ログに出すだけ）。"""
-    published = datetime.fromisoformat(tweet["created_at"].replace("Z", "+00:00")).astimezone(JST).date()
+    posted = datetime.fromisoformat(tweet["created_at"].replace("Z", "+00:00")).astimezone(JST)
+    published = posted.date()
     lines = x_lines(tweet)
     headline = x_headline(lines)
     url = f"https://x.com/takanenofficial/status/{tweet['id']}"
@@ -424,13 +439,15 @@ def extract_x_candidates(tweet):
     if not found:
         text = " ".join(lines)
         offset = next((n for w, n in X_RELATIVE_WORDS.items() if w in text), None)
-        if offset is not None and not is_non_event(text):
-            # 「#あしたのたかねこ」などの行がある段落の、次の段落が予定名
-            paras = re.split(r"\n{2,}", "\n".join(lines).strip())
-            k = next(k for k, p in enumerate(paras) if any(w in p for w in X_RELATIVE_WORDS))
-            title = x_title(paras[k + 1].splitlines()) if k + 1 < len(paras) else ""
+        # 「#あしたのたかねこ」などの行がある段落の、次の段落が予定名
+        paras = re.split(r"\n{2,}", "\n".join(lines).strip())
+        k = next((k for k, p in enumerate(paras) if any(w in p for w in X_RELATIVE_WORDS)), None)
+        title = x_title(paras[k + 1].splitlines()) if k is not None and k + 1 < len(paras) else ""
+        # 販売・受付の告知かは予定名の段落で判断する（本文の「受付終了」などで捨てないため）
+        if offset is not None and not is_non_event(title or headline):
+            base = published - timedelta(days=1) if offset and posted.hour < X_NIGHT_HOUR else published
             venue, times, note = x_details(lines)
-            found.append({"date": published + timedelta(days=offset), "title": title or headline, "venue": venue,
+            found.append({"date": base + timedelta(days=offset), "title": title or headline, "venue": venue,
                           "times": times, "time_note": note, "url": url, "sure": bool(venue or times or note)})
     return found
 
