@@ -8,7 +8,7 @@ cd "$(dirname "$0")"
 git pull --ff-only --quiet
 python3 fetch_schedule.py "$@"
 
-git add schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json events
+git add schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json events x_events.json
 if git diff --cached --quiet; then
     echo "予定に変化なし（コミットしません）"
     exit 0

@@ -314,7 +314,7 @@ def post_item_to_row(item):
     }
 
 
-# ---- 公式 X（@takanenofficial）の投稿からの予定候補（いまは実行ログに出すだけ） ----
+# ---- 公式 X（@takanenofficial）の告知（公式サイト未掲載の予定の補完） ----
 
 X_API_URL = "https://api.x.com/2"
 X_USER_ID = "1518855666177568769"  # @takanenofficial（メンバー個人のアカウントは対象外）
@@ -328,6 +328,9 @@ X_DATE_RE = re.compile(r"(?:(\d{4})[年/.])?(\d{1,2})(?:月\s*|/)(\d{1,2})日?\s
 X_RELATIVE_WORDS = {"#あしたのたかねこ": 1, "このあと": 0, "本日": 0}
 X_MARK_RE = re.compile(r"^[📍⏰🔗🎫🛒🎤🎥🎧📱💬]")
 X_NIGHT_HOUR = 5  # この時刻（日本時間）より前の「#あしたのたかねこ」は前日の夜の投稿とみなす
+X_EVENTS_PATH = "x_events.json"  # 読み取った予定（投稿は一度しか読まないので保存する。本文は保存しない）
+X_CATEGORY = "公式X"
+X_NAME_MIN = 8  # 『』内の名前と公式の予定名がこの文字数以上一致すれば同じ予定（グループ名 7 文字だけでは一致させない）
 
 
 def strip_emoji(text):
@@ -413,6 +416,12 @@ def extract_x_candidates(tweet):
     lines = x_lines(tweet)
     headline = x_headline(lines)
     url = f"https://x.com/takanenofficial/status/{tweet['id']}"
+    joined = " ".join(lines)
+    # 公式の予定名との照合用に『』内の名前と、出演メンバー（本文にフルネームがあれば）を残す
+    names = list(dict.fromkeys(x_title([n]) for n in re.findall(r"『\s*([^』]+?)\s*』", joined)))
+    members = [full for full, _, _ in MEMBERS if full in joined.replace(" ", "")]
+    common = {"url": url, "post_id": tweet["id"], "posted": posted.isoformat(timespec="minutes"),
+              "names": names, "members": "、".join(members) if 0 < len(members) < len(MEMBERS) else GROUP}
     found, label = [], ""
     for i, line in enumerate(lines):
         m = X_DATE_RE.search(line)
@@ -443,8 +452,9 @@ def extract_x_candidates(tweet):
         near = re.search(r"『\s*([^』]+?)\s*』", " ".join(lines[start:end]))
         title = (x_title([rest]) if not only_time
                  else x_title(block[:1]) or (x_title([near.group(1)]) if near else headline))
-        found.append({"date": d, "title": title, "venue": venue, "times": times, "time_note": note,
-                      "url": url, "sure": line.startswith("🗓") and bool(only_time) and bool(venue or times or note)})
+        found.append({**common, "date": d, "title": title, "venue": venue, "times": times, "time_note": note,
+                      "today": False,
+                      "sure": line.startswith("🗓") and bool(only_time) and bool(venue or times or note)})
     if not found:
         text = " ".join(lines)
         offset = next((n for w, n in X_RELATIVE_WORDS.items() if w in text), None)
@@ -457,8 +467,10 @@ def extract_x_candidates(tweet):
         if offset is not None and not is_non_event(title or headline) and "ありがとうございました" not in text:
             base = published - timedelta(days=1) if offset and posted.hour < X_NIGHT_HOUR else published
             venue, times, note = x_details(lines)
-            found.append({"date": base + timedelta(days=offset), "title": title or headline, "venue": venue,
-                          "times": times, "time_note": note, "url": url, "sure": bool(venue or times or note)})
+            # 「このあと」「本日」は当日の告知。メンバーの今いる場所を公開しないよう予定一覧には入れない
+            found.append({**common, "date": base + timedelta(days=offset), "title": title or headline,
+                          "venue": venue, "times": times, "time_note": note, "today": offset == 0,
+                          "sure": bool(venue or times or note)})
     return found
 
 
@@ -470,26 +482,79 @@ def load_x_state(path=X_STATE_PATH):
         return {}
 
 
+def x_same_venue(a, b):
+    """X と公式で会場が同じか。「汐留シオサイト」と「汐留シオサイト地下歩道 特設ステージ」のように
+    詳しさが違うことが多いので、どちらかがもう一方を含めば同じ会場とみなす。"""
+    a, b = normalize(a), normalize(b)
+    return len(a) >= 4 and len(b) >= 4 and (a in b or b in a)
+
+
 def x_listed(c, rows):
-    """公式サイトの予定に同じものがあるか。会場は「汐留シオサイト」と「汐留シオサイト地下歩道 特設ステージ」
-    のように詳しさが違うことが多いので、どちらかがもう一方を含めば同じ会場とみなす。"""
-    v = normalize(c["venue"])
+    """公式サイトの予定に同じものがあるか（実行ログの目安。統合は merge_post_rows が行う）。"""
     return any(r["date"] == c["date"].isoformat()
-               and (same_event(c, r) or len(v) >= 4 and (v in normalize(r["venue"]) or normalize(r["venue"]) in v)
-                    and normalize(r["venue"]))
+               and (same_event(c, r) or x_same_venue(c["venue"], r["venue"])
+                    or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in c["names"]))
                for r in rows)
 
 
-def report_x_candidates(rows, recheck_days=None):
-    """公式 X の新しい投稿から予定候補を読み、実行ログに出す。予定一覧にはまだ反映しない。
+def load_x_events(path=X_EVENTS_PATH):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
-    読み取りが正しいかの目安として、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付ける。
-    recheck_days を指定すると、前回の続きではなくその日数分をさかのぼって読み直す（記録は更新しない）。
+
+def save_x_events(events, today, path=X_EVENTS_PATH):
+    """終わった予定（過去の予定は schedule.csv から引き継ぐ）を除いて保存する。変化がなければ書き直さない。"""
+    events = sorted((e for e in events if e["date"] >= today.isoformat()), key=lambda e: (e["date"], e["post_id"]))
+    text = json.dumps(events, ensure_ascii=False, indent=1) + "\n"
+    try:
+        with open(path, encoding="utf-8") as f:
+            if f.read() == text:
+                return
+    except FileNotFoundError:
+        pass
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def x_event(c):
+    """保存する形にする（本文は含めない）。"""
+    return {"date": c["date"].isoformat(), "title": c["title"], "venue": c["venue"],
+            "open": c["times"].get("OPEN", ""), "start": c["times"].get("START", ""), "end": c["times"].get("END", ""),
+            "time_note": c["time_note"], "members": c["members"], "names": c["names"],
+            "url": c["url"], "post_id": c["post_id"], "posted": c["posted"]}
+
+
+def x_event_to_row(e):
+    d = date.fromisoformat(e["date"])
+    return {**{k: e[k] for k in ("date", "open", "start", "end", "time_note", "title", "members", "venue", "url")},
+            "weekday": "月火水木金土日"[d.weekday()], "category": X_CATEGORY, "names": e["names"]}
+
+
+def update_x_events(rows, today, recheck_days=None):
+    """公式 X の新しい投稿から予定を読み取って x_events.json に足し、保存済みの予定を行データで返す。
+
+    実行ログには読み取った候補すべてを、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付けて出す。
+    予定一覧に入れるのは ◎（日付・会場か時間が読めたもの）で、当日の告知（「このあと」「本日」）は除く。
+    recheck_days を指定すると、前回の続きではなくその日数分をさかのぼって読み直す（前回の続きの記録は変えない）。
+    取得に失敗しても、保存済みの予定は返す。
     """
+    events = load_x_events()
     token = os.environ.get("X_BEARER_TOKEN")
     if not token:
-        print("X: X_BEARER_TOKEN が未設定のため確認しません")
-        return
+        print("X: X_BEARER_TOKEN が未設定のため新しい投稿は確認しません")
+    else:
+        try:
+            events = read_x_posts(token, rows, events, recheck_days)
+        except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても保存済みの予定で続行
+            print(f"  ! X 取得失敗: {e}")
+    save_x_events(events, today)
+    return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()]
+
+
+def read_x_posts(token, rows, events, recheck_days):
     state = {} if recheck_days else load_x_state()
     tweets, newest = fetch_x_posts(token, state.get("since_id"), recheck_days or X_FIRST_DAYS)
     print(f"X（@takanenofficial）: {len(tweets)} 件の{'投稿を読み直し' if recheck_days else '新しい投稿を確認'}")
@@ -501,19 +566,22 @@ def report_x_candidates(rows, recheck_days=None):
             listed = x_listed(c, official)
             time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
             extra = "  ".join(s for s in (time, f"＠{c['venue']}" if c["venue"] else "") if s)
-            mark = "◎" if c["sure"] else "?（要確認・公開しない）"
+            mark = ("?（要確認・公開しない）" if not c["sure"] else "◎（当日の告知・公開しない）" if c["today"] else "◎")
             status = "公式に掲載済み" if listed else "公式に未掲載"
             print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  [{status}]  {c['url']}")
             counts["◎" if c["sure"] else "?"] += 1
             counts["◎ 掲載済み"] += c["sure"] and listed
+            if c["sure"] and not c["today"]:
+                # 同じ投稿・同じ日付の予定は読み直した内容で置き換える
+                events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
+                events.append(x_event(c))
     print(f"  → ◎ {counts['◎']} 件（うち公式に掲載済み {counts['◎ 掲載済み']} 件） / ? {counts['?']} 件")
-    if recheck_days:
-        return
-    if newest and newest != state.get("since_id"):
+    if not recheck_days and newest and newest != state.get("since_id"):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
         with open(X_STATE_PATH, "w", encoding="utf-8") as f:
             json.dump({"since_id": newest}, f)
             f.write("\n")
+    return events
 
 
 # ---- Eventernote（公式 X などで告知され、公式サイト未掲載の出演情報の補完） ----
@@ -636,12 +704,29 @@ def merge_post_rows(rows, post_rows):
     for pr in post_rows:
         # 発売日とその日のリリースイベントは別の予定として残す
         same_day = [r for r in rows + added if r["date"] == pr["date"] and is_release(r) == is_release(pr)]
-        dup = next((r for r in same_day
-                    if shares_phrase(pr["title"].split("：")[-1] + pr["venue"], r["title"] + r["venue"])
-                    or shares_phrase(r["title"], pr["title"])
-                    # 記事本文にカレンダーのタイトルがそのまま出てくる（例: SPACE MAKE）
-                    or len(normalize(r["title"])) >= 6
-                    and normalize(r["title"]) in normalize(pr["post_text"])), None)
+        dups = [r for r in same_day
+                if shares_phrase(pr["title"].split("：")[-1] + pr["venue"], r["title"] + r["venue"])
+                or shares_phrase(r["title"], pr["title"])
+                # 記事本文にカレンダーのタイトルがそのまま出てくる（例: SPACE MAKE）
+                or len(normalize(r["title"])) >= 6
+                and normalize(r["title"]) in normalize(pr.get("post_text", ""))
+                # X の投稿の『』内の名前が予定名に含まれる（「個別握手会／東京都内某所」と
+                # 「『A World in Our Colors』リリース記念個別イベント／大崎ブライトコアホール」）
+                or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in pr.get("names", []))
+                or pr["category"] == X_CATEGORY and x_same_venue(pr["venue"], r["venue"])]
+        if pr["category"] == X_CATEGORY and len(dups) > 1:
+            # 取り違えないよう、統合先が 1 件に決まらない X の予定は追加も統合もしない
+            print(f"  ! X の予定を統合せず（同じ日の候補が複数）: {pr['date']} {pr['title']} {pr['url']}")
+            continue
+        dup = dups[0] if dups else None
+        if dup and pr["category"] == X_CATEGORY:
+            # 公式の予定に置き換わっても X の予定の ID を引き継げるよう、元の投稿を残す
+            dup.setdefault("x_urls", []).append(pr["url"])
+            if dup["category"] == X_CATEGORY:
+                # 同じ予定を告知した別の投稿: 先の投稿で空いている項目を後の投稿で埋める
+                for key in ("open", "start", "end", "time_note", "venue"):
+                    dup[key] = dup[key] or pr[key]
+                continue
         if dup:
             # 記事側に日別の担当メンバーがあればそちらを優先
             if dup["members"] == GROUP and pr["members"] != GROUP:
@@ -701,7 +786,7 @@ def write_markdown(rows, path):
     out = [
         "# 高嶺のなでしこ メンバー別スケジュール一覧",
         "",
-        f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、Eventernote （公式X等の告知の補完・非公式）",
+        f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）、Eventernote （公式X等の告知の補完・非公式）",
         "- 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定",
         f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
         "",
@@ -710,6 +795,7 @@ def write_markdown(rows, path):
         "「グループ（全員）」はタイトル等に個別メンバーの記載がないイベントです。"
         "各メンバーの一覧にはグループ出演分も含めています。"
         "カテゴリが「お知らせ記事」の予定は、カレンダー未掲載でお知らせ記事にのみ書かれているものです。"
+        "「公式X」は公式 X の告知から読み取った、公式サイトにまだ載っていない予定です。"
         "「Eventernote（非公式）」はファン有志のイベント DB にのみ載っている予定で、公式サイトには未掲載です。",
         "",
         "## 目次",
@@ -1097,7 +1183,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
     model = MEMO_MODELS.get(provider, "")
     calls, tokens, kept, created = 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
-        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日"))
+        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日", X_CATEGORY))
                 or is_release(r)):  # 発売日の行は参加する予定ではない
             continue
         source = memo_source(r, posts)
@@ -1307,11 +1393,15 @@ def assign_uids(rows, prev_rows=()):
     prev_uids = {p["uid"] for p in prev_rows if p.get("uid")}
     new_rows = [r for r in rows if r["uid"] not in prev_uids]
     gone = [p for p in prev_rows if p.get("uid") and p["uid"] not in seen]
+    def inherits(p, r):
+        # 公式の予定にまとまった X の予定は、予定名・会場が違っても元の投稿で同じ予定と分かる
+        return p["date"] == r["date"] and (same_event(p, r) or p["url"] in r.get("x_urls", ()))
+
     for r in new_rows:
-        cands = [p for p in gone if p["date"] == r["date"] and same_event(p, r)]
+        cands = [p for p in gone if inherits(p, r)]
         if not cands:
             continue
-        rivals = [x for x in new_rows if x["date"] == r["date"] and same_event(cands[0], x)]
+        rivals = [x for x in new_rows if inherits(cands[0], x)]
         if len(cands) > 1 or len(rivals) > 1:
             print(f"  ! ID を引き継がず（候補が複数）: {r['date']} {r['title']}")
             continue
@@ -1401,7 +1491,7 @@ def check_drop(prev_rows, rows, start, end, n_events):
     # Eventernote は補助ソースで取得失敗も許しているので比較しない
     prev = [r for r in prev_rows
             if start.isoformat() <= r["date"] < end.isoformat() and not r["category"].startswith("Eventernote")]
-    keys = {(r["date"], u) for r in rows for u in (r["url"], r.get("event_url"))}
+    keys = {(r["date"], u) for r in rows for u in (r["url"], r.get("event_url"), *r.get("x_urls", ()))}
     removed = [r for r in prev if (r["date"], r["url"]) not in keys]
     if len(removed) >= DROP_MIN and len(removed) >= len(prev) * DROP_RATIO:
         lines = [f"  - {r['date']} {r['title']}" for r in removed]
@@ -1410,7 +1500,7 @@ def check_drop(prev_rows, rows, start, end, n_events):
 
 
 def row_label(r):
-    note = f" ［{r['category']}］" if r["category"].startswith(("Eventernote", "お知らせ記事")) else ""
+    note = f" ［{r['category']}］" if r["category"].startswith(("Eventernote", "お知らせ記事", X_CATEGORY)) else ""
     title = re.sub(r"\s+", " ", r["title"]).strip()
     return f"{r['date']}({r['weekday']}) {title}{note}"
 
@@ -1446,7 +1536,7 @@ def main():
                         help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
     parser.add_argument("--no-memo", action="store_true", help="参加メモを作らない（前回のメモも付けない）")
     parser.add_argument("--x-recheck", type=int, metavar="DAYS",
-                        help="公式 X を DAYS 日前から読み直して候補を確認する（前回の続きの記録は変えない）")
+                        help="公式 X を DAYS 日前から読み直す（読み取った予定は保存する。前回の続きの記録は変えない）")
     args = parser.parse_args()
     load_env()
 
@@ -1462,6 +1552,10 @@ def main():
                  if args.start <= it["date"] < args.end]
     # 同じ予定が複数記事に書かれている場合があるので、古い記事→新しい記事の順で統合
     rows = merge_post_rows(rows, sorted(post_rows, key=lambda r: r["date"]))
+    # 公式 X の予定は古い投稿から順に統合する（ID の元になる情報元が、後の投稿で変わらないように）
+    x_rows = [r for r in update_x_events(rows, today, args.x_recheck)
+              if args.start.isoformat() <= r["date"] < args.end.isoformat()]
+    rows = merge_post_rows(rows, sorted(x_rows, key=lambda r: (r["date"], int(r["url"].rsplit("/", 1)[1]))))
     try:
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
@@ -1476,10 +1570,6 @@ def main():
     past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
-    try:
-        report_x_candidates(rows, args.x_recheck)
-    except Exception as e:  # noqa: BLE001 — まだログに出すだけなので失敗しても続行
-        print(f"  ! X 取得失敗: {e}")
     memo_created = []
     if not args.no_memo:
         memo_created = add_memos(rows, posts, today)

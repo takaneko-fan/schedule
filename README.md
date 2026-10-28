@@ -14,6 +14,7 @@
 | [`deadlines.md`](deadlines.md) | 申込・締切の一覧（受付開始・受付締切・当落発表・入金締切・一般発売） |
 | [`deadlines.csv`](deadlines.csv) / [`deadlines.ics`](deadlines.ics) | 同じ内容の CSV と、カレンダーアプリ用の iCalendar ファイル |
 | [`memos.json`](memos.json) | 参加メモ（AI による要約）の保存先。材料が変わらない限り再利用する |
+| [`x_events.json`](x_events.json) | 公式 X の告知から読み取った、これからの予定（日時・予定名・会場など。投稿の本文は保存しない） |
 | [`events/`](events/) | これからの予定を 1 件ずつ入れた iCalendar ファイル（Web 版の「カレンダーに追加」用） |
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
@@ -25,10 +26,12 @@
    各イベントの詳細ページから時間・会場・出演メンバーを読み取ります。
 2. **公式サイトのお知らせ記事**（https://takanenonadeshiko.jp/news/ ）
    カレンダーに未掲載で、記事にだけ書かれている予定を補います。
-3. **Eventernote**（非公式）
+3. **公式 X**（[@takanenofficial](https://x.com/takanenofficial)）
+   公式サイトにまだ載っていない告知（ラジオ・配信の出演など）を補います。メンバー個人のアカウントは対象外です。
+4. **Eventernote**（非公式）
    公式 X などで告知され、公式サイトにまだ載っていない出演情報を補います。
 
-同じ予定が複数の取得元にある場合は 1 件にまとめます（カレンダーの情報を優先）。
+同じ予定が複数の取得元にある場合は 1 件にまとめます（カレンダー → お知らせ記事 → 公式 X → Eventernote の順に優先）。
 
 ## 情報の取り扱いについて
 
