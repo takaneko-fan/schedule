@@ -33,4 +33,6 @@ jobs:
           # 未登録なら空になり、参加メモは memos.json の既存分だけを使う
           OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # 未登録なら公式 X の確認を飛ばす
+          X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
         run: ./run_update.sh

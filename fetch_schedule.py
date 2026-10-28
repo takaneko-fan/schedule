@@ -314,6 +314,158 @@ def post_item_to_row(item):
     }
 
 
+# ---- 公式 X（@takanenofficial）の投稿からの予定候補（いまは実行ログに出すだけ） ----
+
+X_API_URL = "https://api.x.com/2"
+X_USER_ID = "1518855666177568769"  # @takanenofficial（メンバー個人のアカウントは対象外）
+# 前回読んだ最新の投稿 ID（同じ投稿を読み直して課金されないため）。
+# Actions の checkout で消えないよう、リポジトリの外（実行ユーザーのホーム）に置く
+X_STATE_PATH = os.environ.get("X_STATE_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/x_state.json")
+X_FIRST_DAYS = 7                   # 初回（x_state.json がないとき）にさかのぼる日数
+X_MAX_PAGES = 3                    # 1 回の実行で読む上限（100 件 × ページ数、1 件 $0.005）
+X_DATE_RE = re.compile(r"(?:(\d{4})[年/.])?(\d{1,2})(?:月\s*|/)(\d{1,2})日?\s*[(（]([^)）]{1,6})[)）]")
+# 日付を書かずに「明日」「このあと」の予定を告知する投稿（タグ・語 → 投稿日からの日数）
+X_RELATIVE_WORDS = {"#あしたのたかねこ": 1, "このあと": 0, "本日": 0}
+X_MARK_RE = re.compile(r"^[📍⏰🔗🎫🛒🎤🎥🎧📱💬]")
+
+
+def fetch_x_posts(token, since_id=None):
+    """公式 X の新しい投稿（リポスト・返信を除く）を古い順に返す。"""
+    params = {"max_results": 100, "exclude": "retweets,replies", "tweet.fields": "created_at,note_tweet"}
+    if since_id:
+        params["since_id"] = since_id
+    else:
+        start = datetime.now(timezone.utc) - timedelta(days=X_FIRST_DAYS)
+        params["start_time"] = start.strftime("%Y-%m-%dT%H:%M:%SZ")
+    tweets, newest = [], since_id
+    for _ in range(X_MAX_PAGES):
+        req = urllib.request.Request(f"{X_API_URL}/users/{X_USER_ID}/tweets?{urllib.parse.urlencode(params)}",
+                                     headers={"Authorization": f"Bearer {token}"})
+        with urllib.request.urlopen(req, timeout=30) as res:
+            body = json.load(res)
+        tweets += body.get("data", [])
+        if "next_token" not in body["meta"]:
+            break
+        params["pagination_token"] = body["meta"]["next_token"]
+    if tweets:
+        newest = max((t["id"] for t in tweets), key=int)
+    return sorted(tweets, key=lambda t: int(t["id"])), newest
+
+
+def x_lines(tweet):
+    text = tweet.get("note_tweet", {}).get("text") or tweet["text"]  # 長文の投稿は note_tweet に全文がある
+    text = re.sub(r"https://t\.co/\w+", "", html.unescape(text))
+    return [ln.strip() for ln in text.splitlines()]
+
+
+def x_title(lines):
+    """見出しの行をつないで予定名にする（グループ名のタグ・# は外す）。"""
+    text = " ".join(ln for ln in lines if ln and not X_MARK_RE.match(ln))
+    text = re.sub(r"#(高嶺のなでしこ|たかねこ)(?=\s|$)", "", text).replace("#", "")
+    return re.sub(r"\s+", " ", re.sub(r"([『「])\s+|\s+([』」])", r"\1\2", text)).strip()
+
+
+def x_headline(lines):
+    """投稿の見出し: 『』「」で囲まれた名前、なければ飾りでない最初の行。"""
+    m = re.search(r"[『「]\s*([^』」]+?)\s*[』」]", " ".join(lines))
+    if m:
+        return x_title([m.group(1)])
+    for ln in lines:
+        if re.search(r"[\w぀-ヿ一-鿿]{2}", re.sub(r"#\S+", "", ln)):
+            return x_title([ln])
+    return ""
+
+
+def x_details(lines):
+    """📍会場・時間を拾う。"""
+    venue = next((ln.lstrip("📍").strip() for ln in lines if ln.startswith("📍")), "")
+    lines = [ln.lstrip("⏰").strip() for ln in lines if not X_MARK_RE.match(ln) or ln.startswith("⏰")]
+    times = find_times([ln for ln in lines if "OPEN" in ln and "START" in ln][:1])
+    note = "" if times else find_part_times(lines)
+    if not times and not note:
+        times = find_times(lines)
+        m = None if times else re.search(r"(\d{1,2}[:：]\d{2})\s*[〜～~]", " ".join(lines))
+        if m:
+            times["START"] = m.group(1).replace("：", ":")  # 「19:00~」のように終了の書かれていない時間
+    return venue, times, note
+
+
+def extract_x_candidates(tweet):
+    """投稿から予定候補を取り出す。sure=False は抽出に自信がないもの（実行ログに出すだけ）。"""
+    published = datetime.fromisoformat(tweet["created_at"].replace("Z", "+00:00")).astimezone(JST).date()
+    lines = x_lines(tweet)
+    headline = x_headline(lines)
+    url = f"https://x.com/takanenofficial/status/{tweet['id']}"
+    found, label = [], ""
+    for i, line in enumerate(lines):
+        m = X_DATE_RE.search(line)
+        if not m:
+            if line.startswith("🗓"):
+                label = line  # 「🗓️発売日」のような見出し。続く日付行の意味を表す
+            continue
+        rest = line[m.end():].strip()
+        if (len(X_DATE_RE.findall(line)) > 1 or is_non_event(line) or is_non_event(label)
+                or rest.startswith("~") or re.search(r"[\w぀-ヿ一-鿿]", line[:m.start()].lstrip("🗓️"))):
+            continue  # 期間（〜）、発売日・受付などの告知、「観覧申し込み(10/26(月)…)」のような文中の日付
+        d = infer_date(*m.groups()[:3], published)
+        if d < published:
+            continue
+        # 日付行の下、空行または次の日付行までが 1 件分
+        block = []
+        for nxt in lines[i + 1:]:
+            if not nxt or X_DATE_RE.search(nxt):
+                break
+            block.append(nxt)
+        only_time = re.fullmatch(r"[\d:：~〜～\-\s]*", rest)
+        venue, times, note = x_details(block + ([rest] if only_time else []))
+        title = x_title([rest]) if not only_time else x_title(block[:1]) or headline
+        found.append({"date": d, "title": title, "venue": venue, "times": times, "time_note": note,
+                      "url": url, "sure": line.startswith("🗓") and bool(only_time) and bool(venue or times or note)})
+    if not found:
+        text = " ".join(lines)
+        offset = next((n for w, n in X_RELATIVE_WORDS.items() if w in text), None)
+        if offset is not None and not is_non_event(text):
+            # 「#あしたのたかねこ」などの行がある段落の、次の段落が予定名
+            paras = re.split(r"\n{2,}", "\n".join(lines).strip())
+            k = next(k for k, p in enumerate(paras) if any(w in p for w in X_RELATIVE_WORDS))
+            title = x_title(paras[k + 1].splitlines()) if k + 1 < len(paras) else ""
+            venue, times, note = x_details(lines)
+            found.append({"date": published + timedelta(days=offset), "title": title or headline, "venue": venue,
+                          "times": times, "time_note": note, "url": url, "sure": bool(venue or times or note)})
+    return found
+
+
+def load_x_state(path=X_STATE_PATH):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+
+def report_x_candidates():
+    """公式 X の新しい投稿から予定候補を読み、実行ログに出す。予定一覧にはまだ反映しない。"""
+    token = os.environ.get("X_BEARER_TOKEN")
+    if not token:
+        print("X: X_BEARER_TOKEN が未設定のため確認しません")
+        return
+    state = load_x_state()
+    tweets, newest = fetch_x_posts(token, state.get("since_id"))
+    print(f"X（@takanenofficial）: {len(tweets)} 件の新しい投稿を確認")
+    for t in tweets:
+        for c in extract_x_candidates(t):
+            d = c["date"]
+            time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
+            extra = "  ".join(s for s in (time, f"＠{c['venue']}" if c["venue"] else "") if s)
+            mark = "◎" if c["sure"] else "?（要確認・公開しない）"
+            print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  {c['url']}")
+    if newest and newest != state.get("since_id"):
+        os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
+        with open(X_STATE_PATH, "w", encoding="utf-8") as f:
+            json.dump({"since_id": newest}, f)
+            f.write("\n")
+
+
 # ---- Eventernote（公式 X などで告知され、公式サイト未掲載の出演情報の補完） ----
 
 EVENTERNOTE_URL = ("https://www.eventernote.com/actors/"
@@ -1262,6 +1414,10 @@ def main():
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
+    try:
+        report_x_candidates()
+    except Exception as e:  # noqa: BLE001 — まだログに出すだけなので失敗しても続行
+        print(f"  ! X 取得失敗: {e}")
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     prev = load_prev_rows(args.csv)
