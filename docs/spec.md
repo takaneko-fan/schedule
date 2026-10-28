@@ -305,7 +305,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 ## 運用手順
 
-更新は GitHub Actions（`.github/workflows/update.yml`）が 6 時間ごとに `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、Actions の「Run workflow」か、手元で `run_update.sh` を実行します。
+更新は GitHub Actions（`.github/workflows/update.yml`）が 6 時間ごとに `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
 
 `run_update.sh` の処理：
 
@@ -320,8 +320,8 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 | 項目 | 内容 |
 | --- | --- |
-| 実行時刻 | 日本時間 0:17 / 6:17 / 12:17 / 18:17。VPS の systemd タイマーが GitHub App の名義で起動する（下記）。予備としてワークフローの定時実行（cron `17 3,9,15,21 * * *`、UTC）も残す |
-| 手動実行 | Actions → 予定の更新 → Run workflow（`workflow_dispatch`） |
+| 実行時刻 | 日本時間 0:17 / 6:17 / 12:17 / 18:17。VPS の systemd タイマーが GitHub App の名義で起動する（下記）。ワークフローの定時実行（`schedule`）は使わない |
+| 手動実行 | App の鍵がある環境で `ops/dispatch_update.sh` を実行する。Actions の画面の Run workflow でも動くが、起動者として個人のアカウント名が公開されるので使わない |
 | 実行先 | `runs-on: [self-hosted, conoha]`。ConoHa VPS 1GB（大阪、Ubuntu 24.04、Python 3.12）、ランナー名 `conoha-osaka` |
 | サーバー | ランナーは専用ユーザー `runner`（sudo なし）のサービスとして常駐。ssh は鍵のみ、ufw で外からは 22 番だけ許可 |
 | 権限 | `contents: write`（`GITHUB_TOKEN` で push する） |
@@ -333,19 +333,20 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 #### VPS のタイマーからの起動
 
-GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行自体が抜けたりする（2026-10-26〜28 の実績で 1 日 1 回は抜け、最大 5 時間 43 分の遅れ）。手動実行（`workflow_dispatch`）は遅れないので、VPS の systemd タイマーから API でワークフローを起動する。
+GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行自体が抜けたりする（2026-10-26〜28 の実績で 1 日 1 回は抜け、最大 5 時間 43 分の遅れ）。また、定時実行の起動者は cron 行を最後に変更したアカウントとして公開される。手動実行（`workflow_dispatch`）は遅れないので、VPS の systemd タイマーから API でワークフローを起動する。
 
 | 項目 | 内容 |
 | --- | --- |
-| 起動の名義 | 組織の GitHub App `takaneko-fan-updater`（App ID 5513246）。権限は Actions の読み書きだけ、インストール先は `schedule` だけ。Actions の画面の起動者は `takaneko-fan-updater[bot]` になり、個人のアカウントを使わない |
+| 起動の名義 | 組織の GitHub App `takaneko-fan-updater`（App ID 5513246）。権限は Actions・Contents・Workflows の読み書き（Contents と Workflows は下記の push 用）、インストール先は `schedule` だけ。Actions の画面の起動者は `takaneko-fan-updater[bot]` になり、個人のアカウントを使わない |
 | スクリプト | `ops/dispatch_update.sh` → VPS の `/home/runner/bin/dispatch_update.sh`。App の鍵で JWT を作り、インストールのトークン（1 時間で失効）をもらって `update.yml` を起動する |
 | 鍵 | `/home/runner/.config/takaneko-fan/app.pem`（`runner` だけが読める 600）。リポジトリには入れない |
 | タイマー | `ops/takaneko-dispatch.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*-*-* 00,06,12,18:17:00 Asia/Tokyo`、`Persistent=true`（止まっていて逃した回は起動後に 1 回実行） |
-| 定時実行との重複 | 両方動いても `concurrency: update` で順番に実行され、後の回は「予定に変化なし」で終わる |
 
-確認は `systemctl list-timers takaneko-dispatch.timer`（次回の時刻）、`journalctl -u takaneko-dispatch.service`（起動の結果）。鍵を作り直したときは App の Credentials → Key pairs で新しい鍵を作り、VPS の `app.pem` を置き換えてから古い鍵を削除する。
+確認は `systemctl list-timers takaneko-dispatch.timer`（次回の時刻）、`journalctl -u takaneko-dispatch.service`（起動の結果）。鍵を作り直したときは App の Credentials → Key pairs で新しい鍵を作り、VPS の `app.pem` を置き換えてから古い鍵を削除する。VPS が止まっている間は更新されない（再開後に逃した回を 1 回実行する）。
 
-公開リポジトリでは、60 日間リポジトリに動きがないと定期実行が自動で止まります。止まったら Actions の画面から再開します。ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
+#### 手元からの push
+
+個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
 
 ### 主なオプション
 

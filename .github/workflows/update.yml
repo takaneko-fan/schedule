@@ -4,16 +4,15 @@
 name: 予定の更新
 
 on:
-  # ふだんは VPS の systemd タイマーが同じ時刻に workflow_dispatch で起動する（ops/dispatch_update.sh）。
-  # GitHub の定時実行は遅れたり抜けたりするため、こちらは予備として残す
-  schedule:
-    - cron: "17 3,9,15,21 * * *"  # 日本時間 0:17 / 6:17 / 12:17 / 18:17
+  # VPS の systemd タイマーが日本時間 0:17 / 6:17 / 12:17 / 18:17 に GitHub App の名義で起動する（ops/dispatch_update.sh）。
+  # GitHub の定時実行（schedule）は遅れたり抜けたりするうえ、起動者が cron 行を最後に変えた個人のアカウントとして
+  # 公開されるため使わない
   workflow_dispatch:
 
 permissions:
   contents: write
 
-# 手動実行と定時実行が重なっても、push がぶつからないよう 1 つずつ動かす
+# 起動が重なっても、push がぶつからないよう 1 つずつ動かす
 concurrency:
   group: update
   cancel-in-progress: false
