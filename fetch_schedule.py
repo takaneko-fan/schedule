@@ -336,13 +336,13 @@ def strip_emoji(text):
     return "".join(c for c in text if unicodedata.category(c) not in ("So", "Cn") and c not in "\u200d\ufe0f")
 
 
-def fetch_x_posts(token, since_id=None):
-    """公式 X の新しい投稿（リポスト・返信を除く）を古い順に返す。"""
+def fetch_x_posts(token, since_id=None, days=X_FIRST_DAYS):
+    """公式 X の新しい投稿（リポスト・返信を除く）を古い順に返す。since_id がなければ days 日前から。"""
     params = {"max_results": 100, "exclude": "retweets,replies", "tweet.fields": "created_at,note_tweet"}
     if since_id:
         params["since_id"] = since_id
     else:
-        start = datetime.now(timezone.utc) - timedelta(days=X_FIRST_DAYS)
+        start = datetime.now(timezone.utc) - timedelta(days=days)
         params["start_time"] = start.strftime("%Y-%m-%dT%H:%M:%SZ")
     tweets, newest = [], since_id
     for _ in range(X_MAX_PAGES):
@@ -380,6 +380,8 @@ def x_headline(lines):
     if m:
         return x_title([m.group(1)])
     for ln in lines:
+        if ln.startswith(("＼", "／")):
+            continue  # 「＼オフィシャル先行受付スタート／」のような呼びかけ
         if re.search(r"[\w぀-ヿ一-鿿]{2}", re.sub(r"#\S+", "", ln)):
             return x_title([ln])
     return ""
@@ -433,7 +435,14 @@ def extract_x_candidates(tweet):
             block.append(nxt)
         only_time = re.fullmatch(r"[\d:：~〜～\-\s]*", rest)
         venue, times, note = x_details(block + ([rest] if only_time else []))
-        title = x_title([rest]) if not only_time else x_title(block[:1]) or headline
+        # 日付行の直前の段落に『』があればそれを優先（お知らせと出演情報が 1 投稿に並ぶ場合）
+        end = i
+        while end > 0 and not lines[end - 1]:
+            end -= 1
+        start = max((k + 1 for k in range(end) if not lines[k]), default=0)
+        near = re.search(r"『\s*([^』]+?)\s*』", " ".join(lines[start:end]))
+        title = (x_title([rest]) if not only_time
+                 else x_title(block[:1]) or (x_title([near.group(1)]) if near else headline))
         found.append({"date": d, "title": title, "venue": venue, "times": times, "time_note": note,
                       "url": url, "sure": line.startswith("🗓") and bool(only_time) and bool(venue or times or note)})
     if not found:
@@ -444,7 +453,8 @@ def extract_x_candidates(tweet):
         k = next((k for k, p in enumerate(paras) if any(w in p for w in X_RELATIVE_WORDS)), None)
         title = x_title(paras[k + 1].splitlines()) if k is not None and k + 1 < len(paras) else ""
         # 販売・受付の告知かは予定名の段落で判断する（本文の「受付終了」などで捨てないため）
-        if offset is not None and not is_non_event(title or headline):
+        # ライブ後のお礼投稿の「このあと物販」は、その日の予定の続きなので拾わない
+        if offset is not None and not is_non_event(title or headline) and "ありがとうございました" not in text:
             base = published - timedelta(days=1) if offset and posted.hour < X_NIGHT_HOUR else published
             venue, times, note = x_details(lines)
             found.append({"date": base + timedelta(days=offset), "title": title or headline, "venue": venue,
@@ -460,22 +470,45 @@ def load_x_state(path=X_STATE_PATH):
         return {}
 
 
-def report_x_candidates():
-    """公式 X の新しい投稿から予定候補を読み、実行ログに出す。予定一覧にはまだ反映しない。"""
+def x_listed(c, rows):
+    """公式サイトの予定に同じものがあるか。会場は「汐留シオサイト」と「汐留シオサイト地下歩道 特設ステージ」
+    のように詳しさが違うことが多いので、どちらかがもう一方を含めば同じ会場とみなす。"""
+    v = normalize(c["venue"])
+    return any(r["date"] == c["date"].isoformat()
+               and (same_event(c, r) or len(v) >= 4 and (v in normalize(r["venue"]) or normalize(r["venue"]) in v)
+                    and normalize(r["venue"]))
+               for r in rows)
+
+
+def report_x_candidates(rows, recheck_days=None):
+    """公式 X の新しい投稿から予定候補を読み、実行ログに出す。予定一覧にはまだ反映しない。
+
+    読み取りが正しいかの目安として、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付ける。
+    recheck_days を指定すると、前回の続きではなくその日数分をさかのぼって読み直す（記録は更新しない）。
+    """
     token = os.environ.get("X_BEARER_TOKEN")
     if not token:
         print("X: X_BEARER_TOKEN が未設定のため確認しません")
         return
-    state = load_x_state()
-    tweets, newest = fetch_x_posts(token, state.get("since_id"))
-    print(f"X（@takanenofficial）: {len(tweets)} 件の新しい投稿を確認")
+    state = {} if recheck_days else load_x_state()
+    tweets, newest = fetch_x_posts(token, state.get("since_id"), recheck_days or X_FIRST_DAYS)
+    print(f"X（@takanenofficial）: {len(tweets)} 件の{'投稿を読み直し' if recheck_days else '新しい投稿を確認'}")
+    official = [r for r in rows if not r["category"].startswith("Eventernote")]
+    counts = {"◎": 0, "◎ 掲載済み": 0, "?": 0}
     for t in tweets:
         for c in extract_x_candidates(t):
             d = c["date"]
+            listed = x_listed(c, official)
             time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
             extra = "  ".join(s for s in (time, f"＠{c['venue']}" if c["venue"] else "") if s)
             mark = "◎" if c["sure"] else "?（要確認・公開しない）"
-            print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  {c['url']}")
+            status = "公式に掲載済み" if listed else "公式に未掲載"
+            print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  [{status}]  {c['url']}")
+            counts["◎" if c["sure"] else "?"] += 1
+            counts["◎ 掲載済み"] += c["sure"] and listed
+    print(f"  → ◎ {counts['◎']} 件（うち公式に掲載済み {counts['◎ 掲載済み']} 件） / ? {counts['?']} 件")
+    if recheck_days:
+        return
     if newest and newest != state.get("since_id"):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
         with open(X_STATE_PATH, "w", encoding="utf-8") as f:
@@ -1412,6 +1445,8 @@ def main():
     parser.add_argument("--force", action="store_true",
                         help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
     parser.add_argument("--no-memo", action="store_true", help="参加メモを作らない（前回のメモも付けない）")
+    parser.add_argument("--x-recheck", type=int, metavar="DAYS",
+                        help="公式 X を DAYS 日前から読み直して候補を確認する（前回の続きの記録は変えない）")
     args = parser.parse_args()
     load_env()
 
@@ -1431,10 +1466,6 @@ def main():
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
     except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
         print(f"  ! Eventernote 取得失敗: {e}")
-    try:
-        report_x_candidates()
-    except Exception as e:  # noqa: BLE001 — まだログに出すだけなので失敗しても続行
-        print(f"  ! X 取得失敗: {e}")
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     prev = load_prev_rows(args.csv)
@@ -1445,6 +1476,10 @@ def main():
     past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
+    try:
+        report_x_candidates(rows, args.x_recheck)
+    except Exception as e:  # noqa: BLE001 — まだログに出すだけなので失敗しても続行
+        print(f"  ! X 取得失敗: {e}")
     memo_created = []
     if not args.no_memo:
         memo_created = add_memos(rows, posts, today)
