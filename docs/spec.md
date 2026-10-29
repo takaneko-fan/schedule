@@ -346,7 +346,9 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 
 #### 手元からの push
 
-個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
+個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。
+
+ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
 
 ### 主なオプション
 
