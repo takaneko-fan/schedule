@@ -1,21 +1,4 @@
 {
- "2026-10-29|https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/": {
-  "generated": "2026-10-24",
-  "hash": "61036161b41517c2207b4a20b923655a6a9877aa",
-  "memo": {
-   "flow": "2026-10-29（木） OPEN 14:00／START 14:30",
-   "items": "",
-   "join": "チケットは案内のプレイガイドで販売（購入方法は公式案内を参照）",
-   "notes": "",
-   "other": "",
-   "parts": "出演：高嶺のなでしこ（イベント出演あり）",
-   "payment": "",
-   "price": "",
-   "rules": "",
-   "venue": "豊洲PIT"
-  },
-  "model": "gpt-5-mini"
- },
  "2026-10-30|https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/": {
   "generated": "2026-10-24",
   "hash": "8df28e2fc5d07f12dc73005df259855cd88e6dd4",
@@ -115,6 +98,23 @@
    "price": "",
    "rules": "",
    "venue": "Shibuya LOVEZ / Veats Shibuya（2会場連動）"
+  },
+  "model": "gpt-5-mini"
+ },
+ "2026-11-06|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/": {
+  "generated": "2026-10-30",
+  "hash": "3d7e7f61f97d40607d6d7dedd8bdc9d3a67089f6",
+  "memo": {
+   "flow": "2026-11-06(金) 第1部 17:00~18:00／第2部 18:20~19:20／SHOWROOM配信はアーカイブなし",
+   "items": "スマートフォン（リミトーク参加時）／有線イヤホン推奨／リミスタ会員情報・ニックネーム登録（10文字以内）",
+   "join": "リミスタで対象商品を予約購入して参加権を入手／抽選・先着販売あり／リミスタ会員登録必須／抽選はブラウザから応募",
+   "notes": "支払期日・受付締切に注意（各支払期限あり）／購入はキャンセル・返金不可／海外発送不可",
+   "other": "",
+   "parts": "第1部 17:00：城月・葉月・日向端・松本／第2部 18:20：涼海・橋本・東山・籾山",
+   "payment": "クレジットカード(3Dセキュア対応推奨)／バーチャル銀行振込(締切あり)／楽天ペイ(締切あり)",
+   "price": "対象商品：アルバム たかねこ盤 税込¥3,300（別途梱包発送料）／発送梱包費 990円、まとめ送料 310円（条件あり）",
+   "rules": "リミトークでの録画・録音・スクショ禁止／ニックネームはひらがな・カナ・英字のみ10文字以内／参加権の譲渡禁止・本人のみ参加",
+   "venue": "オンライン（各メンバーのSHOWROOM配信／リミトーク）"
   },
   "model": "gpt-5-mini"
  },

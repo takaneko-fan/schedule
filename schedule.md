@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）、Eventernote （公式X等の告知の補完・非公式）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 57 件（うち済 23 件）
+- 件数: 58 件（うち済 24 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -45,13 +45,13 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
@@ -106,13 +106,13 @@
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
@@ -167,14 +167,14 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
@@ -230,13 +230,13 @@
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
@@ -291,14 +291,14 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
@@ -353,14 +353,14 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
@@ -381,7 +381,7 @@
 
 ## 日向端ひな
 
-個別 5 件 ／ グループ含む合計 46 件
+個別 6 件 ／ グループ含む合計 47 件
 
 ### 個別スケジュール
 
@@ -392,6 +392,7 @@
 |  | 2026-10-30(金) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
+|  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
 
@@ -418,14 +419,14 @@
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
@@ -443,6 +444,7 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
+|  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 松本ももな
 
@@ -483,14 +485,14 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
@@ -546,14 +548,14 @@
 | ✅ | 2026-10-24(土) | 1部 11:30-12:30 城月菜央 / 東山恵里沙 / 日向端ひな / 松本ももな ／ … ／ 6部 18:00-19:00 涼海すう / 橋本桃呼 / 葉月紗蘭/ 籾山ひめり | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』リリース記念個別イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc-6/) | [ベルサール西新宿](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1024-2/) |
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ |
 |  | 2026-11-01(日) |  | [IDOL HALLOWEEN JAPAN 2026  Supported by Malymoon](https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/) | 埼玉スタジアム2002 野外特設ステージ |
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
 |  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
@@ -575,15 +577,6 @@
 ## 参加メモ
 
 これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。
-
-### 2026-10-29(木) [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/)
-
-- 📍 会場: 豊洲PIT
-- 🕙 当日の流れ: 2026-10-29（木） OPEN 14:00／START 14:30
-- 👥 部とメンバー: 出演：高嶺のなでしこ（イベント出演あり）
-- 🎫 参加方法・当日券: チケットは案内のプレイガイドで販売（購入方法は公式案内を参照）
-
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-10-30(金) [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/)
 
@@ -642,6 +635,20 @@
 - 📍 会場: Shibuya LOVEZ / Veats Shibuya（2会場連動）
 - 🕙 当日の流れ: 2026年11月5日（木）に開催。会場はShibuya LOVEZとVeats Shibuyaの2会場連動。
 - 🎫 参加方法・当日券: 出演は出演リストに記載／チケットはticketvillageで販売
+
+> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
+
+### 2026-11-06(金) [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/)
+
+- 📍 会場: オンライン（各メンバーのSHOWROOM配信／リミトーク）
+- 🕙 当日の流れ: 2026-11-06(金) 第1部 17:00~18:00／第2部 18:20~19:20／SHOWROOM配信はアーカイブなし
+- 👥 部とメンバー: 第1部 17:00：城月・葉月・日向端・松本／第2部 18:20：涼海・橋本・東山・籾山
+- 🎫 参加方法・当日券: リミスタで対象商品を予約購入して参加権を入手／抽選・先着販売あり／リミスタ会員登録必須／抽選はブラウザから応募
+- 💴 料金: 対象商品：アルバム たかねこ盤 税込¥3,300（別途梱包発送料）／発送梱包費 990円、まとめ送料 310円（条件あり）
+- 💳 支払い: クレジットカード(3Dセキュア対応推奨)／バーチャル銀行振込(締切あり)／楽天ペイ(締切あり)
+- 🎒 持ち物: スマートフォン（リミトーク参加時）／有線イヤホン推奨／リミスタ会員情報・ニックネーム登録（10文字以内）
+- 📸 ルール: リミトークでの録画・録音・スクショ禁止／ニックネームはひらがな・カナ・英字のみ10文字以内／参加権の譲渡禁止・本人のみ参加
+- ⚠️ 注意: 支払期日・受付締切に注意（各支払期限あり）／購入はキャンセル・返金不可／海外発送不可
 
 > 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
@@ -781,7 +788,7 @@
 | ✅ | 2026-10-25(日) |  | [中央学院大学 第58回あびこ祭](https://takanenonadeshiko.jp/events/event/%e4%b8%ad%e5%a4%ae%e5%ad%a6%e9%99%a2%e5%a4%a7%e5%ad%a6-%e7%ac%ac58%e5%9b%9e%e3%81%82%e3%81%b3%e3%81%93%e7%a5%ad/) | 中央学院大学 | グループ（全員） |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  | 城月菜央、橋本桃呼、日向端ひな |
 | ✅ | 2026-10-28(水) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-6/) |  | グループ（全員） |
-|  | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT | グループ（全員） |
+| ✅ | 2026-10-29(木) | OPEN 14:00 / START 14:30 | [ONE AND ONLY Vol.46 SP](https://takanenonadeshiko.jp/events/event/one-and-only-vol-46-sp/) | 豊洲PIT | グループ（全員） |
 |  | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  | 涼海すう、葉月紗蘭、東山恵里沙、松本ももな、籾山ひめり |
 |  | 2026-10-30(金) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 日向端ひな |
 |  | 2026-10-31(土) | OPEN 13:00 / START 14:00 | [ZOMBIE FES 2026 DAY3](https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/) | 横須賀うみかぜ公園 特設ステージ | グループ（全員） |
@@ -789,7 +796,7 @@
 |  | 2026-11-02(月) | 17:00〜19:00 | [成城大学 柳祭2026 中夜祭](https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/) | 成城大学 中庭メインステージ | グループ（全員） |
 |  | 2026-11-03(火) | 12:30 START（優先エリア入場12:10） ／ 16:00 START（優先エリア入場15:40） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 汐留シオサイト](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc/) | 汐留シオサイト地下歩道　特設ステージ | グループ（全員） |
 |  | 2026-11-05(木) |  | [Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベントホール〜 』](https://takanenonadeshiko.jp/events/event/devil-anthem-presents-%e3%80%8e-%e3%81%a7%e3%81%b3%e3%81%b1%e3%81%a3%e3%81%b1%e3%80%9croad-to-%e5%b9%95%e5%bc%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88%e3%83%9b%e3%83%bc%e3%83%ab%e3%80%9c/) | Shibuya LOVEZ / Veats Shibuya / ※2会場連動 | グループ（全員） |
-|  | 2026-11-06(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-3/) |  | グループ（全員） |
+|  | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  | グループ（全員） |
 |  | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 | グループ（全員） |
 |  | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター | 城月菜央、松本ももな |
 |  | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 | グループ（全員） |
@@ -815,3 +822,4 @@
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | グループ（全員） |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 涼海すう |
 |  | 2027-10-12(火) |  | [✿松本ももな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 松本ももな |
+|  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 日向端ひな |
