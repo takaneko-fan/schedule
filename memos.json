@@ -1,21 +1,4 @@
 {
- "2026-10-31|https://takanenonadeshiko.jp/events/event/zombie-fes-2026-day3/": {
-  "generated": "2026-10-24",
-  "hash": "b7fd677676dbd2dcdce2a4033669ca5f8c641aec",
-  "memo": {
-   "flow": "1部：OPEN 13:00 / START 14:00／2部：OPEN 17:00 / START 18:00",
-   "items": "",
-   "join": "",
-   "notes": "",
-   "other": "詳細は主催者サイト（https://zombiefes.jp/）で確認",
-   "parts": "",
-   "payment": "",
-   "price": "",
-   "rules": "",
-   "venue": "横須賀うみかぜ公園 特設ステージ"
-  },
-  "model": "gpt-5-mini"
- },
  "2026-11-01|https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/": {
   "generated": "2026-10-24",
   "hash": "25eb4a2efc4fe9175589f18ab64eb5f92f4521d4",
