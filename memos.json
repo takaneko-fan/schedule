@@ -1,21 +1,4 @@
 {
- "2026-11-01|https://takanenonadeshiko.jp/events/event/idol-halloween-japan-2026-supported-by-malymoon/": {
-  "generated": "2026-10-24",
-  "hash": "25eb4a2efc4fe9175589f18ab64eb5f92f4521d4",
-  "memo": {
-   "flow": "2026年11月1日（日）",
-   "items": "",
-   "join": "チケット販売あり（ticketdiveで販売）",
-   "notes": "",
-   "other": "",
-   "parts": "",
-   "payment": "",
-   "price": "",
-   "rules": "",
-   "venue": "埼玉スタジアム2002 野外特設ステージ"
-  },
-  "model": "gpt-5-mini"
- },
  "2026-11-02|https://takanenonadeshiko.jp/events/event/%e6%88%90%e5%9f%8e%e5%a4%a7%e5%ad%a6-%e6%9f%b3%e7%a5%ad2026-%e4%b8%ad%e5%a4%9c%e7%a5%ad/": {
   "generated": "2026-10-24",
   "hash": "8dcee7101389eac517314066bea574593dc42db7",
