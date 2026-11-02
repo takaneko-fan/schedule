@@ -18,7 +18,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:998c8ea2d7529db8@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20260924T190000
 DTEND;TZID=Asia/Tokyo:20260924T223000
 SUMMARY:【城月・涼海・葉月・東山・松本】✿SPACE MAKE✿
@@ -33,7 +33,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:b865f8ce53c1e164@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20260925T190000
 DTEND;TZID=Asia/Tokyo:20260925T223000
 SUMMARY:【橋本・日向端・籾山】高嶺のなでしこメンバー
@@ -53,7 +53,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7760f7b1ca2c3196@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20260926T120000
 DTEND;TZID=Asia/Tokyo:20260926T173000
 SUMMARY:『 A World in Our Colors 』リリース記念イベントat ら
@@ -74,7 +74,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f53265bf09a3013d@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20260927
 DTEND;VALUE=DATE:20260928
 SUMMARY:エンタパークフェス2026
@@ -90,7 +90,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:1b8e29a215172bb2@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20260928
 DTEND;VALUE=DATE:20260929
 SUMMARY:たかねこ初恋キッチン。
@@ -105,7 +105,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:58c2d6eee8ab448e@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20260929T173000
 DTEND;TZID=Asia/Tokyo:20260929T193000
 SUMMARY:BEEEEM FES Vol.11 DX SP
@@ -119,7 +119,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:bda02964c9a74d96@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261001T190000
 DTEND;TZID=Asia/Tokyo:20261001T210000
 SUMMARY:ドラマチックレコードpresents「 SPECIAL DRAMATIC POP Load
@@ -138,7 +138,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:bbf7b9efe01df50a@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261003T123000
 DTEND;TZID=Asia/Tokyo:20261003T180000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -161,7 +161,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:bf4868019b6ed1e8@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261004T150000
 DTEND;TZID=Asia/Tokyo:20261004T170000
 SUMMARY:推し寺アイドルまつり2026
@@ -177,7 +177,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:140e9ffc552f7fc1@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261006T112000
 DTEND;TZID=Asia/Tokyo:20261006T132000
 SUMMARY:TOKYO GIRLS GIRLS
@@ -191,7 +191,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:21dbec06827732ba@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261007T150000
 DTEND;TZID=Asia/Tokyo:20261007T170000
 SUMMARY:衛星とカラテアPresents 『 超 明星現象 2026 』
@@ -209,7 +209,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:3f798d95790834b5@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261011T123000
 DTEND;TZID=Asia/Tokyo:20261011T180000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -232,7 +232,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:4e39f5f0ca8bfe6d@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261012
 DTEND;VALUE=DATE:20261013
 SUMMARY:✿松本ももな誕生日✿
@@ -246,7 +246,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:953cce82fbf1e1dc@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261016T170000
 DTEND;TZID=Asia/Tokyo:20261016T192000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -267,7 +267,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:8375ecf70c32b238@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261017T113000
 DTEND;TZID=Asia/Tokyo:20261017T190000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -290,7 +290,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:ede069142702be5b@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261018T173000
 DTEND;TZID=Asia/Tokyo:20261018T193000
 SUMMARY:HoneyWorks Presents ハニフェス 2026 〜女子校文化祭 ハ
@@ -311,7 +311,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:fe56db73920b2944@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261020
 DTEND;VALUE=DATE:20261021
 SUMMARY:NEO JAPONISM主催イベント 『 “KASSEN” 粋 -IKI- 』
@@ -328,7 +328,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:0626c31368bb4da6@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261021T113000
 DTEND;TZID=Asia/Tokyo:20261021T133000
 SUMMARY:iLiVE! HALLOWEEN
@@ -342,7 +342,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2919ac6fa70d0ab9@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261023T170000
 DTEND;TZID=Asia/Tokyo:20261023T192000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -363,7 +363,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:026dc96ba3b2cef8@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261024T113000
 DTEND;TZID=Asia/Tokyo:20261024T190000
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -411,7 +411,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:64327345eaaca75e@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261025
 DTEND;VALUE=DATE:20261026
 SUMMARY:中央学院大学 第58回あびこ祭
@@ -428,7 +428,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:acd9705f6e2c47f1@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261026T180000
 DTEND;TZID=Asia/Tokyo:20261026T213000
 SUMMARY:【城月・橋本・日向端】✿SPACE MAKE✿
@@ -458,7 +458,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:cb321dc11e69476d@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261028
 DTEND;VALUE=DATE:20261029
 SUMMARY:たかねこ初恋キッチン。
@@ -479,7 +479,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2c27b7ff0ab85b7f@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261029T143000
 DTEND;TZID=Asia/Tokyo:20261029T163000
 SUMMARY:ONE AND ONLY Vol.46 SP
@@ -499,7 +499,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2ff1cc6a4d169223@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261030T180000
 DTEND;TZID=Asia/Tokyo:20261030T213000
 SUMMARY:【涼海・葉月・東山・松本・籾山】✿SPACE MAKE✿
@@ -531,7 +531,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:105870ac6237ddb2@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261030
 DTEND;VALUE=DATE:20261031
 SUMMARY:✿日向端ひな誕生日✿
@@ -545,7 +545,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e5a8cbefdc5efd66@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261031T140000
 DTEND;TZID=Asia/Tokyo:20261031T160000
 SUMMARY:ZOMBIE FES 2026 DAY3
@@ -564,7 +564,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7e2d92da263bb065@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261101
 DTEND;VALUE=DATE:20261102
 SUMMARY:IDOL HALLOWEEN JAPAN 2026 Supported by Malymoon
@@ -583,7 +583,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:765c955873b595e7@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261102T170000
 DTEND;TZID=Asia/Tokyo:20261102T190000
 SUMMARY:成城大学 柳祭2026 中夜祭
@@ -603,7 +603,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:49a3c6367e04a19e@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261103T123000
 DTEND;TZID=Asia/Tokyo:20261103T180000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -648,7 +648,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:076a97c93e0cae0a@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261105
 DTEND;VALUE=DATE:20261106
 SUMMARY:Devil ANTHEM. presents 『 でびぱっぱ〜Road to 幕張イベ
@@ -674,7 +674,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:a665f10e9d7acc42@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261106T170000
 DTEND;TZID=Asia/Tokyo:20261106T192000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -710,7 +710,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e1a2d278c8aa1881@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261107T123000
 DTEND;TZID=Asia/Tokyo:20261107T143000
 SUMMARY:産業能率大学 第61回産能祭
@@ -732,7 +732,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:fde98d38963ea568@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261107T160000
 DTEND;TZID=Asia/Tokyo:20261107T180000
 SUMMARY:LARME FES’26︎✿城月・松本
@@ -754,7 +754,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2836daa94f30129c@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261108T120000
 DTEND;TZID=Asia/Tokyo:20261108T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -803,7 +803,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:2c8d121d7395af52@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261110T190000
 DTEND;TZID=Asia/Tokyo:20261110T210000
 SUMMARY:【橋本・日向端・籾山】たかねこ初恋キッチン。
@@ -816,7 +816,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:de915654fd497dc1@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261111T170000
 DTEND;TZID=Asia/Tokyo:20261111T190000
 SUMMARY:【M.M.S】Massive Music Showcase Vol.1
@@ -838,7 +838,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:cef6eb78152ff190@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261114T120000
 DTEND;TZID=Asia/Tokyo:20261114T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -892,7 +892,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:5799ebdded7af6c5@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261115T113000
 DTEND;TZID=Asia/Tokyo:20261115T190000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -935,7 +935,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f6e9c5f353ff30ec@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261117
 DTEND;VALUE=DATE:20261118
 SUMMARY:MARQUEE Fes.
@@ -952,7 +952,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:070bcf4a728c51f6@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261119
 SUMMARY:高嶺のなでしこ ニューアルバム『 A World in Our Color
@@ -965,44 +965,48 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f90e02494e2ef452@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261119
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
  』 リリース記念イベント at ららぽーと立川立飛
 LOCATION:ららぽーと立川立飛2F イベント広場
 DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
- ベント\n情報元: https://takanenonadeshiko.jp/newalbum-aworldinourcol
- ors-1118/\n\n【参加メモ】\n📍 会場: ららぽーと立川立飛2
- F イベント広場／〒190-0015 東京都立川市泉町935番地の1\n
- 🕙 当日の流れ: 2026-11-18：CD販売開始15:00／優先エリア
- 入場開始16:40／イベント開始17:00\n👥 部とメンバー: 17:0
- 0：ミニライブ（観覧フリー・優先エリアあり）／グル
- ープ握手会 A：城月・橋本・葉月・日向端／B：涼海・
- 東山・松本・籾山\n🎫 参加方法・当日券: 対象商品を1
- 枚購入で先着配布：整理番号付き優先エリア入場券（1
- 会計1枚ランダム）／グループ握手会参加券は購入で2枚
- 配布／CD販売は会場特設即売ブース（15:00〜）\n💴 料金
- : 対象商品：2026年11月18日発売 高嶺のなでしこ ニュー
- アルバム たかねこ盤 VICL-66184 税込¥3\,300\n💳 支払い: 
- 金券・各種割引・駐車場サービス・ポイントカード等
- は対象外\n🎒 持ち物: マスク必須／購入したCDや参加券
- ／携行物は原則お一人1個／金属類はなるべく外す\n📸 
- ルール: マスク着用必須／録音・録画・撮影禁止／ミニ
- ライブ中のコール・ジャンプ禁止／握手は優しい握手
- ・強く掴む等禁止／指輪等は外しての参加（結婚指輪
- 除く）／参加券の再発行なし\n⚠️ 注意: 入場時に手荷
- 物検査・金属探知ありで入場に時間がかかる場合あり
- ／販売・配券は先着で配布終了あり／会場内での長時
- 間滞留や前日泊り込みは禁止\n🤖 公式の案内を AI が要
- 約したものです。必ず情報元で確認してください。
-URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1118/
+ ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
+ e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
+ 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
+ e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/\n\n【参加メモ】\n📍 会場
+ : ららぽーと立川立飛2F イベント広場／〒190-0015 東京都
+ 立川市泉町935番地の1\n🕙 当日の流れ: CD販売開始15:00／
+ 優先エリアご入場開始16:40／イベント開始17:00（ミニラ
+ イブ＋グループ握手会）\n👥 部とメンバー: 17:00（優先
+ 入場16:40）：Aグループ：城月・橋本・葉月・日向端／B
+ グループ：涼海・東山・松本・籾山\n🎫 参加方法・当
+ 日券: 対象商品1枚予約で優先エリア入場券を1枚ランダ
+ ム配布／対象商品1枚予約で希望グループの参加券2枚を
+ 先着配布／CD販売は会場特設ブースで15:00～\n💴 料金: 
+ たかねこ盤 VICL-66184 税込¥3\,300（対象商品）\n🎒 持ち
+ 物: マスク着用必須／参加券は紛失注意（再発行なし）
+ \n📸 ルール: ミニライブ中のコール・ジャンプ禁止／
+ 録音・録画・撮影禁止／握手は優しい手つなぎ、強く
+ 握る等禁止／指輪・腕時計・アクセ等は外して参加（
+ 結婚指輪除く）／入場時に手荷物検査・金属探知あり\n
+ ⚠️ 注意: CD購入は会場特設即売ブースで15:00開始／購
+ 入後のキャンセル・返金は不可／参加券は枚数限りあ
+ り、配布終了あり／会場内は手荷物1個まで・大きさ制
+ 限あり（3辺合計115cm以上は不可）\n🤖 公式の案内を AI 
+ が要約したものです。必ず情報元で確認してください
+ 。
+URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
+ 3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
+ %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
+ e3%83%aa%e3%83%bc-6/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:b6510b85ae023851@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261120
 DTEND;VALUE=DATE:20261121
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -1022,17 +1026,48 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:ea2bb8a58d9224e6@takaneko-data
-DTSTAMP:20261102T091753Z
-DTSTART;VALUE=DATE:20261121
-DTEND;VALUE=DATE:20261122
+DTSTAMP:20261102T151841Z
+DTSTART;TZID=Asia/Tokyo:20261121T120000
+DTEND;TZID=Asia/Tokyo:20261121T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
  』 リリース記念イベント at ステラタウン大宮
-LOCATION:ステラタウン大宮
-DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
- ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
- e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
- 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
- e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-8/
+LOCATION:ステラタウン大宮 メローペ広場
+DESCRIPTION:時間: 1部 12:00 START（優先エリア入場11:40） ／ 2
+ 部 15:30 START（優先エリア入場15:10）\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%
+ bc-8/\n\n【参加メモ】\n📍 会場: ステラタウン大宮 メロ
+ ーペ広場／〒331-0812 埼玉県さいたま市北区宮原町1丁目8
+ 54-1\n🕙 当日の流れ: 2026-11-21 CD販売開始10:00／1部 優先
+ 入場11:40 START12:00／2部 優先入場15:10 START15:30\n👥 部とメ
+ ンバー: 1部 A: 城月・東山・日向端・籾山／1部 B: 涼海
+ ・橋本・葉月・松本／2部 A: 城月・涼海・橋本・日向端
+ ／2部 B: 葉月・東山・松本・籾山\n🎫 参加方法・当日
+ 券: 対象商品1枚予約で整理番号付き優先エリア入場券
+ を1枚ランダム配布（先着）／対象商品1枚予約で希望グ
+ ループの参加券を2枚先着配布／CD販売は会場特設販売
+ ブースで当日10:00開始\n💴 料金: 高嶺のなでしこ ニュ
+ ーアルバム『A World in Our Colors』 たかねこ盤 VICL-66184 税
+ 込¥3\,300\n💳 支払い: 現金／クレジットカード（一括の
+ み：VISA\, Mastercard\, JCB\, AmEx\, Diners\, DISCOVER）／各種QRコ
+ ード決済（d払い\, PayPay\, au PAY\, 楽天ペイ\, メルペイ\, W
+ eChat Pay\, Alipay+）\n🎒 持ち物: マスク（着用必須）／整
+ 理番号付き優先エリア入場券・グループ握手会参加券
+ ／支払い手段（現金・カード・QR）／手荷物は原則1個
+ まで（3辺合計115cm未満）\n📸 ルール: 会場内録音・録
+ 画・撮影禁止／ミニライブ中のジャンプ禁止／握手は
+ 優しく、強く握る等は禁止／指輪・アクセ等は外す（
+ 結婚指輪除外）／入場時に手荷物検査・金属探知あり\n
+ ⚠️ 注意: 参加券は当日限り・再発行なし／配券は先
+ 着のため配布終了あり／代表待ち・割り込み禁止／飲
+ 酒・体調不良時は入場不可\nℹ️ その他: CD販売受付：
+ ステラタウン大宮 メローペ広場 特設販売ブース／お問
+ い合わせ：ビクターエンタテインメントお客様相談室 T
+ EL 0570-010-115（受付 月～金 10:00–13:00／14:00–17:00）\n🤖 
+ 公式の案内を AI が要約したものです。必ず情報元で確
+ 認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
  3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
  %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
@@ -1042,17 +1077,42 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:e0ddd46fe90b85c8@takaneko-data
-DTSTAMP:20261102T091753Z
-DTSTART;VALUE=DATE:20261122
-DTEND;VALUE=DATE:20261123
+DTSTAMP:20261102T151841Z
+DTSTART;TZID=Asia/Tokyo:20261122T113000
+DTEND;TZID=Asia/Tokyo:20261122T190000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
  』 リリース記念個別特典イベント
 LOCATION:東京都内某所
-DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
- ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
- e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
- 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
- e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-9/
+DESCRIPTION:時間: 1部 11:30-12:30 涼海すう / 橋本桃呼 / 葉月
+ 紗蘭 / 松本ももな ／ … ／ 6部 18:00-19:00 城月菜央 / 東
+ 山恵里沙 / 日向端ひな / 籾山ひめり\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%
+ bc-9/\n\n【参加メモ】\n📍 会場: 東京都内某所（開催会
+ 場は当選者にのみ案内）\n🕙 当日の流れ: 10:30 事前CD予
+ 約当選者・特典券引換開始／11:20 開場／11:30 イベント
+ 開始（各部開始時刻は下記参照）\n👥 部とメンバー: 1
+ ・3・5部（11:30／14:30／16:50）：涼海・橋本・葉月・松本
+ ／2・4・6部（12:40／15:40／18:00）：城月・東山・日向端
+ ・籾山（各部の終了は開始から1時間）\n🎫 参加方法・
+ 当日券: 楽天ブックスで『たかねこ盤』を予約し抽選に
+ 当選→当選者に2026/11/13にQRコード付きメール送付／当
+ 日販売の可能性あり\n💴 料金: たかねこ盤（VICL-66184）
+ 税込¥3\,300（税抜¥3\,000）／たかねこ盤1枚で参加券2枚
+ 付与\n💳 支払い: 対象商品の購入はクレジットカード
+ 決済限定（代引不可）\n🎒 持ち物: イベント受付QRコー
+ ド付きメール原本（スクショ不可・スマホで表示）／
+ 主催指定の本人確認書類原本（有効期限中）\n📸 ルー
+ ル: マスク着用必須／録音・録画・撮影禁止／指輪・ア
+ クセ等は外し両手チェックあり（結婚指輪除く）／握
+ 手は優しい握手のみ／参加券は各部開始20分までは1回
+ で最大3枚使用\n⚠️ 注意: QRコードはスクショ不可・ス
+ マホをネット接続した状態で提示／本人確認書類は原
+ 本のみ有効／受付時間内に来場必須／金属類は極力外
+ して来場\n🤖 公式の案内を AI が要約したものです。必
+ ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
  3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
  %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
@@ -1062,17 +1122,44 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:cae3dda54cf95a66@takaneko-data
-DTSTAMP:20261102T091753Z
-DTSTART;VALUE=DATE:20261123
-DTEND;VALUE=DATE:20261124
+DTSTAMP:20261102T151841Z
+DTSTART;TZID=Asia/Tokyo:20261123T120000
+DTEND;TZID=Asia/Tokyo:20261123T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
  』 リリース記念イベント at 横浜ワールドポーターズ
 LOCATION:横浜ワールドポーターズ
-DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
- ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
- e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
- 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
- e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/
+DESCRIPTION:時間: 1部 12:00 START（優先エリア入場11:40） ／ 2
+ 部 15:30 START（優先エリア入場15:10）\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%
+ bc-10/\n\n【参加メモ】\n📍 会場: 横浜ワールドポーター
+ ズ／〒231-0001 神奈川県横浜市中区新港2丁目2−1（屋上
+ ルーフトップワールド／6F イベントホールB）\n🕙 当日
+ の流れ: 10:30 CD販売開始／11:40 1部 優先エリア入場／12:00
+  1部 START／15:10 2部 優先エリア入場／15:30 2部 START\n👥 
+ 部とメンバー: 1部 12:00(優先入場11:40)：城月・東山・橋
+ 本・涼海・葉月・松本・日向端・籾山／2部 15:30(優先入
+ 場15:10)：城月・東山・橋本・涼海・葉月・松本・日向
+ 端・籾山\n🎫 参加方法・当日券: 対象商品1枚予約で整
+ 理番号付き優先エリア入場券（1会計1枚ランダム）／対
+ 象商品1枚予約でペア参加券またはグループ参加券を先
+ 着で配布（2枚）\n💴 料金: たかねこ盤 VICL-66184 税込￥3
+ \,300\n💳 支払い: 現金／クレジットカード（一括のみ：
+ VISA\,Mastercard\,JCB\,AmEx\,Diners\,DISCOVER）／各種QR決済（d払
+ い\,PayPay\,au PAY\,楽天ペイ\,メルペイ\,WeChat Pay\,Alipay+）\n
+ 🎒 持ち物: マスク着用必須／お一人様持ち込み荷物は
+ 原則1個まで／3辺合計115cm以上は持込不可\n📸 ルール: 
+ 録音・録画・撮影禁止／ミニライブ中のジャンプ禁止
+ ／握手は優しい握手／指輪・アクセ等は外して参加（
+ 結婚指輪除く）／参加券の再発行・譲渡・転売禁止\n⚠
+ ️ 注意: 通信不良でキャッシュレス不可時は現金のみ
+ 対応／待機列は6FイベントホールBに集合／飲酒・酒気
+ 帯びでの参加禁止\nℹ️ その他: CD受取はヴィレッジヴ
+ ァンガード 横浜ワールドポーターズ店受取か佐川着払
+ い配送（送料は受取時支払い）\n🤖 公式の案内を AI が
+ 要約したものです。必ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
  3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
  %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
@@ -1082,7 +1169,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7e600bad7229192a@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261129
 DTEND;VALUE=DATE:20261130
 SUMMARY:Anime Festival Asia Singapore 2026✿東山・日向端
@@ -1103,7 +1190,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:bf765884d54f589d@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261207T143000
 DTEND;TZID=Asia/Tokyo:20261207T163000
 SUMMARY:MARQUEE祭 Vol.186
@@ -1123,7 +1210,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:3a5ed64b3a809dff@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;TZID=Asia/Tokyo:20261224T160000
 DTEND;TZID=Asia/Tokyo:20261224T213000
 SUMMARY:高嶺のなでしこ たかねこクリスマスパーティ2026
@@ -1162,7 +1249,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:72623aea04fbac76@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20261225
 DTEND;VALUE=DATE:20261226
 SUMMARY:✿城月菜央誕生日✿
@@ -1176,7 +1263,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:a3854a40e9aa7f4b@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270303
 DTEND;VALUE=DATE:20270304
 SUMMARY:✿葉月紗蘭誕生日✿
@@ -1190,7 +1277,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:26d4e66c5b576502@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270322
 DTEND;VALUE=DATE:20270323
 SUMMARY:✿籾山ひめり誕生日✿
@@ -1204,7 +1291,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:f6f6cb2b968c3c89@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270528
 DTEND;VALUE=DATE:20270529
 SUMMARY:✿東山恵里沙誕生日✿
@@ -1218,7 +1305,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:168e4eb2b8efc3ac@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270628
 DTEND;VALUE=DATE:20270629
 SUMMARY:✿橋本桃呼誕生日✿
@@ -1232,7 +1319,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:fea37c8fb56a7261@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270807
 DTEND;VALUE=DATE:20270808
 SUMMARY:✿高嶺のなでしこ誕生日✿
@@ -1248,7 +1335,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:7fff18ab76e8a1ee@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20270822
 DTEND;VALUE=DATE:20270823
 SUMMARY:✿涼海すう誕生日✿
@@ -1262,7 +1349,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:16e513691d0e4303@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20271012
 DTEND;VALUE=DATE:20271013
 SUMMARY:✿松本ももな誕生日✿
@@ -1276,7 +1363,7 @@ TRANSP:TRANSPARENT
 END:VEVENT
 BEGIN:VEVENT
 UID:47c68ccaba2de326@takaneko-data
-DTSTAMP:20261102T091753Z
+DTSTAMP:20261102T151841Z
 DTSTART;VALUE=DATE:20271030
 DTEND;VALUE=DATE:20271031
 SUMMARY:✿日向端ひな誕生日✿

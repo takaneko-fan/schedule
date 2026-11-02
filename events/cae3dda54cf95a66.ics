@@ -14,17 +14,44 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:cae3dda54cf95a66@takaneko-data-mine
-DTSTAMP:20261027T084338Z
-DTSTART;VALUE=DATE:20261123
-DTEND;VALUE=DATE:20261124
+DTSTAMP:20261102T151841Z
+DTSTART;TZID=Asia/Tokyo:20261123T120000
+DTEND;TZID=Asia/Tokyo:20261123T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
  』 リリース記念イベント at 横浜ワールドポーターズ
 LOCATION:横浜ワールドポーターズ
-DESCRIPTION:出演: グループ（全員）\nカテゴリ: ライブ／イ
- ベント\n情報元: https://takanenonadeshiko.jp/events/event/%e9%ab%98%
- e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e
- 3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%
- e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/
+DESCRIPTION:時間: 1部 12:00 START（優先エリア入場11:40） ／ 2
+ 部 15:30 START（優先エリア入場15:10）\n出演: グループ（
+ 全員）\nカテゴリ: ライブ／イベント\n情報元: https://taka
+ nenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a
+ 7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90
+ %e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%
+ bc-10/\n\n【参加メモ】\n📍 会場: 横浜ワールドポーター
+ ズ／〒231-0001 神奈川県横浜市中区新港2丁目2−1（屋上
+ ルーフトップワールド／6F イベントホールB）\n🕙 当日
+ の流れ: 10:30 CD販売開始／11:40 1部 優先エリア入場／12:00
+  1部 START／15:10 2部 優先エリア入場／15:30 2部 START\n👥 
+ 部とメンバー: 1部 12:00(優先入場11:40)：城月・東山・橋
+ 本・涼海・葉月・松本・日向端・籾山／2部 15:30(優先入
+ 場15:10)：城月・東山・橋本・涼海・葉月・松本・日向
+ 端・籾山\n🎫 参加方法・当日券: 対象商品1枚予約で整
+ 理番号付き優先エリア入場券（1会計1枚ランダム）／対
+ 象商品1枚予約でペア参加券またはグループ参加券を先
+ 着で配布（2枚）\n💴 料金: たかねこ盤 VICL-66184 税込￥3
+ \,300\n💳 支払い: 現金／クレジットカード（一括のみ：
+ VISA\,Mastercard\,JCB\,AmEx\,Diners\,DISCOVER）／各種QR決済（d払
+ い\,PayPay\,au PAY\,楽天ペイ\,メルペイ\,WeChat Pay\,Alipay+）\n
+ 🎒 持ち物: マスク着用必須／お一人様持ち込み荷物は
+ 原則1個まで／3辺合計115cm以上は持込不可\n📸 ルール: 
+ 録音・録画・撮影禁止／ミニライブ中のジャンプ禁止
+ ／握手は優しい握手／指輪・アクセ等は外して参加（
+ 結婚指輪除く）／参加券の再発行・譲渡・転売禁止\n⚠
+ ️ 注意: 通信不良でキャッシュレス不可時は現金のみ
+ 対応／待機列は6FイベントホールBに集合／飲酒・酒気
+ 帯びでの参加禁止\nℹ️ その他: CD受取はヴィレッジヴ
+ ァンガード 横浜ワールドポーターズ店受取か佐川着払
+ い配送（送料は受取時支払い）\n🤖 公式の案内を AI が
+ 要約したものです。必ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
  3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
  %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
