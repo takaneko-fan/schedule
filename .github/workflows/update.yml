@@ -36,4 +36,17 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           # 未登録なら公式 X の確認を飛ばす
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
+          # 未登録なら更新の通知を送らない
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
         run: ./run_update.sh
+
+      # タイムアウトは cancelled になる。チェックアウトの失敗でも送れるよう notify.py を使わない
+      - name: 失敗を通知
+        if: failure() || cancelled()
+        env:
+          NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          [ -n "$NTFY_TOPIC" ] || exit 0
+          curl -fsS --max-time 15 -o /dev/null https://ntfy.sh/ \
+            -d "{\"topic\":\"$NTFY_TOPIC\",\"title\":\"高嶺のなでしこ 更新エラー\",\"message\":\"更新に失敗しました\",\"priority\":4,\"click\":\"$RUN_URL\"}"

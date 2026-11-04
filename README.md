@@ -17,6 +17,7 @@
 | [`x_events.json`](x_events.json) | 公式 X の告知から読み取った、これからの予定（日時・予定名・会場など。投稿の本文は保存しない） |
 | [`events/`](events/) | これからの予定を 1 件ずつ入れた iCalendar ファイル（Web 版の「カレンダーに追加」用） |
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
+| [`notify.py`](notify.py) | 更新の内容を ntfy で通知するスクリプト |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
 | [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー）と、App の名義で push するスクリプト |
 | [`assets/`](assets/) | アイコンなどの素材（`X_icon_takaneko_fanweb.jpeg` は X @takaneko_fanweb のプロフィール画像） |
@@ -85,6 +86,7 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 - すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します（Actions の画面の Run workflow は、起動者として個人のアカウント名が公開されるので使いません）。
 - 参加メモ用の API キーは、リポジトリの **Settings → Secrets and variables → Actions** の `OPENAI_API_KEY`（または `GEMINI_API_KEY`）を使います。
 - 上の「安全策」で止まったときなど、実行に失敗すると GitHub から通知メールが届きます。
+- Secrets に `NTFY_TOPIC` を登録すると、予定の追加・変更・削除、申込・締切の追加、実行の失敗を [ntfy](https://ntfy.sh/) で通知します。トピック名を知っていれば誰でも読めるので、推測されにくい名前にして公開しないでください。
 
 ## Web 版で行く予定を決める
 

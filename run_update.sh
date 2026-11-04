@@ -17,3 +17,6 @@ fi
 git commit --quiet -m "feat: $(TZ=Asia/Tokyo date +%F)の登録"
 git push --quiet
 echo "コミットして push しました: $(git log --oneline -1)"
+
+# 通知に失敗しても、更新そのものは完了しているので失敗扱いにしない
+python3 notify.py || echo "通知に失敗しました（更新は完了しています）"

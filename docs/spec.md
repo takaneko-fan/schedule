@@ -39,7 +39,8 @@ flowchart TD
 | ファイル | 役割 |
 | --- | --- |
 | `fetch_schedule.py` | 取得・統合・出力のすべて（約 890 行、標準ライブラリのみ） |
-| `run_update.sh` | 取得 → 差分があればコミット・push（GitHub Actions・手動兼用） |
+| `run_update.sh` | 取得 → 差分があればコミット・push → 通知（GitHub Actions・手動兼用） |
+| `notify.py` | 前後のコミットの CSV を比べ、更新の内容を ntfy で通知する（標準ライブラリのみ） |
 | `.github/workflows/update.yml` | `run_update.sh` を 6 時間ごとにセルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
@@ -313,6 +314,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。
 3. `schedule.*` と `deadlines.*` の 6 ファイルと `memos.json`・`events/`・`x_events.json` を `git add` する。差分がなければ「予定に変化なし」で終了。
 4. `feat: YYYY-MM-DDの登録`（日本時間の日付）でコミットし、push する。
+5. `python3 notify.py` で更新の内容を通知する。通知に失敗しても `run_update.sh` は失敗にしない。
 
 ### 自動更新（GitHub Actions・セルフホストランナー）
 
@@ -328,7 +330,8 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 | 同時実行 | `concurrency: update` で 1 つずつ実行し、push の衝突を防ぐ |
 | API キー | リポジトリの Secrets の `OPENAI_API_KEY` / `GEMINI_API_KEY`。未登録なら既存の参加メモだけを使う |
 | X のトークン | Secrets の `X_BEARER_TOKEN`。未登録なら公式 X の確認を飛ばす |
-| 失敗時 | 安全策の停止や取得エラーで実行が失敗し、GitHub から通知メールが届く |
+| 通知のトピック | Secrets の `NTFY_TOPIC`。未登録なら通知を送らない |
+| 失敗時 | 安全策の停止や取得エラーで実行が失敗し、GitHub から通知メールが届く。`update.yml` の最後のステップが ntfy にも優先度を上げて通知する（タイムアウトを含む） |
 | 公開リポジトリの対策 | 外部からのプルリクエストのワークフロー実行は、毎回承認が必要な設定にしている |
 
 #### VPS のタイマーからの起動
@@ -349,6 +352,26 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。
 
 ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
+
+### 更新の通知（ntfy）
+
+`notify.py` が直前のコミットと最新のコミットの CSV を比べ、1 回の更新につき 1 件の通知を ntfy へ送ります。iPhone の ntfy アプリで受け取り、Apple Watch にはミラーリングで届きます。
+
+| 変更 | 通知 | 判定 |
+| --- | --- | --- |
+| 予定の追加 | する | 前のコミットにない `uid` |
+| 予定の内容の変更（参加メモを含む） | する | `NOTIFY_IGNORE_COLUMNS`（`done`）以外の列が違う |
+| 予定の削除 | する | 後のコミットにない `uid` |
+| 申込・締切の追加 | する | `done` 以外の全列が一致する行が前のコミットにない。ID がないので内容の変更もここに含まれる |
+| 申込・締切の削除 | しない | 古い記事が取得範囲から外れても消えるため |
+| 「済」が付いただけ | しない | 比較の対象外 |
+| 日本時間の今日より前の日付の行 | しない | どの変更でも除外する |
+
+CSV の列が変わったコミットでは、そのファイルは比較しません。ID が変わった予定は、新規と削除の両方に数えます。実行の失敗は `notify.py` を通さず、`update.yml` から送ります。
+
+送らずに本文を確かめるには `python3 notify.py --dry-run --today 2026-11-02 31b5e7d~1 31b5e7d` のように実行します。
+
+VPS やランナーが止まっていると更新自体が動かないので、失敗の通知も届きません。
 
 ### 主なオプション
 
