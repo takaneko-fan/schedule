@@ -3,6 +3,10 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
+  "initializeCommand": "mkdir -p \"$HOME/.config/takaneko-fan\"",
+  "mounts": [
+    "source=${localEnv:HOME}/.config/takaneko-fan,target=/root/.config/takaneko-fan,type=bind,readonly"
+  ],
 "customizations": {
     "vscode": {
       "extensions": [
