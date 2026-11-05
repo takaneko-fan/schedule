@@ -41,7 +41,7 @@ flowchart TD
 | `fetch_schedule.py` | 取得・統合・出力のすべて（約 890 行、標準ライブラリのみ） |
 | `run_update.sh` | 取得 → 差分があればコミット・push → 通知（GitHub Actions・手動兼用） |
 | `notify.py` | 前後のコミットの CSV を比べ、更新の内容を ntfy で通知する（標準ライブラリのみ） |
-| `.github/workflows/update.yml` | `run_update.sh` を 6 時間ごとにセルフホストランナーで実行する |
+| `.github/workflows/update.yml` | `run_update.sh` を 1 日 8 回セルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
 
@@ -306,7 +306,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 ## 運用手順
 
-更新は GitHub Actions（`.github/workflows/update.yml`）が 6 時間ごとに `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
+更新は GitHub Actions（`.github/workflows/update.yml`）が 1 日 8 回 `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
 
 `run_update.sh` の処理：
 
@@ -322,7 +322,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 | 項目 | 内容 |
 | --- | --- |
-| 実行時刻 | 日本時間 0:17 / 6:17 / 12:17 / 18:17。VPS の systemd タイマーが GitHub App の名義で起動する（下記）。ワークフローの定時実行（`schedule`）は使わない |
+| 実行時刻 | 日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17。公式のお知らせ記事の約 8 割が 16〜23 時台に公開され、0〜7 時台は約 2% のため（2026-11 時点の全 612 件）、夕方から夜に寄せている。VPS の systemd タイマーが GitHub App の名義で起動する（下記）。ワークフローの定時実行（`schedule`）は使わない |
 | 手動実行 | App の鍵がある環境で `ops/dispatch_update.sh` を実行する。Actions の画面の Run workflow でも動くが、起動者として個人のアカウント名が公開されるので使わない |
 | 実行先 | `runs-on: [self-hosted, conoha]`。ConoHa VPS 1GB（大阪、Ubuntu 24.04、Python 3.12）、ランナー名 `conoha-osaka` |
 | サーバー | ランナーは専用ユーザー `runner`（sudo なし）のサービスとして常駐。ssh は鍵のみ、ufw で外からは 22 番だけ許可 |
@@ -343,7 +343,7 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 | 起動の名義 | 組織の GitHub App `takaneko-fan-updater`（App ID 5513246）。権限は Actions・Contents・Workflows の読み書き（Contents と Workflows は下記の push 用）、インストール先は `schedule` だけ。Actions の画面の起動者は `takaneko-fan-updater[bot]` になり、個人のアカウントを使わない |
 | スクリプト | `ops/dispatch_update.sh` → VPS の `/home/runner/bin/dispatch_update.sh`。App の鍵で JWT を作り、インストールのトークン（1 時間で失効）をもらって `update.yml` を起動する |
 | 鍵 | `/home/runner/.config/takaneko-fan/app.pem`（`runner` だけが読める 600）。リポジトリには入れない |
-| タイマー | `ops/takaneko-dispatch.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*-*-* 00,06,12,18:17:00 Asia/Tokyo`、`Persistent=true`（止まっていて逃した回は起動後に 1 回実行） |
+| タイマー | `ops/takaneko-dispatch.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*-*-* 00,09,12,16,18,20,21,22:17:00 Asia/Tokyo`、`Persistent=true`（止まっていて逃した回は起動後に 1 回実行） |
 
 確認は `systemctl list-timers takaneko-dispatch.timer`（次回の時刻）、`journalctl -u takaneko-dispatch.service`（起動の結果）。鍵を作り直したときは App の Credentials → Key pairs で新しい鍵を作り、VPS の `app.pem` を置き換えてから古い鍵を削除する。VPS が止まっている間は更新されない（再開後に逃した回を 1 回実行する）。
 

@@ -1,9 +1,9 @@
-# 日本時間 0:17 / 6:17 / 12:17 / 18:17 に予定の更新を起動する
+# 日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17 に予定の更新を起動する
 [Unit]
-Description=takaneko-fan/schedule: 予定の更新を 6 時間ごとに起動
+Description=takaneko-fan/schedule: 予定の更新を 1 日 8 回起動
 
 [Timer]
-OnCalendar=*-*-* 00,06,12,18:17:00 Asia/Tokyo
+OnCalendar=*-*-* 00,09,12,16,18,20,21,22:17:00 Asia/Tokyo
 # VPS が止まっていて逃した回は、起動後に 1 回だけ実行する
 Persistent=true
 

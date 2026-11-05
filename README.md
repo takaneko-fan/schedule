@@ -80,7 +80,7 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 
 ### 自動更新（GitHub Actions）
 
-[`.github/workflows/update.yml`](.github/workflows/update.yml) が 6 時間ごと（日本時間 0:17 / 6:17 / 12:17 / 18:17。VPS のタイマーが起動）に `run_update.sh` を実行し、予定に変化があれば `takaneko-fan` 名義でコミットして push します。
+[`.github/workflows/update.yml`](.github/workflows/update.yml) が 1 日 8 回（日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17。VPS のタイマーが起動） `run_update.sh` を実行し、予定に変化があれば `takaneko-fan` 名義でコミットして push します。
 
 - 公式サイトは国外からのアクセスの一部を受け付けないため、GitHub のサーバーではなく、国内の VPS に置いたセルフホストランナー（ラベル `conoha`）で実行します。
 - すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します（Actions の画面の Run workflow は、起動者として個人のアカウント名が公開されるので使いません）。
