@@ -18,7 +18,7 @@ import subprocess
 import urllib.request
 from datetime import datetime
 
-from fetch_schedule import JST, load_env
+from fetch_schedule import JST, load_env, media_prefix
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -89,8 +89,8 @@ def build_message(added, updated, removed, deadlines):
     summary = "・".join(f"{name} {len(rows)}件" for name, rows in counts if rows)
     if not summary:
         return None
-    labels = [f"{month_day(r['date'])} {short_title(r['title'])}" for r in added + updated]
-    labels += [f"{month_day(r['date'])} {short_title(r['title'])}（削除）" for r in removed]
+    labels = [f"{month_day(r['date'])} {media_prefix(r)}{short_title(r['title'])}" for r in added + updated]
+    labels += [f"{month_day(r['date'])} {media_prefix(r)}{short_title(r['title'])}（削除）" for r in removed]
     labels += [f"{month_day(r['date'])} {r['kind']} {short_title(r['event'])}" for r in deadlines]
     labels = list(dict.fromkeys(labels))  # 同じイベントの部ごとの行を 1 つにする
     shown = labels[:MAX_LABELS]

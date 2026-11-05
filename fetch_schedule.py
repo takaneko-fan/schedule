@@ -331,6 +331,15 @@ X_NIGHT_HOUR = 5  # この時刻（日本時間）より前の「#あしたの�
 X_EVENTS_PATH = "x_events.json"  # 読み取った予定（投稿は一度しか読まないので保存する。本文は保存しない）
 X_CATEGORY = "公式X"
 X_NAME_MIN = 8  # 『』内の名前と公式の予定名がこの文字数以上一致すれば同じ予定（グループ名 7 文字だけでは一致させない）
+# 番組の種別。category に足し、カレンダーなどの予定名の先頭に【ラジオ】のように付ける
+# 予定名に含まれる語 → 種別。投稿の語句より優先する。空はリアルイベントも兼ねるなど、番組として扱わない予定
+MEDIA_PROGRAMS = {"MORNING SPLASH": "ラジオ", "たかねこ初恋キッチン": ""}
+MEDIA_WORDS = {  # 投稿にこの語があれば番組とみなす（上から順に判定）
+    "ラジオ": re.compile(r"ラジオ|📻|radiko|FM|bayfm|ニッポン放送|文化放送|J-?WAVE"),
+    "テレビ": re.compile(r"テレビ|📺|TV|地上波"),
+    "配信": re.compile(r"生配信|ライブ配信|配信番組|YouTube|ニコニコ|ABEMA|SHOWROOM|インスタライブ"),
+}
+MEDIA_NOT_PROGRAM_RE = re.compile(r"サイン会|お話し?会|握手|撮影会")  # オンラインの特典会は会場がなくても番組ではない
 
 
 def strip_emoji(text):
@@ -366,6 +375,13 @@ def x_lines(tweet):
     text = tweet.get("note_tweet", {}).get("text") or tweet["text"]  # 長文の投稿は note_tweet に全文がある
     text = re.sub(r"https://t\.co/\w+", "", html.unescape(text))
     return [ln.strip() for ln in text.splitlines()]
+
+
+def x_media(title, text, venue):
+    """投稿の予定が番組なら種別を返す。会場のある予定は、配信付きのライブなどを含むので番組としない。"""
+    if venue or MEDIA_NOT_PROGRAM_RE.search(title):
+        return ""
+    return next((media for media, words in MEDIA_WORDS.items() if words.search(text)), "")
 
 
 def x_title(lines):
@@ -471,6 +487,8 @@ def extract_x_candidates(tweet):
             found.append({**common, "date": base + timedelta(days=offset), "title": title or headline,
                           "venue": venue, "times": times, "time_note": note, "today": offset == 0,
                           "sure": bool(venue or times or note)})
+    for c in found:
+        c["media"] = x_media(c["title"], joined, c["venue"])
     return found
 
 
@@ -524,13 +542,14 @@ def x_event(c):
     return {"date": c["date"].isoformat(), "title": c["title"], "venue": c["venue"],
             "open": c["times"].get("OPEN", ""), "start": c["times"].get("START", ""), "end": c["times"].get("END", ""),
             "time_note": c["time_note"], "members": c["members"], "names": c["names"],
-            "url": c["url"], "post_id": c["post_id"], "posted": c["posted"]}
+            "url": c["url"], "post_id": c["post_id"], "posted": c["posted"], "media": c["media"]}
 
 
 def x_event_to_row(e):
     d = date.fromisoformat(e["date"])
     return {**{k: e[k] for k in ("date", "open", "start", "end", "time_note", "title", "members", "venue", "url")},
-            "weekday": "月火水木金土日"[d.weekday()], "category": X_CATEGORY, "names": e["names"]}
+            "weekday": "月火水木金土日"[d.weekday()], "category": X_CATEGORY, "names": e["names"],
+            "media": e.get("media", "")}
 
 
 def update_x_events(rows, today, recheck_days=None):
@@ -722,6 +741,7 @@ def merge_post_rows(rows, post_rows):
         if dup and pr["category"] == X_CATEGORY:
             # 公式の予定に置き換わっても X の予定の ID を引き継げるよう、元の投稿を残す
             dup.setdefault("x_urls", []).append(pr["url"])
+            dup["media"] = dup.get("media") or pr["media"]
             if dup["category"] == X_CATEGORY:
                 # 同じ予定を告知した別の投稿: 先の投稿で空いている項目を後の投稿で埋める
                 for key in ("open", "start", "end", "time_note", "venue"):
@@ -742,6 +762,20 @@ def merge_post_rows(rows, post_rows):
         added.append(pr)
         print(f"  + 追加（{pr['category']}）: {pr['date']} {pr['title']} -> {pr['members']}")
     return rows + added
+
+
+def add_media(rows):
+    """番組の種別を category に足す。引き継いだ過去の予定にも効くよう、統合の後にまとめて行う。"""
+    for r in rows:
+        media = next((m for name, m in MEDIA_PROGRAMS.items() if name in r["title"]), r.get("media"))
+        if media and media not in r["category"].split(" / "):
+            r["category"] += f" / {media}"
+
+
+def media_prefix(row):
+    """予定名の先頭に付ける【ラジオ】などの印。"""
+    media = next((c for c in row["category"].split(" / ") if c in MEDIA_WORDS), "")
+    return f"【{media}】" if media else ""
 
 
 def sort_rows(rows):
@@ -772,7 +806,7 @@ def md_table(rows, show_members):
             "✅" if r["done"] else "",
             f"{r['date']}({r['weekday']})",
             time_label(r) or "",
-            f"[{md_escape(r['title'])}]({r['url']})",
+            f"[{md_escape(media_prefix(r) + r['title'])}]({r['url']})",
             f"[{md_escape(r['venue'])}]({r['venue_url']})" if r.get("venue_url") else md_escape(r["venue"]),
         ]
         if show_members:
@@ -1289,6 +1323,7 @@ def ics_summary(row):
         names = [last for full, last, _ in MEMBERS if full in row["members"]]
         if not all(n in title for n in names):
             title = f"【{'・'.join(names)}】{title}"
+    title = media_prefix(row) + title
     if row["category"].startswith("Eventernote"):
         title += "（非公式）"
     return title
@@ -1570,6 +1605,7 @@ def main():
     past = [r for r in prev if r["date"] < args.start.isoformat()]
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
+    add_media(rows)
     memo_created = []
     if not args.no_memo:
         memo_created = add_memos(rows, posts, today)

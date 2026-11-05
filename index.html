@@ -293,6 +293,8 @@ function timeLabel(r) {
 }
 
 const categoriesOf = r => r.category.split(" / ");
+const MEDIA = ["ラジオ", "テレビ", "配信"];  // fetch_schedule.py の MEDIA_WORDS と同じ種別
+const mediaPrefix = r => categoriesOf(r).filter(c => MEDIA.includes(c)).slice(0, 1).map(c => `【${c}】`).join("");
 const todayJST = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
 
 function esc(s) {
@@ -430,7 +432,7 @@ function eventHTML(r, today) {
     <div class="date">${m}/${d}<span class="wd ${wdClass}">(${esc(r.weekday)})</span>${r.date === today ? '<span class="badge">今日</span>' : ""}</div>
     <div>
       <div class="head">
-        <div class="title">${esc(r.title)}</div>
+        <div class="title">${esc(mediaPrefix(r) + r.title)}</div>
         ${r.uid && r.date >= today  // 終わった予定は選べない
           ? `<button type="button" class="go" data-uid="${esc(r.uid)}" aria-pressed="${isGoing}">${isGoing ? "★ 行く" : "☆ 行く"}</button>`
           : ""}
