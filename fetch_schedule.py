@@ -843,8 +843,17 @@ def media_prefix(row):
     return f"【{media}】" if media else ""
 
 
+def time_key(*texts):
+    """並べ替えの時刻。最初に見つかった時刻を 2 桁にそろえ（「9:30」が「20:30」の後ろにならないように）、なければ一番後ろ。"""
+    for text in texts:
+        m = re.search(r"(\d{1,2})[:：](\d{2})", text)
+        if m:
+            return f"{int(m.group(1)):02d}:{m.group(2)}"
+    return "99:99"
+
+
 def sort_rows(rows):
-    rows.sort(key=lambda r: (r["date"], r["start"] or r["open"] or "99:99", r["title"]))
+    rows.sort(key=lambda r: (r["date"], time_key(r["start"], r["open"], r["time_note"]), r["title"]))
     return rows
 
 
@@ -1045,7 +1054,7 @@ def collect_deadlines(posts, end, today):
             if r["date"] < end.isoformat() and key not in seen:
                 seen.add(key)
                 rows.append(r)
-    rows.sort(key=lambda r: (r["date"], r["time"] or "99:99", DEADLINE_KINDS.index(r["kind"]), r["event"]))
+    rows.sort(key=lambda r: (r["date"], time_key(r["time"]), DEADLINE_KINDS.index(r["kind"]), r["event"]))
     if skipped:
         print(f"  記事の公開日より前の日付 {len(skipped)} 件を除外")
         # 最近の記事のものは公式の記載ミスかもしれないので内容も出す
