@@ -41,6 +41,7 @@ jobs:
         run: ./run_update.sh
 
       # タイムアウトは cancelled になる。チェックアウトの失敗でも送れるよう notify.py を使わない
+      # ntfy.sh の 1 日の上限を IPv6 の /64 で他の利用者と共有しないよう、IPv4 で送る
       - name: 失敗を通知
         if: failure() || cancelled()
         env:
@@ -48,5 +49,5 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           [ -n "$NTFY_TOPIC" ] || exit 0
-          curl -fsS --max-time 15 -o /dev/null https://ntfy.sh/ \
+          curl -4 -fsS --max-time 15 -o /dev/null https://ntfy.sh/ \
             -d "{\"topic\":\"$NTFY_TOPIC\",\"title\":\"高嶺のなでしこ 更新エラー\",\"message\":\"更新に失敗しました\",\"priority\":4,\"click\":\"$RUN_URL\"}"

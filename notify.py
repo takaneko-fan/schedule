@@ -15,7 +15,6 @@ import json
 import os
 import re
 import subprocess
-import urllib.request
 from datetime import datetime
 
 from fetch_schedule import JST, load_env, media_prefix
@@ -101,9 +100,11 @@ def build_message(added, updated, removed, deadlines):
 
 def send(topic, message):
     body = json.dumps({"topic": topic, "title": TITLE, "message": message, "click": SITE_URL}, ensure_ascii=False)
-    request = urllib.request.Request(NTFY_URL, data=body.encode(), headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(request, timeout=15):
-        pass
+    # ntfy.sh は IPv6 を /64 単位で数えるので、同じネットワークの他の利用者と 1 日の上限を共有してしまう。IPv4 で送る
+    result = subprocess.run(["curl", "-4", "-sS", "--fail-with-body", "--max-time", "15", "--data-binary", "@-", NTFY_URL],
+                            input=body.encode(), capture_output=True)
+    if result.returncode != 0:  # 本文に ntfy のエラーコードが入っている。トピック名は含まれない
+        raise SystemExit(f"送信に失敗しました: {result.stdout.decode()} {result.stderr.decode()}".strip())
 
 
 def main():
