@@ -321,7 +321,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 1. `git pull --ff-only` で最新にする。
 2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。
 3. `schedule.*` と `deadlines.*` の 6 ファイルと `memos.json`・`events/`・`x_events.json` を `git add` する。差分がなければ「予定に変化なし」で終了。
-4. `feat: YYYY-MM-DDの登録`（日本時間の日付）でコミットし、push する。
+4. `feat: YYYY-MM-DD HH:MMの登録`（日本時間の日時）でコミットし、push する。
 5. `python3 notify.py` で更新の内容を通知する。通知に失敗しても `run_update.sh` は失敗にしない。
 
 ### 自動更新（GitHub Actions・セルフホストランナー）

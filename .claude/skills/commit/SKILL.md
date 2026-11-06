@@ -42,16 +42,17 @@ Co-Authored-By: Claude Opus 5.5 <noreply@anthropic.com>
 
 | 種類 | 使う場面 | 例 |
 |---|---|---|
-| `feat` | 機能の追加。予定データだけの更新もこれ | `feat: 2026-10-25の登録` ／ `feat: 参加メモを追加` |
+| `feat` | 機能の追加。予定データだけの更新もこれ | `feat: 2026-10-25 18:17の登録` ／ `feat: 参加メモを追加` |
 | `fix` | 不具合の修正 | `fix: 会場が未定の予定に後から出た記事の会場名を補う` |
 | `docs` | README・仕様書だけの変更 | `docs: 仕様書に参加メモの詳細を追記` |
 | `chore` | 設定・不要ファイルの削除など | `chore: 使っていないファイルを削除` |
 | `revert` | 変更の取り消し | `revert: GitHub Actionsによる自動更新を取りやめ` |
 
-- 予定データだけ（`schedule.*`、`deadlines.*`、`memos.json`）が変わった場合は `feat: YYYY-MM-DDの登録`（日付は日本時間の今日。`TZ=Asia/Tokyo date +%F`）。`run_update.sh` と同じ形。
+- 予定データだけ（`schedule.*`、`deadlines.*`、`memos.json`）が変わった場合は `feat: YYYY-MM-DD HH:MMの登録`（日本時間の現在の日時。`TZ=Asia/Tokyo date '+%F %H:%M'`）。`run_update.sh` と同じ形。
 - プログラムと、それで作り直した予定データが一緒に変わった場合は 1 つのコミットにまとめ、プログラムの変更に合った種類にする。
 - 変更が大きいときは、本文に何をなぜ変えたかを数行で書く。
 - メッセージは HEREDOC で渡す（`git commit -F - <<'EOF' … EOF`）。
+- feature ブランチを `main` に取り込むときは `git merge --no-ff` でマージコミットを残す。メッセージは `chore: <ブランチ名> をマージ`。
 
 ## 5. 報告
 
