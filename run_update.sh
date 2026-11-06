@@ -14,7 +14,7 @@ if git diff --cached --quiet; then
     exit 0
 fi
 
-git commit --quiet -m "feat: $(TZ=Asia/Tokyo date +%F)の登録"
+git commit --quiet -m "feat: $(TZ=Asia/Tokyo date '+%F %H:%M')の登録"
 git push --quiet
 echo "コミットして push しました: $(git log --oneline -1)"
 
