@@ -340,6 +340,8 @@ MEDIA_WORDS = {  # 投稿にこの語があれば番組とみなす（上から�
     "配信": re.compile(r"生配信|ライブ配信|配信番組|YouTube|ニコニコ|ABEMA|SHOWROOM|インスタライブ"),
 }
 MEDIA_NOT_PROGRAM_RE = re.compile(r"サイン会|お話し?会|握手|撮影会")  # オンラインの特典会は会場がなくても番組ではない
+AI_CATEGORY = "AI読み取り"  # ルールで読めず LLM が読み取った予定の category に足す
+X_LLM_MAX_TRIES = 3  # LLM の呼び出しに失敗した投稿を読み直す上限
 
 
 def strip_emoji(text):
@@ -369,6 +371,15 @@ def fetch_x_posts(token, since_id=None, days=X_FIRST_DAYS):
     if tweets:
         newest = max((t["id"] for t in tweets), key=int)
     return sorted(tweets, key=lambda t: int(t["id"])), newest
+
+
+def fetch_x_tweets(token, ids):
+    """投稿 ID から投稿を読む（削除された投稿は返らない）。"""
+    params = {"ids": ",".join(ids), "tweet.fields": "created_at,note_tweet"}
+    req = urllib.request.Request(f"{X_API_URL}/tweets?{urllib.parse.urlencode(params)}",
+                                 headers={"Authorization": f"Bearer {token}"})
+    with urllib.request.urlopen(req, timeout=30) as res:
+        return json.load(res).get("data", [])
 
 
 def x_lines(tweet):
@@ -425,19 +436,29 @@ def x_details(lines):
     return venue, times, note
 
 
-def extract_x_candidates(tweet):
-    """投稿から予定候補を取り出す。sure=False は抽出に自信がないもの（実行ログに出すだけ）。"""
-    posted = datetime.fromisoformat(tweet["created_at"].replace("Z", "+00:00")).astimezone(JST)
-    published = posted.date()
-    lines = x_lines(tweet)
-    headline = x_headline(lines)
-    url = f"https://x.com/takanenofficial/status/{tweet['id']}"
-    joined = " ".join(lines)
+def x_posted(tweet):
+    return datetime.fromisoformat(tweet["created_at"].replace("Z", "+00:00")).astimezone(JST)
+
+
+def x_common(tweet):
+    """1 つの投稿の予定に共通の項目。"""
+    joined = " ".join(x_lines(tweet))
     # 公式の予定名との照合用に『』内の名前と、出演メンバー（本文にフルネームがあれば）を残す
     names = list(dict.fromkeys(x_title([n]) for n in re.findall(r"『\s*([^』]+?)\s*』", joined)))
     members = [full for full, _, _ in MEMBERS if full in joined.replace(" ", "")]
-    common = {"url": url, "post_id": tweet["id"], "posted": posted.isoformat(timespec="minutes"),
-              "names": names, "members": "、".join(members) if 0 < len(members) < len(MEMBERS) else GROUP}
+    return {"url": f"https://x.com/takanenofficial/status/{tweet['id']}", "post_id": tweet["id"],
+            "posted": x_posted(tweet).isoformat(timespec="minutes"),
+            "names": names, "members": "、".join(members) if 0 < len(members) < len(MEMBERS) else GROUP}
+
+
+def extract_x_candidates(tweet):
+    """投稿から予定候補を取り出す。sure=False は抽出に自信がないもの（実行ログに出すだけ）。"""
+    posted = x_posted(tweet)
+    published = posted.date()
+    lines = x_lines(tweet)
+    headline = x_headline(lines)
+    joined = " ".join(lines)
+    common = x_common(tweet)
     found, label = [], ""
     for i, line in enumerate(lines):
         m = X_DATE_RE.search(line)
@@ -542,14 +563,15 @@ def x_event(c):
     return {"date": c["date"].isoformat(), "title": c["title"], "venue": c["venue"],
             "open": c["times"].get("OPEN", ""), "start": c["times"].get("START", ""), "end": c["times"].get("END", ""),
             "time_note": c["time_note"], "members": c["members"], "names": c["names"],
-            "url": c["url"], "post_id": c["post_id"], "posted": c["posted"], "media": c["media"]}
+            "url": c["url"], "post_id": c["post_id"], "posted": c["posted"], "media": c["media"],
+            "ai": c.get("ai", False), "station": c.get("station", "")}
 
 
 def x_event_to_row(e):
     d = date.fromisoformat(e["date"])
     return {**{k: e[k] for k in ("date", "open", "start", "end", "time_note", "title", "members", "venue", "url")},
             "weekday": "月火水木金土日"[d.weekday()], "category": X_CATEGORY, "names": e["names"],
-            "media": e.get("media", "")}
+            "media": e.get("media", ""), "ai": e.get("ai", False), "station": e.get("station", "")}
 
 
 def update_x_events(rows, today, recheck_days=None):
@@ -573,14 +595,51 @@ def update_x_events(rows, today, recheck_days=None):
     return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()]
 
 
+def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
+    """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比較をログに出すだけ。"""
+    if provider:
+        try:
+            ai = x_llm_candidates(tweet, provider, key, tokens)
+        except Exception as e:  # noqa: BLE001 — 1 件の失敗で全体を止めない
+            print(f"  ! AI 読み取り失敗: {tweet['id']} ({e})")
+            ai = None
+    else:
+        ai = None
+    if any(c["sure"] for c in cands):
+        pending.pop(tweet["id"], None)
+        if ai is not None:
+            rule_days = sorted(c["date"].isoformat() for c in cands if c["sure"] and not c["today"])
+            ai_days = sorted(c["date"].isoformat() for c in ai)
+            print(f"  比較 {tweet['id']}: ルール {rule_days} / AI {ai_days}{'' if rule_days == ai_days else ' （差分あり）'}")
+        return cands
+    if ai is not None:
+        pending.pop(tweet["id"], None)
+        return ai or cands
+    if provider:
+        pending[tweet["id"]] = pending.get(tweet["id"], 0) + 1
+        if pending[tweet["id"]] >= X_LLM_MAX_TRIES:
+            print(f"  ! AI 読み取りを諦めました: {tweet['id']}")
+            del pending[tweet["id"]]
+    return cands
+
+
 def read_x_posts(token, rows, events, recheck_days):
     state = {} if recheck_days else load_x_state()
     tweets, newest = fetch_x_posts(token, state.get("since_id"), recheck_days or X_FIRST_DAYS)
     print(f"X（@takanenofficial）: {len(tweets)} 件の{'投稿を読み直し' if recheck_days else '新しい投稿を確認'}")
+    pending = dict(state.get("pending", {}))  # LLM の呼び出しに失敗した投稿 ID → 失敗回数
+    retry = [i for i in pending if all(t["id"] != i for t in tweets)]
+    if retry:
+        again = fetch_x_tweets(token, retry)
+        print(f"  AI 読み取りの再試行: {len(again)} 件")
+        pending = {i: n for i, n in pending.items() if i not in retry or any(t["id"] == i for t in again)}
+        tweets = again + tweets
+    provider, key, _ = memo_provider()
+    tokens = [0, 0]
     official = [r for r in rows if not r["category"].startswith("Eventernote")]
     counts = {"◎": 0, "◎ 掲載済み": 0, "?": 0}
     for t in tweets:
-        for c in extract_x_candidates(t):
+        for c in read_x_with_llm(t, extract_x_candidates(t), provider, key, pending, tokens):
             d = c["date"]
             listed = x_listed(c, official)
             time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
@@ -595,10 +654,12 @@ def read_x_posts(token, rows, events, recheck_days):
                 events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
                 events.append(x_event(c))
     print(f"  → ◎ {counts['◎']} 件（うち公式に掲載済み {counts['◎ 掲載済み']} 件） / ? {counts['?']} 件")
-    if not recheck_days and newest and newest != state.get("since_id"):
+    if any(tokens):
+        print(f"  AI 読み取り: 入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン")
+    if not recheck_days and newest and (newest != state.get("since_id") or pending != state.get("pending", {})):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
         with open(X_STATE_PATH, "w", encoding="utf-8") as f:
-            json.dump({"since_id": newest}, f)
+            json.dump({"since_id": newest, "pending": pending}, f)
             f.write("\n")
     return events
 
@@ -765,11 +826,15 @@ def merge_post_rows(rows, post_rows):
 
 
 def add_media(rows):
-    """番組の種別を category に足す。引き継いだ過去の予定にも効くよう、統合の後にまとめて行う。"""
+    """番組の種別と AI 読み取りの印を category に足す。引き継いだ過去の予定にも効くよう、統合の後にまとめて行う。
+    放送局も統合の後に予定名へ足す（同じ局の別の番組が、同じ予定として統合されないように）。"""
     for r in rows:
+        if r.get("station"):
+            r["title"] += f"（{r['station']}）"
         media = next((m for name, m in MEDIA_PROGRAMS.items() if name in r["title"]), r.get("media"))
-        if media and media not in r["category"].split(" / "):
-            r["category"] += f" / {media}"
+        for label in (media, AI_CATEGORY if r.get("ai") else ""):
+            if label and label not in r["category"].split(" / "):
+                r["category"] += f" / {label}"
 
 
 def media_prefix(row):
@@ -1172,6 +1237,157 @@ def call_gemini(model, key, row, source):
     memo = json.loads(data["candidates"][0]["content"]["parts"][0]["text"])
     return memo, (usage.get("promptTokenCount", 0), usage.get("cachedContentTokenCount", 0),
                   usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0))
+
+
+# ---- 公式 X の投稿の AI 読み取り（ルールで読めなかった投稿の補助。公開してよいかはコードで判定する） ----
+
+X_LLM_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿から、出演・開催の予定を取り出す係です。
+投稿に書かれた事実だけを返してください。推測で補わないでください。
+
+- 予定とは、これから行われるライブ・イベント・放送・配信の告知です。
+- お礼や報告、発売・受付・チケットの告知、グッズの案内は予定ではありません。is_schedule を false にして events を空にします。
+- title は投稿の表記のまま番組名やイベント名を抜き出し、『』や絵文字は含めません。
+- when は tomorrow（「明日」など）、today（「本日」「このあと」など）、date（日付が書かれている）、unknown（分からない）のどれかです。
+- date_text は when が date のとき、投稿に書かれた日付の表記をそのまま入れます。それ以外は空にします。
+- start と end は HH:MM です。書かれていなければ空にします。
+- station は放送局や配信サービスの名前、venue はイベントの会場です。書かれていなければ空にします。
+- media はラジオ、テレビ、配信のどれかです。会場で行うイベントを配信する場合は空にします。
+- members はその予定に出るメンバーのフルネームの配列です。全員が出る場合と、書かれていない場合は空にします。
+- 1 つの投稿に複数の番組があれば、events に 1 件ずつ入れます。"""
+
+X_LLM_SCHEMA = {
+    "type": "object", "additionalProperties": False, "required": ["is_schedule", "events"],
+    "properties": {
+        "is_schedule": {"type": "boolean"},
+        "events": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False,
+            "required": ["title", "when", "date_text", "start", "end", "station", "venue", "media", "members"],
+            "properties": {
+                "title": {"type": "string"},
+                "when": {"type": "string", "enum": ["tomorrow", "today", "date", "unknown"]},
+                "date_text": {"type": "string"},
+                "start": {"type": "string"},
+                "end": {"type": "string"},
+                "station": {"type": "string"},
+                "venue": {"type": "string"},
+                "media": {"type": "string", "enum": ["", *MEDIA_WORDS]},
+                "members": {"type": "array", "items": {"type": "string"}},
+            }}},
+    }}
+
+
+def gemini_schema(schema):
+    """OpenAI 用の JSON Schema を Gemini の形にする。"""
+    out = {k: v for k, v in schema.items() if k != "additionalProperties"}
+    out["type"] = schema["type"].upper()
+    if "properties" in schema:
+        out["properties"] = {k: gemini_schema(v) for k, v in schema["properties"].items()}
+    if "items" in schema:
+        out["items"] = gemini_schema(schema["items"])
+    if "enum" in schema:  # Gemini は空文字の enum を受け付けない。値は x_llm_reject で確かめる
+        del out["enum"]
+    return out
+
+
+def x_llm_read(text, provider, key):
+    """(読み取った dict, (入力トークン, 出力トークン)) を返す。"""
+    model = MEMO_MODELS[provider]
+    if provider == "openai":
+        data = post_json(OPENAI_URL, {
+            "model": model,
+            "messages": [{"role": "system", "content": X_LLM_INSTRUCTION}, {"role": "user", "content": text}],
+            "response_format": {"type": "json_schema",
+                                "json_schema": {"name": "x_events", "strict": True, "schema": X_LLM_SCHEMA}},
+            "reasoning_effort": "low",
+        }, {"Authorization": f"Bearer {key}"})
+        usage = data.get("usage", {})
+        return (json.loads(data["choices"][0]["message"]["content"]),
+                (usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)))
+    data = post_json(GEMINI_URL.format(model=model), {
+        "systemInstruction": {"parts": [{"text": X_LLM_INSTRUCTION}]},
+        "contents": [{"role": "user", "parts": [{"text": text}]}],
+        "generationConfig": {"temperature": 0, "responseMimeType": "application/json",
+                             "responseSchema": gemini_schema(X_LLM_SCHEMA)},
+    }, {"x-goog-api-key": key})
+    usage = data.get("usageMetadata", {})
+    return (json.loads(data["candidates"][0]["content"]["parts"][0]["text"]),
+            (usage.get("promptTokenCount", 0),
+             usage.get("candidatesTokenCount", 0) + usage.get("thoughtsTokenCount", 0)))
+
+
+def x_llm_day(event, text, posted):
+    """予定の日付をコードで決める。LLM には日付の計算をさせない。決まらなければ None。"""
+    published = posted.date()
+    if event["when"] == "tomorrow":
+        # 「#あしたのたかねこ」と同じく、深夜の投稿の「明日」は投稿日の当日
+        return published + timedelta(days=0 if posted.hour < X_NIGHT_HOUR else 1)
+    if event["when"] == "date" and event["date_text"] and normalize(event["date_text"]) in normalize(text):
+        m = re.search(r"(?:(\d{4})[年/.])?(\d{1,2})(?:月\s*|/)(\d{1,2})", event["date_text"])
+        return infer_date(*m.groups(), published) if m else None
+    return None
+
+
+def x_time_in_text(value, text):
+    """HH:MM の時刻が本文に書かれているか。"""
+    m = re.fullmatch(r"(\d{1,2}):(\d{2})", value)
+    return bool(m) and bool(re.search(rf"(?<![\d:])0?{int(m.group(1))}:{m.group(2)}(?!\d)", text.replace("：", ":")))
+
+
+def x_llm_reject(event, text, posted):
+    """読み取った予定を公開しない理由を返す。公開してよければ None。"""
+    if event["when"] == "today":
+        return "当日の告知"  # メンバーの今いる場所を公開しない
+    day = x_llm_day(event, text, posted)
+    if day is None:
+        return "日付が決まらない"
+    if not posted.date() < day <= posted.date() + timedelta(days=366):
+        return "日付が範囲外"
+    if not event["title"] or normalize(event["title"]) not in normalize(text):
+        return "予定名が本文にない"
+    if not event["start"] or not x_time_in_text(event["start"], text):
+        return "開始時刻が本文にない"
+    if event["end"] and not x_time_in_text(event["end"], text):
+        return "終了時刻が本文にない"
+    if event["venue"] and normalize(event["venue"]) not in normalize(text):
+        return "会場が本文にない"
+    if event["station"] and normalize(event["station"]) not in normalize(text):
+        return "放送局が本文にない"
+    if is_non_event(event["title"]):
+        return "販売・受付の告知"
+    if event["media"] not in ("", *MEDIA_WORDS):
+        return "種別が不正"
+    names = [full for full, _, _ in MEMBERS]
+    if not all(m in names and m in text.replace(" ", "") for m in event["members"]):
+        return "メンバーが本文にない"
+    return None
+
+
+def x_llm_candidates(tweet, provider, key, tokens):
+    """投稿を LLM で読み、検証を通った予定を extract_x_candidates と同じ形で返す。"""
+    text = "\n".join(x_lines(tweet))
+    posted = x_posted(tweet)
+    result, usage = x_llm_read(text, provider, key)
+    tokens[:] = [t + u for t, u in zip(tokens, usage)]
+    if not result["is_schedule"]:
+        return []
+    found = []
+    for event in result["events"]:
+        reason = x_llm_reject(event, text, posted)
+        if reason:
+            print(f"  ! AI 読み取りを不採用（{reason}）: {event['title']} {tweet['id']}")
+            continue
+        # 他の予定と同じ「9:30」の形にそろえる
+        times = {k: re.sub(r"^0(?=\d:)", "", event[f]) for k, f in (("START", "start"), ("END", "end")) if event[f]}
+        common = x_common(tweet)
+        # 投稿全体のメンバーと『』の名前は別の予定のものを含むので、この予定の分だけにする
+        members = "、".join(event["members"]) if 0 < len(event["members"]) < len(MEMBERS) else GROUP
+        names = [n for n in common["names"] if normalize(n) == normalize(event["title"])]
+        media = "" if event["venue"] else event["media"]
+        found.append({**common, "members": members, "names": names, "date": x_llm_day(event, text, posted),
+                      "title": event["title"], "venue": event["venue"], "times": times, "time_note": "",
+                      "today": False, "sure": True, "media": media, "station": event["station"] if media else "",
+                      "ai": True})
+    return found
 
 
 def memo_provider():
