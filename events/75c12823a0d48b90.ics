@@ -14,14 +14,14 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:75c12823a0d48b90@takaneko-data-mine
-DTSTAMP:20261106T180802Z
-DTSTART;TZID=Asia/Tokyo:20261107T120000
-DTEND;TZID=Asia/Tokyo:20261107T160000
-SUMMARY:【ラジオ】【葉月・東山】ときめきステーション 
- ダブジェネカウントダウン
-DESCRIPTION:時間: 12:00〜16:00\n出演: 葉月紗蘭、東山恵里沙\n
- カテゴリ: 公式X / ラジオ\n情報元: https://x.com/takanenofficia
- l/status/2118697409928999107
+DTSTAMP:20261107T001906Z
+DTSTART;TZID=Asia/Tokyo:20261107T093000
+DTEND;TZID=Asia/Tokyo:20261107T095500
+SUMMARY:【ラジオ】【葉月・東山】沢井里奈のさわやか#さ
+ わーたいむ（FM AICHI）
+DESCRIPTION:時間: 9:30〜9:55\n出演: 葉月紗蘭、東山恵里沙\n
+ カテゴリ: 公式X / ラジオ / AI読み取り\n情報元: https://x.c
+ om/takanenofficial/status/2118697409928999107
 URL:https://x.com/takanenofficial/status/2118697409928999107
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

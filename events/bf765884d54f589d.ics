@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:bf765884d54f589d@takaneko-data-mine
-DTSTAMP:20261028T163631Z
+DTSTAMP:20261107T001906Z
 DTSTART;TZID=Asia/Tokyo:20261207T143000
 DTEND;TZID=Asia/Tokyo:20261207T163000
 SUMMARY:MARQUEE祭 Vol.186
@@ -22,12 +22,12 @@ LOCATION:渋谷Spotify O-EAST
 DESCRIPTION:時間: OPEN 14:00 / START 14:30\n出演: グループ（全員
  ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
  deshiko.jp/events/event/marquee%e7%a5%ad-vol-186/\n\n【参加メモ】\n
- 📍 会場: Spotify O-EAST（Shibuya O-EAST）\n🕙 当日の流れ: 202
- 6年12月7日(月)／OPEN 14:00／START 14:30\n🎫 参加方法・当日
- 券: チケットはイープラスの専用ページで販売\nℹ️ そ
- の他: 出演：Jams Collection／高嶺のなでしこ／Onephony／他\
- n🤖 公式の案内を AI が要約したものです。必ず情報元
- で確認してください。
+ 📍 会場: Spotify O-EAST（東京都渋谷区道玄坂2-14-8）\n🕙 
+ 当日の流れ: OPEN 14:00／START 14:30\n🎫 参加方法・当日券: 
+ チケットはイープラスで購入\nℹ️ その他: 詳細は主催
+ 者サイト（https://eplus.jp）で確認\n🤖 公式の案内を AI 
+ が要約したものです。必ず情報元で確認してください
+ 。
 URL:https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
