@@ -169,6 +169,23 @@
   },
   "model": "gpt-5.6-luna"
  },
+ "2026-12-02|https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/": {
+  "generated": "2026-11-08",
+  "hash": "2c47e76594d13ef07dcf9c361800b577faf44080",
+  "memo": {
+   "flow": "2026年12月2日（水）OPEN 18:15／START 19:00",
+   "items": "",
+   "join": "TicketDiveでチケット販売",
+   "notes": "",
+   "other": "",
+   "parts": "",
+   "payment": "",
+   "price": "",
+   "rules": "",
+   "venue": "Spotify O-WEST"
+  },
+  "model": "gpt-5.6-luna"
+ },
  "2026-12-07|https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/": {
   "generated": "2026-11-07",
   "hash": "709e92b1d14c2835944b002f3cc641330abd3237",
@@ -183,6 +200,23 @@
    "price": "",
    "rules": "",
    "venue": "Spotify O-EAST（東京都渋谷区道玄坂2-14-8）"
+  },
+  "model": "gpt-5.6-luna"
+ },
+ "2026-12-10|https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/": {
+  "generated": "2026-11-08",
+  "hash": "7e63e5df7868b80467bf96dc215834bcc563c218",
+  "memo": {
+   "flow": "2026年12月10日（木）OPEN 11:30／START 12:15",
+   "items": "",
+   "join": "チケットはTicketDiveで販売",
+   "notes": "",
+   "other": "",
+   "parts": "",
+   "payment": "",
+   "price": "",
+   "rules": "",
+   "venue": "Shibuya LOVEZ"
   },
   "model": "gpt-5.6-luna"
  },

@@ -1,0 +1,35 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:f5b90bb17c42ca47@takaneko-data-mine
+DTSTAMP:20261108T131735Z
+DTSTART;TZID=Asia/Tokyo:20261210T121500
+DTEND;TZID=Asia/Tokyo:20261210T141500
+SUMMARY:ッスッゴイライブ-8th Anniversary SP-
+LOCATION:Shibuya LOVEZ
+DESCRIPTION:時間: OPEN 11:30 / START 12:15\n出演: グループ（全員
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%8
+ 3%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/\n\n【参加メモ】\n📍 会
+ 場: Shibuya LOVEZ\n🕙 当日の流れ: 2026年12月10日（木）OPEN 1
+ 1:30／START 12:15\n🎫 参加方法・当日券: チケットはTicketDi
+ veで販売\n🤖 公式の案内を AI が要約したものです。必
+ ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e
+ 3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

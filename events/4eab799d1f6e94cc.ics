@@ -14,16 +14,27 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:4eab799d1f6e94cc@takaneko-data-mine
-DTSTAMP:20261108T121731Z
+DTSTAMP:20261108T131735Z
 DTSTART;TZID=Asia/Tokyo:20261202T190000
 DTEND;TZID=Asia/Tokyo:20261202T210000
-SUMMARY:高嶺の猫と、世界の猫と、借りてきた猫。～借り
- てきた猫では終われない！～
+SUMMARY:なみだ色の消しごむ presents 『高嶺の猫と、世界の
+ 猫と、借りてきた猫。～借りてきた猫では終われない
+ ！～』
 LOCATION:Spotify O-WEST(Shibuya O-WEST)
 DESCRIPTION:時間: OPEN 18:15 / START 19:00\n出演: グループ（全員
- ）\nカテゴリ: 公式X\n情報元: https://x.com/takanenofficial/statu
- s/2119403310088167464
-URL:https://x.com/takanenofficial/status/2119403310088167464
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b
+ 6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81
+ %ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a
+ 8/\n\n【参加メモ】\n📍 会場: Spotify O-WEST\n🕙 当日の流
+ れ: 2026年12月2日（水）OPEN 18:15／START 19:00\n🎫 参加方法
+ ・当日券: TicketDiveでチケット販売\n🤖 公式の案内を AI 
+ が要約したものです。必ず情報元で確認してください
+ 。
+URL:https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e
+ 8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9
+ %ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%8
+ 1%ae%e7%8c%ab%e3%81%a8/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
