@@ -504,7 +504,7 @@ def extract_x_candidates(tweet):
         if offset is not None and not is_non_event(title or headline) and "ありがとうございました" not in text:
             base = published - timedelta(days=1) if offset and posted.hour < X_NIGHT_HOUR else published
             venue, times, note = x_details(lines)
-            # 「このあと」「本日」は当日の告知。メンバーの今いる場所を公開しないよう予定一覧には入れない
+            # 「このあと」「本日」は当日の告知。番組（x_publishable）を除き、メンバーの今いる場所を公開しないよう予定一覧には入れない
             found.append({**common, "date": base + timedelta(days=offset), "title": title or headline,
                           "venue": venue, "times": times, "time_note": note, "today": offset == 0,
                           "sure": bool(venue or times or note)})
@@ -578,7 +578,7 @@ def update_x_events(rows, today, recheck_days=None):
     """公式 X の新しい投稿から予定を読み取って x_events.json に足し、保存済みの予定を行データで返す。
 
     実行ログには読み取った候補すべてを、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付けて出す。
-    予定一覧に入れるのは ◎（日付・会場か時間が読めたもの）で、当日の告知（「このあと」「本日」）は除く。
+    予定一覧に入れるのは x_publishable の予定（◎ のうち当日の告知を除いたものと、当日の番組）。
     recheck_days を指定すると、前回の続きではなくその日数分をさかのぼって読み直す（前回の続きの記録は変えない）。
     取得に失敗しても、保存済みの予定は返す。
     """
@@ -595,6 +595,14 @@ def update_x_events(rows, today, recheck_days=None):
     return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()]
 
 
+def x_publishable(c):
+    """予定一覧に入れてよいか。当日の告知（「このあと」「本日」）は、会場のない番組だけ入れる
+    （ラジオ・テレビ・配信の出演は公式の告知どおりで、今いる場所を新たに知らせることにならないため）。"""
+    if c["today"]:
+        return bool(c.get("media")) and not c["venue"] and bool(c["title"])
+    return c["sure"]
+
+
 def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
     """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比較をログに出すだけ。"""
     if provider:
@@ -605,10 +613,10 @@ def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
             ai = None
     else:
         ai = None
-    if any(c["sure"] for c in cands):
+    if any(c["sure"] for c in cands):  # 当日の番組（sure でない）は AI の読み取りを優先し、ルールは予備にする
         pending.pop(tweet["id"], None)
         if ai is not None:
-            rule_days = sorted(c["date"].isoformat() for c in cands if c["sure"] and not c["today"])
+            rule_days = sorted(c["date"].isoformat() for c in cands if x_publishable(c))
             ai_days = sorted(c["date"].isoformat() for c in ai)
             print(f"  比較 {tweet['id']}: ルール {rule_days} / AI {ai_days}{'' if rule_days == ai_days else ' （差分あり）'}")
         return cands
@@ -644,12 +652,14 @@ def read_x_posts(token, rows, events, recheck_days):
             listed = x_listed(c, official)
             time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
             extra = "  ".join(s for s in (time, f"＠{c['venue']}" if c["venue"] else "") if s)
-            mark = ("?（要確認・公開しない）" if not c["sure"] else "◎（当日の告知・公開しない）" if c["today"] else "◎")
+            publish = x_publishable(c)
+            mark = ("◎（当日の番組）" if publish and c["today"] else "◎" if publish
+                    else "◎（当日の告知・公開しない）" if c["sure"] else "?（要確認・公開しない）")
             status = "公式に掲載済み" if listed else "公式に未掲載"
             print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  [{status}]  {c['url']}")
-            counts["◎" if c["sure"] else "?"] += 1
-            counts["◎ 掲載済み"] += c["sure"] and listed
-            if c["sure"] and not c["today"]:
+            counts["◎" if c["sure"] or publish else "?"] += 1
+            counts["◎ 掲載済み"] += (c["sure"] or publish) and listed
+            if publish:
                 # 同じ投稿・同じ日付の予定は読み直した内容で置き換える
                 events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
                 events.append(x_event(c))
@@ -1328,6 +1338,8 @@ def x_llm_read(text, provider, key):
 def x_llm_day(event, text, posted):
     """予定の日付をコードで決める。LLM には日付の計算をさせない。決まらなければ None。"""
     published = posted.date()
+    if event["when"] == "today":
+        return published
     if event["when"] == "tomorrow":
         # 「#あしたのたかねこ」と同じく、深夜の投稿の「明日」は投稿日の当日
         return published + timedelta(days=0 if posted.hour < X_NIGHT_HOUR else 1)
@@ -1345,16 +1357,21 @@ def x_time_in_text(value, text):
 
 def x_llm_reject(event, text, posted):
     """読み取った予定を公開しない理由を返す。公開してよければ None。"""
-    if event["when"] == "today":
-        return "当日の告知"  # メンバーの今いる場所を公開しない
+    program = event["media"] in MEDIA_WORDS and not event["venue"]  # 会場のない番組
+    if event["when"] == "today" and not program:
+        return "当日の告知"  # メンバーの今いる場所を公開しない（x_publishable と同じ扱い）
     day = x_llm_day(event, text, posted)
     if day is None:
         return "日付が決まらない"
-    if not posted.date() < day <= posted.date() + timedelta(days=366):
+    first = posted.date() if event["when"] == "today" else posted.date() + timedelta(days=1)
+    if not first <= day <= posted.date() + timedelta(days=366):
         return "日付が範囲外"
     if not event["title"] or normalize(event["title"]) not in normalize(text):
         return "予定名が本文にない"
-    if not event["start"] or not x_time_in_text(event["start"], text):
+    # 番組は放送時刻を書かない告知（「このあとオンエア」など）があるので、放送局があれば時刻がなくてもよい
+    if not event["start"] and not (program and event["station"]):
+        return "開始時刻が本文にない"
+    if event["start"] and not x_time_in_text(event["start"], text):
         return "開始時刻が本文にない"
     if event["end"] and not x_time_in_text(event["end"], text):
         return "終了時刻が本文にない"
@@ -1395,7 +1412,8 @@ def x_llm_candidates(tweet, provider, key, tokens):
         media = "" if event["venue"] else event["media"]
         found.append({**common, "members": members, "names": names, "date": x_llm_day(event, text, posted),
                       "title": event["title"], "venue": event["venue"], "times": times, "time_note": "",
-                      "today": False, "sure": True, "media": media, "station": event["station"] if media else "",
+                      "today": event["when"] == "today", "sure": True, "media": media,
+                      "station": event["station"] if media else "",
                       "ai": True})
     return found
 
