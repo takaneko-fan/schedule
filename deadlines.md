@@ -1,7 +1,7 @@
 # 高嶺のなでしこ 申込・締切一覧
 
 - 取得元: https://takanenonadeshiko.jp/news/ （お知らせ記事の「受付期間」「抽選結果」などの記載）
-- 件数: 290 件（うち済 288 件）
+- 件数: 298 件（うち済 288 件）
 
 お知らせ記事から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・プレイガイドのみの告知など）もあるので、申し込む前に必ず情報元の記事・受付ページを確認してください。
 
@@ -295,5 +295,13 @@
 | ✅ | 2026-11-05(木) | 18:00 | 当落発表 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 11月5日(木)18:00 以降順次発表 |
 | ✅ | 2026-11-06(金) |  | 受付締切 | [11/6 ニューアルバム『A World in Our Colors』発売記念オンラインお話し会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) | 先着販売期間 | 2026年10月29日(木) 20:00~2026年11月6日(金)  各部開始10分後まで |
 | ✅ | 2026-11-06(金) |  | 受付締切 | [11/6 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-1/) | 先着販売期間 | 2026年11月3日(火) 21:00~2026年11月6日(金)各部開始10分後まで |
+|  | 2026-11-09(月) | 21:00 | 受付開始 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 抽選予約販売期間 | 2026年11月9日(月)21:00~2026年11月12日(木)23:59まで |
 |  | 2026-11-09(月) | 23:59 | 受付締切 | [11/22 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1122/) | 販売期間 | 2026年11月2日(月)18:00 ~ 2026年11月9日(月)23:59 |
 |  | 2026-11-09(月) | 23:59 | 入金締切 | [11/15 ニューアルバム『A World in Our Colors』リリース記念イベント at 東京都内某所](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115/) | 事前抽選CD予約販売スケジュール | 11月9日(月)23:59 まで |
+|  | 2026-11-10(火) | 20:00 | 受付開始 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインお話し会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) | 先着販売期間 | 2026年11月10日(火) 20:00~2026年11月20日(金) 各部開始10分後まで |
+|  | 2026-11-12(木) | 23:59 | 受付締切 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 抽選予約販売期間 | 2026年11月9日(月)21:00~2026年11月12日(木)23:59まで |
+|  | 2026-11-13(金) | 23:59 | 当落発表 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 当選連絡 | 11月13日(金) 23:59までに、当選者にメールをお送りいたします。 |
+|  | 2026-11-15(日) | 23:59 | 入金締切 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 支払期日 | 当選確認後、 11月15日(日) 23:59までに、マイページより決済をお願いいたします。 |
+|  | 2026-11-16(月) | 21:00 | 受付開始 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 先着販売期間 | 2026年11月16日(月) 21:00~2026年11月20日(金)各部開始10分後まで |
+|  | 2026-11-20(金) |  | 受付締切 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインお話し会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) | 先着販売期間 | 2026年11月10日(火) 20:00~2026年11月20日(金) 各部開始10分後まで |
+|  | 2026-11-20(金) |  | 受付締切 | [11/20 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-1/) | 先着販売期間 | 2026年11月16日(月) 21:00~2026年11月20日(金)各部開始10分後まで |
