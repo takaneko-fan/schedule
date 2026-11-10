@@ -98,8 +98,8 @@ def build_message(added, updated, removed, deadlines):
     return "\n".join([summary, *shown])
 
 
-def send(topic, message):
-    body = json.dumps({"topic": topic, "title": TITLE, "message": message, "click": SITE_URL}, ensure_ascii=False)
+def send(topic, message, title=TITLE, click=SITE_URL):
+    body = json.dumps({"topic": topic, "title": title, "message": message, "click": click}, ensure_ascii=False)
     # ntfy.sh は IPv6 を /64 単位で数えるので、同じネットワークの他の利用者と 1 日の上限を共有してしまう。IPv4 で送る
     result = subprocess.run(["curl", "-4", "-sS", "--fail-with-body", "--max-time", "15", "--data-binary", "@-", NTFY_URL],
                             input=body.encode(), capture_output=True)

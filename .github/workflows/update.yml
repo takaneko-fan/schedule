@@ -38,6 +38,8 @@ jobs:
           X_BEARER_TOKEN: ${{ secrets.X_BEARER_TOKEN }}
           # 未登録なら更新の通知を送らない
           NTFY_TOPIC: ${{ secrets.NTFY_TOPIC }}
+          # 未登録なら今日の申込のリマインドを送らない
+          NTFY_REMIND_TOPIC: ${{ secrets.NTFY_REMIND_TOPIC }}
         run: ./run_update.sh
 
       # タイムアウトは cancelled になる。チェックアウトの失敗でも送れるよう notify.py を使わない

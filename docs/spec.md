@@ -41,6 +41,7 @@ flowchart TD
 | `fetch_schedule.py` | 取得・統合・出力のすべて（約 890 行、標準ライブラリのみ） |
 | `run_update.sh` | 取得 → 差分があればコミット・push → 通知（GitHub Actions・手動兼用） |
 | `notify.py` | 前後のコミットの CSV を比べ、更新の内容を ntfy で通知する（標準ライブラリのみ） |
+| `remind.py` | 今日締切の申込と、今日始まる先着販売を ntfy で知らせる（たかねこリマインド） |
 | `.github/workflows/update.yml` | `run_update.sh` を 1 日 8 回セルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
@@ -337,7 +338,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 `run_update.sh` の処理：
 
 1. `git pull --ff-only` で最新にする。
-2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。
+2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。続けて `python3 remind.py` で今日の申込を知らせる（予定に変化がない回も実行。失敗しても続行）。
 3. `schedule.*` と `deadlines.*` の 6 ファイルと `memos.json`・`events/`・`x_events.json` を `git add` する。差分がなければ「予定に変化なし」で終了。
 4. `feat: YYYY-MM-DD HH:MMの登録`（日本時間の日時）でコミットし、push する。
 5. `python3 notify.py` で更新の内容を通知する。通知に失敗しても `run_update.sh` は失敗にしない。
@@ -357,6 +358,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 | API キー | リポジトリの Secrets の `OPENAI_API_KEY` / `GEMINI_API_KEY`。未登録なら既存の参加メモだけを使う |
 | X のトークン | Secrets の `X_BEARER_TOKEN`。未登録なら公式 X の確認を飛ばす |
 | 通知のトピック | Secrets の `NTFY_TOPIC`。未登録なら通知を送らない |
+| リマインドのトピック | Secrets の `NTFY_REMIND_TOPIC`。未登録ならリマインドを送らない |
 | 失敗時 | 安全策の停止や取得エラーで実行が失敗し、GitHub から通知メールが届く。`update.yml` の最後のステップが ntfy にも優先度を上げて通知する（タイムアウトを含む） |
 | 公開リポジトリの対策 | 外部からのプルリクエストのワークフロー実行は、毎回承認が必要な設定にしている |
 
@@ -400,6 +402,19 @@ CSV の列が変わったコミットでは、そのファイルは比較しま�
 通知は IPv4 で送ります。ntfy.sh の無料枠（1 日 250 件）は IPv6 では /64 単位で数えられ、VPS と同じネットワークの他の利用者と共有になるためです（2026-11-06 に IPv6 側で送信の覚えがない 110 件を確認し、429 で通知に失敗した）。
 
 VPS やランナーが止まっていると更新自体が動かないので、失敗の通知も届きません。
+
+### たかねこリマインド（`remind.py`）
+
+その日に申込で動く必要があるものを、更新の通知とは別の ntfy トピック（`NTFY_REMIND_TOPIC`）に知らせます。公式の「今日の予定」の告知と重ならない、締切のリマインドに絞っています。
+
+| 項目 | 内容 |
+| --- | --- |
+| 対象 | `deadlines.csv` の今日の行のうち、受付締切・入金締切と、先着販売の受付開始（`detail` に「先着」） |
+| タイミング | 日本時間 9 時（`REMIND_HOUR`）以降の最初の更新。0:17 の更新では送らない |
+| 二重送信の防止 | 送った項目を `~/.local/state/takaneko-fan/remind_state.json`（`REMIND_STATE_PATH`）に記録する。同じ日にあとから増えた項目は、次の更新でその分だけ送る |
+| 本文 | 「・23:59 入金締切 11/20 オンラインサイン会」の形で時刻順。時刻のない締切は「時刻なし」。6 行を超える分は「ほか○件」 |
+
+`python3 remind.py --dry-run --now 2026-11-15T09:17` で、送らずに本文を確かめられます。
 
 ### 主なオプション
 
