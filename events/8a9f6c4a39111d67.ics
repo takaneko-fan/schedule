@@ -1,0 +1,31 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:8a9f6c4a39111d67@takaneko-data-mine
+DTSTAMP:20261110T163619Z
+DTSTART;TZID=Asia/Tokyo:20261114T080000
+DTEND;TZID=Asia/Tokyo:20261114T110000
+SUMMARY:【ラジオ】【葉月・東山】ラジオ土曜便（岐阜放
+ 送）
+DESCRIPTION:時間: 8:00〜11:00\n出演: 葉月紗蘭、東山恵里沙\n
+ カテゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報元: 
+ https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-sc
+ hedule/
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign
+ -schedule/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
