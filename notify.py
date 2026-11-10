@@ -17,11 +17,16 @@ import re
 import subprocess
 from datetime import datetime
 
-from fetch_schedule import JST, load_env, media_prefix
+from fetch_schedule import GROUP, JST, MEMBERS, load_env, media_prefix, normalize, shares_phrase, time_label
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
 TITLE = "高嶺のなでしこ 更新"
+IMPORTANT_TITLE = "高嶺のなでしこ 予定の変更あり"  # 日時・会場・出演の変更や削除があるとき
+IMPORTANT_PRIORITY = 4  # ntfy の優先度（3 が通常）
+MAX_IMPORTANT = 5  # 本文に出す重要な変更の数
+MAX_DECIDED = 3  # 本文に出す決定・追記の数
+TIME_FIELDS = ("open", "start", "end", "time_note")
 NOTIFY_IGNORE_COLUMNS = {"done"}  # ここに入れた列だけの変更は通知しない
 MAX_LABELS = 3  # 本文に出す予定名の数。残りは「ほか○件」にまとめる
 MAX_LABEL_LENGTH = 28
@@ -52,13 +57,61 @@ def content(row):
 
 
 def diff_schedule(old_rows, new_rows, today):
-    """(追加, 変更, 削除) を返す。ID が変わった予定は追加と削除の両方に出る。"""
+    """(追加, 変更の (前, 後) の組, 削除) を返す。
+    ID は日付と情報元から作るので、日付や情報元が変わると削除と追加に見え、同じ記事・同じ日の予定が複数あると
+    並びの変化で ID が入れ替わることもある。予定名が違う同じ ID は別の予定とし、削除と追加のうち
+    同じ情報元か同じ日付で予定名の近い組を、同じ予定の変更として扱う。"""
     old = {r["uid"]: r for r in old_rows}
     new = {r["uid"]: r for r in new_rows}
-    added = [r for uid, r in new.items() if uid not in old and r["date"] >= today]
-    updated = [r for uid, r in new.items() if uid in old and content(r) != content(old[uid]) and r["date"] >= today]
-    removed = [r for uid, r in old.items() if uid not in new and r["date"] >= today]
+    same = {uid for uid in old.keys() & new.keys() if shares_phrase(old[uid]["title"], new[uid]["title"])
+            or old[uid]["title"] == new[uid]["title"]}
+    added = [r for uid, r in new.items() if uid not in same and r["date"] >= today]
+    updated = [(old[uid], r) for uid, r in new.items() if uid in same and content(r) != content(old[uid]) and r["date"] >= today]
+    removed = [r for uid, r in old.items() if uid not in same and r["date"] >= today]
+    for gone in list(removed):
+        moved = next((r for r in added if (r["url"] == gone["url"] or r["date"] == gone["date"])
+                      and shares_phrase(r["title"], gone["title"])), None)
+        if moved:
+            removed.remove(gone)
+            added.remove(moved)
+            updated.append((gone, moved))
     return added, updated, removed
+
+
+def member_names(row):
+    if row["members"] == GROUP:
+        return "全員"
+    return "・".join(last for full, last, _ in MEMBERS if full in row["members"]) or row["members"]
+
+
+def classify(old, new):
+    """変更を (区分, 種類, 変更前, 変更後) のリストにする。区分は important（見逃すと困る変更）か
+    decided（未定だったものが決まった・表記が詳しくなった）。どちらでもない変更（メモ・URL など）は含めない。"""
+    out = []
+    if old["date"] != new["date"]:
+        out.append(("important", "日付変更", month_day(old["date"]), month_day(new["date"])))
+    changed = [f for f in TIME_FIELDS if old[f] != new[f]]
+    if changed:
+        # すでに書かれていた時刻が変わった・消えたなら変更、空だった欄が埋まっただけなら決定
+        important = any(old[f] for f in changed)
+        out.append(("important" if important else "decided", "時刻変更" if important else "時刻決定",
+                    time_label(old) or "未定", time_label(new) or "未定"))
+    a, b = normalize(old["venue"]), normalize(new["venue"])
+    if a != b and b:
+        if not a:
+            out.append(("decided", "会場決定", "", new["venue"]))
+        elif a in b or b in a:  # 「ららぽーと立川立飛」→「ららぽーと立川立飛2F イベント広場」のような追記
+            out.append(("decided", "会場の追記", old["venue"], new["venue"]))
+        elif shares_phrase(old["venue"], new["venue"], 6):  # 「Spotify O-EAST(Shibuya O-EAST)」→「渋谷Spotify O-EAST」
+            out.append(("decided", "会場の表記", old["venue"], new["venue"]))
+        else:
+            out.append(("important", "会場変更", old["venue"], new["venue"]))
+    if old["members"] != new["members"]:
+        if old["members"] == GROUP:
+            out.append(("decided", "出演決定", "", member_names(new)))
+        else:
+            out.append(("important", "出演変更", member_names(old), member_names(new)))
+    return out
 
 
 def diff_deadlines(old_rows, new_rows, today):
@@ -82,24 +135,53 @@ def month_day(iso_date):
     return f"{int(month)}/{int(day)}"
 
 
+def name(row):
+    return f"{media_prefix(row)}{short_title(row['title'])}"
+
+
+def clip(text, limit=30):
+    """部制の時間などの長い値を、Watch でも読める長さにする。"""
+    text = " ".join(text.split())
+    return text if len(text) <= limit else text[:limit - 1] + "…"
+
+
+def capped(lines, limit):
+    lines = list(dict.fromkeys(lines))
+    return lines[:limit] + ([f"ほか{len(lines) - limit}件"] if len(lines) > limit else [])
+
+
 def build_message(added, updated, removed, deadlines):
-    """通知の本文を返す。通知するものがなければ None。"""
-    counts = [("新規", added), ("変更", updated), ("削除", removed), ("申込", deadlines)]
-    summary = "・".join(f"{name} {len(rows)}件" for name, rows in counts if rows)
-    if not summary:
-        return None
-    labels = [f"{month_day(r['date'])} {media_prefix(r)}{short_title(r['title'])}" for r in added + updated]
-    labels += [f"{month_day(r['date'])} {media_prefix(r)}{short_title(r['title'])}（削除）" for r in removed]
+    """(通知の本文, 重要な変更があるか) を返す。通知するものがなければ (None, False)。
+    重要な変更（日時・会場・出演の変更と削除）と決定・追記は 1 件ずつ書き、それ以外は件数と予定名だけにする。"""
+    important, decided, others = [], [], []
+    for old, new in updated:
+        changes = classify(old, new)
+        for level, kind, before, after in changes:
+            when = "" if kind == "日付変更" else f"{month_day(new['date'])} "
+            if level == "important":
+                important.append(f"⚠️ {kind} {when}{name(new)} {clip(before)}→{clip(after)}")
+            else:
+                decided.append(f"✅ {kind} {when}{name(new)} {clip(after)}")
+        if not changes:
+            others.append(new)
+    important += [f"⚠️ 削除 {month_day(r['date'])} {name(r)}" for r in removed]
+    counts = [("新規", added), ("変更", others), ("申込", deadlines)]
+    summary = "・".join(f"{label} {len(rows)}件" for label, rows in counts if rows)
+    if not (important or decided or summary):
+        return None, False
+    labels = [f"{month_day(r['date'])} {name(r)}" for r in added + others]
     labels += [f"{month_day(r['date'])} {r['kind']} {short_title(r['event'])}" for r in deadlines]
-    labels = list(dict.fromkeys(labels))  # 同じイベントの部ごとの行を 1 つにする
-    shown = labels[:MAX_LABELS]
-    if len(labels) > MAX_LABELS:
-        shown[-1] += f" ほか{len(labels) - MAX_LABELS}件"
-    return "\n".join([summary, *shown])
+    lines = capped(important, MAX_IMPORTANT) + capped(decided, MAX_DECIDED)
+    if summary:
+        lines += [summary, *capped(labels, MAX_LABELS)]
+    return "\n".join(lines), bool(important)
 
 
-def send(topic, message, title=TITLE, click=SITE_URL):
-    body = json.dumps({"topic": topic, "title": title, "message": message, "click": click}, ensure_ascii=False)
+def send(topic, message, title=TITLE, click=SITE_URL, priority=None):
+    payload = {"topic": topic, "title": title, "message": message, "click": click}
+    if priority:
+        payload["priority"] = priority
+    body = json.dumps(payload, ensure_ascii=False)
     # ntfy.sh は IPv6 を /64 単位で数えるので、同じネットワークの他の利用者と 1 日の上限を共有してしまう。IPv4 で送る
     result = subprocess.run(["curl", "-4", "-sS", "--fail-with-body", "--max-time", "15", "--data-binary", "@-", NTFY_URL],
                             input=body.encode(), capture_output=True)
@@ -118,17 +200,18 @@ def main():
     load_env()
     schedule = read_pair(args.old, args.new, "schedule.csv")
     deadlines = read_pair(args.old, args.new, "deadlines.csv")
-    message = build_message(*(diff_schedule(*schedule, args.today) if schedule else ([], [], [])),
-                            diff_deadlines(*deadlines, args.today) if deadlines else [])
+    message, important = build_message(*(diff_schedule(*schedule, args.today) if schedule else ([], [], [])),
+                                       diff_deadlines(*deadlines, args.today) if deadlines else [])
+    title = IMPORTANT_TITLE if important else TITLE
     if message is None:
         print("通知する変更なし")
     elif args.dry_run:
-        print(message)
+        print(f"[{title}]\n{message}")
     elif not os.environ.get("NTFY_TOPIC"):
         print("NTFY_TOPIC が未設定のため通知しません")
     else:
-        send(os.environ["NTFY_TOPIC"], message)
-        print("通知を送りました")
+        send(os.environ["NTFY_TOPIC"], message, title, priority=IMPORTANT_PRIORITY if important else None)
+        print("通知を送りました（重要な変更あり）" if important else "通知を送りました")
 
 
 if __name__ == "__main__":
