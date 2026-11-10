@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）、Eventernote （公式X等の告知の補完・非公式）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 64 件（うち済 39 件）
+- 件数: 64 件（うち済 40 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -208,7 +208,7 @@
 |:-:|---|---|---|---|
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2027-06-28(月) |  | [✿橋本桃呼誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -245,7 +245,7 @@
 | ✅ | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 | ✅ | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 | ✅ | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
 |  | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 |  | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | 東京都内某所 |
@@ -416,7 +416,7 @@
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
 | ✅ | 2026-10-30(金) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
 |  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
@@ -455,7 +455,7 @@
 | ✅ | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 | ✅ | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 | ✅ | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
 |  | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 |  | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | 東京都内某所 |
@@ -552,7 +552,7 @@
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 | ✅ | 2026-11-05(木) | 7:30〜10:00 | [【ラジオ】MORNING SPLASH](https://x.com/takanenofficial/status/2117994023311012070) |  |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -590,7 +590,7 @@
 | ✅ | 2026-11-06(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1106-2/) |  |
 | ✅ | 2026-11-07(土) | OPEN 12:00 / START 12:30 | [産業能率大学 第61回産能祭](https://takanenonadeshiko.jp/events/event/%e7%94%a3%e6%a5%ad%e8%83%bd%e7%8e%87%e5%a4%a7%e5%ad%a6-%e7%ac%ac61%e5%9b%9e%e7%94%a3%e8%83%bd%e7%a5%ad/) | 産業能率大学 自由が丘キャンパス 体育館 |
 | ✅ | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) |
 |  | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 |  | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | 東京都内某所 |
@@ -817,7 +817,7 @@
 | ✅ | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター | 城月菜央、松本ももな |
 | ✅ | 2026-11-07(土) | 20:30〜21:00 | [【ラジオ】IN OUR NIGHT（FM AICHI）](https://x.com/takanenofficial/status/2118697409928999107) |  | 葉月紗蘭、東山恵里沙 |
 | ✅ | 2026-11-08(日) | 12:00 START（優先エリア入場11:40） ／ 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at アリオ橋本](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-2/) | アリオ橋本 1F屋外イベント広場 | グループ（全員） |
-|  | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  | 橋本桃呼、日向端ひな、籾山ひめり |
+| ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  | 橋本桃呼、日向端ひな、籾山ひめり |
 |  | 2026-11-11(水) | OPEN 16:00 / START 17:00 | [【M.M.S】Massive Music Showcase Vol.1](https://takanenonadeshiko.jp/events/event/%e3%80%90m-m-s%e3%80%91massive-music-showcase-vol-1/) | Spotify O-EAST(Shibuya O-EAST) | グループ（全員） |
 |  | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ | グループ（全員） |
 |  | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | 東京都内某所 | グループ（全員） |
