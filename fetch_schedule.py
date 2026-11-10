@@ -1074,8 +1074,51 @@ def collect_deadlines(posts, end, today):
     return rows
 
 
+def deadline_event(event):
+    """「11/20 ニューアルバム『…』発売記念オンラインサイン会」→「11/20 発売記念オンラインサイン会」。
+    アルバム名などの共通部分だけを外し、何のイベントか分かる部分と会場は残す。"""
+    text = re.sub(r"^(\d{1,2}/\d{1,2})?\s*(高嶺のなでしこ\s*)?(ニューアルバム\s*)?(『[^』]*』\s*)?", r"\1 ", event).strip()
+    text = re.sub(r"\s+at\s+(.+)$", r"（\1）", text)  # 「… at 東京都内某所」→「…（東京都内某所）」
+    return text.strip("「」") or event
+
+
+def deadline_label(row):
+    """何の期限か。「抽選の締切」「先着販売の開始」「オフィシャル先行受付の締切」「入金締切」など。"""
+    kind, detail = row["kind"], row["detail"].strip("『』")
+    start = kind == "受付開始"
+    if kind in ("入金締切", "当落発表", "一般発売") or detail == "支払期日":
+        return kind
+    if "先着" in detail:
+        return "先着販売の開始" if start else "先着販売の締切"
+    if "抽選" in detail:
+        return "抽選の受付開始" if start else "抽選の締切"
+    if "先行" in detail:
+        return f"{detail}の{'開始' if start else '締切'}"
+    if "応募" in detail:
+        return "応募の開始" if start else "応募の締切"
+    if detail in ("", "販売期間", "販売開始"):
+        return "販売開始" if start else "販売の締切"
+    return f"{kind}（{detail}）"
+
+
+def deadline_time_text(row):
+    """時刻の表記。「21:00〜」「23:59まで」。締切の時刻が記事になければ「各部開始10分後まで」のような原文の表記。"""
+    if row["time"]:
+        return row["time"] + ("〜" if row["kind"] in ("受付開始", "一般発売") else "まで" if "締切" in row["kind"] else "")
+    if "締切" not in row["kind"]:
+        return ""
+    m = re.search(r"[~〜～]\s*([^~〜～]+)$", row["note"])
+    return re.sub(r"^.*?\d{1,2}日\s*[(（][^)）]*[)）]\s*", "", m.group(1)).strip() if m else ""
+
+
+def add_deadline_labels(rows):
+    """Web 版・リマインド・カレンダーで使う表示用の列を足す。"""
+    for r in rows:
+        r["label"], r["time_text"], r["event_short"] = deadline_label(r), deadline_time_text(r), deadline_event(r["event"])
+
+
 def deadline_title(row):
-    return f"【{row['kind']}】{row['event']}" + (f"（{row['detail']}）" if row["detail"] else "")
+    return f"【{row['label']}】{row['event_short']}"
 
 
 def write_deadlines_markdown(rows, path):
@@ -1088,20 +1131,20 @@ def write_deadlines_markdown(rows, path):
         "お知らせ記事から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・"
         "プレイガイドのみの告知など）もあるので、申し込む前に必ず情報元の記事・受付ページを確認してください。",
         "",
-        "| 済 | 日付 | 時刻 | 種別 | イベント | 区分 | 記事の記載 |",
-        "|:-:|---|---|---|---|---|---|",
+        "| 済 | 日付 | 時刻 | 内容 | イベント | 記事の記載 |",
+        "|:-:|---|---|---|---|---|",
     ]
     for r in rows:
         out.append("| " + " | ".join([
-            "✅" if r["done"] else "", f"{r['date']}({r['weekday']})", r["time"], r["kind"],
-            f"[{md_escape(r['event'])}]({r['url']})", md_escape(r["detail"]), md_escape(r["note"]),
+            "✅" if r["done"] else "", f"{r['date']}({r['weekday']})", md_escape(r["time_text"]), r["label"],
+            f"[{md_escape(r['event_short'])}]({r['url']})", md_escape(r["note"]),
         ]) + " |")
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out) + "\n")
 
 
 def write_deadlines_csv(rows, path):
-    fields = ["done", "date", "weekday", "time", "kind", "event", "detail", "note", "url"]
+    fields = ["done", "date", "weekday", "time", "kind", "event", "detail", "note", "url", "label", "time_text", "event_short"]
     with open(path, "w", encoding="utf-8-sig", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=fields, extrasaction="ignore")
         writer.writeheader()
@@ -1865,6 +1908,7 @@ def main():
     print(f"1 件ずつの .ics: {events_dir}/（{n} 件を更新）")
 
     deadlines = collect_deadlines(posts, args.end, today)
+    add_deadline_labels(deadlines)
     for r in deadlines:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     base = args.deadlines

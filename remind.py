@@ -12,10 +12,9 @@ import argparse
 import csv
 import json
 import os
-import re
 from datetime import datetime
 
-from fetch_schedule import JST, load_env, time_key
+from fetch_schedule import JST, add_deadline_labels, load_env, time_key
 from notify import SITE_URL, send
 
 TITLE = "たかねこリマインド"
@@ -34,44 +33,9 @@ def item_key(row):
     return "|".join(row[k] for k in ("date", "time", "kind", "event", "detail"))
 
 
-def event_name(event):
-    """「11/20 ニューアルバム『…』発売記念オンラインサイン会」→「11/20 発売記念オンラインサイン会」。
-    アルバム名などの共通部分だけを外し、何のイベントか分かる部分と会場は残す。"""
-    text = re.sub(r"^(\d{1,2}/\d{1,2})?\s*(高嶺のなでしこ\s*)?(ニューアルバム\s*)?(『[^』]*』\s*)?", r"\1 ", event).strip()
-    text = re.sub(r"\s+at\s+(.+)$", r"（\1）", text)  # 「… at 東京都内某所」→「…（東京都内某所）」
-    return text.strip("「」") or event
-
-
-def what(row):
-    """何の期限か。「入金締切」「先着販売の締切」「受付締切（オフィシャル先行受付）」など。"""
-    detail = row["detail"].strip("『』")
-    if row["kind"] == "受付開始":
-        return "先着販売の開始"
-    if "先着" in detail:
-        return "先着販売の締切"
-    if row["kind"] == "入金締切" or detail in ("支払期日", "販売期間"):
-        return row["kind"]
-    if "抽選" in detail:
-        return "抽選の締切"
-    if "先行" in detail:
-        return f"{detail}の締切"  # 「オフィシャル先行受付の締切」など、どの先行か分かるように
-    if "応募" in detail:
-        return "応募の締切"
-    return f"{row['kind']}（{detail}）"
-
-
-def when(row):
-    """時刻。記事に時刻がなければ「各部開始10分後まで」のような締切の表記を使う。"""
-    if row["time"]:
-        return row["time"] + ("〜" if row["kind"] == "受付開始" else "まで")
-    m = re.search(r"[~〜～]\s*([^~〜～]+)$", row["note"])
-    tail = re.sub(r"^.*?\d{1,2}日\s*[(（][^)）]*[)）]\s*", "", m.group(1)).strip() if m else ""
-    return tail or "時刻の記載なし"
-
-
 def build_message(rows, day):
     """1 件を 2 行（イベント名と、何の期限か・時刻）で書く。"""
-    items = list(dict.fromkeys((event_name(r["event"]), f"{what(r)} {when(r)}")
+    items = list(dict.fromkeys((r["event_short"], f"{r['label']} {r['time_text'] or '時刻の記載なし'}")
                                for r in sorted(rows, key=lambda r: (time_key(r["time"]), r["event"]))))
     lines = [f"📅 今日（{int(day[5:7])}/{int(day[8:])}）の申込"]
     for event, deadline in items[:MAX_ITEMS]:
@@ -109,6 +73,7 @@ def main():
     load_env()
     with open("deadlines.csv", encoding="utf-8-sig") as f:
         rows = [r for r in csv.DictReader(f) if r["date"] == day and is_target(r)]
+    add_deadline_labels(rows)  # 列のない古い deadlines.csv でも動くように作り直す
     state = load_state()
     sent = set(state.get("sent", [])) if state.get("date") == day else set()
     new = [r for r in rows if item_key(r) not in sent]

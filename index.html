@@ -133,15 +133,15 @@
   details.dl { margin-top: 6px; font-size: .82rem; }
   details.dl summary { cursor: pointer; color: var(--accent); width: fit-content; }
   details.dl ul { list-style: none; margin: 6px 0 0; padding: 0; }
-  details.dl li { display: grid; grid-template-columns: 5.6em 3.4em 4.6em 1fr; gap: 0 6px; padding: 2px 0; border-top: 1px dashed var(--line); }
+  details.dl li { display: grid; grid-template-columns: 5.6em 7.4em 1fr; gap: 0 6px; padding: 2px 0; border-top: 1px dashed var(--line); }
   details.dl li:first-child { border-top: 0; }
   details.dl li.past { color: var(--muted); text-decoration: line-through; }
   details.dl li.next { font-weight: 700; }
-  details.dl .kind { white-space: nowrap; }
+  details.dl .part { margin-right: .5em; padding: 0 .4em; border: 1px solid var(--line); border-radius: 4px; white-space: nowrap; }
   details.dl a { color: inherit; overflow-wrap: anywhere; }
   details.dl .ai { margin: 4px 0 0; color: var(--muted); font-size: .75rem; }
   @media (max-width: 600px) {
-    details.dl li { grid-template-columns: 5.6em 3.4em 1fr; }
+    details.dl li { grid-template-columns: 5.6em 1fr; }
     details.dl li .what { grid-column: 1 / -1; padding-left: .5em; }
   }
 
@@ -402,19 +402,35 @@ function deadlinesFor(r) {
   return found;
 }
 
+// 1 つの予定に別々のイベント（サイン会とお話し会など）の申込が結び付いているとき、どれの申込かを示す短い名前。
+// 共通の部分（日付やアルバム名など）を除いた残り。イベントが 1 つなら何も出さない
+function deadlineParts(list) {
+  const names = [...new Set(list.map(d => d.event_short || d.event))];
+  const parts = new Map();
+  if (names.length < 2) return parts;
+  const dated = names.map(n => n.match(/^(\d{1,2}\/\d{1,2}) (.*)$/));
+  const sameDay = dated.every(x => x && x[1] === dated[0][1]);
+  const bodies = sameDay ? dated.map(x => x[2]) : names;
+  let n = 0;
+  while (bodies.every(b => b[n] !== undefined && b[n] === bodies[0][n])) n++;
+  const short = new Map(names.map((name, i) => [name, bodies[i].slice(n).trim() || name]));
+  for (const d of list) parts.set(d, short.get(d.event_short || d.event));
+  return parts;
+}
+
 function deadlinesHTML(r, today) {
   const list = deadlinesFor(r);
   if (!list.length) return "";
   const next = list.find(d => d.date >= today);
+  const parts = deadlineParts(list);
   const items = list.map(d => {
     const [, m, day] = d.date.split("-").map(Number);
     const cls = d.date < today ? "past" : d === next ? "next" : "";
-    return `<li class="${cls}"><span>${m}/${day}(${esc(d.weekday)})</span><span>${esc(d.time || "")}</span>
-      <span class="kind">${esc(d.kind)}</span>
-      <span class="what"><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.detail || d.kind)}</a></span></li>`;
+    return `<li class="${cls}"><span>${m}/${day}(${esc(d.weekday)})</span><span>${esc(d.time_text || d.time || "")}</span>
+      <span class="what">${parts.get(d) ? `<span class="part">${esc(parts.get(d))}</span>` : ""}<a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.label || d.detail || d.kind)}</a></span></li>`;
   }).join("");
   const open = going.has(r.uid) && next ? " open" : "";
-  return `<details class="dl"${open}><summary>申込・締切 ${list.length} 件${next ? `（次: ${esc(next.kind)} ${Number(next.date.slice(5, 7))}/${Number(next.date.slice(8))}）` : ""}</summary>
+  return `<details class="dl"${open}><summary>申込・締切 ${list.length} 件${next ? `（次: ${esc(next.label || next.kind)} ${Number(next.date.slice(5, 7))}/${Number(next.date.slice(8))}）` : ""}</summary>
     <ul>${items}</ul><p class="ai">お知らせ記事から自動で読み取り、イベント名と日付で自動的に結び付けています。申し込む前に必ず受付ページを確認してください。</p></details>`;
 }
 
