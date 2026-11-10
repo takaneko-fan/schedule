@@ -101,8 +101,10 @@
   .links a { color: var(--accent); }
   details.memo { margin-top: 6px; font-size: .82rem; }
   details.memo summary { cursor: pointer; color: var(--accent); width: fit-content; }
-  details.memo ul { margin: 6px 0 0; padding-left: 1.1em; line-height: 1.55; overflow-wrap: anywhere; }
-  details.memo li { margin: 2px 0; }
+  details.memo .sec { margin-top: 8px; }
+  details.memo .head { font-weight: 700; }
+  details.memo ul { margin: 2px 0 0; padding-left: 1.3em; line-height: 1.55; overflow-wrap: anywhere; }
+  details.memo li { margin: 1px 0; }
   details.memo a { color: var(--accent); }
   details.memo .ai { margin: 6px 0 0; color: var(--muted); font-size: .75rem; }
   .empty, .error { text-align: center; color: var(--muted); padding: 40px 0; }
@@ -361,12 +363,21 @@ function linkify(text) {
 }
 
 // 参加メモ（AI の要約）。最後の行は「AI が要約しました」の注意書き
+// 参加メモの 1 行（「🕙 当日の流れ: A／B／C」）を、見出しと箇条書きにする。形が違う行はそのまま 1 行で出す
+function memoSectionHTML(line) {
+  const i = line.indexOf(": ");
+  if (i < 0) return `<ul><li>${linkify(line)}</li></ul>`;
+  const items = line.slice(i + 2).split("／").map(s => s.trim()).filter(Boolean);
+  return `<div class="sec"><div class="head">${esc(line.slice(0, i))}</div>
+    <ul>${items.map(s => `<li>${linkify(s)}</li>`).join("")}</ul></div>`;
+}
+
 function memoHTML(memo) {
   if (!memo) return "";
   const lines = memo.split("\n").filter(Boolean);
   const note = lines.pop();
   return `<details class="memo"><summary>参加メモ</summary>
-    <ul>${lines.map(l => `<li>${linkify(l)}</li>`).join("")}</ul>
+    ${lines.map(memoSectionHTML).join("")}
     <p class="ai">${esc(note)}</p></details>`;
 }
 
