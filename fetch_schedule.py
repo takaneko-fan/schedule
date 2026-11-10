@@ -1304,7 +1304,7 @@ def call_gemini(model, key, row, source):
 
 # ---- 公式 X の投稿の AI 読み取り（ルールで読めなかった投稿の補助。公開してよいかはコードで判定する） ----
 
-X_LLM_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿から、出演・開催の予定を取り出す係です。
+X_LLM_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿や公式サイトのお知らせ記事から、出演・開催の予定を取り出す係です。
 投稿に書かれた事実だけを返してください。推測で補わないでください。
 
 - 予定とは、これから行われるライブ・イベント・放送・配信の告知です。
@@ -1316,7 +1316,8 @@ X_LLM_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでし
 - station は放送局や配信サービスの名前、venue はイベントの会場です。書かれていなければ空にします。
 - media はラジオ、テレビ、配信のどれかです。会場で行うイベントを配信する場合は空にします。
 - members はその予定に出るメンバーのフルネームの配列です。全員が出る場合と、書かれていない場合は空にします。
-- 1 つの投稿に複数の番組があれば、events に 1 件ずつ入れます。"""
+- 1 つの投稿に複数の番組があれば、events に 1 件ずつ入れます。
+- 日付の見出しの下に複数の予定が並ぶ場合は、それぞれの予定の date_text に、その見出しの日付の表記を入れます。"""
 
 X_LLM_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["is_schedule", "events"],
@@ -1461,6 +1462,81 @@ def x_llm_candidates(tweet, provider, key, tokens):
     return found
 
 
+# ---- お知らせ記事の AI 読み取り（ルールで予定を読めなかった記事の補助。検証は X と同じ x_llm_reject） ----
+
+POST_AI_PATH = "post_ai.json"  # 記事ごとの読み取り結果（本文が変わらなければ読み直さない）
+POST_AI_VERSION = 1  # 指示文・検証を変えたら上げる（全記事を読み直す）
+POST_AI_MAX_CALLS = 60  # 1 回の実行で AI を呼ぶ上限（初回は 1 年分のルールで読めない記事をまとめて読む）
+
+
+def post_llm_events(post, text, provider, key, tokens):
+    """記事を LLM で読み、検証を通った予定を行データ（保存できる形）で返す。"""
+    posted = datetime.fromisoformat(post["date"]).replace(tzinfo=JST)
+    result, usage = x_llm_read(text, provider, key)
+    tokens[:] = [t + u for t, u in zip(tokens, usage)]
+    if not result["is_schedule"]:
+        return []
+    events = []
+    for event in result["events"]:
+        reason = x_llm_reject(event, text, posted)
+        if reason:
+            print(f"  ! 記事の AI 読み取りを不採用（{reason}）: {event['title']} {post['link']}")
+            continue
+        d = x_llm_day(event, text, posted)
+        media = "" if event["venue"] else event["media"]
+        events.append({
+            "date": d.isoformat(), "weekday": "月火水木金土日"[d.weekday()],
+            "open": "", "start": re.sub(r"^0(?=\d:)", "", event["start"]), "end": re.sub(r"^0(?=\d:)", "", event["end"]),
+            "time_note": "", "title": event["title"], "category": "お知らせ記事",
+            "members": "、".join(event["members"]) if 0 < len(event["members"]) < len(MEMBERS) else GROUP,
+            "venue": event["venue"], "url": post["link"], "names": [event["title"]],
+            "media": media, "station": event["station"] if media else "", "ai": True,
+        })
+    return events
+
+
+def post_llm_rows(posts, start, end, path=POST_AI_PATH):
+    """ルールで予定を 1 件も読めなかった記事を AI で読み、番組（ラジオ・テレビ・配信）の予定の行データを返す。
+    ライブや特典会は公式カレンダーにあることが多く、予定名の書き方が違うと二重に載るので、読み取りの記録だけにする。
+    本文が前回と同じ記事は保存した結果を使う。API キーがなければ保存した結果だけを使う。"""
+    try:
+        with open(path, encoding="utf-8") as f:
+            cache = json.load(f)
+    except FileNotFoundError:
+        cache = {}
+    provider, key, _ = memo_provider()
+    model = MEMO_MODELS.get(provider, "")
+    kept, rows, calls, tokens = {}, [], 0, [0, 0]
+    for p in posts:
+        if extract_post_items(p):
+            continue
+        title = html.unescape(re.sub(r"<[^>]+>", "", p["title"]["rendered"])).strip()
+        text = "\n".join([title, *html_to_lines(p["content"]["rendered"])])
+        digest = hashlib.sha1(f"{POST_AI_VERSION}|{model}|{text}".encode()).hexdigest()
+        entry = cache.get(p["link"])
+        if not (entry and entry["hash"] == digest) and key and calls < POST_AI_MAX_CALLS:
+            try:
+                entry = {"hash": digest, "events": post_llm_events(p, text, provider, key, tokens)}
+                calls += 1
+            except Exception as e:  # noqa: BLE001 — 1 件の失敗で全体を止めない。次回読み直す
+                print(f"  ! 記事の AI 読み取り失敗: {p['link']} ({e})")
+        if entry:
+            kept[p["link"]] = entry
+            rows += [dict(e) for e in entry["events"] if e["media"]]
+    text = json.dumps(kept, ensure_ascii=False, indent=1) + "\n"
+    try:
+        with open(path, encoding="utf-8") as f:
+            changed = f.read() != text
+    except FileNotFoundError:
+        changed = True
+    if changed:
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(text)
+    rows = [r for r in rows if start.isoformat() <= r["date"] < end.isoformat()]
+    print(f"記事の AI 読み取り: 予定 {len(rows)} 件（今回 AI で読んだ記事 {calls} 件、入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン）")
+    return rows
+
+
 def memo_provider():
     """(名前, API キー, 呼び出し関数)。キーがなければ (None, "", None)。"""
     if os.environ.get("OPENAI_API_KEY"):
@@ -1504,7 +1580,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
     model = MEMO_MODELS.get(provider, "")
     calls, tokens, kept, created = 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
-        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日", X_CATEGORY))
+        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日", X_CATEGORY)) or r.get("ai")
                 or is_release(r)):  # 発売日の行は参加する予定ではない
             continue
         source = memo_source(r, posts)
@@ -1872,6 +1948,7 @@ def main():
     print(f"{len(posts)} 件のお知らせ記事を確認")
     post_rows = [post_item_to_row(it) for p in posts for it in extract_post_items(p)
                  if args.start <= it["date"] < args.end]
+    post_rows += post_llm_rows(posts, args.start, args.end)  # ルールで読めない記事（ラジオ出演の一覧など）
     # 同じ予定が複数記事に書かれている場合があるので、古い記事→新しい記事の順で統合
     rows = merge_post_rows(rows, sorted(post_rows, key=lambda r: r["date"]))
     # 公式 X の予定は古い投稿から順に統合する（ID の元になる情報元が、後の投稿で変わらないように）

@@ -13,6 +13,7 @@
 | [`schedule.ics`](schedule.ics) | カレンダーアプリ用の iCalendar ファイル |
 | [`deadlines.md`](deadlines.md) | 申込・締切の一覧（受付開始・受付締切・当落発表・入金締切・一般発売） |
 | [`deadlines.csv`](deadlines.csv) / [`deadlines.ics`](deadlines.ics) | 同じ内容の CSV と、カレンダーアプリ用の iCalendar ファイル |
+| [`post_ai.json`](post_ai.json) | ルールで読めないお知らせ記事（ラジオ出演の一覧など）を AI で読み取った結果。本文が変わらない限り再利用する |
 | [`memos.json`](memos.json) | 参加メモ（AI による要約）の保存先。材料が変わらない限り再利用する |
 | [`x_events.json`](x_events.json) | 公式 X の告知から読み取った、これからの予定（日時・予定名・会場など。投稿の本文は保存しない） |
 | [`events/`](events/) | これからの予定を 1 件ずつ入れた iCalendar ファイル（Web 版の「カレンダーに追加」用） |
