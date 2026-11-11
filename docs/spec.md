@@ -44,6 +44,7 @@ flowchart TD
 | `remind.py` | 今日締切の申込と、今日始まる先着販売を ntfy で知らせる（たかねこリマインド） |
 | `.github/workflows/update.yml` | `run_update.sh` を 1 日 8 回セルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
+| `tests/` | `unittest` のテスト。ネットワークにつながず AI も呼ばない（`python3 -m unittest discover -s tests`） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
 
 ## データ仕様
