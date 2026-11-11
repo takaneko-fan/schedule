@@ -7,6 +7,7 @@
 #   例: ops/push_as_app.sh main
 #
 # 必要なもの: curl, openssl, python3
+# push の前に tests/ のテストを実行し、失敗したら push しない
 # 鍵: GitHub App の秘密鍵（.pem）。既定は ~/.config/takaneko-fan/app.pem（本人だけが読める権限にする）
 # App の権限: Contents と Workflows の読み書き（.github/workflows/ を変える push に Workflows が要る）
 set -euo pipefail
@@ -15,6 +16,12 @@ APP_ID="${APP_ID:-5513246}"
 KEY="${APP_KEY:-$HOME/.config/takaneko-fan/app.pem}"
 REPO="takaneko-fan/schedule"
 API="https://api.github.com"
+
+# 0. テストが通らなければ push しない（予定データの定期の更新は run_update.sh の git push で送るので関係しない）
+if ! python3 -m unittest discover -s "$(git rev-parse --show-toplevel)/tests" -q; then
+    echo "テストが失敗したため push しません" >&2
+    exit 1
+fi
 
 b64url() { openssl base64 -A | tr '+/' '-_' | tr -d '='; }
 
