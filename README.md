@@ -89,6 +89,7 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 - 参加メモ用の API キーは、リポジトリの **Settings → Secrets and variables → Actions** の `OPENAI_API_KEY`（または `GEMINI_API_KEY`）を使います。
 - 上の「安全策」で止まったときなど、実行に失敗すると GitHub から通知メールが届きます。
 - Secrets に `NTFY_TOPIC` を登録すると、予定の追加・変更・削除、申込・締切の追加、実行の失敗を [ntfy](https://ntfy.sh/) で通知します。トピック名を知っていれば誰でも読めるので、推測されにくい名前にして公開しないでください。
+- Secrets に `HC_PING_URL`（[healthchecks.io](https://healthchecks.io/) の Ping URL）を登録すると、更新のたびに成功・失敗を連絡し、VPS やランナーが止まって更新が動かないときに healthchecks.io から知らせが届きます。実行時刻を変えたら、healthchecks.io の Cron も合わせてください。
 - Secrets に `NTFY_REMIND_TOPIC` を登録すると、毎日 9 時以降の最初の更新で、今日締切の申込（受付締切・入金締切）と今日始まる先着販売を別のトピックに知らせます（たかねこリマインド）。
 
 ## Web 版で行く予定を決める
