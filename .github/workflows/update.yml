@@ -42,6 +42,24 @@ jobs:
           NTFY_REMIND_TOPIC: ${{ secrets.NTFY_REMIND_TOPIC }}
         run: ./run_update.sh
 
+      # 停止の検知（healthchecks.io）。VPS・ランナー・タイマーが止まって更新が動かないと連絡が途絶え、
+      # healthchecks.io が知らせる。連絡に失敗しても更新は失敗にしない。未登録なら何もしない
+      - name: 停止の検知に成功を知らせる
+        if: success()
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: |
+          [ -n "$HC_PING_URL" ] || exit 0
+          curl -fsS --max-time 10 --retry 3 -o /dev/null "$HC_PING_URL" || echo "停止の検知への連絡に失敗しました"
+
+      - name: 停止の検知に失敗を知らせる
+        if: failure() || cancelled()
+        env:
+          HC_PING_URL: ${{ secrets.HC_PING_URL }}
+        run: |
+          [ -n "$HC_PING_URL" ] || exit 0
+          curl -fsS --max-time 10 --retry 3 -o /dev/null "$HC_PING_URL/fail" || echo "停止の検知への連絡に失敗しました"
+
       # タイムアウトは cancelled になる。チェックアウトの失敗でも送れるよう notify.py を使わない
       # ntfy.sh の 1 日の上限を IPv6 の /64 で他の利用者と共有しないよう、IPv4 で送る
       - name: 失敗を通知
