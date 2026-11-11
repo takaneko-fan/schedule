@@ -44,6 +44,7 @@ flowchart TD
 | `remind.py` | 今日締切の申込と、今日始まる先着販売を ntfy で知らせる（たかねこリマインド） |
 | `.github/workflows/update.yml` | `run_update.sh` を 1 日 8 回セルフホストランナーで実行する |
 | `index.html` | GitHub Pages の Web 版（手書き） |
+| `tests/` | `unittest` のテスト。ネットワークにつながず AI も呼ばない（`python3 -m unittest discover -s tests`） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
 
 ## データ仕様
@@ -440,7 +441,7 @@ VPS やランナーが止まっていると更新自体が動かないので、�
 | 対象 | `deadlines.csv` の今日の行のうち、受付締切・入金締切と、先着販売の受付開始（`detail` に「先着」） |
 | タイミング | 日本時間 9 時（`REMIND_HOUR`）以降の最初の更新。0:17 の更新では送らない |
 | 二重送信の防止 | 送った項目を `~/.local/state/takaneko-fan/remind_state.json`（`REMIND_STATE_PATH`）に記録する。同じ日にあとから増えた項目は、次の更新でその分だけ送る |
-| 本文 | 「・23:59 入金締切 11/20 オンラインサイン会」の形で時刻順。時刻のない締切は「時刻なし」。6 行を超える分は「ほか○件」 |
+| 本文 | 先頭に「📅 今日（11/15）の申込」。1 件を「▶ 11/20 発売記念オンラインサイン会」と「　抽選の締切 23:59まで」の 2 行で、時刻順に書く。時刻のない締切は「時刻の記載なし」。4 件（`MAX_ITEMS`）を超える分は「ほか ○ 件は Web 版で確認してください」 |
 
 `python3 remind.py --dry-run --now 2026-11-15T09:17` で、送らずに本文を確かめられます。
 
