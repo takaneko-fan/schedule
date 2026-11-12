@@ -13,7 +13,7 @@ python3 remind.py || echo "リマインドに失敗しました（更新は続�
 # 申込・締切の記載ミスの可能性も、予定の変化に関係なく知らせる（送ったものは送らない）
 python3 notify.py --warnings || echo "記載ミスの可能性の通知に失敗しました（更新は続けます）"
 
-git add schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json post_ai.json events x_events.json
+git add schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json post_ai.json events x_events.json x_notices.json
 if git diff --cached --quiet; then
     echo "予定に変化なし（コミットしません）"
     exit 0

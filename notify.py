@@ -21,8 +21,8 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 
-from fetch_schedule import (GROUP, JST, MEMBERS, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env, media_prefix, normalize,
-                            shares_phrase, time_label)
+from fetch_schedule import (GROUP, JST, MEMBERS, NOTICE_PREFIX_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
+                            media_prefix, normalize, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -95,6 +95,10 @@ def classify(old, new):
     """変更を (区分, 種類, 変更前, 変更後) のリストにする。区分は important（見逃すと困る変更）か
     decided（未定だったものが決まった・表記が詳しくなった）。どちらでもない変更（メモ・URL など）は含めない。"""
     out = []
+    # 公式 X の中止・欠席の告知で予定名の先頭に付いた【中止】【城月欠席】など
+    before, after = NOTICE_PREFIX_RE.match(old["title"]), NOTICE_PREFIX_RE.match(new["title"])
+    if after and (not before or before.group(1) != after.group(1)):
+        out.append(("important", after.group(1), "", ""))
     if old["date"] != new["date"]:
         out.append(("important", "日付変更", month_day(old["date"]), month_day(new["date"])))
     changed = [f for f in TIME_FIELDS if old[f] != new[f]]
@@ -130,7 +134,7 @@ def diff_deadlines(old_rows, new_rows, today):
 
 def short_title(title):
     """Watch でも読めるよう、グループ名・先頭の日付・アルバムの告知部分を省く。"""
-    full = " ".join(title.split())  # 予定名に入っている改行や U+2028 を空白にする
+    full = NOTICE_PREFIX_RE.sub("", " ".join(title.split()))  # 改行や U+2028 を空白にし、【中止】などは通知の種類で書く
     text = re.sub(r"^(高嶺のなでしこ\s*)?(\d{1,2}/\d{1,2}\s*)?", "", full)
     text = text.rsplit(" at ", 1)[1] if " at " in text else re.sub(r"^.*?(リリース|発売)記念", "", text)
     text = text.strip() or full
@@ -166,7 +170,8 @@ def build_message(added, updated, removed, deadlines):
         for level, kind, before, after in changes:
             when = "" if kind == "日付変更" else f"{month_day(new['date'])} "
             if level == "important":
-                important.append(f"⚠️ {kind} {when}{name(new)} {clip(before)}→{clip(after)}")
+                change = f" {clip(before)}→{clip(after)}" if before or after else ""
+                important.append(f"⚠️ {kind} {when}{name(new)}{change}")
             else:
                 decided.append(f"✅ {kind} {when}{name(new)} {clip(after)}")
         if not changes:
