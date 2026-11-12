@@ -330,6 +330,12 @@ X_MARK_RE = re.compile(r"^[📍⏰🔗🎫🛒🎤🎥🎧📱💬]")
 X_NIGHT_HOUR = 5  # この時刻（日本時間）より前の「#あしたのたかねこ」は前日の夜の投稿とみなす
 X_EVENTS_PATH = "x_events.json"  # 読み取った予定（投稿は一度しか読まないので保存する。本文は保存しない）
 X_CATEGORY = "公式X"
+X_NOTICES_PATH = "x_notices.json"  # 公式 X の中止・欠席の告知（投稿は一度しか読まないので保存する。本文は保存しない）
+# 「【イベント中止のお知らせ】」「城月菜央欠席のお知らせ」「【ミニライブ中止のお知らせ】」のような 1 行目
+X_NOTICE_RE = re.compile(r"^【?(?P<head>[^】\s]*?)(?:の(?:イベント)?)?(?P<kind>中止|欠席)(?:のお知らせ|に関するお知らせ)】?$")
+X_FULL_CANCEL_HEADS = ("", "イベント", "公演", "開催", "ライブ")  # これ以外（ミニライブなど）は一部の中止
+X_NOTICE_NAME_MIN = 6  # 告知の『』「」内の名前と予定名がこの文字数以上一致すれば、その予定への告知とみなす
+NOTICE_PREFIX_RE = re.compile(r"^【([^】]*(?:中止|欠席))】")  # 予定名の先頭に付けた告知の印
 X_NAME_MIN = 8  # 『』内の名前と公式の予定名がこの文字数以上一致すれば同じ予定（グループ名 7 文字だけでは一致させない）
 # 番組の種別。category に足し、カレンダーなどの予定名の先頭に【ラジオ】のように付ける
 # 予定名に含まれる語 → 種別。投稿の語句より優先する。空はリアルイベントも兼ねるなど、番組として扱わない予定
@@ -576,6 +582,7 @@ def x_event_to_row(e):
 
 def update_x_events(rows, today, recheck_days=None):
     """公式 X の新しい投稿から予定を読み取って x_events.json に足し、保存済みの予定を行データで返す。
+    中止・欠席の告知は x_notices.json に足し、保存済みの告知と一緒に (予定の行, 告知) で返す。
 
     実行ログには読み取った候補すべてを、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付けて出す。
     予定一覧に入れるのは x_publishable の予定（◎ のうち当日の告知を除いたものと、当日の番組）。
@@ -583,16 +590,75 @@ def update_x_events(rows, today, recheck_days=None):
     取得に失敗しても、保存済みの予定は返す。
     """
     events = load_x_events()
+    notices = load_x_events(X_NOTICES_PATH)
     token = os.environ.get("X_BEARER_TOKEN")
     if not token:
         print("X: X_BEARER_TOKEN が未設定のため新しい投稿は確認しません")
     else:
         try:
-            events = read_x_posts(token, rows, events, recheck_days)
+            events = read_x_posts(token, rows, events, notices, recheck_days)
         except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても保存済みの予定で続行
             print(f"  ! X 取得失敗: {e}")
     save_x_events(events, today)
-    return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()]
+    save_x_events(notices, today, X_NOTICES_PATH)
+    return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()], notices
+
+
+def x_notice(tweet):
+    """中止・欠席の告知なら、日付・予定名・欠席するメンバーなどを返す（告知でなければ None）。
+    日付は本文の「6/27(土)」、なければ「本日」（投稿日）・「明日」。読めなければ date は空。"""
+    lines = [ln for ln in x_lines(tweet) if ln]
+    m = X_NOTICE_RE.match(lines[0]) if lines else None
+    if not m:
+        return None
+    posted = x_posted(tweet)
+    text = " ".join(lines[1:])
+    d = X_DATE_RE.search(text)
+    day = (infer_date(*d.groups()[:3], posted.date()) if d
+           else posted.date() if "本日" in text
+           else posted.date() + timedelta(days=1) if "明日" in text else None)
+    names = re.findall(r"『\s*(.+?)\s*』", text)
+    names += re.findall(r"「\s*([^「」]+?)\s*」", re.sub(r"『.+?』", "", text))
+    names = [n for n in dict.fromkeys(n.strip() for n in names) if n and not n.startswith("#")]
+    head, kind = m.group("head"), m.group("kind")
+    sub = re.search(r"(\S+?)に(?:変|代)わり、?(\S+?)が出演", text)
+    substitutes = [full for full, _, _ in MEMBERS if sub and full in sub.group(2)]
+    if kind == "欠席":
+        members = [full for full, _, _ in MEMBERS if full in head] or [
+            full for full, _, _ in MEMBERS if full in text and full not in substitutes]
+        # 卒業したメンバーなど MEMBERS にない名前は、1 行目の名前をそのまま使う
+        label = ("・".join(last for full, last, _ in MEMBERS if full in members) or head) + "欠席"
+        status = "absent"
+    else:
+        members = []
+        status = "cancel" if head in X_FULL_CANCEL_HEADS else "partial"
+        label = "中止" if status == "cancel" else f"{head}中止"
+    return {"date": day.isoformat() if day else "", "status": status, "label": label, "names": names,
+            "members": members, "substitutes": substitutes, "url": f"https://x.com/takanenofficial/status/{tweet['id']}",
+            "post_id": tweet["id"], "posted": posted.isoformat(timespec="minutes")}
+
+
+def apply_x_notices(rows, notices):
+    """中止・欠席の告知を予定に反映する。予定名の先頭に【中止】【城月欠席】などを付け、
+    個別メンバーの予定なら欠席するメンバーを外して代わりのメンバーを足す。
+    告知の『』「」内の名前と予定名が一致する予定、なければその日の予定が 1 件だけのときにその予定に付ける。"""
+    for n in sorted(notices, key=lambda n: n["posted"]):
+        same_day = [r for r in rows if r["date"] == n["date"] and r["category"] != CATEGORY_LABELS["birth"]]
+        targets = [r for r in same_day if any(shares_phrase(r["title"], name, X_NOTICE_NAME_MIN) for name in n["names"])]
+        if not targets and len(same_day) == 1:
+            targets = same_day
+        if not targets:
+            print(f"  ! {n['label']}の告知の予定が見つかりません: {n['date']} {' / '.join(n['names'])} {n['url']}")
+            continue
+        for r in targets:
+            prefix = f"【{n['label']}】"
+            if not r["title"].startswith(prefix):
+                r["title"] = prefix + r["title"]
+            if n["status"] == "absent" and r["members"] != GROUP:
+                names = [full for full, _, _ in MEMBERS
+                         if (full in r["members"] and full not in n["members"]) or full in n["substitutes"]]
+                r["members"] = "、".join(names) or GROUP
+            print(f"  ⚠ {n['label']}: {r['date']} {r['title']}")
 
 
 def x_publishable(c):
@@ -631,7 +697,7 @@ def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
     return cands
 
 
-def read_x_posts(token, rows, events, recheck_days):
+def read_x_posts(token, rows, events, notices, recheck_days):
     state = {} if recheck_days else load_x_state()
     tweets, newest = fetch_x_posts(token, state.get("since_id"), recheck_days or X_FIRST_DAYS)
     print(f"X（@takanenofficial）: {len(tweets)} 件の{'投稿を読み直し' if recheck_days else '新しい投稿を確認'}")
@@ -647,6 +713,15 @@ def read_x_posts(token, rows, events, recheck_days):
     official = [r for r in rows if not r["category"].startswith("Eventernote")]
     counts = {"◎": 0, "◎ 掲載済み": 0, "?": 0}
     for t in tweets:
+        notice = x_notice(t)
+        if notice:
+            # 中止・欠席の告知は予定の告知として読まない（AI に読ませると中止の予定を新しく載せかねない）
+            when = notice["date"] or "日付不明"
+            print(f"  ⚠ {notice['label']} {when} {' / '.join(notice['names']) or '（予定名なし）'}  {t['id']}")
+            if notice["date"]:
+                notices[:] = [n for n in notices if n["post_id"] != notice["post_id"]] + [notice]
+            pending.pop(t["id"], None)
+            continue
         for c in read_x_with_llm(t, extract_x_candidates(t), provider, key, pending, tokens):
             d = c["date"]
             listed = x_listed(c, official)
@@ -1699,6 +1774,8 @@ def ics_fold(line):
 
 def ics_summary(row):
     title = re.sub(r"\s+", " ", row["title"]).strip()
+    notice = NOTICE_PREFIX_RE.match(title)
+    title = title[notice.end():] if notice else title
     if row["members"] != GROUP:
         names = [last for full, last, _ in MEMBERS if full in row["members"]]
         if not all(n in title for n in names):
@@ -1706,7 +1783,7 @@ def ics_summary(row):
     title = media_prefix(row) + title
     if row["category"].startswith("Eventernote"):
         title += "（非公式）"
-    return title
+    return (notice.group(0) if notice else "") + title
 
 
 def ics_description(row):
@@ -1833,7 +1910,8 @@ def ics_event(r, suffix="takaneko-data"):
         ev.append(f"LOCATION:{ics_escape(r['venue'])}")
     ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
            f"URL:{r['url']}",
-           "STATUS:" + ("TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
+           "STATUS:" + ("CANCELLED" if r["title"].startswith("【中止】")
+                        else "TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
            "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
     return ev
 
@@ -1969,8 +2047,8 @@ def main():
     # 同じ予定が複数記事に書かれている場合があるので、古い記事→新しい記事の順で統合
     rows = merge_post_rows(rows, sorted(post_rows, key=lambda r: r["date"]))
     # 公式 X の予定は古い投稿から順に統合する（ID の元になる情報元が、後の投稿で変わらないように）
-    x_rows = [r for r in update_x_events(rows, today, args.x_recheck)
-              if args.start.isoformat() <= r["date"] < args.end.isoformat()]
+    x_rows, x_notices = update_x_events(rows, today, args.x_recheck)
+    x_rows = [r for r in x_rows if args.start.isoformat() <= r["date"] < args.end.isoformat()]
     rows = merge_post_rows(rows, sorted(x_rows, key=lambda r: (r["date"], int(r["url"].rsplit("/", 1)[1]))))
     try:
         rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
@@ -1978,6 +2056,7 @@ def main():
         print(f"  ! Eventernote 取得失敗: {e}")
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
+    apply_x_notices(rows, x_notices)
     prev = load_prev_rows(args.csv)
     problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
     if problem:
