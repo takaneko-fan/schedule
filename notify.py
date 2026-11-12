@@ -21,7 +21,7 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 
-from fetch_schedule import (GROUP, JST, MEMBERS, NOTICE_PREFIX_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
+from fetch_schedule import (GROUP, JST, MEMBERS, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
                             media_prefix, normalize, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
@@ -107,7 +107,9 @@ def classify(old, new):
         important = any(old[f] for f in changed)
         out.append(("important" if important else "decided", "時刻変更" if important else "時刻決定",
                     time_label(old) or "未定", time_label(new) or "未定"))
-    a, b = normalize(old["venue"]), normalize(new["venue"])
+    # 「東京都内某所（詳細は後日発表）」のような仮の会場は、未定と同じに扱う
+    a = "" if TBD_VENUE_RE.search(old["venue"]) else normalize(old["venue"])
+    b = normalize(new["venue"])
     if a != b and b:
         if not a:
             out.append(("decided", "会場決定", "", new["venue"]))

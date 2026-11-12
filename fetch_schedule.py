@@ -335,7 +335,7 @@ X_NOTICES_PATH = "x_notices.json"  # 公式 X の中止・欠席の告知（投�
 X_NOTICE_RE = re.compile(r"^【?(?P<head>[^】\s]*?)(?:の(?:イベント)?)?(?P<kind>中止|欠席)(?:のお知らせ|に関するお知らせ)】?$")
 X_FULL_CANCEL_HEADS = ("", "イベント", "公演", "開催", "ライブ")  # これ以外（ミニライブなど）は一部の中止
 X_NOTICE_NAME_MIN = 6  # 告知の『』「」内の名前と予定名がこの文字数以上一致すれば、その予定への告知とみなす
-NOTICE_PREFIX_RE = re.compile(r"^【([^】]*(?:中止|欠席))】")  # 予定名の先頭に付けた告知の印
+NOTICE_PREFIX_RE = re.compile(r"^【([^】]*(?:中止|欠席|延期))】")  # 予定名の先頭に付けた告知の印
 X_NAME_MIN = 8  # 『』内の名前と公式の予定名がこの文字数以上一致すれば同じ予定（グループ名 7 文字だけでは一致させない）
 # 番組の種別。category に足し、カレンダーなどの予定名の先頭に【ラジオ】のように付ける
 # 予定名に含まれる語 → 種別。投稿の語句より優先する。空はリアルイベントも兼ねるなど、番組として扱わない予定
@@ -644,13 +644,21 @@ def apply_x_notices(rows, notices):
     告知の『』「」内の名前と予定名が一致する予定、なければその日の予定が 1 件だけのときにその予定に付ける。"""
     for n in sorted(notices, key=lambda n: n["posted"]):
         same_day = [r for r in rows if r["date"] == n["date"] and r["category"] != CATEGORY_LABELS["birth"]]
-        targets = [r for r in same_day if any(shares_phrase(r["title"], name, X_NOTICE_NAME_MIN) for name in n["names"])]
-        if not targets and len(same_day) == 1:
+        if n.get("target"):  # AI で読んだ告知は、読んだときの予定（情報元か予定名が同じもの）に付ける
+            t = n["target"]
+            targets = [r for r in same_day if r["url"] == t["url"] or shares_phrase(r["title"], t["title"])][:1]
+        else:
+            targets = [r for r in same_day
+                       if any(shares_phrase(r["title"], name, X_NOTICE_NAME_MIN) for name in n["names"])]
+        if not targets and len(same_day) == 1 and not n.get("target"):
             targets = same_day
         if not targets:
             print(f"  ! {n['label']}の告知の予定が見つかりません: {n['date']} {' / '.join(n['names'])} {n['url']}")
             continue
         for r in targets:
+            if n["status"] == "change":
+                apply_x_change(r, n)
+                continue
             prefix = f"【{n['label']}】"
             if not r["title"].startswith(prefix):
                 r["title"] = prefix + r["title"]
@@ -659,6 +667,21 @@ def apply_x_notices(rows, notices):
                          if (full in r["members"] and full not in n["members"]) or full in n["substitutes"]]
                 r["members"] = "、".join(names) or GROUP
             print(f"  ⚠ {n['label']}: {r['date']} {r['title']}")
+
+
+def apply_x_change(row, notice):
+    """変更の告知の値で予定を書き換える。公式の値が変更前のままなら変更後の値にし、
+    すでに変更後の値なら何もしない。どちらとも違えば公式が後から変わったとみなし、公式の値を使う。"""
+    for c in notice["changes"]:
+        field, now = c["field"], row[c["field"]]
+        if normalize(now) == normalize(c["after"]):
+            continue
+        if normalize(now) == normalize(c["before"]):
+            row[field] = c["after"]
+            print(f"  ⚠ {notice['label']}: {row['date']} {row['title']} {now or '未定'}→{c['after']}")
+        else:
+            print(f"  ! 公式の値が告知の後に変わったため反映しません: {row['date']} {row['title']} {field} {now}"
+                  f"（告知: {c['before'] or '未定'}→{c['after']}）")
 
 
 def x_publishable(c):
@@ -738,6 +761,19 @@ def read_x_posts(token, rows, events, notices, recheck_days):
                 # 同じ投稿・同じ日付の予定は読み直した内容で置き換える
                 events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
                 events.append(x_event(c))
+        if provider and X_CHANGE_WORDS_RE.search(" ".join(x_lines(t))):
+            try:
+                change = x_change_read(t, rows + [x_event_to_row(e) for e in events], provider, key, tokens)
+            except Exception as e:  # noqa: BLE001 — 1 件の失敗で全体を止めない。次回読み直す
+                print(f"  ! 変更・中止の AI 読み取り失敗: {t['id']} ({e})")
+                pending[t["id"]] = pending.get(t["id"], 0) + 1
+                if pending[t["id"]] >= X_LLM_MAX_TRIES:
+                    print(f"  ! AI 読み取りを諦めました: {t['id']}")
+                    del pending[t["id"]]
+            else:
+                if change:
+                    print(f"  ⚠ {change['label']}（AI） {change['date']} {change['target']['title']}  {t['id']}")
+                    notices[:] = [n for n in notices if n["post_id"] != t["id"]] + [change]
     print(f"  → ◎ {counts['◎']} 件（うち公式に掲載済み {counts['◎ 掲載済み']} 件） / ? {counts['?']} 件")
     if any(tokens):
         print(f"  AI 読み取り: 入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン")
@@ -1445,25 +1481,25 @@ def gemini_schema(schema):
     return out
 
 
-def x_llm_read(text, provider, key):
+def x_llm_read(text, provider, key, instruction=X_LLM_INSTRUCTION, schema=X_LLM_SCHEMA, name="x_events"):
     """(読み取った dict, (入力トークン, 出力トークン)) を返す。"""
     model = MEMO_MODELS[provider]
     if provider == "openai":
         data = post_json(OPENAI_URL, {
             "model": model,
-            "messages": [{"role": "system", "content": X_LLM_INSTRUCTION}, {"role": "user", "content": text}],
+            "messages": [{"role": "system", "content": instruction}, {"role": "user", "content": text}],
             "response_format": {"type": "json_schema",
-                                "json_schema": {"name": "x_events", "strict": True, "schema": X_LLM_SCHEMA}},
+                                "json_schema": {"name": name, "strict": True, "schema": schema}},
             "reasoning_effort": "low",
         }, {"Authorization": f"Bearer {key}"})
         usage = data.get("usage", {})
         return (json.loads(data["choices"][0]["message"]["content"]),
                 (usage.get("prompt_tokens", 0), usage.get("completion_tokens", 0)))
     data = post_json(GEMINI_URL.format(model=model), {
-        "systemInstruction": {"parts": [{"text": X_LLM_INSTRUCTION}]},
+        "systemInstruction": {"parts": [{"text": instruction}]},
         "contents": [{"role": "user", "parts": [{"text": text}]}],
         "generationConfig": {"temperature": 0, "responseMimeType": "application/json",
-                             "responseSchema": gemini_schema(X_LLM_SCHEMA)},
+                             "responseSchema": gemini_schema(schema)},
     }, {"x-goog-api-key": key})
     usage = data.get("usageMetadata", {})
     return (json.loads(data["candidates"][0]["content"]["parts"][0]["text"]),
@@ -1552,6 +1588,167 @@ def x_llm_candidates(tweet, provider, key, tokens):
                       "station": event["station"] if media else "",
                       "ai": True})
     return found
+
+
+# ---- 公式 X の変更・中止の告知の AI 読み取り（書き方が決まっていない告知。使うかどうかはコードで判定する） ----
+
+# この語を含む投稿だけ AI に渡す（1 行目が決まった形の中止・欠席は x_notice のルールで読む）
+X_CHANGE_WORDS_RE = re.compile(r"変更|中止|欠席|延期|見合わせ|振替|お休み|繰り上げ|繰り下げ")
+# 根拠の一文にこの語があれば注意書き（「中止となる場合があります」「予定通り開催」「変更はございません」）とみなす
+X_CHANGE_CAUTION_RE = re.compile(r"場合|可能性|予定通り|変更(?:は|が)?(?:ござい|ありま)せん|変更なく")
+# 種類ごとに、根拠の一文に必要な語
+X_CHANGE_TYPE_WORDS = {"change": r"変更|繰り上げ|繰り下げ", "cancel": r"中止|見合わせ", "partial_cancel": r"中止|見合わせ",
+                       "absent": r"欠席|お休み", "postpone": r"延期"}
+X_CHANGE_FIELDS = ("open", "start", "end", "time_note", "venue")
+X_CHANGE_FIELD_LABELS = {"open": "時刻", "start": "時刻", "end": "時刻", "time_note": "時刻", "venue": "会場"}
+X_CHANGE_DAYS = (1, 120)  # AI に渡す予定の一覧: 投稿日の前日から 120 日後まで
+
+X_CHANGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿が、すでに発表されている予定の変更・中止・延期・欠席の告知かどうかを判断する係です。
+投稿に書かれた事実だけを返してください。推測で補わないでください。
+
+- type は次のどれかです。
+  - change: 開場・開演・終了の時刻、出演時間、会場が変わった
+  - cancel: 予定全体の中止、出演の見合わせ
+  - partial_cancel: ミニライブだけ中止など、予定の一部の中止
+  - absent: メンバーの欠席・お休み
+  - postpone: 延期
+  - caution: 「中止となる場合があります」「予定通り開催します」「変更はございません」のような注意書きや案内
+  - other: それ以外。新しい予定の告知、販売・受付・チケット・グッズ・特典・物販の変更もここに入れます
+- event は、下の「予定の一覧」のうち告知の対象の予定の番号です。分からなければ -1 にします。
+- when は tomorrow（「明日」など）、today（「本日」など）、date（日付が書かれている）、unknown（分からない）のどれかです。
+- date_text は when が date のとき、投稿に書かれた対象の予定の日付の表記をそのまま入れます。それ以外は空にします。
+- part は partial_cancel のとき、中止になる内容（例: ミニライブ）を投稿の表記のまま入れます。それ以外は空にします。
+- changes は type が change のとき、変わった項目ごとに field と変更後の値 after を入れます。field は open（開場）、start（開演・出演開始）、end（終了）、venue（会場）、time_note（部ごとの時間やタイムテーブルなど、ほかに当てはまらない時間）です。時刻は HH:MM にします。変わっていない項目は入れません。
+- members は type が absent のとき、欠席するメンバーのフルネームの配列です。それ以外は空にします。
+- evidence は、変更・中止・延期・欠席が書かれた一文を投稿からそのまま抜き出します。"""
+
+X_CHANGE_SCHEMA = {
+    "type": "object", "additionalProperties": False,
+    "required": ["type", "event", "when", "date_text", "part", "changes", "members", "evidence"],
+    "properties": {
+        "type": {"type": "string",
+                 "enum": ["change", "cancel", "partial_cancel", "absent", "postpone", "caution", "other"]},
+        "event": {"type": "integer"},
+        "when": {"type": "string", "enum": ["tomorrow", "today", "date", "unknown"]},
+        "date_text": {"type": "string"},
+        "part": {"type": "string"},
+        "changes": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["field", "after"],
+            "properties": {"field": {"type": "string", "enum": list(X_CHANGE_FIELDS)}, "after": {"type": "string"}}}},
+        "members": {"type": "array", "items": {"type": "string"}},
+        "evidence": {"type": "string"},
+    }}
+
+
+def x_change_events(rows, posted):
+    """AI に渡す予定の一覧（投稿日の前後の、誕生日以外の予定）。"""
+    first = (posted.date() - timedelta(days=X_CHANGE_DAYS[0])).isoformat()
+    last = (posted.date() + timedelta(days=X_CHANGE_DAYS[1])).isoformat()
+    events = [r for r in rows if first <= r["date"] <= last and r["category"] != CATEGORY_LABELS["birth"]]
+    return sorted(events, key=lambda r: (r["date"], r["title"]))
+
+
+def x_change_prompt(text, posted, events):
+    lines = [f"投稿日時: {posted:%Y-%m-%d %H:%M}（日本時間）", "", "投稿:", text, "", "予定の一覧:"]
+    for i, r in enumerate(events):
+        weekday = "月火水木金土日"[date.fromisoformat(r["date"]).weekday()]
+        lines.append(f"[{i}] {r['date']}({weekday}) {' '.join(r['title'].split())} | 会場: {r['venue'] or '未定'}"
+                     f" | 時刻: {time_label(r) or '未定'}")
+    return "\n".join(lines)
+
+
+def x_change_value(field, value):
+    """時刻は「9:30」の形にそろえる（他の予定と同じ）。"""
+    value = " ".join(value.split())
+    return re.sub(r"^0(?=\d:)", "", value) if field in ("open", "start", "end") else value
+
+
+def x_change_reject(result, text, posted, events):
+    """AI の読み取りを使わない理由を返す。使ってよければ None。"""
+    kind = result["type"]
+    if kind not in X_CHANGE_TYPE_WORDS:
+        return "注意書き" if kind == "caution" else "変更・中止の告知ではない"
+    evidence = result["evidence"]
+    if not evidence or normalize(evidence) not in normalize(text):
+        return "根拠が本文にない"
+    if X_CHANGE_CAUTION_RE.search(evidence) or not re.search(X_CHANGE_TYPE_WORDS[kind], evidence):
+        return "根拠が告知の文ではない"
+    day = x_llm_day(result, text, posted)
+    i = result["event"]
+    if not 0 <= i < len(events):
+        same_day = [k for k, r in enumerate(events) if day and r["date"] == day.isoformat()]
+        if len(same_day) != 1:
+            return "予定が決まらない"
+        result["event"] = i = same_day[0]
+    event = events[i]
+    if event["date"] < posted.date().isoformat():
+        return "終わった予定"
+    if day and day.isoformat() != event["date"]:
+        return "日付が予定と違う"
+    named = (shares_phrase(event["title"], text, X_NOTICE_NAME_MIN)
+             or (event["venue"] and not TBD_VENUE_RE.search(event["venue"])
+                 and normalize(event["venue"]) in normalize(text)))
+    if not day and not named:
+        return "予定名・会場・日付が本文にない"
+    if kind == "change":
+        if not result["changes"]:
+            return "変更の内容がない"
+        for c in result["changes"]:
+            after = c["after"]
+            if c["field"] not in X_CHANGE_FIELDS or not after:
+                return "変更の項目が不正"
+            if c["field"] in ("open", "start", "end") and not (
+                    re.fullmatch(r"\d{1,2}:\d{2}", after) and x_time_in_text(after, text)):
+                return "変更後の時刻が本文にない"
+            if c["field"] == "venue" and normalize(after) not in normalize(text):
+                return "変更後の会場が本文にない"
+            if c["field"] == "time_note" and (len(after) > 80 or not all(
+                    x_time_in_text(t, text) for t in re.findall(r"\d{1,2}:\d{2}", after.replace("：", ":")))):
+                return "変更後の時間が本文にない"
+    if kind == "absent":
+        names = [full for full, _, _ in MEMBERS]
+        if not result["members"] or not all(m in names and m in text.replace(" ", "") for m in result["members"]):
+            return "メンバーが本文にない"
+    if kind == "partial_cancel" and (not result["part"] or normalize(result["part"]) not in normalize(text)):
+        return "中止の内容が本文にない"
+    return None
+
+
+def x_change_read(tweet, rows, provider, key, tokens):
+    """投稿を AI で読み、検証を通った変更・中止・延期・欠席の告知を x_notice と同じ形で返す（なければ None）。
+    変更前の値は AI ではなく、読んだ時点の予定の値を記録する（公式カレンダーが追いついたかの判断に使う）。"""
+    text = "\n".join(x_lines(tweet))
+    posted = x_posted(tweet)
+    events = x_change_events(rows, posted)
+    result, usage = x_llm_read(x_change_prompt(text, posted, events), provider, key,
+                               X_CHANGE_INSTRUCTION, X_CHANGE_SCHEMA, "x_change")
+    tokens[:] = [t + u for t, u in zip(tokens, usage)]
+    reason = x_change_reject(result, text, posted, events)
+    if reason:
+        if result["type"] not in ("caution", "other"):
+            print(f"  ! 変更・中止の AI 読み取りを不採用（{reason}）: {result['type']} {tweet['id']}")
+        return None
+    event, kind = events[result["event"]], result["type"]
+    status = {"partial_cancel": "partial", "postpone": "postpone"}.get(kind, kind)
+    members = [m for m in result["members"]] if kind == "absent" else []
+    # 同じ項目の変更（出演と物販の時間など）は 1 つにつなぎ、読んだ時点の予定と同じ値（変わっていない項目）は捨てる
+    merged = {}
+    for c in result["changes"] if kind == "change" else []:
+        value = x_change_value(c["field"], c["after"])
+        merged[c["field"]] = f"{merged[c['field']]} ／ {value}" if c["field"] == "time_note" and c["field"] in merged else value
+    changes = [{"field": f, "before": event[f], "after": v} for f, v in merged.items()
+               if normalize(v) != normalize(event[f])]
+    if kind == "change" and not changes:
+        print(f"  変更の告知ですが、予定はすでに告知どおりです: {event['date']} {event['title']}  {tweet['id']}")
+        return None
+    label = {"cancel": "中止", "postpone": "延期", "partial": f"{result['part']}中止",
+             "absent": "・".join(last for full, last, _ in MEMBERS if full in members) + "欠席",
+             "change": "・".join(dict.fromkeys(X_CHANGE_FIELD_LABELS[c["field"]] for c in changes)) + "変更"}[status]
+    return {"date": event["date"], "status": status, "label": label, "names": [], "members": members,
+            "substitutes": [], "changes": changes,
+            "target": {"date": event["date"], "title": event["title"], "url": event["url"]},
+            "url": f"https://x.com/takanenofficial/status/{tweet['id']}", "post_id": tweet["id"],
+            "posted": posted.isoformat(timespec="minutes"), "ai": True}
 
 
 # ---- お知らせ記事の AI 読み取り（ルールで予定を読めなかった記事の補助。検証は X と同じ x_llm_reject） ----
@@ -1910,7 +2107,7 @@ def ics_event(r, suffix="takaneko-data"):
         ev.append(f"LOCATION:{ics_escape(r['venue'])}")
     ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
            f"URL:{r['url']}",
-           "STATUS:" + ("CANCELLED" if r["title"].startswith("【中止】")
+           "STATUS:" + ("CANCELLED" if r["title"].startswith(("【中止】", "【延期】"))
                         else "TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
            "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
     return ev
