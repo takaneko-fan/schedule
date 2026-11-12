@@ -99,6 +99,23 @@ class ExtractRulesTest(unittest.TestCase):
                          [("2026-11-13", "受付開始"), ("2026-11-23", "受付締切")])
         self.assertEqual(len(skipped), 2)
 
+    def test_period_started_before_published_is_kept(self):
+        """受付期間の途中で公開された記事は、始まりが公開日より前でも残し、記載ミスの可能性にしない。"""
+        skipped = []
+        rows = fs.extract_deadlines(post("【抽選予約販売期間】", "2026年10月28日(水) 18:00～2026年10月30日(金) 23:59 まで",
+                                         published="2026-10-29T22:43:45"), skipped)
+        self.assertEqual([(r["date"], r["kind"]) for r in rows], [("2026-10-28", "受付開始"), ("2026-10-30", "受付締切")])
+        self.assertEqual(skipped, [])
+
+    def test_skipped_item_details(self):
+        skipped = []
+        fs.extract_deadlines(post("＜支払期日＞当選確認後、 10月12日(月・祝) 23:59までに、マイページより決済をお願いいたします。",
+                                  published="2026-10-14T20:58:17"), skipped)
+        self.assertEqual(len(skipped), 1)
+        w = skipped[0]
+        self.assertEqual((w["published"], w["date"], w["time"], w["kind"], w["url"]),
+                         (date(2026, 10, 14), "2026-10-12", "23:59", "入金締切", "https://example.invalid/news/1"))
+
     def test_year_is_inferred_across_new_year(self):
         rows = extract("＜受付期間＞12/20(日)12:00〜1/5(火)23:59", published="2026-12-01T12:00:00")
         self.assertEqual([d for d, _, _, _ in rows], ["2026-12-20", "2027-01-05"])
@@ -123,6 +140,14 @@ class CollectDeadlinesTest(unittest.TestCase):
         self.assertEqual([(r["kind"], r["url"]) for r in rows],
                          [("受付開始", "https://example.invalid/news/new"),
                           ("受付締切", "https://example.invalid/news/new")])
+
+    def test_warnings_only_for_recent_posts(self):
+        recent = post("＜支払期日＞10月12日(月・祝) 23:59", published="2026-10-14T20:58:17")
+        old = post("＜支払期日＞9月1日(火) 23:59", published="2026-10-05T12:00:00", link="https://example.invalid/news/2")
+        warnings = []
+        with contextlib.redirect_stdout(io.StringIO()):
+            fs.collect_deadlines([recent, old], date(2027, 1, 1), date(2026, 11, 12), warnings)
+        self.assertEqual([(w["date"], w["published"]) for w in warnings], [("2026-10-12", "2026-10-14")])
 
     def test_sorted_and_cut_at_end(self):
         rows = self.collect([post("＜支払期日＞11月27日(金)", "受付締め切り：11月15日(日)23:59",

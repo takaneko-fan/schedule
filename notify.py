@@ -5,7 +5,11 @@
 申込・締切の追加を 1 件の通知にまとめる。「済」が付いただけの変更は通知しない。
 トピック名は環境変数か .env の NTFY_TOPIC。未設定なら何も送らない。
 
+--warnings を付けると、代わりに fetch_schedule.py が書き出した申込・締切の記載ミスの可能性を知らせる
+（run_update.sh が予定に変化がない回も毎回実行する。送った項目は WARNED_PATH に記録し、二重に送らない）。
+
 使い方: python3 notify.py [--dry-run] [--today YYYY-MM-DD] [前のコミット] [後のコミット]
+        python3 notify.py --warnings [--dry-run]
 """
 
 import argparse
@@ -15,9 +19,10 @@ import json
 import os
 import re
 import subprocess
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
-from fetch_schedule import GROUP, JST, MEMBERS, load_env, media_prefix, normalize, shares_phrase, time_label
+from fetch_schedule import (GROUP, JST, MEMBERS, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env, media_prefix, normalize,
+                            shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -30,6 +35,8 @@ TIME_FIELDS = ("open", "start", "end", "time_note")
 NOTIFY_IGNORE_COLUMNS = {"done"}  # ここに入れた列だけの変更は通知しない
 MAX_LABELS = 3  # 本文に出す予定名の数。残りは「ほか○件」にまとめる
 MAX_LABEL_LENGTH = 28
+WARNINGS_TITLE = "高嶺のなでしこ 記載ミスの可能性"
+WARNED_PATH = os.environ.get("WARNED_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/warned.json")
 
 
 def read_csv(rev, path):
@@ -177,6 +184,61 @@ def build_message(added, updated, removed, deadlines):
     return "\n".join(lines), bool(important)
 
 
+def warning_key(w):
+    return "|".join(w[k] for k in ("url", "date", "time", "kind", "event"))
+
+
+def load_json(path, default):
+    try:
+        with open(path, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return default
+
+
+def with_weekday(iso_date):
+    return f"{month_day(iso_date)}({'月火水木金土日'[date.fromisoformat(iso_date).weekday()]})"
+
+
+def build_warning_message(warnings):
+    """記事ごとに、除外した日付を並べる。"""
+    lines = []
+    for url in dict.fromkeys(w["url"] for w in warnings):
+        items = [w for w in warnings if w["url"] == url]
+        lines.append(deadline_event(items[0]["event"]))
+        lines += [f"・{w['kind']} {with_weekday(w['date'])} {w['time']}".rstrip()
+                  + f" ← 記事の公開日（{month_day(w['published'])}）より前" for w in items]
+    lines.append("公式の記事・受付ページで日付を確かめてください")
+    return "\n".join(lines)
+
+
+def notify_warnings(dry_run, today):
+    """まだ知らせていない記載ミスの可能性を 1 件の通知にまとめて送る。"""
+    warnings = load_json(WARNINGS_PATH, [])
+    sent = load_json(WARNED_PATH, {})  # 項目 → 記事の公開日
+    new = [w for w in warnings if warning_key(w) not in sent]
+    if not new:
+        print("記載ミスの可能性: 新しいものはありません")
+        return
+    message = build_warning_message(new)
+    urls = {w["url"] for w in new}
+    if dry_run:
+        print(f"[{WARNINGS_TITLE}]\n{message}")
+        return
+    if not os.environ.get("NTFY_TOPIC"):
+        print("NTFY_TOPIC が未設定のため記載ミスの可能性を通知しません")
+        return
+    send(os.environ["NTFY_TOPIC"], message, WARNINGS_TITLE, urls.pop() if len(urls) == 1 else SITE_URL)
+    # 警告が出なくなる日数（公開から WARN_DAYS 日）を過ぎた記事の記録は捨てる。
+    # 記事の取得に失敗して警告が空になった回に捨てると、次の回に同じものを送り直してしまうので、今の警告では判断しない
+    cutoff = (date.fromisoformat(today) - timedelta(days=WARN_DAYS + 1)).isoformat()
+    sent = {k: p for k, p in sent.items() if p >= cutoff} | {warning_key(w): w["published"] for w in new}
+    os.makedirs(os.path.dirname(WARNED_PATH), exist_ok=True)
+    with open(WARNED_PATH, "w", encoding="utf-8") as f:
+        json.dump(sent, f, ensure_ascii=False, indent=1)
+    print(f"記載ミスの可能性を通知しました（{len(new)} 件）")
+
+
 def send(topic, message, title=TITLE, click=SITE_URL, priority=None):
     payload = {"topic": topic, "title": title, "message": message, "click": click}
     if priority:
@@ -195,9 +257,13 @@ def main():
     parser.add_argument("new", nargs="?", default="HEAD", help="後のコミット（既定: HEAD）")
     parser.add_argument("--dry-run", action="store_true", help="送らずに本文を表示する")
     parser.add_argument("--today", default=datetime.now(JST).date().isoformat(), help="これより前の日付を除く（既定: 今日）")
+    parser.add_argument("--warnings", action="store_true", help="申込・締切の記載ミスの可能性を知らせる")
     args = parser.parse_args()
 
     load_env()
+    if args.warnings:
+        notify_warnings(args.dry_run, args.today)
+        return
     schedule = read_pair(args.old, args.new, "schedule.csv")
     deadlines = read_pair(args.old, args.new, "deadlines.csv")
     message, important = build_message(*(diff_schedule(*schedule, args.today) if schedule else ([], [], [])),

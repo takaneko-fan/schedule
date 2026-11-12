@@ -3,9 +3,14 @@
 実行: python3 -m unittest discover -s tests
 """
 
+import contextlib
+import io
+import json
 import os
 import sys
+import tempfile
 import unittest
+from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -181,6 +186,82 @@ class BuildMessageTest(unittest.TestCase):
                 category="お知らせ記事 / ラジオ")
         self.assertEqual(notify.name(r), "【ラジオ】ららぽーと立川立飛")
         self.assertEqual(notify.short_title("あ" * 40), "あ" * 27 + "…")
+
+
+def warning(**values):
+    """fetch_schedule.py が書き出す記載ミスの可能性の 1 件。"""
+    base = {"published": "2026-10-14", "date": "2026-10-12", "time": "23:59", "kind": "入金締切",
+            "event": "10/23 ニューアルバム『A World in Our Colors』発売記念オンラインサイン会", "note": "",
+            "url": "https://example.invalid/news/1"}
+    base.update(values)
+    return base
+
+
+class WarningsTest(unittest.TestCase):
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.warnings_path = os.path.join(tmp.name, "deadline_warnings.json")
+        self.warned_path = os.path.join(tmp.name, "state", "warned.json")
+        for patcher in (mock.patch.object(notify, "WARNINGS_PATH", self.warnings_path),
+                        mock.patch.object(notify, "WARNED_PATH", self.warned_path),
+                        mock.patch.dict(os.environ, {"NTFY_TOPIC": "test-topic"})):
+            patcher.start()
+            self.addCleanup(patcher.stop)
+        self.send = mock.patch.object(notify, "send").start()
+        self.addCleanup(mock.patch.stopall)
+
+    def run_warnings(self, warnings, dry_run=False, today=TODAY):
+        with open(self.warnings_path, "w", encoding="utf-8") as f:
+            json.dump(warnings, f, ensure_ascii=False)
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            notify.notify_warnings(dry_run, today)
+        return out.getvalue()
+
+    def test_message(self):
+        message = notify.build_warning_message([warning(), warning(kind="当落発表", date="2026-10-13", time="")])
+        self.assertEqual(message.splitlines(), [
+            "10/23 発売記念オンラインサイン会",
+            "・入金締切 10/12(月) 23:59 ← 記事の公開日（10/14）より前",
+            "・当落発表 10/13(火) ← 記事の公開日（10/14）より前",
+            "公式の記事・受付ページで日付を確かめてください",
+        ])
+
+    def test_sent_once_and_new_items_later(self):
+        self.run_warnings([warning()])
+        self.assertEqual(self.send.call_count, 1)
+        self.assertEqual(self.send.call_args.args[2:], (notify.WARNINGS_TITLE, "https://example.invalid/news/1"))
+        self.run_warnings([warning()])
+        self.assertEqual(self.send.call_count, 1)  # 同じ項目は送らない
+
+        other = warning(url="https://example.invalid/news/2", event="11/6 オンラインサイン会")
+        self.run_warnings([warning(), other])
+        self.assertEqual(self.send.call_count, 2)
+        self.assertNotIn("10/23", self.send.call_args.args[1])
+        self.assertEqual(self.send.call_args.args[3], "https://example.invalid/news/2")
+
+    def test_several_articles_open_site(self):
+        self.run_warnings([warning(), warning(url="https://example.invalid/news/2")])
+        self.assertEqual(self.send.call_args.args[3], notify.SITE_URL)
+
+    def test_record_survives_empty_warnings(self):
+        """記事の取得に失敗して警告が空になった回のあとも、同じものは送り直さない。"""
+        self.run_warnings([warning()])
+        self.run_warnings([warning(url="https://example.invalid/news/2")])
+        self.run_warnings([warning()])
+        self.assertEqual(self.send.call_count, 2)
+
+    def test_old_records_are_dropped(self):
+        self.run_warnings([warning()])
+        self.run_warnings([warning(url="https://example.invalid/news/2", published="2026-11-20")], today="2026-12-01")
+        with open(self.warned_path, encoding="utf-8") as f:
+            self.assertEqual(list(json.load(f).values()), ["2026-11-20"])
+
+    def test_nothing_and_dry_run(self):
+        self.run_warnings([])
+        self.assertIn("[高嶺のなでしこ 記載ミスの可能性]", self.run_warnings([warning()], dry_run=True))
+        self.send.assert_not_called()
+        self.assertFalse(os.path.exists(self.warned_path))
 
 
 if __name__ == "__main__":
