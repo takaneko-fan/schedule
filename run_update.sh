@@ -10,6 +10,8 @@ python3 fetch_schedule.py "$@"
 
 # 予定に変化がない回も、今日の申込は知らせる。失敗しても更新は続ける
 python3 remind.py || echo "リマインドに失敗しました（更新は続けます）"
+# 申込・締切の記載ミスの可能性も、予定の変化に関係なく知らせる（送ったものは送らない）
+python3 notify.py --warnings || echo "記載ミスの可能性の通知に失敗しました（更新は続けます）"
 
 git add schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json post_ai.json events x_events.json
 if git diff --cached --quiet; then

@@ -976,6 +976,9 @@ HEADING_RE = re.compile(r"^(?:【([^】]{2,30})】|[■◆★✿]+\s*([^■◆�
 HEADING_WORDS_RE = re.compile(r"受付|先行|抽選|予約|販売|撮影会|お話し会|サイン会|握手会|振込|ペイ|カード|コンビニ|決済")
 # 支払方法ごとの締切（「バーチャル銀行振込」の受付締め切りなど）は、販売期間の終わりと重なるので載せない
 PAYMENT_RE = re.compile(r"振込|ペイ|カード|コンビニ|決済")
+WARN_DAYS = 30  # 公開からこの日数以内の記事で、公開日より前の日付があれば記載ミスの可能性として知らせる
+WARNINGS_PATH = (os.environ.get("WARNINGS_PATH")
+                 or os.path.expanduser("~/.local/state/takaneko-fan/deadline_warnings.json"))
 
 
 def find_deadline_dates(text, published):
@@ -1004,7 +1007,8 @@ def find_heading(lines, i, published):
 
 def extract_deadlines(post, skipped=None):
     """記事から申込・締切の予定（dict のリスト）を取り出す。
-    記事の公開日より前の日付（2次受付の記事に残った1次受付の日程や記載ミス）は skipped に入れる。"""
+    記事の公開日より前の日付（2次受付の記事に残った1次受付の日程や記載ミス）は skipped に入れる。
+    ただし終わりが公開日以降の期間は、受付期間の途中で公開された記事なので始まりも残す。"""
     published = date.fromisoformat(post["date"][:10])
     title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
     lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(post["content"]["rendered"])]
@@ -1045,18 +1049,21 @@ def extract_deadlines(post, skipped=None):
             pairs.append((dates[-1], last_kind))
         elif last_kind and re.search(r"^[^~〜～-]*まで", text):
             pairs = [(dates[0], last_kind)]  # 「〇月〇日 23:59まで」だけの期間は終わりの日時
+        ongoing = len(pairs) > 1 and pairs[-1][0][0] >= published
         for (day, hm), kind in pairs:
-            if day < published:
+            if day < published and not ongoing:
                 if skipped is not None:
-                    skipped.append((published, f"{day} {kind} {event}（{note[:40]}）"))
+                    skipped.append({"published": published, "date": day.isoformat(), "time": hm, "kind": kind,
+                                    "event": event, "note": note, "url": post["link"]})
                 continue
             found.append({"date": day.isoformat(), "weekday": "月火水木金土日"[day.weekday()], "time": hm,
                           "kind": kind, "event": event, "detail": detail, "note": note, "url": post["link"]})
     return found
 
 
-def collect_deadlines(posts, end, today):
-    """全記事の申込・締切を、同じもの（種別・日時・イベントが同じ）をまとめて日付順に返す。"""
+def collect_deadlines(posts, end, today, warnings=None):
+    """全記事の申込・締切を、同じもの（種別・日時・イベントが同じ）をまとめて日付順に返す。
+    最近の記事で公開日より前の日付として除外したもの（公式の記載ミスの可能性）は warnings に入れる。"""
     seen, rows, skipped = set(), [], []
     for p in sorted(posts, key=lambda p: p["date"], reverse=True):  # 新しい記事の記載を優先
         for r in extract_deadlines(p, skipped):
@@ -1068,10 +1075,20 @@ def collect_deadlines(posts, end, today):
     if skipped:
         print(f"  記事の公開日より前の日付 {len(skipped)} 件を除外")
         # 最近の記事のものは公式の記載ミスかもしれないので内容も出す
-        for published, text in skipped:
-            if published >= today - timedelta(days=30):
-                print(f"  ! 記載ミスの可能性: {text}")
+        for w in skipped:
+            if w["published"] >= today - timedelta(days=WARN_DAYS):
+                print(f"  ! 記載ミスの可能性: {w['date']} {w['kind']} {w['event']}（{w['note'][:40]}）")
+                if warnings is not None:
+                    warnings.append({**w, "published": w["published"].isoformat()})
     return rows
+
+
+def write_deadline_warnings(warnings, path=WARNINGS_PATH):
+    """記載ミスの可能性を notify.py --warnings 用に書き出す（毎回置き換える。リポジトリの外に置き、コミットしない）。"""
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(warnings, f, ensure_ascii=False, indent=1)
+        f.write("\n")
 
 
 def deadline_event(event):
@@ -1984,7 +2001,9 @@ def main():
     n = write_event_files(rows, events_dir)
     print(f"1 件ずつの .ics: {events_dir}/（{n} 件を更新）")
 
-    deadlines = collect_deadlines(posts, args.end, today)
+    warnings = []
+    deadlines = collect_deadlines(posts, args.end, today, warnings)
+    write_deadline_warnings(warnings)
     add_deadline_labels(deadlines)
     for r in deadlines:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
