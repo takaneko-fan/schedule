@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- 処理の流れの図。処理の流れを変えたら、このファイルと末尾の日付も直す（GitHub Pages には配信しない） -->
+<title>たかねこ予定の更新フロー</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@500;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* レイアウト: 1 本の縦の流れ（起動 → 取得と統合 → 出力と通知）。分岐だけ横に並べ、狭い画面では縦に積む */
+:root {
+  --ground: #faf7f9;
+  --surface: #ffffff;
+  --ink: #2a2230;
+  --muted: #6c6170;
+  --line: #e4dbe2;
+  --accent: #b2457a;      /* なでしこの花の色 */
+  --accent-soft: #f6e4ed;
+  --ai: #3f6fb0;
+  --ai-soft: #e3ecf8;
+  --file: #4f7a5a;
+  --file-soft: #e3f0e6;
+  --warn: #b45309;
+  --warn-soft: #fbeedd;
+  --font-display: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  --font-body: "Zen Kaku Gothic New", "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+  --radius: 10px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --ground: #1b161d; --surface: #241e27; --ink: #efe8f0; --muted: #a99eac; --line: #3a3140;
+    --accent: #e48bb4; --accent-soft: #3a2532; --ai: #8fb2e6; --ai-soft: #1f2a3b;
+    --file: #8cc39a; --file-soft: #1e2d22; --warn: #f0b066; --warn-soft: #36291a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --ground: #1b161d; --surface: #241e27; --ink: #efe8f0; --muted: #a99eac; --line: #3a3140;
+  --accent: #e48bb4; --accent-soft: #3a2532; --ai: #8fb2e6; --ai-soft: #1f2a3b;
+  --file: #8cc39a; --file-soft: #1e2d22; --warn: #f0b066; --warn-soft: #36291a;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--ground); color: var(--ink);
+  font-family: var(--font-body); font-size: 15px; line-height: 1.75;
+  padding-inline: 20px; padding-block: 40px 64px;
+}
+.wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 48px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; line-height: 1.35; margin: 0; }
+h1 { font-size: 30px; font-weight: 700; }
+h2 { font-size: 21px; font-weight: 700; display: flex; align-items: baseline; gap: 10px; }
+h2 .stage { font-family: var(--font-mono); font-size: 13px; color: var(--accent); letter-spacing: .06em; }
+h3 { font-size: 16px; font-weight: 700; }
+p { margin: 0; max-width: 65ch; }
+code, .mono { font-family: var(--font-mono); font-size: .88em; }
+.lead { color: var(--muted); }
+header { display: grid; gap: 14px; }
+.meta { font-size: 13px; color: var(--muted); }
+
+.legend { display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: var(--muted); align-items: center; }
+.tag { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 500; line-height: 1.6;
+  padding: 0 8px; border-radius: 999px; white-space: nowrap; }
+.tag.rule { background: var(--accent-soft); color: var(--accent); }
+.tag.ai { background: var(--ai-soft); color: var(--ai); }
+.tag.file { background: var(--file-soft); color: var(--file); font-family: var(--font-mono); }
+.tag.notify { background: var(--warn-soft); color: var(--warn); }
+
+section { display: grid; gap: 18px; }
+
+/* 横の連鎖（起動・手元からの push） */
+.chain { display: flex; flex-wrap: wrap; align-items: stretch; gap: 10px; }
+.node { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 14px; display: grid; gap: 4px; flex: 1 1 180px; }
+.node b { font-weight: 700; }
+.node small { color: var(--muted); font-size: 13px; line-height: 1.6; }
+.arrow { align-self: center; color: var(--muted); font-size: 18px; flex: 0 0 auto; }
+
+/* 縦の手順（取得と統合） */
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; counter-reset: step; }
+.step { position: relative; display: grid; grid-template-columns: 36px 1fr; gap: 14px; padding-bottom: 18px; }
+.step::before {
+  counter-increment: step; content: counter(step);
+  width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center;
+  background: var(--surface); border: 1.5px solid var(--accent); color: var(--accent);
+  font-family: var(--font-mono); font-size: 13px; font-weight: 500; position: relative; z-index: 1;
+}
+.step::after { content: ""; position: absolute; left: 15px; top: 30px; bottom: 0; width: 1.5px; background: var(--line); }
+.step:last-child::after { display: none; }
+.step-body { display: grid; gap: 8px; padding-top: 3px; }
+.step-title { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 10px; }
+.step-title h3 { margin-right: 4px; }
+.step-body p { color: var(--muted); font-size: 14px; }
+.step.key::before { background: var(--accent); color: var(--surface); }
+
+/* 分岐 */
+.branches { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 10px; }
+.branch { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 12px 14px; display: grid; gap: 6px; align-content: start; }
+.branch .when { font-size: 12px; color: var(--muted); letter-spacing: .04em; }
+.branch .what { font-weight: 500; }
+.branch .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.branch.highlight { border-color: var(--accent); }
+
+.callout { background: var(--accent-soft); border-radius: var(--radius); padding: 12px 16px; font-size: 14px; }
+.callout b { color: var(--accent); }
+
+/* 表 */
+.table-wrap { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); }
+table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 14px; }
+th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font-size: 12px; font-weight: 500; color: var(--muted); letter-spacing: .05em; background: var(--ground); }
+tr:last-child td { border-bottom: 0; }
+
+.notify-list { display: grid; gap: 8px; }
+.notify-row { display: grid; grid-template-columns: 90px 1fr; gap: 12px; align-items: baseline; font-size: 14px; }
+.notify-row .lv { font-weight: 700; }
+.lv.imp { color: var(--warn); }
+.lv.ok { color: var(--file); }
+.lv.cnt { color: var(--muted); }
+
+footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line); padding-top: 16px; display: grid; gap: 4px; }
+
+@media (max-width: 560px) {
+  h1 { font-size: 25px; }
+  .arrow { transform: rotate(90deg); width: 100%; text-align: center; }
+  .node { flex-basis: 100%; }
+  .notify-row { grid-template-columns: 1fr; gap: 0; }
+}
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <h1>たかねこ予定の更新フロー</h1>
+    <p class="lead">高嶺のなでしこの非公式スケジュールが、公式カレンダー・お知らせ記事・公式 X からどう集められ、Web 版・カレンダー・通知に届くかをまとめたものです。</p>
+    <div class="legend">
+      <span class="tag rule">ルール</span>決まった書き方をコードで読む
+      <span class="tag ai">AI</span>読むのは AI、使うかはコードが決める
+      <span class="tag file">ファイル</span>保存先
+      <span class="tag notify">通知</span>ntfy に届く
+    </div>
+  </header>
+
+  <section aria-labelledby="s1">
+    <h2 id="s1"><span class="stage">STAGE 1</span>起動（1 日 8 回）</h2>
+    <div class="chain">
+      <div class="node"><b>VPS のタイマー</b><small class="mono">0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>GitHub Actions を起動</b><small>GitHub App の名義で起動。個人のアカウント名は残らない</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>VPS のランナーで実行</b><small><code>run_update.sh</code>（公式サイトは国外からのアクセスを受け付けないため国内の VPS で動かす）</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>停止の検知</b><small>healthchecks.io に成功・失敗を連絡。連絡が途絶えると知らせが届く</small></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s2">
+    <h2 id="s2"><span class="stage">STAGE 2</span>予定の取得と統合 <code>fetch_schedule.py</code></h2>
+    <ol class="steps">
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>公式カレンダー</h3><span class="tag rule">ルール</span></div>
+          <p>予定の一覧と各イベントページを読み、時刻・会場・出演メンバーを取り出す。毎回すべて読み直すので、ページが書き換わればそのまま反映される。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>お知らせ記事（過去 365 日）</h3></div>
+          <div class="branches">
+            <div class="branch"><span class="when">【開催日】の記事・月ごとのスケジュール公開</span><span class="what">日付と予定名を読む</span><span class="tags"><span class="tag rule">ルール</span></span></div>
+            <div class="branch"><span class="when">ルールで読めない記事（ラジオ出演のまとめなど）</span><span class="what">番組の予定を読む</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">post_ai.json</span></span></div>
+          </div>
+          <p>読んだ予定は、公式カレンダーの同じ予定と 1 件にまとめる。</p>
+        </div>
+      </li>
+      <li class="step key">
+        <div class="step-body">
+          <div class="step-title"><h3>公式 X（前回より新しい投稿）</h3></div>
+          <p>投稿ごとに、次のどれかとして読む。</p>
+          <div class="branches">
+            <div class="branch"><span class="when">1 行目が「…中止のお知らせ」「…欠席のお知らせ」</span><span class="what">中止・欠席の告知</span><span class="tags"><span class="tag rule">ルール</span><span class="tag file">x_notices.json</span></span></div>
+            <div class="branch"><span class="when">「🎤出演情報🎤」「#あしたのたかねこ」など</span><span class="what">新しい予定の告知</span><span class="tags"><span class="tag rule">ルール</span><span class="tag ai">AI（読めないとき）</span><span class="tag file">x_events.json</span></span></div>
+            <div class="branch highlight"><span class="when">本文に「変更・中止・欠席・延期」など</span><span class="what">時刻・会場の変更、書き方の決まっていない中止・欠席</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">x_notices.json</span></span></div>
+          </div>
+          <p>新しい予定は公式カレンダーの予定とまとめる。まとめるときは空いている項目を埋めるだけで、公式の値は上書きしない。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>Eventernote（非公式）</h3><span class="tag rule">ルール</span></div>
+          <p>公式にまだない出演情報を補う。取得に失敗しても続ける。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>仮の会場を補う</h3></div>
+          <p>「東京都内某所」のままの予定に、同じ日の記事から会場名を補い、会場の情報元を結び付ける。</p>
+        </div>
+      </li>
+      <li class="step key">
+        <div class="step-body">
+          <div class="step-title"><h3>告知を予定に反映</h3><span class="tag file">x_notices.json</span></div>
+          <div class="branches">
+            <div class="branch"><span class="when">中止・延期・欠席</span><span class="what">予定名の先頭に【中止】【延期】【城月欠席】などを付ける。個別メンバーの予定は出演者を直す</span></div>
+            <div class="branch"><span class="when">時刻・会場の変更</span><span class="what">公式の値が変更前のままなら書き換える。すでに変更後なら何もせず、どちらとも違えば公式を優先する</span></div>
+          </div>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>安全策</h3></div>
+          <p>前回あった予定の 30% 以上（かつ 5 件以上）が見つからなければ、何も書き出さずに失敗として止める。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>過去の予定の引き継ぎと並べ替え</h3></div>
+          <p>開始日より前の予定は前回の <code>schedule.csv</code> から引き継ぎ、終わった予定に「済」を付ける。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>参加メモ</h3><span class="tag ai">AI</span><span class="tag file">memos.json</span></div>
+          <p>公式の案内がある予定に、当日に必要なことの要約を付ける。案内の文章が変わった予定だけ作り直す。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>ID を付ける</h3></div>
+          <p>日付と情報元から ID を作る。情報元が変わった予定（X → 公式カレンダーなど）は前回の ID を引き継ぎ、カレンダーの予定や ★ の印が外れないようにする。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>予定を書き出す</h3></div>
+          <p><code>schedule.md</code>・<code>schedule.csv</code>・<code>schedule.ics</code>・<code>events/&lt;uid&gt;.ics</code>。【中止】【延期】の予定はカレンダーで「キャンセル」になる。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
+          <div class="step-title"><h3>申込・締切</h3><span class="tag rule">ルール</span></div>
+          <p>お知らせ記事の「受付期間」などから日時を読み、<code>deadlines.md</code>・<code>.csv</code>・<code>.ics</code> に書き出す。受付期間の途中で公開された記事は受付開始も残す。最近の記事で公開日より前の日付があれば、記載ミスの可能性として書き出す。</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="s3">
+    <h2 id="s3"><span class="stage">STAGE 3</span>出力と通知 <code>run_update.sh</code></h2>
+    <div class="chain">
+      <div class="node"><b>git pull</b><small>最新の状態にそろえる</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>予定の取得と統合</b><small>STAGE 2。安全策で止まれば、ここで失敗して GitHub から通知メール</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>たかねこリマインド</b><small><code>remind.py</code>。9 時以降の最初の回に、今日締切の申込と先着販売の開始</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>記載ミスの可能性</b><small><code>notify.py --warnings</code>。記事ごとに 1 回だけ</small></div>
+    </div>
+    <div class="branches">
+      <div class="branch"><span class="when">予定に変化なし</span><span class="what">ここで終わる</span></div>
+      <div class="branch highlight"><span class="when">予定に変化あり</span><span class="what">takaneko-fan の名義でコミットして push し、前後のコミットの CSV を比べて通知する（<code>notify.py</code>）。更新が終わると、Pages の配信（<code>pages.yml</code>）が起動する</span><span class="tags"><span class="tag notify">通知</span></span></div>
+    </div>
+    <div class="notify-list" aria-label="更新の通知の区分">
+      <div class="notify-row"><span class="lv imp">⚠️ 重要</span><span>中止・延期・欠席、日付・時刻・会場・出演の変更、削除（優先度を上げて送る）</span></div>
+      <div class="notify-row"><span class="lv ok">✅ 決定</span><span>空だった時刻・会場が決まった（「東京都内某所」のような仮の会場を含む）、会場の表記が詳しくなった</span></div>
+      <div class="notify-row"><span class="lv cnt">件数</span><span>新規の予定、参加メモなどの変更、申込・締切の追加</span></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="s4">
+    <h2 id="s4">結果が届く先</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>届く先</th><th>内容</th></tr></thead>
+        <tbody>
+          <tr><td>Web 版（GitHub Pages）</td><td><code>schedule.csv</code>・<code>deadlines.csv</code> を表示。★ 行く、申込・締切、カレンダーへの追加。Pages には <code>index.html</code>・<code>schedule.*</code>・<code>deadlines.*</code>・<code>events/</code> だけを配信し、<code>docs/</code> やプログラムは出さない</td></tr>
+          <tr><td>照会カレンダー</td><td><code>schedule.ics</code>（予定）と <code>deadlines.ics</code>（申込・締切）。カレンダーアプリが自動で取り直す</td></tr>
+          <tr><td>ntfy</td><td>更新の通知、記載ミスの可能性、たかねこリマインド（別のトピック）</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section aria-labelledby="s5">
+    <h2 id="s5">AI を使っているところ</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>処理</th><th>対象</th><th>保存先</th></tr></thead>
+        <tbody>
+          <tr><td>お知らせ記事の読み取り</td><td>ルールで読めない記事</td><td><code>post_ai.json</code></td></tr>
+          <tr><td>公式 X の新しい予定</td><td>ルールで読めない投稿</td><td><code>x_events.json</code></td></tr>
+          <tr><td>公式 X の変更・中止</td><td>本文に変更・中止などを含む投稿（月 2〜3 件）</td><td><code>x_notices.json</code></td></tr>
+          <tr><td>参加メモ</td><td>公式の案内がある予定</td><td><code>memos.json</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="callout"><b>どれも同じ考え方です。</b>AI は読むだけで、日付・予定名・時刻・会場が本文に実際に書かれているかをコードが確かめてから使います。API キーがなければ AI の部分だけ飛ばし、ルールの処理はそのまま動きます。</p>
+  </section>
+
+  <section aria-labelledby="s6">
+    <h2 id="s6">手元からプログラムを変えるとき</h2>
+    <div class="chain">
+      <div class="node"><b>コミット</b><small><code>/commit</code>。名義と個人情報を確かめてからコミットだけする</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>テスト</b><small><code>ops/push_as_app.sh</code> が <code>tests/</code> を実行。失敗したら push しない</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>push</b><small>GitHub App の名義で送る</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>Pages の配信</b><small><code>pages.yml</code> が Web 版に必要なファイルだけを配信</small></div>
+    </div>
+  </section>
+
+  <footer>
+    <span>2026-11-13 時点の takaneko-fan/schedule の <code>main</code> のコードから整理。リポジトリの <code>docs/flow.html</code> と同じ内容です。</span>
+    <span>非公式のファンメイドのツールです。予定は必ず公式サイト・公式 X で確認してください。</span>
+  </footer>
+</div>
+</body>
+</html>

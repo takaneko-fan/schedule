@@ -27,7 +27,7 @@ flowchart TD
     py --> dl["deadlines.md / .csv / .ics<br>申込・締切（別カレンダー）"]
     sch -- "run_update.sh で commit・push" --> pages
     dl --> pages
-    pages["GitHub Pages（takaneko-fan.github.io/schedule）<br>index.html が schedule.csv を表示し、.ics を照会 URL で配信"]
+    pages["GitHub Pages（takaneko-fan.github.io/schedule）<br>pages.yml が必要なファイルだけを配信<br>index.html が schedule.csv を表示し、.ics を照会 URL で配信"]
     pages --> browser["ブラウザ（Web 版）"]
     pages --> app["カレンダーアプリ（照会）"]
 ```
@@ -43,6 +43,8 @@ flowchart TD
 | `notify.py` | 前後のコミットの CSV を比べ、更新の内容を ntfy で通知する（標準ライブラリのみ） |
 | `remind.py` | 今日締切の申込と、今日始まる先着販売を ntfy で知らせる（たかねこリマインド） |
 | `.github/workflows/update.yml` | `run_update.sh` を 1 日 8 回セルフホストランナーで実行する |
+| `.github/workflows/pages.yml` | Web 版とカレンダーに必要なファイルだけを GitHub Pages に配信する（下記「GitHub Pages の配信」） |
+| `docs/flow.html` | 処理の流れの図。処理の流れを変えたら一緒に直す（Pages には配信しない） |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `tests/` | `unittest` のテスト。ネットワークにつながず AI も呼ばない（`python3 -m unittest discover -s tests`） |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
@@ -387,7 +389,21 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 ## 運用手順
 
-更新は GitHub Actions（`.github/workflows/update.yml`）が 1 日 8 回 `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
+更新は GitHub Actions（`.github/workflows/update.yml`）が 1 日 8 回 `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。
+
+#### GitHub Pages の配信（`pages.yml`）
+
+ブランチをそのまま Pages に配信すると、`docs/`・`ops/`・プログラム・JSON まで Pages の URL で開けてしまうため、GitHub Actions で必要なファイルだけを配信する。
+
+| 項目 | 内容 |
+| --- | --- |
+| 配信するファイル | `index.html`、`schedule.md`/`.csv`/`.ics`、`deadlines.md`/`.csv`/`.ics`、`events/`（`PAGES_FILES`）。Web 版で新しいファイルを読むようにしたら、ここにも足す |
+| 起動 | 手元からの push（`ops/push_as_app.sh`）と、「予定の更新」の完了（`workflow_run`。定期の更新は `GITHUB_TOKEN` で push するので push では起動しない）。更新が失敗した回は配信しない |
+| 実行場所 | GitHub のサーバー（公式サイトにはアクセスしない） |
+| 設定 | Settings → Pages の Source を「GitHub Actions」にする |
+
+リポジトリは公開なので、Pages に配信しないファイルも GitHub 上では見られる。
+すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
 
 `run_update.sh` の処理：
 
