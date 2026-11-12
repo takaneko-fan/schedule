@@ -1,0 +1,30 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:b5bdac477e734ec2@takaneko-data-mine
+DTSTAMP:20261112T151813Z
+DTSTART;TZID=Asia/Tokyo:20261124T170000
+DTEND;TZID=Asia/Tokyo:20261124T180000
+SUMMARY:【ラジオ】【城月・日向端】PASSAGE（FM岡山）
+DESCRIPTION:時間: 17:00〜18:00\n出演: 城月菜央、日向端ひな\n
+ カテゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報元: 
+ https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-sc
+ hedule/
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign
+ -schedule/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

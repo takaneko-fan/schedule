@@ -14,15 +14,14 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:b6a0110b94128a64@takaneko-data-mine
-DTSTAMP:20261110T163619Z
-DTSTART;TZID=Asia/Tokyo:20261118T160000
-DTEND;TZID=Asia/Tokyo:20261118T190000
-SUMMARY:【ラジオ】【葉月・東山】ドラ魂キング（CBCラジ
- オ）
-DESCRIPTION:時間: 16:00〜19:00\n出演: 葉月紗蘭、東山恵里沙\n
- カテゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報元: 
- https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-sc
- hedule/
+DTSTAMP:20261112T151813Z
+DTSTART;TZID=Asia/Tokyo:20261118T073000
+DTEND;TZID=Asia/Tokyo:20261118T104000
+SUMMARY:【ラジオ】【城月・葉月】FMK poppin’ breakfast
+DESCRIPTION:時間: 7:30〜10:40\n出演: 城月菜央、葉月紗蘭\nカ
+ テゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報元: htt
+ ps://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-sched
+ ule/
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign
  -schedule/
 STATUS:CONFIRMED

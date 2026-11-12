@@ -4,7 +4,7 @@
   "events": []
  },
  "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/": {
-  "hash": "9c0fc25827ec6156b2d2ddc277fec05c86436f66",
+  "hash": "c0d28c578d3f09fa7afdf70220813be3e14d911c",
   "events": [
    {
     "date": "2026-10-31",
@@ -140,6 +140,25 @@
     "ai": true
    },
    {
+    "date": "2026-11-13",
+    "weekday": "金",
+    "open": "",
+    "start": "6:00",
+    "end": "8:00",
+    "time_note": "",
+    "title": "ドデスカ！",
+    "category": "お知らせ記事",
+    "members": "グループ（全員）",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "ドデスカ！"
+    ],
+    "media": "テレビ",
+    "station": "メ〜テレ",
+    "ai": true
+   },
+   {
     "date": "2026-11-14",
     "weekday": "土",
     "open": "",
@@ -178,6 +197,63 @@
     "ai": true
    },
    {
+    "date": "2026-11-17",
+    "weekday": "火",
+    "open": "",
+    "start": "16:00",
+    "end": "18:54",
+    "time_note": "",
+    "title": "Colors",
+    "category": "お知らせ記事",
+    "members": "城月菜央、橋本桃呼",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "Colors"
+    ],
+    "media": "ラジオ",
+    "station": "FM長崎",
+    "ai": true
+   },
+   {
+    "date": "2026-11-18",
+    "weekday": "水",
+    "open": "",
+    "start": "7:30",
+    "end": "10:40",
+    "time_note": "",
+    "title": "FMK poppin’ breakfast",
+    "category": "お知らせ記事",
+    "members": "城月菜央、葉月紗蘭",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "FMK poppin’ breakfast"
+    ],
+    "media": "ラジオ",
+    "station": "",
+    "ai": true
+   },
+   {
+    "date": "2026-11-18",
+    "weekday": "水",
+    "open": "",
+    "start": "16:00",
+    "end": "17:50",
+    "time_note": "",
+    "title": "江本一真のゴッジ",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "江本一真のゴッジ"
+    ],
+    "media": "ラジオ",
+    "station": "広島FM",
+    "ai": true
+   },
+   {
     "date": "2026-11-18",
     "weekday": "水",
     "open": "",
@@ -200,6 +276,25 @@
     "date": "2026-11-18",
     "weekday": "水",
     "open": "",
+    "start": "17:00",
+    "end": "18:55",
+    "time_note": "",
+    "title": "Oita Sunset Groove",
+    "category": "お知らせ記事",
+    "members": "城月菜央、日向端ひな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "Oita Sunset Groove"
+    ],
+    "media": "ラジオ",
+    "station": "FM大分",
+    "ai": true
+   },
+   {
+    "date": "2026-11-18",
+    "weekday": "水",
+    "open": "",
     "start": "21:00",
     "end": "21:40",
     "time_note": "",
@@ -213,6 +308,44 @@
     ],
     "media": "ラジオ",
     "station": "CBCラジオ",
+    "ai": true
+   },
+   {
+    "date": "2026-11-24",
+    "weekday": "火",
+    "open": "",
+    "start": "17:00",
+    "end": "18:00",
+    "time_note": "",
+    "title": "PASSAGE",
+    "category": "お知らせ記事",
+    "members": "城月菜央、日向端ひな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "PASSAGE"
+    ],
+    "media": "ラジオ",
+    "station": "FM岡山",
+    "ai": true
+   },
+   {
+    "date": "2026-11-26",
+    "weekday": "木",
+    "open": "",
+    "start": "19:00",
+    "end": "21:00",
+    "time_note": "",
+    "title": "RADIO GROOVE",
+    "category": "お知らせ記事",
+    "members": "東山恵里沙、松本ももな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "RADIO GROOVE"
+    ],
+    "media": "ラジオ",
+    "station": "FM NORTH WAVE",
     "ai": true
    }
   ]
