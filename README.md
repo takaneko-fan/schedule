@@ -22,6 +22,7 @@
 | [`notify.py`](notify.py) | 更新の内容を ntfy で通知するスクリプト |
 | [`remind.py`](remind.py) | 今日締切の申込と、今日始まる先着販売を ntfy で知らせるスクリプト（たかねこリマインド） |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
+| [`docs/flow.html`](docs/flow.html) | 処理の流れの図（ブラウザで開く）。処理の流れを変えたら一緒に直す |
 | [`tests/`](tests/) | 通知・申込締切の読み取り・予定の統合・リマインドのテスト（`python3 -m unittest discover -s tests`） |
 | [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー）と、App の名義で push するスクリプト |
 | [`assets/`](assets/) | アイコンなどの素材（`X_icon_takaneko_fanweb.jpeg` は X @takaneko_fanweb のプロフィール画像） |
