@@ -22,7 +22,6 @@
 | [`notify.py`](notify.py) | 更新の内容を ntfy で通知するスクリプト |
 | [`remind.py`](remind.py) | 今日締切の申込と、今日始まる先着販売を ntfy で知らせるスクリプト（たかねこリマインド） |
 | [`docs/spec.md`](docs/spec.md) | 仕様書 |
-| [`docs/flow.html`](docs/flow.html) | 処理の流れの図（ブラウザで開く）。処理の流れを変えたら一緒に直す。GitHub Pages には配信しない |
 | [`tests/`](tests/) | 通知・申込締切の読み取り・予定の統合・リマインドのテスト（`python3 -m unittest discover -s tests`） |
 | [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー）と、App の名義で push するスクリプト |
 | [`assets/`](assets/) | アイコンなどの素材（`X_icon_takaneko_fanweb.jpeg` は X @takaneko_fanweb のプロフィール画像） |
@@ -86,8 +85,6 @@ python fetch_schedule.py --start 2026-09-01    # 開始日を指定
 ### 自動更新（GitHub Actions）
 
 [`.github/workflows/update.yml`](.github/workflows/update.yml) が 1 日 8 回（日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17。VPS のタイマーが起動） `run_update.sh` を実行し、予定に変化があれば `takaneko-fan` 名義でコミットして push します。
-
-[`.github/workflows/pages.yml`](.github/workflows/pages.yml) が、更新の後と手元からの push の後に、Web 版とカレンダーに必要なファイル（`index.html`・`schedule.*`・`deadlines.*`・`events/`）だけを GitHub Pages に配信します。`docs/` やプログラムは Pages には出しません（リポジトリは公開なので、GitHub 上では見られます）。
 
 - 公式サイトは国外からのアクセスの一部を受け付けないため、GitHub のサーバーではなく、国内の VPS に置いたセルフホストランナー（ラベル `conoha`）で実行します。
 - すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します（Actions の画面の Run workflow は、起動者として個人のアカウント名が公開されるので使いません）。
