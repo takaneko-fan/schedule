@@ -21,7 +21,8 @@
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
 | [`notify.py`](notify.py) | 更新の内容を ntfy で通知するスクリプト |
 | [`remind.py`](remind.py) | 今日締切の申込と、今日始まる先着販売を ntfy で知らせるスクリプト（たかねこリマインド） |
-| [`docs/spec.md`](docs/spec.md) | 仕様書 |
+| [`docs/spec.md`](docs/spec.md) | 機能仕様書（何をするか） |
+| [`docs/design.md`](docs/design.md) / [`docs/operations.md`](docs/operations.md) / [`docs/notes.md`](docs/notes.md) | 設計（どう作っているか）／運用（自動更新・push・障害時の確認）／検証記録・経緯 |
 | [`docs/flow.html`](docs/flow.html) | 処理の流れの図（ブラウザで開く）。処理の流れを変えたら一緒に直す |
 | [`tests/`](tests/) | 通知・申込締切の読み取り・予定の統合・リマインドのテスト（`python3 -m unittest discover -s tests`） |
 | [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー）と、App の名義で push するスクリプト |
