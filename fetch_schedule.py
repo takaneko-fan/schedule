@@ -9,9 +9,11 @@
 """
 
 import argparse
+import contextlib
 import csv
 import hashlib
 import html
+import io
 import json
 import os
 import re
@@ -534,12 +536,35 @@ def x_same_venue(a, b):
     return len(a) >= 4 and len(b) >= 4 and (a in b or b in a)
 
 
+def x_listed_rows(c, rows):
+    """公式サイトの予定のうち、候補と同じとみなせるもの（統合は merge_post_rows が行う）。"""
+    return [r for r in rows if r["date"] == c["date"].isoformat()
+            and (same_event(c, r) or x_same_venue(c["venue"], r["venue"])
+                 or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in c["names"]))]
+
+
 def x_listed(c, rows):
-    """公式サイトの予定に同じものがあるか（実行ログの目安。統合は merge_post_rows が行う）。"""
-    return any(r["date"] == c["date"].isoformat()
-               and (same_event(c, r) or x_same_venue(c["venue"], r["venue"])
-                    or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in c["names"]))
-               for r in rows)
+    """公式サイトの予定に同じものがあるか（実行ログの目安）。"""
+    return bool(x_listed_rows(c, rows))
+
+
+def x_adds_info(c, rows, events=()):
+    """保存する意味があるか。公式の予定（rows）と保存済みの X の予定（events）に、この投稿の予定を
+    足して統合したときに結果が変わるなら True（公式にまだない予定、空いている項目を補える予定）。
+    何も変わらない予定（同じ予定の再告知など）は保存しない。x_events.json だけが変わるコミットを作らないため。
+    判定は、その日の予定の写しで、投稿を足した場合と足さない場合を実際に統合して比べる。"""
+    day = c["date"].isoformat()
+    saved = [x_event_to_row(e) for e in events if e["date"] == day and e["post_id"] != c["post_id"]]
+
+    def merged(extra):
+        base = [dict(r) for r in rows if r["date"] == day]
+        with contextlib.redirect_stdout(io.StringIO()):
+            out = merge_post_rows(base, [dict(r) for r in saved] + extra)
+        # x_urls は ID の引き継ぎ用の記録で、公式の予定にまとまった後の投稿では使わない。
+        # 統合で空の media などが足されるだけの違いは変化とみなさない（空と項目なしを同じに扱う）
+        return [{k: v for k, v in r.items() if k != "x_urls" and v not in ("", None)} for r in out]
+
+    return merged([x_event_to_row(x_event(c))]) != merged([])
 
 
 def load_x_events(path=X_EVENTS_PATH):
@@ -747,7 +772,8 @@ def read_x_posts(token, rows, events, notices, recheck_days):
             continue
         for c in read_x_with_llm(t, extract_x_candidates(t), provider, key, pending, tokens):
             d = c["date"]
-            listed = x_listed(c, official)
+            listed_rows = x_listed_rows(c, official)
+            listed = bool(listed_rows)
             time = "/".join(f"{k} {v}" for k, v in c["times"].items()) or c["time_note"]
             extra = "  ".join(s for s in (time, f"＠{c['venue']}" if c["venue"] else "") if s)
             publish = x_publishable(c)
@@ -757,7 +783,9 @@ def read_x_posts(token, rows, events, notices, recheck_days):
             print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  [{status}]  {c['url']}")
             counts["◎" if c["sure"] or publish else "?"] += 1
             counts["◎ 掲載済み"] += (c["sure"] or publish) and listed
-            if publish:
+            if publish and not x_adds_info(c, official, events):
+                print("    → 公式の予定に時刻・会場もそろっているため保存しない")
+            elif publish:
                 # 同じ投稿・同じ日付の予定は読み直した内容で置き換える
                 events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
                 events.append(x_event(c))

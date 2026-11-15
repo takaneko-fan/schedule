@@ -157,3 +157,40 @@ class CheckDropTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class XAddsInfoTest(unittest.TestCase):
+    """公式 X の予定を x_events.json に保存するか（統合して出力が変わるときだけ保存する）。"""
+
+    def cand(self, **values):
+        from datetime import date as d
+        base = {"date": d(2026, 11, 20), "title": "ミニライブ&特典会", "venue": "ららぽーと立川立飛", "times": {},
+                "time_note": "", "members": GROUP, "names": [], "url": "https://x.com/takanenofficial/status/9",
+                "post_id": "9", "posted": "2026-11-15T20:00+09:00", "media": "", "ai": False, "station": ""}
+        base.update(values)
+        return base
+
+    def test_listed_with_venue_is_not_saved(self):
+        self.assertFalse(fs.x_adds_info(self.cand(), [row()]))
+
+    def test_new_event_is_saved(self):
+        self.assertTrue(fs.x_adds_info(self.cand(), []))
+        self.assertTrue(fs.x_adds_info(self.cand(), [row(date="2026-11-21")]))
+
+    def test_fills_blank_venue_of_official_event(self):
+        self.assertTrue(fs.x_adds_info(self.cand(), [row(venue="")]))
+
+    def test_release_day_row_is_not_the_same_event(self):
+        """発売日の行は別の予定なので、その会場が空でも「補える」とはみなさない。"""
+        rows = [row(), row(title="ニューアルバム『A World in Our Colors』2026年11月20日(金)リリース", venue="",
+                           category="お知らせ記事", url="https://example.invalid/news/1")]
+        self.assertFalse(fs.x_adds_info(self.cand(names=["A World in Our Colors"]), rows))
+
+    def test_reannouncement_of_saved_x_event(self):
+        saved = {"date": "2026-11-20", "title": "ラジオ番組ゲスト", "venue": "", "open": "", "start": "19:00",
+                 "end": "", "time_note": "", "members": GROUP, "names": [], "url": "https://x.com/takanenofficial/status/1",
+                 "post_id": "1", "posted": "2026-11-10T20:00+09:00", "media": "ラジオ", "ai": False, "station": ""}
+        same = self.cand(title="ラジオ番組ゲスト", venue="", times={"START": "19:00"}, media="ラジオ")
+        self.assertFalse(fs.x_adds_info(same, [], [saved]))
+        with_end = self.cand(title="ラジオ番組ゲスト", venue="", times={"START": "19:00", "END": "20:00"}, media="ラジオ")
+        self.assertTrue(fs.x_adds_info(with_end, [], [saved]))  # 終了時刻を補える
