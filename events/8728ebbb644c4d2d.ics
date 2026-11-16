@@ -1,0 +1,45 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:8728ebbb644c4d2d@takaneko-data-mine
+DTSTAMP:20261116T181524Z
+DTSTART;VALUE=DATE:20261123
+DTEND;VALUE=DATE:20261124
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：松本
+ ももな プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 松本ももな\nカテゴリ: お知らせ記事\n情
+ 報元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecor
+ d-cp/\n\n【参加メモ】\n📍 会場: タワーレコード渋谷店
+ ／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ら
+ らぽーと立川立飛店\n🕙 当日の流れ: 2026年11月23日(月
+ ・祝)の対象商品購入時に、松本ももなプリントサイン
+ 入りスペシャルレシートを発行\n🎫 参加方法・当日券:
+  対象6店舗で対象商品を購入すると、11月23日の日替わ
+ りスペシャルレシートが発行されます\n💴 料金: 初回
+ 限定盤：税込4\,950円／たかねこ盤：税込3\,300円\n📸 ル
+ ール: 展示パネルには触れない／パネル抽選券の予約・
+ 取り置き不可\nℹ️ その他: 対象商品は2026年11月18日(水
+ )発売の『A World in Our Colors』。対象店舗：渋谷店（03-3496
+ -3661）／新宿店（03-5360-7811）／浦和店（048-871-2721）／川
+ 崎店（044-245-9522）／ららぽーとTOKYO-BAY店（047-432-0961）
+ ／ららぽーと立川立飛店（042-540-6031）\n🤖 公式の案内
+ を AI が要約したものです。必ず情報元で確認してくだ
+ さい。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

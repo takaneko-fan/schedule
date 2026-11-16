@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:f3465667b88a59a5@takaneko-data-mine
+DTSTAMP:20261116T181524Z
+DTSTART;VALUE=DATE:20261120
+DTEND;VALUE=DATE:20261121
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：葉月
+ 紗蘭 プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 葉月紗蘭\nカテゴリ: お知らせ記事\n情報
+ 元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-c
+ p/\n\n【参加メモ】\n📍 会場: タワーレコード渋谷店／
+ 新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／らら
+ ぽーと立川立飛店\n🕙 当日の流れ: 2026年11月20日(金)：
+ 対象商品購入で葉月紗蘭プリントサイン入りスペシャ
+ ルレシート発行\n🎫 参加方法・当日券: 対象6店舗で対
+ 象商品を購入すると、購入日に応じたスペシャルレシ
+ ートを発行／対象商品は初回限定盤・たかねこ盤\n💴 
+ 料金: 初回限定盤 VIZL-2561：税込4\,950円／たかねこ盤 VICL
+ -66184：税込3\,300円\n📸 ルール: パネル展の展示パネル
+ には触れない／パネル抽選番号券の譲渡・転売は禁止\n
+ ⚠️ 注意: スペシャルレシートは2026年11月20日(金)分が
+ 葉月紗蘭／パネル抽選番号券は先着順で規定枚数に達
+ し次第終了／パネル抽選番号券の紛失・破損は対応不
+ 可／購入商品の払い戻し不可\nℹ️ その他: パネル展・
+ スペシャルレシート・コメントビデオを同じ6店舗で実
+ 施／パネル抽選の発表日・引き換え期間は各店舗に確
+ 認／当選パネルは店頭受け取りのみで配送不可／パネ
+ ルの絵柄はランダムで選択不可／対象期間：11月17日(火
+ )～11月24日(火)\n🤖 公式の案内を AI が要約したもので
+ す。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

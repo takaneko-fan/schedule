@@ -1,0 +1,44 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:5ccef23dd2655c82@takaneko-data-mine
+DTSTAMP:20261116T181524Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：城月
+ 菜央 プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 城月菜央\nカテゴリ: お知らせ記事\n情報
+ 元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-c
+ p/\n\n【参加メモ】\n🕙 当日の流れ: 2026年11月17日（火）
+ ：対象商品購入で城月菜央プリントサイン入りスペシ
+ ャルレシートを発行／キャンペーン期間：11月17日（火
+ ）～11月24日（火）\n🎫 参加方法・当日券: 対象6店舗で
+ 対象商品を購入すると、購入日のメンバー別スペシャ
+ ルレシートを発行。11月17日は城月菜央。\n💴 料金: 初
+ 回限定盤（VIZL-2561）：税込4\,950円／たかねこ盤（VICL-661
+ 84）：税込3\,300円\n⚠️ 注意: スペシャルレシート発行
+ 店舗：渋谷・新宿・浦和・川崎・ららぽーとTOKYO-BAY・
+ ららぽーと立川立飛。各店舗の在庫・運用状況は店舗
+ へ確認。\nℹ️ その他: 対象店舗でパネル展とスペシャ
+ ルコメントビデオ放映も実施。パネル抽選券は予約・
+ 取り置き不可、先着順で規定枚数に達し次第終了。\n
+ 🤖 公式の案内を AI が要約したものです。必ず情報元
+ で確認してください。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

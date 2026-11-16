@@ -1,0 +1,64 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:a331570e6a711e9a@takaneko-data-mine
+DTSTAMP:20261116T181524Z
+DTSTART;VALUE=DATE:20261118
+DTEND;VALUE=DATE:20261119
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：涼海
+ すう プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 涼海すう\nカテゴリ: お知らせ記事\n情報
+ 元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-c
+ p/\n\n【参加メモ】\n📍 会場: ららぽーと立川立飛2F イ
+ ベント広場（東京都立川市泉町935番地の1）／レシート
+ 発行：タワーレコード渋谷・新宿・浦和・川崎・らら
+ ぽーとTOKYO-BAY・ららぽーと立川立飛店\n🕙 当日の流れ:
+  11月18日（水）15:00 CD販売開始／16:40 優先エリア入場開
+ 始／17:00 ミニライブ開始\n👥 部とメンバー: グループ
+ 握手会A：城月・橋本・葉月・日向端／B：涼海・東山・
+ 松本・籾山\n🎫 参加方法・当日券: 対象商品1枚購入で
+ 、優先エリア入場券を1会計1枚ランダム配布／握手会は
+ 対象商品1枚購入で希望グループの参加券2枚を先着配布
+ ／ミニライブは観覧フリー／涼海すうのスペシャルレ
+ シートは11月18日に対象6店舗で対象商品購入時に発行\n
+ 💴 料金: 初回限定盤 VIZL-2561：税込4\,950円／たかねこ盤
+  VICL-66184：税込3\,300円\n💳 支払い: 金券・各種割引・駐
+ 車場サービス・ポイントカードサービス等は対象外\n
+ 🎒 持ち物: マスク必須／荷物は原則1人1個、3辺合計115c
+ m（55×40×25cm）未満／金属類はなるべく身に付けない\n
+ 📸 ルール: ミニライブ中のコール・ジャンプ、会場内
+ の録音・録画・撮影は禁止／握手時は優しく握り、会
+ 話は握手中のメンバーと行う／指輪・アクセサリー・
+ 腕時計は結婚指輪を除き外す\n⚠️ 注意: 入場時に手荷
+ 物・金属探知検査を実施し、協力しない場合は入場不
+ 可／液体・刃物・火薬・ピン・缶・酒類等は禁止、ク
+ ロークなし／発熱・咳等の症状や飲酒状態では参加不
+ 可／参加券は当日限り有効、紛失・破損時も再発行不
+ 可／握手会の新規受付締切は開始時に会場アナウンス
+ ／券は配布終了する場合あり／待ち合わせによる割り
+ 込み・代表待ち、前日泊まり込み・早朝待機は禁止\nℹ
+ ️ その他: 対象6店舗で11月18日に涼海すうプリントサイ
+ ン入りスペシャルレシートを発行／パネル展は11月17日
+ ～24日、パネル抽選券は先着で規定枚数終了まで／当選
+ パネルは店頭受取のみで配送なし／対象商品には店舗
+ 特典等なし、購入後のキャンセル・返金不可（不良品
+ は良品交換）\n🤖 公式の案内を AI が要約したものです
+ 。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

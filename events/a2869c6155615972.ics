@@ -1,0 +1,42 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:a2869c6155615972@takaneko-data-mine
+DTSTAMP:20261116T181524Z
+DTSTART;VALUE=DATE:20261122
+DTEND;VALUE=DATE:20261123
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：日向
+ 端ひな プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 日向端ひな\nカテゴリ: お知らせ記事\n情
+ 報元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecor
+ d-cp/\n\n【参加メモ】\n📍 会場: タワーレコード渋谷店
+ ／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ら
+ らぽーと立川立飛店\n🕙 当日の流れ: 2026年11月22日(日)
+ の対象商品購入時に、日向端ひなプリントサイン入り
+ スペシャルレシートを発行\n🎫 参加方法・当日券: 対
+ 象期間中に対象店舗で対象商品を購入すると、購入日
+ のメンバー別スペシャルレシートを発行\n💴 料金: 初
+ 回限定盤：税込4\,950円／たかねこ盤：税込3\,300円\n⚠️
+  注意: スペシャルレシートの発行対象日は11月22日(日)
+ のみ／対象商品は2026年11月18日(水)発売の2形態\nℹ️ そ
+ の他: 対象店舗ではパネル展・店頭スペシャルコメント
+ ビデオ放映も実施\n🤖 公式の案内を AI が要約したもの
+ です。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
