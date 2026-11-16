@@ -607,7 +607,7 @@ def x_event_to_row(e):
 
 def update_x_events(rows, today, recheck_days=None):
     """公式 X の新しい投稿から予定を読み取って x_events.json に足し、保存済みの予定を行データで返す。
-    中止・欠席の告知は x_notices.json に足し、保存済みの告知と一緒に (予定の行, 告知) で返す。
+    中止・欠席の告知は x_notices.json に足し、保存済みの告知と一緒に (予定の行, 告知, 会場の手がかり) で返す。
 
     実行ログには読み取った候補すべてを、公式サイト（カレンダー・お知らせ記事）に同じ予定があるかを付けて出す。
     予定一覧に入れるのは x_publishable の予定（◎ のうち当日の告知を除いたものと、当日の番組）。
@@ -616,17 +616,18 @@ def update_x_events(rows, today, recheck_days=None):
     """
     events = load_x_events()
     notices = load_x_events(X_NOTICES_PATH)
+    hints = []  # 今回読んだ投稿の「📍…」の行（取り込めていない可能性の判定用。保存しない）
     token = os.environ.get("X_BEARER_TOKEN")
     if not token:
         print("X: X_BEARER_TOKEN が未設定のため新しい投稿は確認しません")
     else:
         try:
-            events = read_x_posts(token, rows, events, notices, recheck_days)
+            events = read_x_posts(token, rows, events, notices, recheck_days, hints)
         except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても保存済みの予定で続行
             print(f"  ! X 取得失敗: {e}")
     save_x_events(events, today)
     save_x_events(notices, today, X_NOTICES_PATH)
-    return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()], notices
+    return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()], notices, hints
 
 
 def x_notice(tweet):
@@ -745,7 +746,7 @@ def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
     return cands
 
 
-def read_x_posts(token, rows, events, notices, recheck_days):
+def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
     state = {} if recheck_days else load_x_state()
     tweets, newest = fetch_x_posts(token, state.get("since_id"), recheck_days or X_FIRST_DAYS)
     print(f"X（@takanenofficial）: {len(tweets)} 件の{'投稿を読み直し' if recheck_days else '新しい投稿を確認'}")
@@ -761,6 +762,8 @@ def read_x_posts(token, rows, events, notices, recheck_days):
     official = [r for r in rows if not r["category"].startswith("Eventernote")]
     counts = {"◎": 0, "◎ 掲載済み": 0, "?": 0}
     for t in tweets:
+        if hints is not None:
+            hints += x_venue_hints(t)
         notice = x_notice(t)
         if notice:
             # 中止・欠席の告知は予定の告知として読まない（AI に読ませると中止の予定を新しく載せかねない）
@@ -897,6 +900,94 @@ def dated_posts(rows, posts):
         yield post, targets
 
 
+# 会場の手がかり（取り込めていない可能性の判定用）。venue_from_post より広い形で探す:
+# 「■会場」「▼会場」「【会場】…」「会場：…」「場所：…」「開催場所：…」。会場の語の後ろは、行の終わり・「：」・閉じかっこだけ
+# （「■会場限定抽選会」「会場内は撮影禁止」のような見出し・文は含めない）
+VENUE_HINT_RE = re.compile(r"^[◆■●▼▽◇◎・\s]*(?:[【\[<＜（(]\s*(?:会場|場所|開催場所)\s*[】\]>＞）)]\s*(.*)"
+                           r"|(?:会場|場所|開催場所)\s*(?:[:：]\s*(.*))?)$")
+MISSED_PATH = (os.environ.get("MISSED_PATH")
+               or os.path.expanduser("~/.local/state/takaneko-fan/missed_info.json"))
+
+
+def article_venue_hints(post):
+    """記事のタイトル・本文から、会場らしき記載（値と、どこに書かれていたか）を返す。"""
+    title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+    hints = []
+    m = re.search(r"(?:^|[^A-Za-z])at\s*(.+)$", title)
+    if m:
+        hints.append((re.split(r"\s*(?:当日|のお知らせ|お知らせ|開催|詳細|決定|変更|【|[(（])", m.group(1))[0], "タイトルの「at …」"))
+    lines = html_to_lines(post["content"]["rendered"])
+    for i, line in enumerate(lines):
+        m = VENUE_HINT_RE.match(line)
+        if m:
+            value = m.group(1) or m.group(2) or (lines[i + 1] if i + 1 < len(lines) else "")
+            hints.append((value, f"「{line[:20]}」の記載"))
+    return [(re.sub(r"\s+", " ", v).strip(), where) for v, where in hints]
+
+
+def x_venue_hints(tweet):
+    """公式 X の投稿の「📍…」の行を、直前の日付の行（「🗓️11月22日(日)」など）と組にして返す。"""
+    posted = x_posted(tweet)
+    day, hints = None, []
+    for line in x_lines(tweet):
+        m = X_DATE_RE.search(line)
+        if m:
+            day = infer_date(*m.groups()[:3], posted.date())
+        elif line.startswith("📍") and day:
+            hints.append({"date": day.isoformat(), "value": line.lstrip("📍").strip(),
+                          "url": f"https://x.com/takanenofficial/status/{tweet['id']}",
+                          "posted": posted.isoformat(timespec="minutes")})
+    return hints
+
+
+def find_missed_venues(rows, posts, x_hints, today):
+    """会場が仮のままの予定のうち、同じ日の記事や公式 X に実際の会場らしき記載があるもの
+    （公式は発表しているのに取り込めていない可能性）を返す。公式がまだ発表していないときは返さない。"""
+    def real(value):
+        return bool(value) and not TBD_VENUE_RE.search(value)
+
+    missed = {}
+
+    def add(r, label, url):
+        key = f"{r['date']}|{r.get('event_url', r['url'])}"
+        item = missed.setdefault(key, {"date": r["date"], "title": r["title"], "venue": r["venue"], "sources": []})
+        if all(src["url"] != url for src in item["sources"]):
+            item["sources"].append({"label": label, "url": url})
+
+    def waiting(r):
+        return (r["date"] >= today.isoformat() and r["category"] != CATEGORY_LABELS["birth"]
+                and not media_of(r) and TBD_VENUE_RE.search(r["venue"]))
+
+    for post, targets in dated_posts(rows, posts):
+        targets = [r for r in targets if waiting(r)]
+        if not targets:
+            continue
+        title = html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
+        for value, where in article_venue_hints(post):
+            if real(value):
+                for r in targets:
+                    add(r, f"記事「{title[:40]}」の{where}（{value[:30]}）", post["link"])
+                break
+    for h in x_hints:
+        if not real(h["value"]):
+            continue
+        same_day = [r for r in rows if r["date"] == h["date"]]
+        # 同じ日のほかの予定の会場なら、その予定の告知とみなす
+        if any(r["venue"] and not TBD_VENUE_RE.search(r["venue"]) and x_same_venue(h["value"], r["venue"]) for r in same_day):
+            continue
+        for r in same_day:
+            if waiting(r):
+                posted = datetime.fromisoformat(h["posted"])
+                add(r, f"公式 X {posted.month}/{posted.day} {posted:%H:%M} の投稿の「📍{h['value'][:30]}」", h["url"])
+    out = []
+    for key, item in missed.items():
+        for src in item["sources"]:
+            out.append({**{k: v for k, v in item.items() if k != "sources"}, "key": f"{key}|{src['url']}",
+                        "label": src["label"], "url": src["url"]})
+            print(f"  ! 会場を取り込めていない可能性: {item['date']} {item['title'][:30]}（{item['venue']}） ← {src['label']}")
+    return out
+
+
 def fill_tbd_venues(rows, posts):
     """会場が「東京都内某所（詳細は後日発表）」の予定に、後から出た記事の会場名を入れる（新しい記事を優先）。"""
     for post, targets in dated_posts(rows, posts):
@@ -994,6 +1085,11 @@ def add_media(rows):
         for label in (media, AI_CATEGORY if r.get("ai") else ""):
             if label and label not in r["category"].split(" / "):
                 r["category"] += f" / {label}"
+
+
+def media_of(row):
+    """番組の種別（ラジオ・テレビ・配信）。番組でなければ空。"""
+    return next((c for c in row["category"].split(" / ") if c in MEDIA_WORDS), "")
 
 
 def media_prefix(row):
@@ -2290,7 +2386,7 @@ def main():
     # 同じ予定が複数記事に書かれている場合があるので、古い記事→新しい記事の順で統合
     rows = merge_post_rows(rows, sorted(post_rows, key=lambda r: r["date"]))
     # 公式 X の予定は古い投稿から順に統合する（ID の元になる情報元が、後の投稿で変わらないように）
-    x_rows, x_notices = update_x_events(rows, today, args.x_recheck)
+    x_rows, x_notices, x_hints = update_x_events(rows, today, args.x_recheck)
     x_rows = [r for r in x_rows if args.start.isoformat() <= r["date"] < args.end.isoformat()]
     rows = merge_post_rows(rows, sorted(x_rows, key=lambda r: (r["date"], int(r["url"].rsplit("/", 1)[1]))))
     try:
@@ -2300,6 +2396,7 @@ def main():
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     apply_x_notices(rows, x_notices)
+    write_deadline_warnings(find_missed_venues(rows, posts, x_hints, today), MISSED_PATH)
     prev = load_prev_rows(args.csv)
     problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
     if problem:
