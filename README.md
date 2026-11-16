@@ -21,6 +21,7 @@
 | [`fetch_schedule.py`](fetch_schedule.py) | 上記のファイルを生成するスクリプト |
 | [`notify.py`](notify.py) | 更新の内容を ntfy で通知するスクリプト |
 | [`remind.py`](remind.py) | 今日締切の申込と、今日始まる先着販売を ntfy で知らせるスクリプト（たかねこリマインド） |
+| [`CHANGELOG.md`](CHANGELOG.md) | 変更履歴（バージョンごとの主な変更） |
 | [`CLAUDE.md`](CLAUDE.md) | 開発の決まり（言葉、ブランチ、コミット・push の手順など）。Claude Code が自動で読む |
 | [`docs/spec.md`](docs/spec.md) | 機能仕様書（何をするか） |
 | [`docs/design.md`](docs/design.md) / [`docs/operations.md`](docs/operations.md) / [`docs/notes.md`](docs/notes.md) | 設計（どう作っているか）／運用（自動更新・push・障害時の確認）／検証記録・経緯 |
