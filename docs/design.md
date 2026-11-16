@@ -17,6 +17,10 @@
 | `docs/flow.html` | 処理の流れの図 |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
 
+## API キーの読み込み
+
+`load_env` が、リポジトリの `.env`、なければ `~/.config/takaneko-fan/.env`（`CONFIG_ENV_PATH`）の `KEY=VALUE` を環境変数に読み込む。すでに環境変数にある値（GitHub Actions の Secrets など）は上書きしない。`fetch_schedule.py`・`notify.py`・`remind.py` が実行の最初に呼ぶ。
+
 ## リポジトリの外に置く記録
 
 Actions の checkout で消えないよう、リポジトリの外（`~/.local/state/takaneko-fan/`）に置き、コミットしない。手元と VPS で別々。
