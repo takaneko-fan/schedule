@@ -183,13 +183,13 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <li class="step key">
         <div class="step-body">
           <div class="step-title"><h3>公式 X（前回より新しい投稿）</h3></div>
-          <p>投稿ごとに、次のどれかとして読む。</p>
+          <p>1 行目が決まった形の中止・欠席の告知は、新しい予定としては読まない。それ以外は新しい予定として読み、変更・中止などの語があれば AI でも読む。</p>
           <div class="branches">
             <div class="branch"><span class="when">1 行目が「…中止のお知らせ」「…欠席のお知らせ」</span><span class="what">中止・欠席の告知</span><span class="tags"><span class="tag rule">ルール</span><span class="tag file">x_notices.json</span></span></div>
-            <div class="branch"><span class="when">「🎤出演情報🎤」「#あしたのたかねこ」など</span><span class="what">新しい予定の告知</span><span class="tags"><span class="tag rule">ルール</span><span class="tag ai">AI（読めないとき）</span><span class="tag file">x_events.json</span></span></div>
-            <div class="branch highlight"><span class="when">本文に「変更・中止・欠席・延期」など</span><span class="what">時刻・会場の変更、書き方の決まっていない中止・欠席</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">x_notices.json</span></span></div>
+            <div class="branch"><span class="when">「🎤出演情報🎤」「#あしたのたかねこ」など</span><span class="what">新しい予定の告知。公式の予定に統合しても何も変わらない予定（公式に載っていて時刻・会場もそろっている予定の再告知など）は保存しない</span><span class="tags"><span class="tag rule">ルール</span><span class="tag ai">AI（読めないとき）</span><span class="tag file">x_events.json</span></span></div>
+            <div class="branch highlight"><span class="when">本文に「変更・中止・欠席・延期」など（新しい予定としての読み取りとあわせて）</span><span class="what">時刻・会場の変更、書き方の決まっていない中止・欠席</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">x_notices.json</span></span></div>
           </div>
-          <p>新しい予定は公式カレンダーの予定とまとめる。まとめるときは空いている項目を埋めるだけで、公式の値は上書きしない。</p>
+          <p>新しい予定は公式カレンダーの予定とまとめる。公式の値を優先し、公式に時刻がないときの会場・部制の時間、より詳しい会場名、日ごとの担当メンバーだけを取り込む。</p>
         </div>
       </li>
       <li class="step">
@@ -200,8 +200,8 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       </li>
       <li class="step">
         <div class="step-body">
-          <div class="step-title"><h3>仮の会場を補う</h3></div>
-          <p>「東京都内某所」のままの予定に、同じ日の記事から会場名を補い、会場の情報元を結び付ける。</p>
+          <div class="step-title"><h3>仮の会場と情報元を補う</h3></div>
+          <p>「東京都内某所」のままの予定に、同じ日の記事から会場名を補い、会場の情報元を結び付ける。イベントページが「詳細は後日発表」だけで、詳細が記事に出ている予定は、情報元をその記事に切り替える（ID は変えない）。</p>
         </div>
       </li>
       <li class="step key">
@@ -222,7 +222,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <li class="step">
         <div class="step-body">
           <div class="step-title"><h3>過去の予定の引き継ぎと並べ替え</h3></div>
-          <p>開始日より前の予定は前回の <code>schedule.csv</code> から引き継ぎ、終わった予定に「済」を付ける。</p>
+          <p>開始日より前の予定は前回の <code>schedule.csv</code> から引き継ぎ、日付順に並べる。ラジオ・テレビ・配信の番組に種別を付け、終わった予定に「済」を付ける。</p>
         </div>
       </li>
       <li class="step">
@@ -257,7 +257,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
     <div class="chain">
       <div class="node"><b>git pull</b><small>最新の状態にそろえる</small></div>
       <span class="arrow" aria-hidden="true">→</span>
-      <div class="node"><b>予定の取得と統合</b><small>STAGE 2。安全策で止まれば、ここで失敗して GitHub から通知メール</small></div>
+      <div class="node"><b>予定の取得と統合</b><small>STAGE 2。カレンダーや記事の一覧が取れないとき、安全策で止まったときは、ここで失敗して GitHub から通知メール</small></div>
       <span class="arrow" aria-hidden="true">→</span>
       <div class="node"><b>たかねこリマインド</b><small><code>remind.py</code>。9 時以降の最初の回に、今日締切の申込と先着販売の開始</small></div>
       <span class="arrow" aria-hidden="true">→</span>
@@ -318,7 +318,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
   </section>
 
   <footer>
-    <span>2026-11-13 時点の takaneko-fan/schedule の <code>main</code> のコードから整理。リポジトリの <code>docs/flow.html</code> と同じ内容です。</span>
+    <span>2026-11-16 時点の takaneko-fan/schedule の <code>main</code> のコードから整理。リポジトリの <code>docs/flow.html</code> と同じ内容です。</span>
     <span>非公式のファンメイドのツールです。予定は必ず公式サイト・公式 X で確認してください。</span>
   </footer>
 </div>

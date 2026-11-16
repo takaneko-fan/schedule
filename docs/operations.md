@@ -1,0 +1,91 @@
+# 高嶺のなでしこ 非公式スケジュール 運用
+
+自動更新の仕組み、手元からの作業、障害時の確認をまとめます。機能は [機能仕様書](spec.md)、作りは [設計](design.md) にあります。
+
+## 更新の流れ（`run_update.sh`）
+
+更新は GitHub Actions（`.github/workflows/update.yml`）が 1 日 8 回 `run_update.sh` を実行して自動で行います。予定に変化があればコミット・ push され、GitHub Pages と照会カレンダーに反映されます。すぐに更新したいときは、App の鍵がある環境で `ops/dispatch_update.sh` を実行します。
+
+1. `git pull --ff-only` で最新にする。
+2. `python3 fetch_schedule.py` を実行する（`run_update.sh` の引数はそのまま渡る）。安全策で止まったら、ここで失敗する。
+3. `python3 remind.py` で今日の申込を知らせ、`python3 notify.py --warnings` で記載ミスの可能性を知らせる（予定に変化がない回も実行。失敗しても続行）。
+4. `schedule.*`・`deadlines.*` の 6 ファイルと `memos.json`・`post_ai.json`・`events/`・`x_events.json`・`x_notices.json` を `git add` する。差分がなければ「予定に変化なし」で終了。
+5. `feat: YYYY-MM-DD HH:MMの登録`（日本時間の日時）でコミットし、push する。
+6. `python3 notify.py` で更新の内容を通知する。通知に失敗しても `run_update.sh` は失敗にしない。
+
+push されると、GitHub が自動で Pages を更新します（`main` の全ファイルを公開）。
+
+### 自動更新（GitHub Actions・セルフホストランナー）
+
+公式サイトは国外からの REST API・管理画面（`/wp-json/`、`/wp-admin/admin-ajax.php`）へのアクセスを受け付けないため、GitHub のサーバー（主に米国）では取得できません。国内の VPS に置いたセルフホストランナーで実行します。
+
+| 項目 | 内容 |
+| --- | --- |
+| 実行時刻 | 日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17。公式のお知らせ記事の約 8 割が 16〜23 時台に公開され、0〜7 時台は約 2% のため（2026-11 時点の全 612 件）、夕方から夜に寄せている。VPS の systemd タイマーが GitHub App の名義で起動する（下記）。ワークフローの定時実行（`schedule`）は使わない |
+| 手動実行 | App の鍵がある環境で `ops/dispatch_update.sh` を実行する。Actions の画面の Run workflow でも動くが、起動者として個人のアカウント名が公開されるので使わない |
+| 実行先 | `runs-on: [self-hosted, conoha]`。ConoHa VPS 1GB（大阪、Ubuntu 24.04、Python 3.12）、ランナー名 `conoha-osaka` |
+| サーバー | ランナーは専用ユーザー `runner`（sudo なし）のサービスとして常駐。ssh は鍵のみ、ufw で外からは 22 番だけ許可 |
+| 権限 | `contents: write`（`GITHUB_TOKEN` で push する） |
+| 同時実行 | `concurrency: update` で 1 つずつ実行し、push の衝突を防ぐ |
+| API キー | リポジトリの Secrets の `OPENAI_API_KEY` / `GEMINI_API_KEY`。未登録なら既存の参加メモだけを使う |
+| X のトークン | Secrets の `X_BEARER_TOKEN`。未登録なら公式 X の確認を飛ばす |
+| 通知のトピック | Secrets の `NTFY_TOPIC`。未登録なら通知を送らない |
+| リマインドのトピック | Secrets の `NTFY_REMIND_TOPIC`。未登録ならリマインドを送らない |
+| 停止の検知 | Secrets の `HC_PING_URL`（healthchecks.io の Ping URL、`takaneko-fan@proton.me` のアカウント）。成功で `HC_PING_URL`、失敗・タイムアウトで `HC_PING_URL/fail` に連絡する。チェックは Cron `17 0,9,12,16,18,20,21,22 * * *`（Asia/Tokyo）、猶予 1 時間で、更新が 1 回抜けると知らせが届く。**VPS のタイマーの時刻を変えたら、この Cron も合わせる** |
+| 失敗時 | 安全策の停止や取得エラーで実行が失敗し、GitHub から通知メールが届く。`update.yml` の最後のステップが ntfy にも優先度を上げて通知する（タイムアウトを含む） |
+| 公開リポジトリの対策 | 外部からのプルリクエストのワークフロー実行は、毎回承認が必要な設定にしている |
+
+### VPS のタイマーからの起動
+
+GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行自体が抜けたりする（2026-10-26〜28 の実績で 1 日 1 回は抜け、最大 5 時間 43 分の遅れ）。また、定時実行の起動者は cron 行を最後に変更したアカウントとして公開される。手動実行（`workflow_dispatch`）は遅れないので、VPS の systemd タイマーから API でワークフローを起動する。
+
+| 項目 | 内容 |
+| --- | --- |
+| 起動の名義 | 組織の GitHub App `takaneko-fan-updater`（App ID 5513246）。権限は Actions・Contents・Workflows の読み書き（Contents と Workflows は下記の push 用）、インストール先は `schedule` だけ。Actions の画面の起動者は `takaneko-fan-updater[bot]` になり、個人のアカウントを使わない |
+| スクリプト | `ops/dispatch_update.sh` → VPS の `/home/runner/bin/dispatch_update.sh`。App の鍵で JWT を作り、インストールのトークン（1 時間で失効）をもらって `update.yml` を起動する |
+| 鍵 | `/home/runner/.config/takaneko-fan/app.pem`（`runner` だけが読める 600）。リポジトリには入れない |
+| タイマー | `ops/takaneko-dispatch.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*-*-* 00,09,12,16,18,20,21,22:17:00 Asia/Tokyo`、`Persistent=true`（止まっていて逃した回は起動後に 1 回実行） |
+
+確認は `systemctl list-timers takaneko-dispatch.timer`（次回の時刻）、`journalctl -u takaneko-dispatch.service`（起動の結果）。鍵を作り直したときは App の Credentials → Key pairs で新しい鍵を作り、VPS の `app.pem` を置き換えてから古い鍵を削除する。VPS が止まっている間は更新されない（再開後に逃した回を 1 回実行する）。
+
+### 手元からの push
+
+個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。push の前に `tests/` のテストを実行し、失敗したら push しない（定期の更新は `run_update.sh` の `git push` で送るので、テストでは止まらない）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。
+
+ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
+
+## 通知の送り方
+
+通知は IPv4 で送ります。ntfy.sh の無料枠（1 日 250 件）は IPv6 では /64 単位で数えられ、VPS と同じネットワークの他の利用者と共有になるためです（経緯は [検証記録・経緯](notes.md)）。
+
+VPS やランナーが止まっていると更新自体が動かないので、失敗の通知も届きません。この場合は、停止の検知（healthchecks.io）が連絡の途絶えを検知して知らせます。
+
+## 主なオプション（`fetch_schedule.py`）
+
+| オプション | 説明 |
+| --- | --- |
+| `--start YYYY-MM-DD` | 開始日（既定: 今日） |
+| `--end YYYY-MM-DD` | 終了日。この日は含まない（既定: 今日から 366 日後） |
+| `--no-detail` | 詳細ページを取得しない（速いが時間・会場が空になる） |
+| `--post-days N` | 何日前までのお知らせ記事を確認するか（既定: 365） |
+| `--md` / `--csv` / `--ics PATH` | 出力先 |
+| `--deadlines PATH` | 申込・締切の出力先（拡張子なし、既定: `deadlines`） |
+| `--force` | 安全策のチェックを飛ばして出力する |
+| `--x-recheck DAYS` | 公式 X を DAYS 日前から読み直す。読み取った予定は `x_events.json` に保存する（前回の続きの記録は変えない） |
+
+安全策（機能仕様書 F-16）で止まったとき、本当に中止・削除された場合や期間を変えた場合は `--force` を付けて実行します。
+
+送らずに本文を確かめるコマンド:
+
+- 更新の通知: `python3 notify.py --dry-run --today 2026-11-02 31b5e7d~1 31b5e7d`
+- 記載ミスの可能性: `python3 notify.py --warnings --dry-run`
+- たかねこリマインド: `python3 remind.py --dry-run --now 2026-11-15T09:17`
+
+## コミット名義
+
+コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。GitHub Actions ではワークフロー内で設定します。手元では、このリポジトリの `.git/config` に `user.name` / `user.email` を設定済みで、個人のグローバル設定より優先されます。新しい環境で clone したときは同じ設定をやり直します。
+
+```
+git config --local user.name "takaneko-fan"
+git config --local user.email "bot@example.invalid"
+```
