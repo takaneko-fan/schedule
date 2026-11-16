@@ -12,7 +12,7 @@
 | `remind.py` | 今日締切の申込と、今日始まる先着販売を ntfy で知らせる（たかねこリマインド） |
 | `index.html` | GitHub Pages の Web 版（手書き） |
 | `tests/` | `unittest` のテスト。ネットワークにつながず AI も呼ばない（`python3 -m unittest discover -s tests`） |
-| `ops/` | 定期起動（VPS のタイマー）と、App の名義での push（[運用](operations.md)） |
+| `ops/` | 定期起動（VPS のタイマー）、App の名義での push、手元の開発環境の git の設定（`setup_local.sh`）（[運用](operations.md)） |
 | `.github/workflows/update.yml` | `run_update.sh` を VPS のセルフホストランナーで実行する |
 | `docs/flow.html` | 処理の流れの図 |
 | `.devcontainer/` | 開発用の Python コンテナ定義 |
