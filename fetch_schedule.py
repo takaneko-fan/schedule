@@ -718,8 +718,72 @@ def x_publishable(c):
     return c["sure"]
 
 
+# ルールと AI の読み取りの比べ合わせ（AI をどこまで信用できるかの評価用。リポジトリの外に 1 投稿 1 行で足していく）
+AI_COMPARE_PATH = (os.environ.get("AI_COMPARE_PATH")
+                   or os.path.expanduser("~/.local/state/takaneko-fan/ai_compare.jsonl"))
+AI_COMPARE_FIELDS = ("title", "venue", "start", "members")
+
+
+def x_compare_item(c):
+    """比べるための値（投稿の本文は含めない）。"""
+    return {"date": c["date"].isoformat(), "title": c["title"], "venue": c["venue"],
+            "start": re.sub(r"^0(?=\d:)", "", c["times"].get("START", "")), "members": c["members"]}
+
+
+def x_compare_field(field, a, b):
+    """1 項目の判定: 一致・食い違い・片方だけ・どちらもなし。"""
+    if not a and not b:
+        return "どちらもなし"
+    if not a or not b:
+        return "片方だけ"
+    if field == "title":
+        same = normalize(a) == normalize(b) or shares_phrase(a, b)
+    elif field == "venue":
+        same = normalize(a) == normalize(b) or x_same_venue(a, b)
+    elif field == "members":
+        same = set(a.split("、")) == set(b.split("、"))
+    else:
+        same = a == b
+    return "一致" if same else "食い違い"
+
+
+def x_compare(rule, ai):
+    """ルールと AI の予定を、日付（同じ日に複数あれば予定名）で組にして、項目ごとに判定する。"""
+    rule, ai = [x_compare_item(c) for c in rule], [x_compare_item(c) for c in ai]
+    pairs, rest = [], list(ai)
+    for r in rule:
+        same_day = [a for a in rest if a["date"] == r["date"]]
+        a = next((a for a in same_day if x_compare_field("title", r["title"], a["title"]) == "一致"),
+                 same_day[0] if same_day else None)
+        if a:
+            rest.remove(a)
+        pairs.append({"date": r["date"], "rule": r, "ai": a,
+                      "fields": {f: x_compare_field(f, r[f], a[f]) for f in AI_COMPARE_FIELDS} if a else {}})
+    pairs += [{"date": a["date"], "rule": None, "ai": a, "fields": {}} for a in rest]
+    return pairs
+
+
+def record_ai_compare(tweet, rule, ai, kind):
+    """比べた結果を記録ファイルに 1 行足し、食い違いがあれば実行ログに出す。記録に失敗しても更新は止めない。"""
+    pairs = x_compare(rule, ai)
+    entry = {"checked": datetime.now(JST).isoformat(timespec="minutes"), "kind": kind, "post_id": tweet["id"],
+             "url": f"https://x.com/takanenofficial/status/{tweet['id']}",
+             "posted": x_posted(tweet).isoformat(timespec="minutes"), "pairs": pairs}
+    diffs = [f"{p['date']} " + ("ルールのみ" if p["ai"] is None else "AI のみ" if p["rule"] is None else
+                                "・".join(f"{f}:{v}" for f, v in p["fields"].items() if v in ("食い違い", "片方だけ")))
+             for p in pairs if p["ai"] is None or p["rule"] is None
+             or any(v in ("食い違い", "片方だけ") for v in p["fields"].values())]
+    print(f"  比較（{kind}） {tweet['id']}: {len(pairs)} 件" + (f" 差分あり: {' / '.join(diffs)}" if diffs else " 一致"))
+    try:
+        os.makedirs(os.path.dirname(AI_COMPARE_PATH), exist_ok=True)
+        with open(AI_COMPARE_PATH, "a", encoding="utf-8") as f:
+            f.write(json.dumps(entry, ensure_ascii=False) + "\n")
+    except OSError as e:
+        print(f"  ! 比較の記録に失敗: {e}")
+
+
 def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
-    """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比較をログに出すだけ。"""
+    """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比べた結果を記録するだけ（record_ai_compare）。"""
     if provider:
         try:
             ai = x_llm_candidates(tweet, provider, key, tokens)
@@ -731,12 +795,12 @@ def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
     if any(c["sure"] for c in cands):  # 当日の番組（sure でない）は AI の読み取りを優先し、ルールは予備にする
         pending.pop(tweet["id"], None)
         if ai is not None:
-            rule_days = sorted(c["date"].isoformat() for c in cands if x_publishable(c))
-            ai_days = sorted(c["date"].isoformat() for c in ai)
-            print(f"  比較 {tweet['id']}: ルール {rule_days} / AI {ai_days}{'' if rule_days == ai_days else ' （差分あり）'}")
+            record_ai_compare(tweet, [c for c in cands if x_publishable(c)], ai, "比較")
         return cands
     if ai is not None:
         pending.pop(tweet["id"], None)
+        if ai:
+            record_ai_compare(tweet, [c for c in cands if x_publishable(c)], ai, "AI のみ")
         return ai or cands
     if provider:
         pending[tweet["id"]] = pending.get(tweet["id"], 0) + 1

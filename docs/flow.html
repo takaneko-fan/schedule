@@ -301,7 +301,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
         <thead><tr><th>処理</th><th>対象</th><th>保存先</th></tr></thead>
         <tbody>
           <tr><td>お知らせ記事の読み取り</td><td>ルールで読めない記事</td><td><code>post_ai.json</code></td></tr>
-          <tr><td>公式 X の新しい予定</td><td>ルールで読めない投稿</td><td><code>x_events.json</code></td></tr>
+          <tr><td>公式 X の新しい予定</td><td>ルールで読めない投稿（読めた投稿も AI に読ませ、比べた結果を評価用に VPS に記録）</td><td><code>x_events.json</code>、<code>ai_compare.jsonl</code>（リポジトリの外）</td></tr>
           <tr><td>公式 X の変更・中止</td><td>本文に変更・中止などを含む投稿（月 2〜3 件）</td><td><code>x_notices.json</code></td></tr>
           <tr><td>参加メモ</td><td>公式の案内がある予定</td><td><code>memos.json</code></td></tr>
         </tbody>
