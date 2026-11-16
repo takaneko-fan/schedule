@@ -21,7 +21,7 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 
-from fetch_schedule import (GROUP, JST, MEMBERS, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
+from fetch_schedule import (GROUP, JST, MEMBERS, MISSED_PATH, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
                             media_prefix, normalize, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
@@ -36,6 +36,7 @@ NOTIFY_IGNORE_COLUMNS = {"done"}  # ここに入れた列だけの変更は通�
 MAX_LABELS = 3  # 本文に出す予定名の数。残りは「ほか○件」にまとめる
 MAX_LABEL_LENGTH = 28
 WARNINGS_TITLE = "高嶺のなでしこ 記載ミスの可能性"
+MISSED_TITLE = "高嶺のなでしこ 会場を取り込めていない可能性"
 WARNED_PATH = os.environ.get("WARNED_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/warned.json")
 
 
@@ -219,31 +220,52 @@ def build_warning_message(warnings):
     return "\n".join(lines)
 
 
+def build_missed_message(items):
+    """予定ごとに、会場らしき記載のある記事・投稿を並べる。"""
+    lines = []
+    for key in dict.fromkeys(m["key"].rsplit("|", 1)[0] for m in items):
+        group = [m for m in items if m["key"].startswith(key + "|")]
+        lines.append(f"{month_day(group[0]['date'])} {short_title(group[0]['title'])}（会場: {group[0]['venue']} のまま）")
+        lines += [f"・{m['label']}" for m in group]
+    lines.append("公式の記事・投稿で会場を確かめてください")
+    return "\n".join(lines)
+
+
 def notify_warnings(dry_run, today):
-    """まだ知らせていない記載ミスの可能性を 1 件の通知にまとめて送る。"""
-    warnings = load_json(WARNINGS_PATH, [])
-    sent = load_json(WARNED_PATH, {})  # 項目 → 記事の公開日
-    new = [w for w in warnings if warning_key(w) not in sent]
-    if not new:
-        print("記載ミスの可能性: 新しいものはありません")
+    """まだ知らせていない、申込・締切の記載ミスの可能性と、会場を取り込めていない可能性を、それぞれ 1 件の通知で送る。"""
+    sent = load_json(WARNED_PATH, {})  # 項目 → 記録の日付（記事の公開日、または予定の日付）
+    kinds = [
+        ("記載ミスの可能性", load_json(WARNINGS_PATH, []), warning_key, build_warning_message, WARNINGS_TITLE,
+         lambda w: w["published"]),
+        ("会場を取り込めていない可能性", load_json(MISSED_PATH, []), lambda m: m["key"], build_missed_message, MISSED_TITLE,
+         lambda m: m["date"]),
+    ]
+    recorded = {}
+    for label, items, key, build, title, stamp in kinds:
+        new = [w for w in items if key(w) not in sent]
+        if not new:
+            print(f"{label}: 新しいものはありません")
+            continue
+        message = build(new)
+        urls = {w["url"] for w in new}
+        if dry_run:
+            print(f"[{title}]\n{message}")
+            continue
+        if not os.environ.get("NTFY_TOPIC"):
+            print(f"NTFY_TOPIC が未設定のため{label}を通知しません")
+            continue
+        send(os.environ["NTFY_TOPIC"], message, title, urls.pop() if len(urls) == 1 else SITE_URL)
+        recorded |= {key(w): stamp(w) for w in new}
+        print(f"{label}を通知しました（{len(new)} 件）")
+    if not recorded:
         return
-    message = build_warning_message(new)
-    urls = {w["url"] for w in new}
-    if dry_run:
-        print(f"[{WARNINGS_TITLE}]\n{message}")
-        return
-    if not os.environ.get("NTFY_TOPIC"):
-        print("NTFY_TOPIC が未設定のため記載ミスの可能性を通知しません")
-        return
-    send(os.environ["NTFY_TOPIC"], message, WARNINGS_TITLE, urls.pop() if len(urls) == 1 else SITE_URL)
-    # 警告が出なくなる日数（公開から WARN_DAYS 日）を過ぎた記事の記録は捨てる。
+    # 記録の日付から WARN_DAYS 日を過ぎたものは捨てる（記載ミスは記事の公開日、会場は予定の日付）。
     # 記事の取得に失敗して警告が空になった回に捨てると、次の回に同じものを送り直してしまうので、今の警告では判断しない
     cutoff = (date.fromisoformat(today) - timedelta(days=WARN_DAYS + 1)).isoformat()
-    sent = {k: p for k, p in sent.items() if p >= cutoff} | {warning_key(w): w["published"] for w in new}
+    sent = {k: p for k, p in sent.items() if p >= cutoff} | recorded
     os.makedirs(os.path.dirname(WARNED_PATH), exist_ok=True)
     with open(WARNED_PATH, "w", encoding="utf-8") as f:
         json.dump(sent, f, ensure_ascii=False, indent=1)
-    print(f"記載ミスの可能性を通知しました（{len(new)} 件）")
 
 
 def send(topic, message, title=TITLE, click=SITE_URL, priority=None):

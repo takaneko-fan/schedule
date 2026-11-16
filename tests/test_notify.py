@@ -205,6 +205,7 @@ class WarningsTest(unittest.TestCase):
         self.warned_path = os.path.join(tmp.name, "state", "warned.json")
         for patcher in (mock.patch.object(notify, "WARNINGS_PATH", self.warnings_path),
                         mock.patch.object(notify, "WARNED_PATH", self.warned_path),
+                        mock.patch.object(notify, "MISSED_PATH", os.path.join(tmp.name, "missed.json")),
                         mock.patch.dict(os.environ, {"NTFY_TOPIC": "test-topic"})):
             patcher.start()
             self.addCleanup(patcher.stop)

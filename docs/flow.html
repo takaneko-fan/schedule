@@ -215,6 +215,12 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       </li>
       <li class="step">
         <div class="step-body">
+          <div class="step-title"><h3>会場の取りこぼしを調べる</h3><span class="tag notify">通知</span></div>
+          <p>会場が仮のままの予定について、同じ日の記事の会場の見出しや、公式 X の「📍…」に実際の会場があれば、取り込めていない可能性として書き出す（通知は STAGE 3）。</p>
+        </div>
+      </li>
+      <li class="step">
+        <div class="step-body">
           <div class="step-title"><h3>安全策</h3></div>
           <p>前回あった予定の 30% 以上（かつ 5 件以上）が見つからなければ、何も書き出さずに失敗として止める。</p>
         </div>
@@ -261,7 +267,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <span class="arrow" aria-hidden="true">→</span>
       <div class="node"><b>たかねこリマインド</b><small><code>remind.py</code>。9 時以降の最初の回に、今日締切の申込と先着販売の開始</small></div>
       <span class="arrow" aria-hidden="true">→</span>
-      <div class="node"><b>記載ミスの可能性</b><small><code>notify.py --warnings</code>。記事ごとに 1 回だけ</small></div>
+      <div class="node"><b>記載ミス・取り込めていない可能性</b><small><code>notify.py --warnings</code>。申込・締切の記載ミスと、公式が発表した会場を取り込めていない予定を、それぞれ 1 回だけ</small></div>
     </div>
     <div class="branches">
       <div class="branch"><span class="when">予定に変化なし</span><span class="what">ここで終わる</span></div>

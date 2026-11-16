@@ -30,7 +30,8 @@ Actions の checkout で消えないよう、リポジトリの外（`~/.local/s
 | `x_state.json` | 公式 X の前回読んだ最新の投稿 ID（`since_id`）と、AI 読み取りに失敗した投稿 ID（`pending`） | `X_STATE_PATH` |
 | `remind_state.json` | たかねこリマインドで送った項目（日付ごと） | `REMIND_STATE_PATH` |
 | `deadline_warnings.json` | 記載ミスの可能性（毎回置き換える） | `WARNINGS_PATH` |
-| `warned.json` | 記載ミスの可能性で送った項目と記事の公開日 | `WARNED_PATH` |
+| `missed_info.json` | 会場を取り込めていない可能性（毎回置き換える） | `MISSED_PATH` |
+| `warned.json` | 記載ミスの可能性・会場を取り込めていない可能性で送った項目と、記録の日付（記事の公開日、または予定の日付） | `WARNED_PATH` |
 
 ## 予定の ID（F-07）
 
@@ -323,6 +324,13 @@ CSV の列が変わったコミットでは、そのファイルは比較しま�
 | 本文 | 記事ごとにイベント名と「・入金締切 10/12(月) 23:59 ← 記事の公開日（10/14）より前」を並べ、最後に確認のお願い。1 記事ならタップでその記事、複数なら Web 版を開く。優先度は通常 |
 
 送らずに本文を確かめるには `python3 notify.py --warnings --dry-run` を実行します。
+
+## 会場を取り込めていない可能性（F-18）
+
+- `find_missed_venues` が、統合と告知の反映（`apply_x_notices`）の後に、会場が仮の予定（`TBD_VENUE_RE`）を調べ、`missed_info.json`（`MISSED_PATH`）に書き出す。
+- 記事の手がかりは `article_venue_hints`。`dated_posts` で日付と予定名が一致した記事のタイトルの「at …」と、本文の `VENUE_HINT_RE` に一致する行（会場の語の後ろが行の終わり・「：」・閉じかっこだけ。値がなければ次の行）。
+- 公式 X の手がかりは `x_venue_hints`。`read_x_posts` で読んだ投稿の「📍」の行を、直前の `X_DATE_RE` の日付と組にする。投稿は一度しか読まないので、手がかりは保存せず、読んだ回だけで判定する。
+- 通知は `notify.py --warnings` が、記載ミスの可能性とは別の通知（`MISSED_TITLE`）で送る。送った項目は `warned.json` に予定の日付と一緒に記録する。
 
 ## たかねこリマインド（F-15、`remind.py`）
 
