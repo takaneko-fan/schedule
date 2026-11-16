@@ -1,0 +1,41 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:7c5a65dce193134a@takaneko-data-mine
+DTSTAMP:20261116T091820Z
+DTSTART;VALUE=DATE:20261119
+DTEND;VALUE=DATE:20261120
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：橋本
+ 桃呼 プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 橋本桃呼\nカテゴリ: お知らせ記事\n情報
+ 元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-c
+ p/\n\n【参加メモ】\n🕙 当日の流れ: 2026年11月19日（木）
+ ：対象商品購入で橋本桃呼プリントサイン入りスペシ
+ ャルレシート発行\n🎫 参加方法・当日券: 対象6店舗で
+ 対象商品を購入すると、購入日に応じたスペシャルレ
+ シートを発行\n💴 料金: 初回限定盤：税込4\,950円／た
+ かねこ盤：税込3\,300円\n⚠️ 注意: スペシャルレシート
+ 発行店舗は対象6店舗／対象商品・レシートの払い戻し
+ 不可（不良品は良品交換）\nℹ️ その他: 対象店舗：タ
+ ワーレコード渋谷店・新宿店・浦和店・川崎店・らら
+ ぽーとTOKYO-BAY店・ららぽーと立川立飛店\n🤖 公式の案
+ 内を AI が要約したものです。必ず情報元で確認してく
+ ださい。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

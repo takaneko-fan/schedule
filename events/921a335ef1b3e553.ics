@@ -1,0 +1,41 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:921a335ef1b3e553@takaneko-data-mine
+DTSTAMP:20261116T091820Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
+ 』リリース記念 タワーレコードキャンペーン：：籾山
+ ひめり プリントサイン入りスペシャルレシート
+DESCRIPTION:出演: 籾山ひめり\nカテゴリ: お知らせ記事\n情
+ 報元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecor
+ d-cp/\n\n【参加メモ】\n🕙 当日の流れ: 2026年11月24日（火
+ ）に対象商品を購入すると、籾山ひめりのプリントサ
+ イン入りスペシャルレシートを発行\n🎫 参加方法・当
+ 日券: タワーレコード渋谷店・新宿店・浦和店・川崎店
+ ・ららぽーとTOKYO-BAY店・ららぽーと立川立飛店で対象
+ 商品を購入\n💴 料金: 初回限定盤：税込4\,950円／たか
+ ねこ盤：税込3\,300円\n⚠️ 注意: パネルには触れない／
+ パネル抽選番号券は先着順・規定枚数で配布終了／対
+ 象商品購入後の払い戻し不可（不良品は良品交換）\nℹ
+ ️ その他: 対象商品は2026年11月18日（水）発売のニュー
+ アルバム『A World in Our Colors』\n🤖 公式の案内を AI が要
+ 約したものです。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
