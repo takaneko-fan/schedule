@@ -870,8 +870,10 @@ def venue_from_post(post):
         candidates.append(re.split(r"\s*(?:当日|のお知らせ|お知らせ|開催|詳細|決定|変更|【|[(（])", m.group(1))[0])
     lines = html_to_lines(post["content"]["rendered"])
     for i, line in enumerate(lines):
-        # 「【会場】…」「会場：…」の形だけ（「会場CD販売ブースにて…」のような文は除く）
-        m = re.match(r"^[◆■●・\s]*(?:[【\[<＜](?:会場|場所)[】\]>＞]|(?:会場|場所)\s*[:：])\s*(.*)$", line)
+        # 「【会場】…」「会場：…」と、「■会場」だけの見出し行（会場名は次の行）の形だけ
+        # （「会場CD販売ブースにて…」「■会場限定抽選会」のような文・見出しは除く）
+        m = re.match(r"^[◆■●・\s]*(?:[【\[<＜](?:会場|場所)[】\]>＞]|(?:会場|場所)\s*[:：]|(?<=[◆■●])(?:会場|場所)$)\s*(.*)$",
+                     line)
         if m:
             candidates.append(m.group(1) or (lines[i + 1] if i + 1 < len(lines) else ""))
     for v in candidates:
@@ -927,6 +929,12 @@ def is_release(row):
     return row["title"].rstrip().endswith(("リリース", "発売"))
 
 
+def replace_tbd_venue(dup, pr):
+    """まとめる先の会場が「東京都内某所（詳細は後日発表）」のような仮の会場で、後の情報元に実際の会場があれば置き換える。"""
+    if dup["venue"] and TBD_VENUE_RE.search(dup["venue"]) and pr["venue"] and not TBD_VENUE_RE.search(pr["venue"]):
+        dup["venue"] = pr["venue"]
+
+
 def merge_post_rows(rows, post_rows):
     """カレンダーと同じ予定は統合し、カレンダーにないものだけ追加する。"""
     added = []
@@ -956,6 +964,7 @@ def merge_post_rows(rows, post_rows):
                 # 同じ予定を告知した別の投稿: 先の投稿で空いている項目を後の投稿で埋める
                 for key in ("open", "start", "end", "time_note", "venue"):
                     dup[key] = dup[key] or pr[key]
+                replace_tbd_venue(dup, pr)
                 continue
         if dup:
             # 記事側に日別の担当メンバーがあればそちらを優先
@@ -964,6 +973,7 @@ def merge_post_rows(rows, post_rows):
             for key in ("venue", "time_note"):
                 if not dup[key] and not (dup["open"] or dup["start"]):
                     dup[key] = pr[key]
+            replace_tbd_venue(dup, pr)
             # 記事の統合順に左右されないよう、同じ会場ならより詳しい表記を採用
             if (pr["venue"] and dup["venue"] and len(pr["venue"]) > len(dup["venue"])
                     and normalize(dup["venue"]) in normalize(pr["venue"])):

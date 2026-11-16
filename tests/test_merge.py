@@ -194,3 +194,53 @@ class XAddsInfoTest(unittest.TestCase):
         self.assertFalse(fs.x_adds_info(same, [], [saved]))
         with_end = self.cand(title="ラジオ番組ゲスト", venue="", times={"START": "19:00", "END": "20:00"}, media="ラジオ")
         self.assertTrue(fs.x_adds_info(with_end, [], [saved]))  # 終了時刻を補える
+
+
+class TbdVenueTest(unittest.TestCase):
+    """「東京都内某所」のような仮の会場を、記事や公式 X の実際の会場で置き換える。"""
+
+    def merge(self, rows, post_rows):
+        return quiet(fs.merge_post_rows, rows, post_rows)
+
+    def test_post_replaces_tbd_venue_even_with_times(self):
+        rows = self.merge([row(venue="東京都内某所（詳細は後日発表）", start="11:30")],
+                          [row(venue="ベルサール飯田橋駅前", url="https://example.invalid/news/1")])
+        self.assertEqual(rows[0]["venue"], "ベルサール飯田橋駅前")
+
+    def test_x_replaces_tbd_venue(self):
+        rows = self.merge([row(title="リリース記念個別特典イベント", venue="東京都内某所")],
+                          [x_row(title="個別握手会", venue="ベルサール飯田橋駅前", names=["リリース記念個別特典イベント"])])
+        self.assertEqual(rows[0]["venue"], "ベルサール飯田橋駅前")
+
+    def test_tbd_does_not_replace_real_venue(self):
+        rows = self.merge([row()], [row(venue="東京都内某所", url="https://example.invalid/news/1")])
+        self.assertEqual(rows[0]["venue"], "ららぽーと立川立飛")
+
+    def test_saved_x_event_with_tbd_venue_is_replaced(self):
+        rows = self.merge([], [x_row(venue="東京都内某所"),
+                               x_row(venue="ベルサール飯田橋駅前", url="https://x.com/takanenofficial/status/2")])
+        self.assertEqual([r["venue"] for r in rows], ["ベルサール飯田橋駅前"])
+
+    def test_x_post_that_decides_venue_is_saved(self):
+        from datetime import date as d
+        c = {"date": d(2026, 11, 20), "title": "個別握手会", "venue": "ベルサール飯田橋駅前", "times": {}, "time_note": "",
+             "members": GROUP, "names": [], "url": "https://x.com/takanenofficial/status/9", "post_id": "9",
+             "posted": "2026-11-16T20:00+09:00", "media": "", "ai": False, "station": ""}
+        self.assertTrue(fs.x_adds_info(c, [row(title="個別握手会", venue="東京都内某所")]))
+
+
+class VenueFromPostTest(unittest.TestCase):
+    def post(self, *lines, title="【11月22日(日)】リリース記念イベント 当日販売&会場限定抽選会開催のお知らせ"):
+        return {"title": {"rendered": title}, "content": {"rendered": "".join(f"<p>{ln}</p>" for ln in lines)}}
+
+    def test_heading_line_then_venue(self):
+        self.assertEqual(fs.venue_from_post(self.post("■会場", "ベルサール飯田橋駅前", "〒102-0072 東京都千代田区…")),
+                         "ベルサール飯田橋駅前")
+
+    def test_other_headings_are_not_venue(self):
+        self.assertEqual(fs.venue_from_post(self.post("■会場限定抽選会", "対象商品をご購入いただいた方…",
+                                                      "会場内は撮影禁止です。")), "")
+
+    def test_existing_forms(self):
+        self.assertEqual(fs.venue_from_post(self.post("【会場】ヒューリックホール東京")), "ヒューリックホール東京")
+        self.assertEqual(fs.venue_from_post(self.post("会場：Zepp Shinjuku")), "Zepp Shinjuku")
