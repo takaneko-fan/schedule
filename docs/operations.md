@@ -141,6 +141,38 @@ VPS やランナーが止まっていると更新自体が動かないので、�
 - 記載ミスの可能性: `python3 notify.py --warnings --dry-run`
 - たかねこリマインド: `python3 remind.py --dry-run --now 2026-11-15T09:17`
 
+## API キーと App の鍵の置き場所
+
+手元で使う秘密の情報は、リポジトリの外の `~/.config/takaneko-fan/` にまとめて置く（PC ごとに 1 回）。リポジトリは公開なので、ここに置いたものはリポジトリに入れない。
+
+| ファイル | 中身 | 使う場面 | 権限 |
+| --- | --- | --- | --- |
+| `app.pem` | GitHub App（takaneko-fan-updater）の秘密鍵 | `ops/push_as_app.sh`（push）、`ops/dispatch_update.sh`（更新の起動） | 600 |
+| `.env` | `OPENAI_API_KEY`・`GEMINI_API_KEY`・`X_BEARER_TOKEN` | 手元で AI・公式 X を使う通しの実行 | 600 |
+
+- フォルダの権限は 700 にする（本人だけが読める）。`ops/setup_local.sh` は、権限が緩ければ警告する。
+- プログラムは、リポジトリに `.env` がなければ `~/.config/takaneko-fan/.env` を直接読む（`load_env`）。開発用コンテナには、このフォルダが読み取り専用でマウントされるので、PC 側でもコンテナの中でも同じファイルが使われ、clone やコンテナの作り直しのたびに作り直さなくてよい。リポジトリに `.env` があればそちらを優先する。
+- 置くのは、実際に push や通しの実行をする PC だけにする。テストや文書だけの作業には要らない。
+- `~/.config` を dotfiles として公開リポジトリや同期サービスで管理している場合は、`takaneko-fan` を対象から外す。
+- 定期の更新（VPS）は、これとは別に GitHub の Secrets と VPS の鍵を使う（上記「自動更新」「VPS のタイマーからの起動」）。
+
+**PC 側での置き方（コンテナの外で行う）:**
+
+```sh
+mkdir -p ~/.config/takaneko-fan && chmod 700 ~/.config/takaneko-fan
+mv <リポジトリ>/.env ~/.config/takaneko-fan/.env    # すでにリポジトリに .env がある場合
+chmod 600 ~/.config/takaneko-fan/.env ~/.config/takaneko-fan/app.pem
+bash <リポジトリ>/ops/setup_local.sh                # 権限の確認（コンテナを使う場合は、作成時に自動で実行される）
+```
+
+**漏れたかもしれないとき:**
+
+| 対象 | 対応 |
+| --- | --- |
+| `app.pem` | App の Credentials → Key pairs で新しい鍵を作り、`app.pem` を置き換えてから古い鍵を削除する |
+| `OPENAI_API_KEY` / `GEMINI_API_KEY` | 各サービスの画面でキーを無効にして作り直し、`.env` と GitHub の Secrets を差し替える。利用料の画面で不審な利用がないか確かめる |
+| `X_BEARER_TOKEN` | X の開発者ポータルでトークンを作り直し、`.env` と Secrets を差し替える。利用料を確かめる |
+
 ## コミット名義
 
 コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。GitHub Actions ではワークフロー内で設定します。手元では、このリポジトリの `.git/config` に `user.name` / `user.email` を設定し、個人のグローバル設定より優先させます。設定は `ops/setup_local.sh` が行います（うっかり `git push` しないための `remote.origin.pushurl` の設定も一緒に入れる）。

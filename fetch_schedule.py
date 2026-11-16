@@ -1361,16 +1361,24 @@ MEMO_INSTRUCTION = """\
 """
 
 
-def load_env(path=".env"):
-    """.env の KEY=VALUE を環境変数に読み込む（すでに設定されていれば上書きしない）。"""
-    try:
-        with open(path, encoding="utf-8") as f:
-            for line in f:
-                key, sep, value = line.strip().partition("=")
-                if sep and not key.startswith("#"):
-                    os.environ.setdefault(key.strip(), value.strip())
-    except FileNotFoundError:
-        pass
+# API キーの .env の置き場所。リポジトリの .env がなければ、リポジトリの外のこのファイルを読む
+# （clone やコンテナの作り直しのたびに作り直さなくて済み、コミットもされない。docs/operations.md）
+CONFIG_ENV_PATH = os.path.expanduser("~/.config/takaneko-fan/.env")
+
+
+def load_env(path=".env", fallback=CONFIG_ENV_PATH):
+    """.env の KEY=VALUE を環境変数に読み込む（すでに設定されていれば上書きしない）。
+    path がなければ fallback（~/.config/takaneko-fan/.env）を読む。どちらもなければ何もしない。"""
+    for candidate in (path, fallback):
+        try:
+            with open(candidate, encoding="utf-8") as f:
+                for line in f:
+                    key, sep, value = line.strip().partition("=")
+                    if sep and not key.startswith("#"):
+                        os.environ.setdefault(key.strip(), value.strip())
+            return
+        except FileNotFoundError:
+            continue
 
 
 def post_title(post):
