@@ -14,7 +14,7 @@
 - 機能・処理の流れを変えたら、[機能仕様書](docs/spec.md)・[設計](docs/design.md)・[運用](docs/operations.md)・[検証記録](docs/notes.md) と [処理の流れの図](docs/flow.html) も直す。
 - コミット・マージ・push は、ユーザーが指示したときだけ行う。コミットは `/commit`（`.claude/skills/commit/SKILL.md`）の手順に従う。
 - push は必ず `ops/push_as_app.sh`（GitHub App の名義）で行い、`git push` は使わない。個人のアカウント名を公開の記録に残さないため。push の前にテストが自動で実行される。
-- コミットの名義は `takaneko-fan <bot@example.invalid>`。差分やメッセージに個人の名前・メールアドレスを入れない。
+- コミットの名義は `takaneko-fan <bot@example.invalid>`。差分やメッセージに個人の名前・メールアドレスを入れない。名義が設定されていない環境（`git config --local user.name` が `takaneko-fan` でない）では、最初に `bash ops/setup_local.sh` を実行する（開発用コンテナでは作成時に自動で実行される）。
 - バージョン番号（`vMAJOR.MINOR.PATCH` の git のタグ）は、毎回のマージでは付けない。必要なときだけ、ユーザーと相談して付ける。
 
 ## 注意

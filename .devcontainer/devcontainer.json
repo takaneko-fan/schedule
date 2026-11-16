@@ -4,6 +4,8 @@
     "dockerfile": "Dockerfile"
   },
   "initializeCommand": "mkdir -p \"$HOME/.config/takaneko-fan\"",
+  // 作成時にこのリポジトリ用の git の設定（コミットの名義、git push の無効化）を入れる
+  "postCreateCommand": "bash ops/setup_local.sh",
   "mounts": [
     "source=${localEnv:HOME}/.config/takaneko-fan,target=/root/.config/takaneko-fan,type=bind,readonly"
   ],

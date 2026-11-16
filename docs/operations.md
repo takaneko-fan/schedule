@@ -110,7 +110,7 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 
 ### 手元からの push
 
-個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。push の前に `tests/` のテストを実行し、失敗したら push しない（定期の更新は `run_update.sh` の `git push` で送るので、テストでは止まらない）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある。
+個人のアカウントで push すると、公開されるリポジトリのイベント（PushEvent）、Pages のビルドとデプロイの記録に個人のアカウント名が残る。手元からの push は `ops/push_as_app.sh` で App の名義で行う（引数は `git push` と同じ。省略時は今のブランチ）。鍵は手元の `~/.config/takaneko-fan/app.pem`（VPS とは別の鍵）。push の前に `tests/` のテストを実行し、失敗したら push しない（定期の更新は `run_update.sh` の `git push` で送るので、テストでは止まらない）。うっかり `git push` しないよう、手元のリポジトリでは `remote.origin.pushurl` を存在しない場所にしてある（`ops/setup_local.sh` が設定する）。
 
 ランナーが Offline になったときは、VPS で `systemctl status actions.runner.takaneko-fan.conoha-osaka` を確認します。
 
@@ -143,9 +143,8 @@ VPS やランナーが止まっていると更新自体が動かないので、�
 
 ## コミット名義
 
-コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。GitHub Actions ではワークフロー内で設定します。手元では、このリポジトリの `.git/config` に `user.name` / `user.email` を設定済みで、個人のグローバル設定より優先されます。新しい環境で clone したときは同じ設定をやり直します。
+コミットは `takaneko-fan <bot@example.invalid>` 名義で行います。GitHub Actions ではワークフロー内で設定します。手元では、このリポジトリの `.git/config` に `user.name` / `user.email` を設定し、個人のグローバル設定より優先させます。設定は `ops/setup_local.sh` が行います（うっかり `git push` しないための `remote.origin.pushurl` の設定も一緒に入れる）。
 
-```
-git config --local user.name "takaneko-fan"
-git config --local user.email "bot@example.invalid"
-```
+- 開発用コンテナでは、作成時に自動で実行される（`.devcontainer/devcontainer.json` の `postCreateCommand`）。
+- コンテナを使わない環境では、clone の後に `bash ops/setup_local.sh` を 1 回実行する。
+- VPS のランナーでは実行しない（`run_update.sh` が `git push` するため）。
