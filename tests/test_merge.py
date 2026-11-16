@@ -244,3 +244,61 @@ class VenueFromPostTest(unittest.TestCase):
     def test_existing_forms(self):
         self.assertEqual(fs.venue_from_post(self.post("【会場】ヒューリックホール東京")), "ヒューリックホール東京")
         self.assertEqual(fs.venue_from_post(self.post("会場：Zepp Shinjuku")), "Zepp Shinjuku")
+
+
+class SameEventMatchTest(unittest.TestCase):
+    """別の催しを、どの予定にも付く語（作品名・「リリース記念」など）だけで同じ予定とみなさない。"""
+
+    RELEASE = "高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛"
+    CAMPAIGN = ("高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン："
+                "：涼海すう プリントサイン入りスペシャルレシート")
+
+    def merge(self, rows, post_rows):
+        return quiet(fs.merge_post_rows, rows, post_rows)
+
+    def test_event_phrase(self):
+        self.assertEqual(" ".join(fs.event_phrase(self.RELEASE).split()), "イベント at ららぽーと立川立飛")
+        self.assertEqual(" ".join(fs.event_phrase("MARQUEE祭 Vol.186").split()), "MARQUEE祭 Vol.186")
+
+    def test_campaign_is_not_merged_and_members_are_kept(self):
+        rows = self.merge([row(date="2026-11-18", title=self.RELEASE)],
+                          [row(date="2026-11-18", title=self.CAMPAIGN, members="涼海すう", venue="",
+                               category="お知らせ記事", url="https://example.invalid/news/tower")])
+        self.assertEqual([(r["title"][-12:], r["members"]) for r in rows],
+                         [(self.RELEASE[-12:], GROUP), (self.CAMPAIGN[-12:], "涼海すう")])
+
+    def test_reworded_event_still_merges_when_unique(self):
+        """「個別特典会＠東京都内某所」（月ごとのスケジュール）と「リリース記念個別イベント」は同じ予定。"""
+        news = row(date="2026-10-17", title="アルバム『 A World in Our Colors 』2026年11月18日(水)リリース：個別特典会＠東京都内某所",
+                   venue="", url="https://example.invalid/news/1")
+        rows = self.merge([row(date="2026-10-17", title="ニューアルバム『 A World in Our Colors 』リリース記念個別イベント",
+                               venue="大崎ブライトコアホール")], [news])
+        self.assertEqual(len(rows), 1)
+
+    def test_ambiguous_loose_match_is_kept_separate(self):
+        news = row(title="ニューアルバム『A World in Our Colors』リリース：特典会", venue="", url="https://example.invalid/news/1")
+        rows = self.merge([row(title="ニューアルバム『A World in Our Colors』リリース記念ミニライブ", venue="A"),
+                           row(title="ニューアルバム『A World in Our Colors』リリース記念個別イベント", venue="B",
+                               url="https://example.invalid/schedule/2")], [news])
+        self.assertEqual(len(rows), 3)
+
+    def test_members_are_taken_only_from_the_same_event(self):
+        rows = self.merge([row(title=self.RELEASE)],
+                          [row(title="【11月18日(水)】リリース記念イベント at ららぽーと立川立飛", members="涼海すう、松本ももな",
+                               url="https://example.invalid/news/1")])
+        self.assertEqual(rows[0]["members"], "涼海すう、松本ももな")  # 同じ会場の詳細記事の担当は使う
+
+
+class SameEventStrictlyTest(unittest.TestCase):
+    def test_calendar_name_in_article_body(self):
+        """記事のタイトルは違っても、本文に公式の予定名がそのまま出てくれば同じ催し（SPACE MAKE の担当メンバー）。"""
+        news = row(date="2026-10-26", title="高嶺のなでしこメンバーとオンライン個別お話し会", members="城月菜央、橋本桃呼",
+                   venue="", url="https://example.invalid/news/1",
+                   post_text="10月26日(月) ✿SPACE MAKE✿ 城月菜央、橋本桃呼")
+        rows = quiet(fs.merge_post_rows, [row(date="2026-10-26", title="✿SPACE MAKE✿", venue="")], [news])
+        self.assertEqual((len(rows), rows[0]["members"]), (1, "城月菜央、橋本桃呼"))
+
+    def test_generic_words_in_body_are_not_enough(self):
+        news = row(title="タワーレコードキャンペーン：：涼海すう レシート", members="涼海すう", venue="",
+                   post_text="ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン")
+        self.assertFalse(fs.same_event_strictly(news, row(title="ニューアルバム『A World in Our Colors』リリース記念イベント")))

@@ -920,6 +920,20 @@ def normalize(text):
     return re.sub(r"[\s✿『』「」【】()（）/／・&＆@＠:：、。!！-]", "", text).lower()
 
 
+# どの予定にも付く語（グループ名、作品名、「リリース記念」など）。同じ予定かを比べる前に除く。
+# 除かないと、同じ日の別の催し（リリースイベントと店舗のキャンペーンなど）が「リリース記念」や
+# アルバム名だけで同じ予定とみなされてしまう
+GENERIC_TITLE_RE = re.compile(
+    r"高嶺のなでしこ|たかねこ"
+    r"|(?:ニュー)?(?:\d+(?:st|nd|rd|th)\s*)?(?:アルバム|シングル|ALBUM|Album|SINGLE|Single)\s*[『「][^』」]*[』」]"
+    r"|[『「][^』」]*[』」]\s*(?=(?:リリース|発売)記念)|(?:リリース|発売)記念|ニューアルバム")
+
+
+def event_phrase(text):
+    """予定名から、どの予定にも付く語を除いた、その催しを表す部分。"""
+    return GENERIC_TITLE_RE.sub(" ", text)
+
+
 def shares_phrase(a, b, n=4):
     a, b = normalize(a), normalize(b)
     return any(a[i:i + n] in b for i in range(len(a) - n + 1))
@@ -1090,15 +1104,49 @@ def replace_tbd_venue(dup, pr):
         dup["venue"] = pr["venue"]
 
 
+CAMPAIGN_RE = re.compile(r"キャンペーン|レシート|ポスター|パネル展|パネル展示|特典配布|購入特典")
+
+
+def is_campaign(row):
+    """店舗のキャンペーン・特典の配布など、行く予定ではない行か（同じ日のイベントとまとめない）。"""
+    return bool(CAMPAIGN_RE.search(row["title"]))
+
+
+def same_event_strictly(a, b):
+    """a（後の情報元）と b（まとめる先）が、確かに同じ催しと言えるか。会場が一致する、どの予定にも付く語を除いた
+    予定名に 6 文字以上の共通部分がある、または b の予定名（除いた後 6 文字以上）が a の記事の本文にそのまま出てくる
+    （「メンバーとオンライン個別お話し会」の記事の本文に「SPACE MAKE」とある、など）。"""
+    venues = [v for v in (a["venue"], b["venue"]) if v and not TBD_VENUE_RE.search(v)]
+    if len(venues) == 2 and x_same_venue(*venues):
+        return True
+    name = normalize(event_phrase(b["title"]))
+    if len(name) >= 6 and name in normalize(event_phrase(a.get("post_text", ""))):
+        return True
+    return shares_phrase(event_phrase(a["title"].split("：")[-1]), event_phrase(b["title"]), 6)
+
+
 def merge_post_rows(rows, post_rows):
     """カレンダーと同じ予定は統合し、カレンダーにないものだけ追加する。"""
     added = []
     for pr in post_rows:
         # 発売日とその日のリリースイベントは別の予定として残す
-        same_day = [r for r in rows + added if r["date"] == pr["date"] and is_release(r) == is_release(pr)]
+        # 発売日の行・店舗のキャンペーンと、その日のイベントは別の予定として残す
+        same_day = [r for r in rows + added if r["date"] == pr["date"] and is_release(r) == is_release(pr)
+                    and is_campaign(r) == is_campaign(pr)]
+        # 同じ予定の候補は 2 段階で探す。まず、どの予定にも付く語を除いた予定名・会場で（strict）。
+        # なければ、除かずに比べる（loose。「個別特典会」と「個別イベント」のような言い換えを拾う）が、
+        # 候補が 1 件に決まるときだけ使う。2 件以上なら取り違えないよう、まとめずに別の予定として残す
+        strict = [r for r in same_day
+                  if shares_phrase(event_phrase(pr["title"].split("：")[-1]) + pr["venue"], event_phrase(r["title"]) + r["venue"])
+                  or shares_phrase(event_phrase(r["title"]), event_phrase(pr["title"]))]
+        loose = strict or [r for r in same_day
+                           if shares_phrase(pr["title"].split("：")[-1] + pr["venue"], r["title"] + r["venue"])
+                           or shares_phrase(r["title"], pr["title"])]
+        if not strict and len(loose) > 1:
+            print(f"  ! 同じ予定か決まらないため、まとめずに残す（候補 {len(loose)} 件）: {pr['date']} {pr['title'][-40:]}")
+            loose = []
         dups = [r for r in same_day
-                if shares_phrase(pr["title"].split("：")[-1] + pr["venue"], r["title"] + r["venue"])
-                or shares_phrase(r["title"], pr["title"])
+                if r in loose
                 # 記事本文にカレンダーのタイトルがそのまま出てくる（例: SPACE MAKE）
                 or len(normalize(r["title"])) >= 6
                 and normalize(r["title"]) in normalize(pr.get("post_text", ""))
@@ -1122,8 +1170,9 @@ def merge_post_rows(rows, post_rows):
                 replace_tbd_venue(dup, pr)
                 continue
         if dup:
-            # 記事側に日別の担当メンバーがあればそちらを優先
-            if dup["members"] == GROUP and pr["members"] != GROUP:
+            # 記事側に日別の担当メンバーがあればそちらを優先。ただし、確かに同じ催しのとき（会場か、
+            # どの予定にも付く語を除いた予定名が一致）だけ。別の催しとまとめても出演を書き換えないように
+            if dup["members"] == GROUP and pr["members"] != GROUP and same_event_strictly(pr, dup):
                 dup["members"] = pr["members"]
             for key in ("venue", "time_note"):
                 if not dup[key] and not (dup["open"] or dup["start"]):
