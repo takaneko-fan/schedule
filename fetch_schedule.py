@@ -782,8 +782,28 @@ def record_ai_compare(tweet, rule, ai, kind):
         print(f"  ! 比較の記録に失敗: {e}")
 
 
+def x_ai_extra(cands, ai, tweet):
+    """ルールで読めた投稿で、ルールが取りこぼした予定（AI だけが読めた予定）を返す。
+    1 つの投稿に番組が 2 つ並ぶ「本日オンエア」などで、ルールは最初の 1 件しか読めないことがあるため。
+    AI の予定は x_llm_reject の検証を通ったものだけ。ルールのどの予定とも組にならず、予定名もルールの予定と
+    重ならないものに限る（日付だけ違う同じ予定を二重に足さないため）。"""
+    rule = [c for c in cands if x_publishable(c)]
+    extra = []
+    for p in x_compare(rule, ai):
+        if p["rule"] is not None or p["ai"] is None:
+            continue
+        a = next(c for c in ai if x_compare_item(c) == p["ai"])
+        if any(x_compare_field("title", r["title"], a["title"]) == "一致" for r in rule):
+            print(f"  ! AI だけが読めた予定を足さず（ルールの予定と予定名が重なる）: {p['date']} {a['title']} {tweet['id']}")
+            continue
+        print(f"  + ルールが取りこぼした予定を AI の読み取りから足す: {p['date']} {a['title']} {tweet['id']}")
+        extra.append(a)
+    return extra
+
+
 def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
-    """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比べた結果を記録するだけ（record_ai_compare）。"""
+    """ルールで読めなかった投稿は LLM の読み取りに置き換えて返す。読めた投稿は比べた結果を記録し（record_ai_compare）、
+    ルールが取りこぼした予定だけを AI の読み取りから足す（x_ai_extra）。"""
     if provider:
         try:
             ai = x_llm_candidates(tweet, provider, key, tokens)
@@ -796,6 +816,7 @@ def read_x_with_llm(tweet, cands, provider, key, pending, tokens):
         pending.pop(tweet["id"], None)
         if ai is not None:
             record_ai_compare(tweet, [c for c in cands if x_publishable(c)], ai, "比較")
+            return cands + x_ai_extra(cands, ai, tweet)
         return cands
     if ai is not None:
         pending.pop(tweet["id"], None)

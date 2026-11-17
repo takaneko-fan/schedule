@@ -114,3 +114,36 @@ class ReportTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class AiExtraTest(unittest.TestCase):
+    """ルールで読めた投稿でも、ルールが取りこぼした予定（AI だけが読めた予定）は足す。"""
+
+    TWEET = {"id": "600", "created_at": "2026-11-17T03:30:00.000Z",
+             "text": "📻本日オンエア📻\n\n⏰16:00~18:54\nFM長崎\n『 Colors 』\n\n城月菜央 橋本桃呼が出演\n\n- - - -\n\n"
+                     "⏰21:00~22:50\nRKBラジオ\n『 カリメン 』\n\n涼海すう 籾山ひめりが出演"}
+
+    def program(self, **values):
+        return cand(**{"date": date(2026, 11, 17), "title": "Colors", "venue": "", "media": "ラジオ", "today": True,
+                       "times": {"START": "16:00", "END": "18:54"}, "members": "城月菜央、橋本桃呼", **values})
+
+    def read(self, cands, ai):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        with mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")), \
+                mock.patch.object(fs, "x_llm_candidates", return_value=ai), contextlib.redirect_stdout(io.StringIO()):
+            return fs.read_x_with_llm(self.TWEET, cands, "openai", "key", {}, [0, 0])
+
+    def test_second_program_is_added(self):
+        karimen = self.program(title="カリメン", times={"START": "21:00", "END": "22:50"}, members="涼海すう、籾山ひめり")
+        out = self.read([self.program()], [self.program(), karimen])
+        self.assertEqual([c["title"] for c in out], ["Colors", "カリメン"])
+
+    def test_same_event_with_other_date_is_not_added(self):
+        """AI が同じ予定を別の日付で読んでも、予定名が重なれば足さない（二重にしない）。"""
+        out = self.read([self.program()], [self.program(date=date(2026, 11, 18))])
+        self.assertEqual([c["title"] for c in out], ["Colors"])
+
+    def test_nothing_extra(self):
+        self.assertEqual(len(self.read([self.program()], [self.program()])), 1)
+        self.assertEqual(len(self.read([self.program()], [])), 1)
