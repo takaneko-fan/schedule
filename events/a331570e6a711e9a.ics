@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:a331570e6a711e9a@takaneko-data-mine
-DTSTAMP:20261117T152549Z
+DTSTAMP:20261117T154850Z
 DTSTART;VALUE=DATE:20261118
 DTEND;VALUE=DATE:20261119
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -55,10 +55,8 @@ DESCRIPTION:出演: 涼海すう\nカテゴリ: お知らせ記事\n情報
  ～24日、パネル抽選券は先着で規定枚数終了まで／当選
  パネルは店頭受取のみで配送なし／対象商品には店舗
  特典等なし、購入後のキャンセル・返金不可（不良品
- は良品交換）\n📣 公式 X の最新情報: 対象店舗で店頭
- スペシャルコメントビデオを放映（11/16 の投稿）\n🤖 
- 公式の案内と公式 X の投稿を AI が要約したものです。
- 必ず情報元で確認してください。
+ は良品交換）\n🤖 公式の案内を AI が要約したものです
+ 。必ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

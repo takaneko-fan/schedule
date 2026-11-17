@@ -15,11 +15,8 @@
    "venue": "ららぽーと立川立飛2F イベント広場／〒190-0015 東京都立川市泉町935番地の1"
   },
   "model": "gpt-5.6-luna",
-  "x_hash": "401d4df2c055d53825e1d9d0190196df1378c209",
-  "x_items": [
-   "11月18日、タワーレコードららぽーと立川立飛店で対象商品購入者に日替わりメンバープリントサイン入りレシートを発行（11/16 の投稿）",
-   "タワーレコードららぽーと立川立飛店では11月17日〜24日にパネル展・抽選券配布を実施（11/16 の投稿）"
-  ]
+  "x_hash": "85f6f7b8b629d6cfff15bc2fea440d9aed89b7db",
+  "x_items": []
  },
  "2026-11-18|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -38,9 +35,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "deeec50f796419e533af5686388a87cbfdb65593",
-  "x_items": [
-   "対象店舗で店頭スペシャルコメントビデオを放映（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-19|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-16",
@@ -59,11 +54,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "e532917866c6e6afa4c8b1dd2f2acdf9a0024ab4",
-  "x_items": [
-   "対象店舗でパネル展を実施。展示パネルは抽選でプレゼント（11/16 の投稿）",
-   "対象店舗で店頭スペシャルコメントビデオを放映（11/16 の投稿）",
-   "パネル展示・抽選券の配布期間は11月17日〜11月24日（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-20|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-7/": {
   "generated": "2026-11-09",
@@ -137,9 +128,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "df18f22e03139a4a24d79bcfc2dddd79cf828ac4",
-  "x_items": [
-   "パネル展の展示期間・パネル抽選券の配布期間は11月17日(火)〜11月24日(火)（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-22|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-9/": {
   "generated": "2026-11-16",
@@ -157,7 +146,7 @@
    "venue": "ベルサール飯田橋駅前／〒102-0072 東京都千代田区飯田橋3丁目8−5 住友不動産飯田橋駅前ビル1F"
   },
   "model": "gpt-5.6-luna",
-  "x_hash": "0f49bab01b72ce05a724af3918dcfa84235948ec",
+  "x_hash": "b72685f94514b575ed1e76e94982129a755a9cb7",
   "x_items": []
  },
  "2026-11-22|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -177,10 +166,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "68cbb0d700ab043ff7e6ac1b9ccd129bfa066564",
-  "x_items": [
-   "展示パネルは抽選でプレゼント（11/16 の投稿）",
-   "パネル展・抽選券の配布期間は11月17日(火)〜11月24日(火)（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-23|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/": {
   "generated": "2026-11-07",
@@ -217,9 +203,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "6e37e9b058249cbff0d3d285710e2b30b514962d",
-  "x_items": [
-   "パネル展示・抽選券配布期間：2026年11月17日〜11月24日（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-24|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-16",
@@ -238,10 +222,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_hash": "5d7b97709797fc2ff0d4583a8e9d508fe8bb8a31",
-  "x_items": [
-   "パネル展示・抽選券配布期間は11月17日〜11月24日（11/16 の投稿）",
-   "対象店舗で店頭スペシャルコメントビデオを放映（11/16 の投稿）"
-  ]
+  "x_items": []
  },
  "2026-11-29|https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/": {
   "generated": "2026-11-07",
@@ -302,9 +283,9 @@
   "hash": "",
   "memo": {},
   "model": "gpt-5.6-luna",
-  "x_hash": "57120fea9d4efa75143bb66585061d4933923c77",
+  "x_hash": "4e2ea0fe76534001439905f25ff8fcd3ba2e939e",
   "x_items": [
-   "開場は13:00、開演は13:30（11/16 の投稿）"
+   "チケット受付は11月17日21:00から先着で開始（11/16 の投稿）"
   ]
  },
  "2026-12-07|https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/": {
@@ -348,10 +329,9 @@
   "hash": "",
   "memo": {},
   "model": "gpt-5.6-luna",
-  "x_hash": "680a009fc6f8f013c4256e27e80e3c04004adf2c",
+  "x_hash": "c63ffa5eeb51ea98568376ad23a3808ab32a84fc",
   "x_items": [
-   "OPEN 17:30／START 18:15（11/17 の投稿）",
-   "チケット抽選販売は11月23日(火)23:59まで（11/17 の投稿）"
+   "チケット抽選販売は11月23日23:59まで（11/17 の投稿）"
   ]
  },
  "2026-12-24|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/": {
@@ -370,12 +350,12 @@
    "venue": "ヒューリックホール東京（HULIC HALL TOKYO）"
   },
   "model": "gpt-5.6-luna",
-  "x_hash": "d3ccb398b0d3833892335ba2407f22ba44848f1f",
+  "x_hash": "4b310b21fd0b90450385b1fd771ef13794858be4",
   "x_items": [
-   "2部はSOLD OUT（11/14 の投稿）",
-   "1部通常指定席は残りわずか（11/14 の投稿）",
-   "注釈付き指定席を販売：1部注釈付き女性専用エリア、2部注釈付き通常席・女性専用エリア（11/15 の投稿）",
-   "注釈付き席は、構造上ステージ全体や一部演出、メンバーが見えにくい・見えない場合あり（11/15 の投稿）"
+   "第二部はSOLD OUT（11/14 の投稿）",
+   "第一部の通常指定席は残りわずか（11/14 の投稿）",
+   "注釈付き指定席を販売中（第一部女性専用、第二部通常・女性専用）（11/15 の投稿）",
+   "注釈付き指定席は、ステージ全体や一部演出、メンバーが見えにくい・見えない場合あり（11/15 の投稿）"
   ]
  }
 }

@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:7c5a65dce193134a@takaneko-data-mine
-DTSTAMP:20261117T152549Z
+DTSTAMP:20261117T154850Z
 DTSTART;VALUE=DATE:20261119
 DTEND;VALUE=DATE:20261120
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -31,13 +31,9 @@ DESCRIPTION:出演: 橋本桃呼\nカテゴリ: お知らせ記事\n情報
  発行店舗は対象6店舗／対象商品・レシートの払い戻し
  不可（不良品は良品交換）\nℹ️ その他: 対象店舗：タ
  ワーレコード渋谷店・新宿店・浦和店・川崎店・らら
- ぽーとTOKYO-BAY店・ららぽーと立川立飛店\n📣 公式 X の
- 最新情報: 対象店舗でパネル展を実施。展示パネルは抽
- 選でプレゼント（11/16 の投稿）／対象店舗で店頭スペ
- シャルコメントビデオを放映（11/16 の投稿）／パネル
- 展示・抽選券の配布期間は11月17日〜11月24日（11/16 の投
- 稿）\n🤖 公式の案内と公式 X の投稿を AI が要約したも
- のです。必ず情報元で確認してください。
+ ぽーとTOKYO-BAY店・ららぽーと立川立飛店\n🤖 公式の案
+ 内を AI が要約したものです。必ず情報元で確認してく
+ ださい。
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
