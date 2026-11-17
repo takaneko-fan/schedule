@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:5035b79d86218381@takaneko-data-mine
-DTSTAMP:20261117T173202Z
+DTSTAMP:20261117T183127Z
 DTSTART;TZID=Asia/Tokyo:20261205T133000
 DTEND;TZID=Asia/Tokyo:20261205T153000
 SUMMARY:TP Links vol.1
@@ -22,8 +22,8 @@ LOCATION:KANDA SQUARE HALL
 DESCRIPTION:時間: OPEN 13:00 / START 13:30\n出演: グループ（全員
  ）\nカテゴリ: 公式X\n情報元: https://x.com/takanenofficial/statu
  s/2122298645781315975\n\n【参加メモ】\n📣 公式 X の最新情報
- : チケットは11月17日21:00から先着受付（11/16 の投稿）\n
- 🤖 公式の案内と公式 X の投稿を AI が要約したもので
+ : チケット受付は11月17日21:00から先着順（11/16 の投稿）
+ \n🤖 公式の案内と公式 X の投稿を AI が要約したもので
  す。必ず情報元で確認してください。
 URL:https://x.com/takanenofficial/status/2122298645781315975
 STATUS:CONFIRMED

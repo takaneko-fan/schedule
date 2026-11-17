@@ -68,7 +68,7 @@
 |  | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -146,7 +146,7 @@
 |  | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -219,7 +219,7 @@
 |  | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -296,7 +296,7 @@
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -383,7 +383,7 @@
 |  | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -472,7 +472,7 @@
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -555,7 +555,7 @@
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -630,7 +630,7 @@
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -709,7 +709,7 @@
 |  | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) |
@@ -815,7 +815,7 @@
 - 📸 ルール: 1:1個別握手会。開始20分までは1回3枚まで、以降は複数枚をまとめて使用／優しい握手のみ、指輪・アクセサリー・腕時計は外す／録音・録画・撮影、握手券の譲渡・転売は禁止
 - ⚠️ 注意: 本人確認書類は顔写真付き1点、または顔写真なし2点。コピー・期限切れ不可／受付時間を過ぎると参加不可／QR・参加券は再発行不可／手荷物検査・金属探知あり、荷物は原則1個、再入場不可／危険物・液体・酒類等は持込不可／マスク必須、発熱等がある場合は入場不可／前日泊まり込み・早朝整列禁止
 - ℹ️ その他: オンライン当日販売は10:30開始。商品は送料無料で後日登録住所へ配送、参加券は当日会場の当日販売窓口でQR提示後に受取／会場限定抽選会は10:30〜18:30、特典がなくなり次第終了。参加券1枚で2回抽選
-- 📣 公式 X の最新情報: 会場限定抽選会では限定チェキ／写ルンですが当たる（11/16 の投稿）
+- 📣 公式 X の最新情報: 会場限定抽選会では限定チェキ・写ルンですが当たる（11/16 の投稿）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -888,7 +888,7 @@
 
 ### 2026-12-05(土) [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975)
 
-- 📣 公式 X の最新情報: チケットは11月17日21:00から先着受付（11/16 の投稿）
+- 📣 公式 X の最新情報: チケット受付は11月17日21:00から先着順（11/16 の投稿）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -897,19 +897,21 @@
 - 📍 会場: Spotify O-EAST
 - 🕙 当日の流れ: 2026年12月7日(月) OPEN 14:00／START 14:30
 - 🎫 参加方法・当日券: チケットはイープラスで販売
+- 📣 公式 X の最新情報: 終演後物販＆特典会は20:45〜21:55、ブースAB（2F）（10/23 の投稿）／前方エリア11,000円、前売4,500円、当日券5,500円（各税込・別途1ドリンク）。1人1枚まで、6歳以上はチケットが必要（10/23 の投稿）
 
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
+> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-12-10(木) [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/)
 
 - 📍 会場: Shibuya LOVEZ
 - 🕙 当日の流れ: 2026年12月10日（木）OPEN 11:30／START 12:15
+- 📣 公式 X の最新情報: チケット受付：11月9日21:00〜12月9日23:59（11/8 の投稿）
 
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
+> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-12-15(火) [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037)
 
-- 📣 公式 X の最新情報: チケット抽選販売受付中（11月23日23:59まで）（11/17 の投稿）
+- 📣 公式 X の最新情報: チケット抽選販売は11月23日（火）23:59まで（11/17 の投稿）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -924,7 +926,7 @@
 - 📸 ルール: 通常席等は一部演出を除き写真・動画撮影、録音禁止／カメねこエリアは写真のみ可。動画・フラッシュ・スマホ等・三脚や自撮り棒は禁止／モッシュ・ダイブ・ジャンプ・リフト等禁止／アルコール持込・飲酒入場禁止
 - ⚠️ 注意: 購入者本人のみ入場可。チケットの譲渡・転売・複製・偽造は禁止／入場時に本人確認、持物検査・金属探知機検査あり／再入場不可／チケット紛失・忘れによる再発行、本人確認不可時の払戻し不可／小学生以下は保護者同伴・保護者もチケットが必要／開演直前は混雑するため早めに入場
 - ℹ️ その他: 車椅子または着席観覧が必要な方は、公演前日までに問い合わせ先へ連絡／祝い花は「高嶺のなでしこ」宛のみ。底辺40cm×40cm・高さ180cm以下、納品9:00〜11:00、回収21:00〜22:00／ファンレター・プレゼントは受取不可
-- 📣 公式 X の最新情報: 2部はSOLD OUT（11/14 の投稿）／1部通常指定席は残りわずか（11/14 の投稿）／11月15日10:00から注釈付き指定席を販売。対象は1部注釈付き女性専用エリア指定席、2部注釈付き通常指定席・女性専用エリア指定席（11/14 の投稿）／注釈付き指定席は、ステージ全体や一部演出、メンバーが見えにくい、または見えない場合がある（11/14 の投稿）
+- 📣 公式 X の最新情報: 2部はSOLD OUT。注釈付き指定席を11月15日10:00から販売：1部注釈付き女性専用エリア、2部注釈付き通常席・女性専用エリア（11/14 の投稿）／1部通常指定席も残りわずか（11/14 の投稿）／注釈付き指定席は、ステージ全体・一部演出・メンバーが見えにくい、または見えない場合あり（11/14 の投稿）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -1008,7 +1010,7 @@
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  | 橋本桃呼、日向端ひな |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) | グループ（全員） |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL | グループ（全員） |
-|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST | グループ（全員） |
+|  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15 | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST | グループ（全員） |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ | グループ（全員） |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037) | 品川プリンスホテル ステラボール | グループ（全員） |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京(HULIC HALL TOKYO) | グループ（全員） |

@@ -14,18 +14,23 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:bf765884d54f589d@takaneko-data-mine
-DTSTAMP:20261117T173202Z
+DTSTAMP:20261117T183127Z
 DTSTART;TZID=Asia/Tokyo:20261207T143000
 DTEND;TZID=Asia/Tokyo:20261207T163000
 SUMMARY:MARQUEE祭 Vol.186
 LOCATION:渋谷Spotify O-EAST
-DESCRIPTION:時間: OPEN 14:00 / START 14:30\n出演: グループ（全員
- ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
- deshiko.jp/events/event/marquee%e7%a5%ad-vol-186/\n\n【参加メモ】\n
- 📍 会場: Spotify O-EAST\n🕙 当日の流れ: 2026年12月7日(月) O
- PEN 14:00／START 14:30\n🎫 参加方法・当日券: チケットはイ
- ープラスで販売\n🤖 公式の案内を AI が要約したもので
- す。必ず情報元で確認してください。
+DESCRIPTION:時間: OPEN 14:00 / START 14:30 ／ 🎤 出演 19:50〜20:15\
+ n出演: グループ（全員）\nカテゴリ: ライブ／イベント\
+ n情報元: https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol
+ -186/\n\n【参加メモ】\n📍 会場: Spotify O-EAST\n🕙 当日の
+ 流れ: 2026年12月7日(月) OPEN 14:00／START 14:30\n🎫 参加方法
+ ・当日券: チケットはイープラスで販売\n📣 公式 X の
+ 最新情報: 終演後物販＆特典会は20:45〜21:55、ブースAB（
+ 2F）（10/23 の投稿）／前方エリア11\,000円、前売4\,500円
+ 、当日券5\,500円（各税込・別途1ドリンク）。1人1枚ま
+ で、6歳以上はチケットが必要（10/23 の投稿）\n🤖 公式
+ の案内と公式 X の投稿を AI が要約したものです。必ず
+ 情報元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

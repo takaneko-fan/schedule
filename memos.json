@@ -16,7 +16,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "b21891571dd93d51ecb98be954af4fef2ac00a14",
+  "x_hash": "90e2cf6e2431d087e05f99287efb856e57c3c995",
   "x_items": []
  },
  "2026-11-18|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -76,6 +76,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
+  "x_hash": "18cbfd6ee194738c49951492729c588495a9e8f2",
   "x_items": []
  },
  "2026-11-20|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -115,6 +116,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
+  "x_hash": "762b9c6f2bf9cd0da7dcb436be3beab2b3819164",
   "x_items": []
  },
  "2026-11-21|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -154,9 +156,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "f91829f66421fd5556c5d054af46459db4736b23",
+  "x_hash": "8c1a0548ad11d13c133017f51b431eb161f137df",
   "x_items": [
-   "会場限定抽選会では限定チェキ／写ルンですが当たる（11/16 の投稿）"
+   "会場限定抽選会では限定チェキ・写ルンですが当たる（11/16 の投稿）"
   ]
  },
  "2026-11-22|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -196,6 +198,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
+  "x_hash": "74667e2dcce55c958bacbb03d076ff02d54a496a",
   "x_items": []
  },
  "2026-11-23|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -293,6 +296,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
+  "x_hash": "49cb2ba100a5b6bb1c0346495dac42f33282fabc",
   "x_items": []
  },
  "2026-12-05|https://x.com/takanenofficial/status/2122298645781315975": {
@@ -301,9 +305,9 @@
   "memo": {},
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "a0da970140f9523b6fae8c1b1d2d1dc7c648e008",
+  "x_hash": "1f99b1b690c294ec73f51ae8a5dac7b457bca789",
   "x_items": [
-   "チケットは11月17日21:00から先着受付（11/16 の投稿）"
+   "チケット受付は11月17日21:00から先着順（11/16 の投稿）"
   ]
  },
  "2026-12-07|https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/": {
@@ -323,7 +327,11 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_items": []
+  "x_hash": "dc5905087d6406f2855290747f5cf90a74784d92",
+  "x_items": [
+   "終演後物販＆特典会は20:45〜21:55、ブースAB（2F）（10/23 の投稿）",
+   "前方エリア11,000円、前売4,500円、当日券5,500円（各税込・別途1ドリンク）。1人1枚まで、6歳以上はチケットが必要（10/23 の投稿）"
+  ]
  },
  "2026-12-10|https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/": {
   "generated": "2026-11-18",
@@ -342,7 +350,10 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_items": []
+  "x_hash": "b1a02d2733e3160763d18fcdb786b22402b2a480",
+  "x_items": [
+   "チケット受付：11月9日21:00〜12月9日23:59（11/8 の投稿）"
+  ]
  },
  "2026-12-15|https://x.com/takanenofficial/status/2122650959117435037": {
   "generated": "2026-11-18",
@@ -350,9 +361,9 @@
   "memo": {},
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "e4637f65d74535b4ed91945d07ab956660079901",
+  "x_hash": "94d78af2bf8002ac005a8b034ee466c69d7d39d3",
   "x_items": [
-   "チケット抽選販売受付中（11月23日23:59まで）（11/17 の投稿）"
+   "チケット抽選販売は11月23日（火）23:59まで（11/17 の投稿）"
   ]
  },
  "2026-12-24|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/": {
@@ -372,12 +383,11 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "715cd7ecbc9951f296dc030471a06ae6afa4a1c9",
+  "x_hash": "5610f0fbe4c04606fa5baf6b8402682c54a3d8fe",
   "x_items": [
-   "2部はSOLD OUT（11/14 の投稿）",
-   "1部通常指定席は残りわずか（11/14 の投稿）",
-   "11月15日10:00から注釈付き指定席を販売。対象は1部注釈付き女性専用エリア指定席、2部注釈付き通常指定席・女性専用エリア指定席（11/14 の投稿）",
-   "注釈付き指定席は、ステージ全体や一部演出、メンバーが見えにくい、または見えない場合がある（11/14 の投稿）"
+   "2部はSOLD OUT。注釈付き指定席を11月15日10:00から販売：1部注釈付き女性専用エリア、2部注釈付き通常席・女性専用エリア（11/14 の投稿）",
+   "1部通常指定席も残りわずか（11/14 の投稿）",
+   "注釈付き指定席は、ステージ全体・一部演出・メンバーが見えにくい、または見えない場合あり（11/14 の投稿）"
   ]
  }
 }
