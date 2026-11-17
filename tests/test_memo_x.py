@@ -77,6 +77,14 @@ class RelatedPostsTest(unittest.TestCase):
             ("2026-11-16T20:30+09:00", "#あしたのたかねこ ららぽーと立川立飛")))  # 前々日の「あした」は別の日
         self.assertEqual([pid for _, pid, _ in related], ["2", "1"])  # 投稿日の古い順
 
+    def test_store_campaign_post_is_not_linked_to_event(self):
+        """同じ店で開くリリースイベントに、店舗のキャンペーンだけの投稿を結び付けない。"""
+        r = row(title="リリース記念イベント at ららぽーと立川立飛", venue="ららぽーと立川立飛2F イベント広場", date="2026-11-18")
+        related = fs.x_related_posts(r, texts(
+            ("2026-11-16T12:00+09:00", "11月18日 タワーレコードららぽーと立川立飛店 サイン入りレシート配布・パネル展"),
+            ("2026-11-16T13:00+09:00", "11月18日 ららぽーと立川立飛 ミニライブ&特典会 パネル展も開催")))
+        self.assertEqual([pid for _, pid, _ in related], ["2"])
+
     def test_tbd_venue_is_not_used_for_matching(self):
         r = row(title="リリース記念個別特典イベント", venue="東京都内某所", date="2026-11-22")
         self.assertEqual(fs.x_related_posts(r, texts(("2026-11-16T20:00+09:00", "11月22日(日) 東京都内某所 握手会"))), [])
@@ -90,6 +98,13 @@ class XMemoItemsTest(unittest.TestCase):
         with mock.patch.object(fs, "x_llm_read", return_value=(result, (100, 10))):
             items, usage = fs.x_memo_items(row(), "📍 会場: Spotify O-EAST", related, TODAY, "openai", "key")
         self.assertEqual((items, usage), (["出演時刻は19:50〜20:15（10/23 の投稿）"], (100, 10)))
+
+    def test_row_times_are_given_to_ai(self):
+        """予定の行にある時刻・会場を渡す（AI がそれを繰り返さないように）。"""
+        related = [("2026-10-23T16:30+09:00", "1", MARQUEE)]
+        with mock.patch.object(fs, "x_llm_read", return_value=({"items": []}, (1, 1))) as read:
+            fs.x_memo_items(row(), "", related, TODAY, "openai", "key")
+        self.assertIn("時刻: 開場 14:00／開演 14:30／会場: Spotify O-EAST", read.call_args[0][0])
 
 
 class AddMemosTest(unittest.TestCase):
@@ -134,6 +149,12 @@ class AddMemosTest(unittest.TestCase):
         cache, calls = self.run_add([r], cache, None)
         self.assertEqual(calls.call_count, 0)
         self.assertEqual(cache[cid]["x_items"], ["出演時刻は19:50〜20:15（10/23 の投稿）"])
+
+    def test_campaign_rows_get_no_x_items(self):
+        r = row(title="リリース記念 タワーレコードキャンペーン", category="公式X", url="https://x.com/takanenofficial/status/3")
+        cache, calls = self.run_add([r], {}, texts(("2026-10-23T16:30+09:00", "12月7日 リリース記念 タワーレコードキャンペーン 開催")),
+                                    ["何か"])
+        self.assertEqual((calls.call_count, cache), (0, {}))
 
     def test_programs_and_past_events_are_skipped(self):
         rows = [row(category="公式X / ラジオ", url="https://x.com/1"), row(date="2026-11-01", category="公式X", url="https://x.com/2")]

@@ -1581,14 +1581,14 @@ MEMO_X_LABEL = "📣 公式 X の最新情報"
 X_TEXTS_PATH = (os.environ.get("X_TEXTS_PATH")
                 or os.path.expanduser("~/.local/state/takaneko-fan/x_texts.json"))
 X_TEXTS_KEEP_DAYS = 400  # 投稿日からこの日数を過ぎた本文は捨てる
-X_MEMO_VERSION = 1  # 指示文を変えたら上げる（📣 の項目を作り直す）
+X_MEMO_VERSION = 2  # 指示文を変えたら上げる（📣 の項目を作り直す）
 X_MEMO_MAX_CALLS = 30  # 1 回の更新で AI を呼ぶ上限
 X_MEMO_MAX_POSTS = 10  # 1 つの予定に渡す投稿の数（新しいものから）
 X_MEMO_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の予定の「参加メモ」に、公式 X の投稿の情報を補う係です。
 すでにある参加メモ（公式サイトの案内の要約。ない場合もある）と、その予定に関係する公式 X の投稿（番号付き）を渡します。
 参加メモに書かれていない、参加する人が当日までに知っておくと役立つ事実だけを、公式 X の投稿から取り出してください。
 
-- 参加メモにすでに書かれていることは書かない。言い換えも書かない。
+- 参加メモと予定の行（日付・開場・開演・終演・会場）にすでに書かれていることは書かない。言い換えも書かない。
 - 出演時刻・物販の時間・売り切れ・残りわずか・追加販売・当日の変更や中止など、投稿に書かれた事実だけを使う。推測で補わない。
 - 参加メモと食い違う場合は、新しい投稿の情報を書く。
 - 基準日より前に終わった受付・販売・締切は書かない。
@@ -2192,8 +2192,12 @@ def save_x_texts(tweets, today, path=None):
         json.dump(texts, f, ensure_ascii=False, indent=1, sort_keys=True)
 
 
+X_EVENT_WORDS_RE = re.compile(r"ミニライブ|特典会|握手|サイン会|撮影会|チェキ|開演|開場|START|OPEN|出演")
+
+
 def x_related_posts(row, texts):
-    """予定に関係する公式 X の投稿（日付が書かれているか当日・前日の投稿で、予定名か会場が本文にあるもの。古い順）。"""
+    """予定に関係する公式 X の投稿（日付が書かれているか当日・前日の投稿で、予定名か会場が本文にあるもの。古い順）。
+    店舗のキャンペーンだけの投稿（イベントの言葉がない）は、同じ店で開くイベントの投稿として扱わない。"""
     day = date.fromisoformat(row["date"])
     name = normalize(event_phrase(row["title"]))
     venue = "" if TBD_VENUE_RE.search(row["venue"]) else normalize(re.split(r"[（(〒]", row["venue"])[0])
@@ -2203,6 +2207,8 @@ def x_related_posts(row, texts):
         if posted.date() > day:
             continue
         flat = unicodedata.normalize("NFKC", text)
+        if CAMPAIGN_RE.search(flat) and not X_EVENT_WORDS_RE.search(flat):
+            continue
         dated = (re.search(rf"(?<!\d){day.month}\s*(?:月\s*|/){day.day}(?!\d)", flat)
                  or posted.date() == day and re.search(r"本日|きょうの|このあと", flat)
                  or posted.date() + timedelta(days=1 if posted.hour >= X_NIGHT_HOUR else 0) == day
@@ -2218,7 +2224,9 @@ def x_memo_items(row, official, related, today, provider, key):
     """公式 X の投稿から、参加メモにない情報を取り出す。(「text（m/d の投稿）」のリスト, 使ったトークン) を返す。"""
     blocks = [f"[{i}] {datetime.fromisoformat(posted):%Y-%m-%d %H:%M} の投稿\n{text}"
               for i, (posted, _, text) in enumerate(related)]
-    prompt = (f"基準日: {today.isoformat()}\n予定: {row['date']} {row['title']}（会場: {row['venue'] or '未定'}）\n\n"
+    times = "／".join(f"{label} {row[k]}" for k, label in (("open", "開場"), ("start", "開演"), ("end", "終演"))
+                     if row.get(k)) or row.get("time_note") or "未定"
+    prompt = (f"基準日: {today.isoformat()}\n予定の行: {row['date']} {row['title']}（時刻: {times}／会場: {row['venue'] or '未定'}）\n\n"
               f"--- 参加メモ ---\n{official or '（なし）'}\n\n--- 公式 X の投稿 ---\n" + "\n\n".join(blocks))
     result, usage = x_llm_read(prompt, provider, key, X_MEMO_INSTRUCTION, X_MEMO_SCHEMA, "x_memo")
     items = []
@@ -2268,6 +2276,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日")) or is_release(r)
                 or media_of(r)):  # 発売日の行・番組は参加する予定ではない
             continue
+        campaign = is_campaign(r)  # 店舗のキャンペーンは公式の要約だけ（📣 は日ごとの行に同じ内容が並ぶため付けない）
         cid = f"{r['date']}|{r.get('event_url', r['url'])}"
         entry = dict(cache[cid]) if cid in cache else None
         official = not r["category"].startswith(X_CATEGORY) and not r.get("ai")  # 公式 X だけの予定は 📣 の項目だけ
@@ -2284,7 +2293,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         # 📣 公式 X の最新情報
         x_items = (entry or {}).get("x_items", [])
         if x_texts is not None:
-            related = x_related_posts(r, x_texts)
+            related = [] if campaign else x_related_posts(r, x_texts)
             official_text = memo_text(clean_memo(entry["memo"])) if entry and entry.get("memo") else ""
             x_digest = hashlib.sha1(f"{X_MEMO_VERSION}|{model}|{official_text}|"
                                     f"{'|'.join(pid + text for _, pid, text in related)}".encode()).hexdigest()
@@ -2658,6 +2667,8 @@ def main():
     post_rows += post_llm_rows(posts, args.start, args.end)  # ルールで読めない記事（ラジオ出演の一覧など）
     # 同じ予定が複数記事に書かれている場合があるので、古い記事→新しい記事の順で統合
     rows = merge_post_rows(rows, sorted(post_rows, key=lambda r: r["date"]))
+    # 仮の会場は、公式 X の会場より先にお知らせ記事の会場で埋める（記事へのリンクを会場の情報元に残すため）
+    fill_tbd_venues(rows, posts)
     # 公式 X の予定は古い投稿から順に統合する（ID の元になる情報元が、後の投稿で変わらないように）
     x_rows, x_notices, x_hints = update_x_events(rows, today, args.x_recheck)
     x_rows = [r for r in x_rows if args.start.isoformat() <= r["date"] < args.end.isoformat()]
