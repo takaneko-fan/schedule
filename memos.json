@@ -16,16 +16,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "ed281dd26dfec70df4294b707394b0e13e993aad",
-  "x_items": [
-   "15:00からCD販売と優先エリア整理番号・握手会参加券を配布（11/2 の投稿）"
-  ],
-  "x_sources": [
-   {
-    "label": "11/2",
-    "url": "https://x.com/takanenofficial/status/2117210120924942713"
-   }
-  ]
+  "x_hash": "e9d3cfc02e6805540599d33c01f48b3e48f16242",
+  "x_items": [],
+  "x_sources": []
  },
  "2026-11-18|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-18",
@@ -135,9 +128,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "598f0f438da4d048968b1cfd3fb7dcc8ce88fb70",
+  "x_hash": "758111eb99586e36cc4a63a95fc46ee6b299bf12",
   "x_items": [
-   "10:00から優先エリア整理番号・握手会参加券を配布（11/2 の投稿）"
+   "CD販売・優先エリア整理番号・グループ握手会参加券の配布は10:00から（11/2 の投稿）"
   ],
   "x_sources": [
    {
@@ -233,14 +226,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "c15266525fff70174b9166a5352cec38f9fe21ed",
+  "x_hash": "da73f2bf657a24dae3e9af9ebff1e2ff8961f9c5",
   "x_items": [],
-  "x_sources": [
-   {
-    "label": "11/2",
-    "url": "https://x.com/takanenofficial/status/2117210120924942713"
-   }
-  ]
+  "x_sources": []
  },
  "2026-11-23|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-18",

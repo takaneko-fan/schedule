@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:cae3dda54cf95a66@takaneko-data-mine
-DTSTAMP:20261117T192246Z
+DTSTAMP:20261117T195847Z
 DTSTART;TZID=Asia/Tokyo:20261123T120000
 DTEND;TZID=Asia/Tokyo:20261123T173000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -61,9 +61,8 @@ DESCRIPTION:時間: 1部 12:00 START（優先エリア入場11:40） ／ 2
  金・変更不可／店舗特典・キャンペーン・ポイント対
  象外／電子マネー・商品券・クーポン・駐車券サービ
  ス利用不可／プレゼント・ファンレター・花の受付な
- し／ペット同伴不可\n🔗 公式 X: 11/2 https://x.com/takanenoffi
- cial/status/2117210120924942713\n🤖 公式の案内を AI が要約し
- たものです。必ず情報元で確認してください。
+ し／ペット同伴不可\n🤖 公式の案内を AI が要約したも
+ のです。必ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e
  3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3
  %83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%
