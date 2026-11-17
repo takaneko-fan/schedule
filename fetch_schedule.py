@@ -897,6 +897,8 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
     print(f"  → ◎ {counts['◎']} 件（うち公式に掲載済み {counts['◎ 掲載済み']} 件） / ? {counts['?']} 件")
     if any(tokens):
         print(f"  AI 読み取り: 入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン")
+    if tweets:
+        save_x_texts(tweets, datetime.now(JST).date())  # 参加メモの材料（リポジトリの外。公開しない）
     if not recheck_days and newest and (newest != state.get("since_id") or pending != state.get("pending", {})):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
         with open(X_STATE_PATH, "w", encoding="utf-8") as f:
@@ -1321,7 +1323,8 @@ def write_markdown(rows, path):
         out += ["## 参加メモ", "", "これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。", ""]
         for r in memo_rows:
             out += [f"### {r['date']}({r['weekday']}) [{md_escape(r['title'])}]({r['url']})", ""]
-            out += [f"- {ln}" for ln in r["memo"].split("\n")[:-1]] + ["", f"> {MEMO_FOOTER}", ""]
+            memo_lines = r["memo"].split("\n")
+            out += [f"- {ln}" for ln in memo_lines[:-1]] + ["", f"> {memo_lines[-1]}", ""]
     out += ["## 全予定（日付順）", "", md_table(rows, show_members=True), ""]
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out))
@@ -1570,6 +1573,33 @@ MEMO_FIELDS = [
     ("items", "🎒 持ち物"), ("rules", "📸 ルール"), ("notes", "⚠️ 注意"), ("other", "ℹ️ その他"),
 ]
 MEMO_FOOTER = "🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。"
+MEMO_FOOTER_X = "🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。"
+MEMO_X_LABEL = "📣 公式 X の最新情報"
+
+# 参加メモの「📣 公式 X の最新情報」（公式の案内の要約に、公式 X の投稿にしかない情報を足す）
+# 投稿の本文は公開しない。リポジトリの外（定期の更新を動かす VPS）にだけ保存する
+X_TEXTS_PATH = (os.environ.get("X_TEXTS_PATH")
+                or os.path.expanduser("~/.local/state/takaneko-fan/x_texts.json"))
+X_TEXTS_KEEP_DAYS = 400  # 投稿日からこの日数を過ぎた本文は捨てる
+X_MEMO_VERSION = 1  # 指示文を変えたら上げる（📣 の項目を作り直す）
+X_MEMO_MAX_CALLS = 30  # 1 回の更新で AI を呼ぶ上限
+X_MEMO_MAX_POSTS = 10  # 1 つの予定に渡す投稿の数（新しいものから）
+X_MEMO_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の予定の「参加メモ」に、公式 X の投稿の情報を補う係です。
+すでにある参加メモ（公式サイトの案内の要約。ない場合もある）と、その予定に関係する公式 X の投稿（番号付き）を渡します。
+参加メモに書かれていない、参加する人が当日までに知っておくと役立つ事実だけを、公式 X の投稿から取り出してください。
+
+- 参加メモにすでに書かれていることは書かない。言い換えも書かない。
+- 出演時刻・物販の時間・売り切れ・残りわずか・追加販売・当日の変更や中止など、投稿に書かれた事実だけを使う。推測で補わない。
+- 参加メモと食い違う場合は、新しい投稿の情報を書く。
+- 基準日より前に終わった受付・販売・締切は書かない。
+- セットリスト、終演後のお礼やレポート、宣伝・挨拶・ハッシュタグ・URL は書かない。
+- text は 1 項目 80 字程度まで。post は根拠にした投稿の番号。全体で 5 項目まで。書くことがなければ空の配列にする。"""
+X_MEMO_SCHEMA = {
+    "type": "object", "additionalProperties": False, "required": ["items"],
+    "properties": {"items": {"type": "array", "items": {
+        "type": "object", "additionalProperties": False, "required": ["text", "post"],
+        "properties": {"text": {"type": "string"}, "post": {"type": "integer"}}}}},
+}
 # 個人情報の取り扱い・問い合わせ先など、どのイベントにも付く定型文
 MEMO_BOILERPLATE_RE = re.compile(
     r"個人情報|第三者|反社会|安全管理措置|お申込者様|当社|ドメイン設定|受信設定|お問い?合わせ|相談室|"
@@ -2132,9 +2162,94 @@ def clean_memo(memo):
     return out
 
 
-def memo_text(memo):
+def memo_text(memo, x_items=()):
+    """参加メモの文章。公式の案内の項目の後に「📣 公式 X の最新情報」を置き、最後に注意書きを付ける。"""
     lines = [f"{label}: {memo[k]}" for k, label in MEMO_FIELDS if memo.get(k)]
-    return "\n".join(lines + [MEMO_FOOTER]) if lines else ""
+    if x_items:
+        lines.append(f"{MEMO_X_LABEL}: {'／'.join(x_items)}")
+    return "\n".join(lines + [MEMO_FOOTER_X if x_items else MEMO_FOOTER]) if lines else ""
+
+
+def load_x_texts(path=None):
+    """保存した公式 X の投稿の本文（投稿 ID → {posted, text}）。記録がない環境では None。"""
+    try:
+        with open(path or X_TEXTS_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return None
+
+
+def save_x_texts(tweets, today, path=None):
+    """読んだ投稿の本文を、リポジトリの外の記録に足す（参加メモの材料。公開しない）。古いものは捨てる。"""
+    path = path or X_TEXTS_PATH
+    texts = load_x_texts(path) or {}
+    for t in tweets:
+        texts[t["id"]] = {"posted": x_posted(t).isoformat(timespec="minutes"), "text": "\n".join(x_lines(t)).strip()}
+    oldest = (today - timedelta(days=X_TEXTS_KEEP_DAYS)).isoformat()
+    texts = {k: v for k, v in texts.items() if v["posted"][:10] >= oldest}
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(texts, f, ensure_ascii=False, indent=1, sort_keys=True)
+
+
+def x_related_posts(row, texts):
+    """予定に関係する公式 X の投稿（日付が書かれているか当日・前日の投稿で、予定名か会場が本文にあるもの。古い順）。"""
+    day = date.fromisoformat(row["date"])
+    name = normalize(event_phrase(row["title"]))
+    venue = "" if TBD_VENUE_RE.search(row["venue"]) else normalize(re.split(r"[（(〒]", row["venue"])[0])
+    found = []
+    for pid, v in (texts or {}).items():
+        text, posted = v["text"], datetime.fromisoformat(v["posted"])
+        if posted.date() > day:
+            continue
+        flat = unicodedata.normalize("NFKC", text)
+        dated = (re.search(rf"(?<!\d){day.month}\s*(?:月\s*|/){day.day}(?!\d)", flat)
+                 or posted.date() == day and re.search(r"本日|きょうの|このあと", flat)
+                 or posted.date() + timedelta(days=1 if posted.hour >= X_NIGHT_HOUR else 0) == day
+                 and re.search(r"明日|あしたの", flat))
+        named = (len(name) >= 6 and (name in normalize(flat) or shares_phrase(event_phrase(row["title"]), flat, 6))
+                 or len(venue) >= 4 and venue in normalize(flat))
+        if dated and named:
+            found.append((v["posted"], pid, text))
+    return sorted(found)[-X_MEMO_MAX_POSTS:]
+
+
+def x_memo_items(row, official, related, today, provider, key):
+    """公式 X の投稿から、参加メモにない情報を取り出す。(「text（m/d の投稿）」のリスト, 使ったトークン) を返す。"""
+    blocks = [f"[{i}] {datetime.fromisoformat(posted):%Y-%m-%d %H:%M} の投稿\n{text}"
+              for i, (posted, _, text) in enumerate(related)]
+    prompt = (f"基準日: {today.isoformat()}\n予定: {row['date']} {row['title']}（会場: {row['venue'] or '未定'}）\n\n"
+              f"--- 参加メモ ---\n{official or '（なし）'}\n\n--- 公式 X の投稿 ---\n" + "\n\n".join(blocks))
+    result, usage = x_llm_read(prompt, provider, key, X_MEMO_INSTRUCTION, X_MEMO_SCHEMA, "x_memo")
+    items = []
+    for item in result["items"][:5]:
+        text = re.sub(r"\s+", " ", item["text"]).strip().rstrip("。")
+        if not text or not 0 <= item["post"] < len(related):
+            continue
+        posted = datetime.fromisoformat(related[item["post"]][0])
+        items.append(f"{text}（{posted.month}/{posted.day} の投稿）")
+    return items, usage
+
+
+def memo_official(r, source, entry, model, key, call, today, created, can_call, tokens):
+    """公式の案内の要約（材料が変わったときだけ AI で作り直す）。前回の 📣 の項目は引き継ぐ。
+    AI を呼んだときは entry["_called"] を立てる（呼んだ回数の数え上げ用）。"""
+    digest = hashlib.sha1(f"{MEMO_PROMPT_VERSION}|{model}|{source}".encode()).hexdigest()
+    if entry and entry.get("hash") == digest:
+        return entry
+    if not (key and can_call):
+        return entry if entry and entry.get("hash") else None
+    try:
+        memo, usage = call(model, key, r, source)
+        tokens[:] = [t + u for t, u in zip(tokens, usage)]
+        created.append((r, "更新" if entry and entry.get("hash") else "新規"))
+        print(f"  参加メモを作成: {r['date']} {r['title'][:40]}")
+        time.sleep(1)
+        return {**(entry or {}), "hash": digest, "model": model, "generated": today.isoformat(),
+                "memo": clean_memo(memo), "_called": True}
+    except Exception as e:  # noqa: BLE001 — メモは補助的な情報なので失敗しても続行（前回のメモを使う）
+        print(f"  ! 参加メモの作成失敗: {r['date']} {r['title'][:40]} ({e})")
+        return entry if entry and entry.get("hash") else None
 
 
 def add_memos(rows, posts, today, cache_path="memos.json"):
@@ -2147,42 +2262,62 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         cache = {}
     provider, key, call = memo_provider()
     model = MEMO_MODELS.get(provider, "")
-    calls, tokens, kept, created = 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
+    x_texts = load_x_texts()  # 記録がない環境（手元など）では None。そのときは保存済みの 📣 の項目を使う
+    calls, x_calls, tokens, kept, created = 0, 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
-        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日", X_CATEGORY)) or r.get("ai")
-                or is_release(r)):  # 発売日の行は参加する予定ではない
+        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日")) or is_release(r)
+                or media_of(r)):  # 発売日の行・番組は参加する予定ではない
             continue
-        source = memo_source(r, posts)
+        cid = f"{r['date']}|{r.get('event_url', r['url'])}"
+        entry = dict(cache[cid]) if cid in cache else None
+        official = not r["category"].startswith(X_CATEGORY) and not r.get("ai")  # 公式 X だけの予定は 📣 の項目だけ
+        source = memo_source(r, posts) if official else ""
         # 日時と会場くらいしか書かれていない、または「詳細は後日発表」だけの予定（見出しと URL の行は数えない）
         content = len(re.sub(r"(?m)^(#.*|https?://\S+)$", "", source).strip())
         if content < 80 or "後日発表" in source and content < 600:
-            continue
-        cid = f"{r['date']}|{r.get('event_url', r['url'])}"
-        digest = hashlib.sha1(f"{MEMO_PROMPT_VERSION}|{model}|{source}".encode()).hexdigest()
-        entry = cache.get(cid)
-        if not (entry and entry["hash"] == digest) and key and calls < MEMO_MAX_CALLS:
-            try:
-                memo, usage = call(model, key, r, source)
-                calls += 1
-                tokens = [t + u for t, u in zip(tokens, usage)]
-                memo = clean_memo(memo)
-                created.append((r, "更新" if entry else "新規"))
-                entry = {"hash": digest, "model": model, "generated": today.isoformat(), "memo": memo}
-                print(f"  参加メモを作成: {r['date']} {r['title'][:40]}")
-                time.sleep(1)
-            except Exception as e:  # noqa: BLE001 — メモは補助的な情報なので失敗しても続行（前回のメモを使う）
-                print(f"  ! 参加メモの作成失敗: {r['date']} {r['title'][:40]} ({e})")
-        if entry:
+            source = ""
+        entry = memo_official(r, source, entry, model, key, call, today, created, calls < MEMO_MAX_CALLS, tokens) \
+            if source else (entry if entry and not entry.get("hash") else None)
+        if entry is not None and entry.get("_called"):
+            calls += 1
+            del entry["_called"]
+        # 📣 公式 X の最新情報
+        x_items = (entry or {}).get("x_items", [])
+        if x_texts is not None:
+            related = x_related_posts(r, x_texts)
+            official_text = memo_text(clean_memo(entry["memo"])) if entry and entry.get("memo") else ""
+            x_digest = hashlib.sha1(f"{X_MEMO_VERSION}|{model}|{official_text}|"
+                                    f"{'|'.join(pid + text for _, pid, text in related)}".encode()).hexdigest()
+            if not related:
+                x_items = []
+            elif (entry or {}).get("x_hash") != x_digest and key and x_calls < X_MEMO_MAX_CALLS:
+                try:
+                    x_items, usage = x_memo_items(r, official_text, related, today, provider, key)
+                    x_calls += 1
+                    tokens = [tokens[0] + usage[0], tokens[1], tokens[2] + usage[1]]
+                    entry = {**(entry or {"hash": "", "model": model, "generated": today.isoformat(), "memo": {}}),
+                             "x_hash": x_digest}
+                    print(f"  参加メモに公式 X の最新情報: {r['date']} {r['title'][:40]}（{len(x_items)} 項目）")
+                except Exception as e:  # noqa: BLE001 — 失敗しても前回の 📣 の項目を使う
+                    print(f"  ! 公式 X の最新情報の作成失敗: {r['date']} {r['title'][:40]} ({e})")
+            if entry is None and x_items:
+                entry = {"hash": "", "model": model, "generated": today.isoformat(), "memo": {}}
+        if entry is not None:
+            entry["x_items"] = x_items
+            if not entry.get("memo") and not x_items:
+                continue
             kept[cid] = entry
-            r["memo"] = memo_text(clean_memo(entry["memo"]))
+            r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items) or \
+                "\n".join([f"{MEMO_X_LABEL}: {'／'.join(x_items)}", MEMO_FOOTER_X])
     # 過去の予定のメモは CSV に残るので、キャッシュからは消す
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(kept, f, ensure_ascii=False, indent=1, sort_keys=True)
         f.write("\n")
     if not key:
         print("  （OPENAI_API_KEY・GEMINI_API_KEY がないため、参加メモは新しく作りません）")
-    print(f"参加メモ: {len(kept)} 件（今回 {model or 'AI'} で作成 {calls} 件、"
+    print(f"参加メモ: {len(kept)} 件（今回 {model or 'AI'} で作成 {calls} 件、公式 X の最新情報 {x_calls} 件、"
           f"入力 {tokens[0]:,}（うちキャッシュ {tokens[1]:,}）/ 出力 {tokens[2]:,} トークン）")
+    calls += x_calls
     if key and not calls:
         print("AI 利用料: なし（今回は AI を呼んでいません）")
     if calls:
