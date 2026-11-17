@@ -108,6 +108,11 @@ def classify(old, new):
         important = any(old[f] for f in changed)
         out.append(("important" if important else "decided", "時刻変更" if important else "時刻決定",
                     time_label(old) or "未定", time_label(new) or "未定"))
+    # 高嶺のなでしこの出演時間（他団体のイベントのタイムテーブルなど。2026-11-18 より前の CSV には列がない）
+    a, b = old.get("perform", ""), new.get("perform", "")
+    if a != b and b:
+        out.append(("important" if a else "decided", "出演時間変更" if a else "出演時間決定",
+                    a.replace("-", "〜"), b.replace("-", "〜")))
     # 「東京都内某所（詳細は後日発表）」のような仮の会場は、未定と同じに扱う
     a = "" if TBD_VENUE_RE.search(old["venue"]) else normalize(old["venue"])
     b = normalize(new["venue"])

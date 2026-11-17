@@ -31,6 +31,7 @@ Actions の checkout で消えないよう、リポジトリの外（`~/.local/s
 | `remind_state.json` | たかねこリマインドで送った項目（日付ごと） | `REMIND_STATE_PATH` |
 | `deadline_warnings.json` | 記載ミスの可能性（毎回置き換える） | `WARNINGS_PATH` |
 | `missed_info.json` | 会場を取り込めていない可能性（毎回置き換える） | `MISSED_PATH` |
+| `perform.json` | 予定ごとの出演時間（予定のキー → 出演時間・根拠の投稿の日時と URL）。投稿の記録がない環境で使う。リポジトリに入る（本文は含まない） | `add_perform` の引数 |
 | `official_texts.json` | 公式の記事・イベントページの本文の版（URL → [{seen: 初めて見た日時, text}]。値が出た日時を決めるのに使う。最新の版は残し、それ以外は 400 日で捨てる。公開しない） | `OFFICIAL_TEXTS_PATH` |
 | `x_texts.json` | 読んだ公式 X の投稿の本文（投稿 ID → 投稿日時・本文。参加メモの「📣 公式 X の最新情報」の材料。投稿日から 400 日で捨てる。公開しない） | `X_TEXTS_PATH` |
 | `warned.json` | 記載ミスの可能性・会場を取り込めていない可能性で送った項目と、記録の日付（記事の公開日、または予定の日付） | `WARNED_PATH` |
@@ -301,6 +302,19 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 - キャッシュ: `memos.json` に `{日付|url: {hash, model, generated, memo}}` で保存。hash は指示文のバージョン・モデル・材料の文章から作り、変わったときだけ AI を呼ぶ。1 回の実行で AI を呼ぶのは最大 30 件（`MEMO_MAX_CALLS`）。失敗しても前回のメモを使って続行する。過去の予定のメモは CSV に残し、`memos.json` からは消す。
 - 出力: iCalendar のメモ欄（【参加メモ】）、schedule.md の「参加メモ」節、Web 版の折りたたみ「参加メモ」（URL はリンクにする）、schedule.csv の `memo` 列。どれにも「公式の案内を AI が要約したものです。必ず情報元で確認してください。」を付ける。
 - ログ: 実行の最後に、今回メモを作った予定（新規／更新）と、AI 利用料の概算（トークン数 × `MEMO_PRICES`、1 ドル 150 円で換算）を表示する。
+
+### 出演時間と告知画像（F-19）
+
+| 項目 | 内容 |
+| --- | --- |
+| 画像の URL | `fetch_x_posts`・`fetch_x_tweets` に `expansions=attachments.media_keys`・`media.fields=url,type` を付け、`attach_photos` が投稿に `photos`（画像の URL）を付ける。画像の情報を付けても X API の料金は投稿の数だけで変わらない（2026-11-18 に利用量で確認） |
+| 読む投稿（`read_x_images`） | 画像があり、本文が `X_IMAGE_POST_RE` に当たり、まだ画像を読んでいない投稿。1 回の更新で `X_IMAGE_MAX_POSTS` 件まで、1 投稿 `X_IMAGE_MAX_PHOTOS` 枚まで。画像は `pbs.twimg.com` から取り、保存しない。OpenAI だけ対応 |
+| 読み方（`x_image_read`） | `X_IMAGE_INSTRUCTION`・`X_IMAGE_SCHEMA` で `perform`（対バン・フェスのタイムテーブルの高嶺のなでしこの出演時間）と `notes`（物販・特典会などの事実）を返させる。2 回読み、`perform` は 2 回の集合が一致したときだけ採る（`clean_perform`）。`notes` は 1 回目を使う |
+| 保存 | `save_x_texts` が `x_texts.json` の投稿に `image`（`perform`・`notes`）を足す。読み直した投稿でも前の `image` は残す |
+| 📣 への利用 | `x_related_posts` が、本文に日付がなくても画像の出演時間の日付で結び付け、本文の後に「［画像から読み取り］」と `notes` を付けて渡す |
+| 出演時間（`add_perform`） | これからの予定（`perform_target`）ごとに、投稿の古い順に、画像の出演時間（その日で開始・終了がそろい、1 通りだけ。投稿が予定名・会場を含むか、その日の対象の予定が 1 件だけ）か、本文の `PERFORM_TEXT_RE`（`perform_from_text`。違う時間が 2 つ以上なら読まない。結び付けは `x_related_posts`）を見て、新しいものを採る。結果を `perform.json` に保存し、投稿の記録がない環境ではそれを使う。`add_memos` より前に、`--no-memo` でも動かす |
+| 出力 | `time_label` がイベントの時間（`event_time_label`）の後に「 ／ 🎤 出演 19:50〜20:15」を付ける（md・カレンダーのメモ欄・通知）。Web 版の `timeLabel` も同じ規則で、表示では出演を強調する。CSV は最後の `perform` 列（`restval=""`）。ICS の時刻は変えない |
+| 通知 | `notify.classify` が `perform` の決定・変更を「出演時間決定」「出演時間変更」にする（列のない古い CSV は空とみなす） |
 
 ### 公式 X の最新情報（📣）
 
