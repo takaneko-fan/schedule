@@ -1660,13 +1660,17 @@ def post_title(post):
 
 
 def related_posts(row, posts):
-    """予定に関係するお知らせ記事（情報元そのもの、または同じ日付・同じイベント名の記事）。"""
+    """予定に関係するお知らせ記事（情報元そのもの、または同じ日付・同じイベント名の記事）。
+    店舗のキャンペーンの行とイベントの行は、同じ日・同じ作品名でも互いの記事を使わない（参加メモが混ざるため）。"""
     day = date.fromisoformat(row["date"])
+    campaign = is_campaign(row)
     found = []
     for p in posts:
         title = post_title(p)
         if p["link"] in (row["url"], row.get("venue_url")):
             found.append(p)
+            continue
+        if bool(CAMPAIGN_RE.search(title)) != campaign:
             continue
         m = POST_DATE_RE.match(title)
         published = date.fromisoformat(p["date"][:10])
