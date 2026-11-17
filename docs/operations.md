@@ -169,7 +169,7 @@ VPS やランナーが止まっていると更新自体が動かないので、�
 | `--md` / `--csv` / `--ics PATH` | 出力先 |
 | `--deadlines PATH` | 申込・締切の出力先（拡張子なし、既定: `deadlines`） |
 | `--force` | 安全策のチェックを飛ばして出力する |
-| `--x-recheck DAYS` | 公式 X を DAYS 日前から読み直す。読み取った予定は `x_events.json` に保存する（前回の続きの記録は変えない） |
+| `--x-recheck DAYS` | 公式 X を DAYS 日前から読み直す。読み取った予定は `x_events.json` に、本文は VPS の `x_texts.json`（参加メモの 📣 の材料）に保存する（前回の続きの記録は変えない）。定期の更新の環境で動かすときは `ops/dispatch_update.sh DAYS`（GitHub Actions の手動起動の入力 `x_recheck`）で起動する。読んだ件数分の料金がかかる |
 
 安全策（機能仕様書 F-16）で止まったとき、本当に中止・削除された場合や期間を変えた場合は `--force` を付けて実行します。
 
