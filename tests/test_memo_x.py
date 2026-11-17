@@ -151,8 +151,8 @@ class OfficialVersionsTest(unittest.TestCase):
 
     def test_versions_and_value_time(self):
         store = {}
-        fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-05T09:17"))
-        fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-06T09:17"))  # 変わらなければ記録しない
+        self.assertEqual(fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-05T09:17")), 1)
+        self.assertEqual(fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-06T09:17")), 0)  # 変わらなければ記録しない
         fs.record_official_versions([self.part("START 17:00 物販 15:00")], store, jst("2026-11-12T09:17"))
         fs.record_official_versions([self.part("START 18:00 物販 15:00")], store, jst("2026-11-16T21:17"))
         self.assertEqual([v["seen"] for v in store[self.URL]],
