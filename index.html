@@ -99,6 +99,7 @@
   .tag.unofficial { border-color: var(--accent); color: var(--accent); }
   .links { font-size: .8rem; margin-top: 4px; display: flex; gap: 12px; }
   .links a { color: var(--accent); }
+  .meta .perform { color: var(--accent); font-weight: 700; white-space: nowrap; }
   details.memo { margin-top: 6px; font-size: .82rem; }
   details.memo summary { cursor: pointer; color: var(--accent); width: fit-content; }
   details.memo .sec { margin-top: 8px; }
@@ -287,8 +288,15 @@ function parseCSV(text) {
   return body.filter(r => r.length > 1).map(r => Object.fromEntries(header.map((h, i) => [h, r[i] || ""])));
 }
 
-// fetch_schedule.py の time_label と同じ規則
+// fetch_schedule.py の time_label と同じ規則（高嶺のなでしこの出演時間を後ろに付ける）
 function timeLabel(r) {
+  const label = eventTimeLabel(r);
+  if (!r.perform) return label;
+  const perform = `🎤 出演 ${r.perform.replace("-", "〜")}`;
+  return label ? `${label} ／ ${perform}` : perform;
+}
+
+function eventTimeLabel(r) {
   if (r.time_note) return r.time_note;
   if (r.start && r.open) return `OPEN ${r.open} / START ${r.start}`;
   if (r.start) return r.end ? `${r.start}〜${r.end}` : r.start;
@@ -475,7 +483,7 @@ function eventHTML(r, today) {
           ? `<button type="button" class="go" data-uid="${esc(r.uid)}" aria-pressed="${isGoing}">${isGoing ? "★ 行く" : "☆ 行く"}</button>`
           : ""}
       </div>
-      <div class="meta">${time ? esc(time) : "時間未定・終日"}</div>
+      <div class="meta">${time ? esc(eventTimeLabel(r)) + (r.perform ? `${eventTimeLabel(r) ? " ／ " : ""}<b class="perform">🎤 出演 ${esc(r.perform.replace("-", "〜"))}</b>` : "") : "時間未定・終日"}</div>
       ${r.venue ? `<div class="meta">📍 ${esc(r.venue)}</div>` : ""}
       <div class="tags">
         <span class="tag">${esc(members)}</span>
