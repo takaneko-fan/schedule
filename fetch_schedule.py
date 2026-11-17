@@ -1739,13 +1739,17 @@ def save_official_texts(store, today, path=None):
 
 def record_official_versions(parts, store, now, first_seen=None):
     """情報元の本文が前回の版と違えば、新しい版として記録する。
-    初めて記録する情報元は、お知らせ記事なら公開日時、イベントページなら first_seen（前に参加メモを作った日）を見た日時とする。"""
+    初めて記録する情報元は、お知らせ記事なら公開日時、イベントページなら first_seen（前に参加メモを作った日）を見た日時とする。
+    足した版の数を返す。"""
+    added = 0
     for p in parts:
         versions = store.setdefault(p["url"], [])
         if versions and versions[-1]["text"] == p["text"]:
             continue
         seen = now if versions else min(now, p["published"] or first_seen or now)
         versions.append({"seen": seen.isoformat(timespec="minutes"), "text": p["text"]})
+        added += 1
+    return added
 
 
 def flat_text(text):
@@ -2389,7 +2393,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
     provider, key, call = memo_provider()
     model = MEMO_MODELS.get(provider, "")
     x_texts = load_x_texts()  # 記録がない環境（手元など）では None。そのときは保存済みの 📣 の項目を使う
-    store, now = load_official_texts(), datetime.now(JST)
+    store, now, new_versions = load_official_texts(), datetime.now(JST), 0
     calls, x_calls, tokens, kept, created = 0, 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
         if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日")) or is_release(r)
@@ -2401,7 +2405,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         official = not r["category"].startswith(X_CATEGORY) and not r.get("ai")  # 公式 X だけの予定は 📣 の項目だけ
         parts = memo_parts(r, posts) if official else []
         generated = entry and entry.get("hash") and datetime.fromisoformat(entry["generated"]).replace(tzinfo=JST)
-        record_official_versions(parts, store, now, generated or None)
+        new_versions += record_official_versions(parts, store, now, generated or None)
         source = memo_source(r, posts, parts) if official else ""
         # 日時と会場くらいしか書かれていない、または「詳細は後日発表」だけの予定（見出しと URL の行は数えない）
         content = len(re.sub(r"(?m)^(#.*|https?://\S+)$", "", source).strip())
@@ -2445,6 +2449,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
             r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items, entry["x_changes"]) or \
                 "\n".join([f"{MEMO_X_LABEL}: {'／'.join(x_items)}", MEMO_FOOTER_X])
     save_official_texts(store, today)
+    print(f"公式の版の記録: {len(store)} 情報元・{sum(len(v) for v in store.values())} 版（今回の新しい版 {new_versions} 件）")
     # 過去の予定のメモは CSV に残るので、キャッシュからは消す
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(kept, f, ensure_ascii=False, indent=1, sort_keys=True)
