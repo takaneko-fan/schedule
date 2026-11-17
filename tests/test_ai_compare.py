@@ -155,6 +155,7 @@ class SaveAllEventsOfPostTest(unittest.TestCase):
         common = fs.x_common(tweet)
         patches = [mock.patch.object(fs, "X_STATE_PATH", os.path.join(tmp.name, "x_state.json")),
                    mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")),
+                   mock.patch.object(fs, "X_TEXTS_PATH", os.path.join(tmp.name, "x_texts.json")),
                    mock.patch.object(fs, "fetch_x_posts", return_value=([tweet], tweet["id"])),
                    mock.patch.object(fs, "memo_provider", return_value=("openai", "key", None)),
                    mock.patch.object(fs, "x_llm_candidates", return_value=[dict(c, **common, ai=True) for c in ai])]

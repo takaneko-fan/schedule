@@ -11,7 +11,7 @@ import os
 import sys
 import tempfile
 import unittest
-from datetime import date
+from datetime import date, datetime
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
@@ -90,6 +90,94 @@ class RelatedPostsTest(unittest.TestCase):
         self.assertEqual(fs.x_related_posts(r, texts(("2026-11-16T20:00+09:00", "11月22日(日) 東京都内某所 握手会"))), [])
 
 
+def add(text, post=0):
+    return {"kind": "追加", "field": "", "old": "", "text": text, "post": post}
+
+
+def change(field, old, text, post=0):
+    return {"kind": "変更", "field": field, "old": old, "text": text, "post": post}
+
+
+def jst(text):
+    return datetime.fromisoformat(text + "+09:00")
+
+
+class XChangesTest(unittest.TestCase):
+    """公式 X の変更は、公式の値より後に出たときだけ採る（後から出た情報が最新）。"""
+
+    MEMO = {"flow": "OPEN 16:30／START 17:00", "venue": "Zepp Haneda"}
+    RELATED = [("2026-11-10T12:00+09:00", "1", "開演時間変更 START 17:00→18:00"),
+               ("2026-11-16T12:00+09:00", "2", "開演時間再変更 START 18:30")]
+
+    def read(self, items, since):
+        with mock.patch.object(fs, "x_llm_read", return_value=({"items": items}, (1, 1))), \
+                contextlib.redirect_stdout(io.StringIO()):
+            return fs.x_memo_items(row(), self.MEMO, self.RELATED, TODAY, "openai", "key", lambda old: since)
+
+    def test_newer_post_changes_value(self):
+        items, changes, _ = self.read([change("flow", "START 17:00", "START 18:00")], jst("2026-11-01T12:00"))
+        self.assertEqual((items, changes), ([], [{"field": "flow", "old": "START 17:00", "text": "START 18:00", "posted": "11/10"}]))
+        self.assertEqual(fs.memo_text(self.MEMO, items, changes).splitlines()[:2],
+                         ["📍 会場: Zepp Haneda", "🕙 当日の流れ: OPEN 16:30／START 18:00（11/10 の公式 X で変更）"])
+        self.assertTrue(fs.memo_text(self.MEMO, items, changes).endswith(fs.MEMO_FOOTER_X))
+
+    def test_older_or_same_time_post_is_ignored(self):
+        """公式の値の方が後（または 1 時間以内）なら公式を採る。"""
+        self.assertEqual(self.read([change("flow", "START 17:00", "START 18:00")], jst("2026-11-12T12:00"))[:2], ([], []))
+        self.assertEqual(self.read([change("flow", "START 17:00", "START 18:00")], jst("2026-11-10T11:30"))[:2], ([], []))
+
+    def test_newest_post_wins_for_same_value(self):
+        items, changes, _ = self.read([change("flow", "START 17:00", "START 18:00", 0),
+                                       change("flow", "START 17:00", "START 18:30", 1)], jst("2026-11-01T12:00"))
+        self.assertEqual([(c["text"], c["posted"]) for c in changes], [("START 18:30", "11/16")])
+
+    def test_unknown_value_becomes_addition(self):
+        items, changes, _ = self.read([change("flow", "OPEN 15:00", "OPEN 15:30")], jst("2026-11-01T12:00"))
+        self.assertEqual((items, changes), (["OPEN 15:30（11/10 の投稿で変更）"], []))
+
+    def test_note_when_old_is_not_exact(self):
+        """値の書き方が少し違う（空白など）ときは、項目の最後に注記する。"""
+        memo = fs.apply_x_changes({"flow": "START17:00"}, [{"field": "flow", "old": "", "text": "START 18:00", "posted": "11/10"}])
+        self.assertEqual(memo["flow"], "START17:00／※11/10 の公式 X で変更: START 18:00")
+
+
+class OfficialVersionsTest(unittest.TestCase):
+    """公式の情報元の版の記録と、値が出た日時。"""
+
+    URL = "https://example.invalid/news/1"
+
+    def part(self, text, published="2026-11-01T12:00"):
+        return {"url": self.URL, "head": "", "text": text, "published": jst(published) if published else None}
+
+    def test_versions_and_value_time(self):
+        store = {}
+        fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-05T09:17"))
+        fs.record_official_versions([self.part("START 17:00")], store, jst("2026-11-06T09:17"))  # 変わらなければ記録しない
+        fs.record_official_versions([self.part("START 17:00 物販 15:00")], store, jst("2026-11-12T09:17"))
+        fs.record_official_versions([self.part("START 18:00 物販 15:00")], store, jst("2026-11-16T21:17"))
+        self.assertEqual([v["seen"] for v in store[self.URL]],
+                         ["2026-11-01T12:00+09:00", "2026-11-12T09:17+09:00", "2026-11-16T21:17+09:00"])  # 初回は公開日時
+        parts = [self.part("")]
+        self.assertEqual(fs.official_value_time("物販 15:00", parts, store), jst("2026-11-12T09:17"))  # 続いている最初の版
+        self.assertEqual(fs.official_value_time("START 18:00", parts, store), jst("2026-11-16T21:17"))
+        self.assertEqual(fs.official_value_time("開演は18:00", parts, store), jst("2026-11-16T21:17"))  # 時刻で探す
+        self.assertEqual(fs.official_value_time("会場の案内", parts, store), jst("2026-11-16T21:17"))  # 不明は今の版
+
+    def test_event_page_first_seen(self):
+        store = {}
+        fs.record_official_versions([self.part("本文", None)], store, jst("2026-11-18T09:17"), jst("2026-11-10T00:00"))
+        self.assertEqual(store[self.URL][0]["seen"], "2026-11-10T00:00+09:00")
+
+    def test_save_keeps_latest(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, "official_texts.json")
+        store = {self.URL: [{"seen": "2025-01-01T00:00+09:00", "text": "古い"}, {"seen": "2026-11-01T00:00+09:00", "text": "新しい"}],
+                 "https://example.invalid/old": [{"seen": "2025-01-01T00:00+09:00", "text": "古い"}]}
+        fs.save_official_texts(store, TODAY, path)
+        self.assertEqual(fs.load_official_texts(path), {self.URL: [{"seen": "2026-11-01T00:00+09:00", "text": "新しい"}]})
+
+
 def article(link, title, body, published="2026-11-16T12:00:00"):
     return {"link": link, "date": published, "title": {"rendered": title}, "content": {"rendered": body}}
 
@@ -119,17 +207,16 @@ class RelatedArticlesTest(unittest.TestCase):
 class XMemoItemsTest(unittest.TestCase):
     def test_items_get_post_date_and_bad_index_is_dropped(self):
         related = [("2026-10-23T16:30+09:00", "1", MARQUEE)]
-        result = {"items": [{"text": "出演時刻は19:50〜20:15。", "post": 0}, {"text": "存在しない投稿", "post": 3},
-                            {"text": "  ", "post": 0}]}
+        result = {"items": [add("出演時刻は19:50〜20:15。"), add("存在しない投稿", 3), add("  ")]}
         with mock.patch.object(fs, "x_llm_read", return_value=(result, (100, 10))):
-            items, usage = fs.x_memo_items(row(), "📍 会場: Spotify O-EAST", related, TODAY, "openai", "key")
-        self.assertEqual((items, usage), (["出演時刻は19:50〜20:15（10/23 の投稿）"], (100, 10)))
+            items, changes, usage = fs.x_memo_items(row(), {"venue": "Spotify O-EAST"}, related, TODAY, "openai", "key")
+        self.assertEqual((items, changes, usage), (["出演時刻は19:50〜20:15（10/23 の投稿）"], [], (100, 10)))
 
     def test_row_times_are_given_to_ai(self):
         """予定の行にある時刻・会場を渡す（AI がそれを繰り返さないように）。"""
         related = [("2026-10-23T16:30+09:00", "1", MARQUEE)]
         with mock.patch.object(fs, "x_llm_read", return_value=({"items": []}, (1, 1))) as read:
-            fs.x_memo_items(row(), "", related, TODAY, "openai", "key")
+            fs.x_memo_items(row(), {}, related, TODAY, "openai", "key")
         self.assertIn("時刻: 開場 14:00／開演 14:30／会場: Spotify O-EAST", read.call_args[0][0])
 
 
@@ -142,8 +229,9 @@ class AddMemosTest(unittest.TestCase):
         cache_path = os.path.join(tmp.name, "memos.json")
         with open(cache_path, "w", encoding="utf-8") as f:
             json.dump(cache, f, ensure_ascii=False)
-        calls = mock.Mock(return_value=({"items": [{"text": t, "post": 0} for t in ai_items]}, (10, 1)))
+        calls = mock.Mock(return_value=({"items": [add(t) for t in ai_items]}, (10, 1)))
         with mock.patch.object(fs, "load_x_texts", return_value=x_texts), \
+                mock.patch.object(fs, "OFFICIAL_TEXTS_PATH", os.path.join(tmp.name, "official_texts.json")), \
                 mock.patch.object(fs, "memo_provider", return_value=("openai", "key", None)), \
                 mock.patch.object(fs, "x_llm_read", calls), contextlib.redirect_stdout(io.StringIO()):
             fs.add_memos(rows, [], TODAY, cache_path)

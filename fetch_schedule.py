@@ -1563,7 +1563,7 @@ MEMO_MODELS = {"openai": "gpt-5.6-luna", "gemini": "gemini-3.1-flash-lite"}
 # 100 万トークンあたりの料金（米ドル）: (入力, キャッシュされた入力, 出力)。値上げ・値下げがあれば直す
 MEMO_PRICES = {"gpt-5.6-luna": (0.20, 0.02, 1.20), "gemini-3.1-flash-lite": (0.25, 0.025, 1.50)}
 USD_JPY = 150  # 料金を円で表示するときの目安のレート
-MEMO_PROMPT_VERSION = 4   # 指示文を変えたら上げる（全メモを作り直す）
+MEMO_PROMPT_VERSION = 5   # 指示文を変えたら上げる（全メモを作り直す）
 MEMO_MAX_CALLS = 30       # 1 回の実行で AI を呼ぶ上限（不具合で大量に呼ばないため）
 MEMO_SOURCE_LIMIT = 30000  # AI に渡す文章の上限（文字数）
 # (キー, 表示名)。この順でメモに並べる
@@ -1581,24 +1581,33 @@ MEMO_X_LABEL = "📣 公式 X の最新情報"
 X_TEXTS_PATH = (os.environ.get("X_TEXTS_PATH")
                 or os.path.expanduser("~/.local/state/takaneko-fan/x_texts.json"))
 X_TEXTS_KEEP_DAYS = 400  # 投稿日からこの日数を過ぎた本文は捨てる
-X_MEMO_VERSION = 2  # 指示文を変えたら上げる（📣 の項目を作り直す）
+X_MEMO_VERSION = 3  # 指示文を変えたら上げる（📣 の項目を作り直す）
+# 公式の記事・イベントページの版の記録（本文と、その版を初めて見た日時。値が出た日時を決めるのに使う。公開しない）
+OFFICIAL_TEXTS_PATH = (os.environ.get("OFFICIAL_TEXTS_PATH")
+                       or os.path.expanduser("~/.local/state/takaneko-fan/official_texts.json"))
+X_SAME_TIME = timedelta(hours=1)  # 公式と公式 X の差がこれ以内なら同時とみなし、公式を採る
 X_MEMO_MAX_CALLS = 30  # 1 回の更新で AI を呼ぶ上限
 X_MEMO_MAX_POSTS = 10  # 1 つの予定に渡す投稿の数（新しいものから）
 X_MEMO_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の予定の「参加メモ」に、公式 X の投稿の情報を補う係です。
 すでにある参加メモ（公式サイトの案内の要約。ない場合もある）と、その予定に関係する公式 X の投稿（番号付き）を渡します。
-参加メモに書かれていない、参加する人が当日までに知っておくと役立つ事実だけを、公式 X の投稿から取り出してください。
+参加する人が当日までに知っておくと役立つ事実を、公式 X の投稿から次の 2 種類で取り出してください。
+
+- kind「変更」: 参加メモの項目に書かれた値と、投稿の内容が食い違うもの（時刻・会場・内容の変更、中止など）。
+  field は参加メモの項目のキー（venue・flow など）、old は参加メモに書かれた食い違う部分を一字一句そのまま写したもの（短く。例「START 17:00」）、
+  text は old を置き換える新しい内容（例「START 18:00」）。どちらが新しいかは判断しなくてよい（日時はプログラムが比べる）。
+- kind「追加」: 参加メモに書かれていない情報（出演時刻・物販の時間・売り切れ・残りわずか・追加販売・当日の案内など）。field と old は空文字にする。
 
 - 参加メモと予定の行（日付・開場・開演・終演・会場）にすでに書かれていることは書かない。言い換えも書かない。
-- 出演時刻・物販の時間・売り切れ・残りわずか・追加販売・当日の変更や中止など、投稿に書かれた事実だけを使う。推測で補わない。
-- 参加メモと食い違う場合は、新しい投稿の情報を書く。
+- 投稿に書かれた事実だけを使う。推測で補わない。投稿どうしで食い違う場合は、新しい投稿の内容を書く。
 - 基準日より前に終わった受付・販売・締切は書かない。
 - セットリスト、終演後のお礼やレポート、宣伝・挨拶・ハッシュタグ・URL は書かない。
 - text は 1 項目 80 字程度まで。post は根拠にした投稿の番号。全体で 5 項目まで。書くことがなければ空の配列にする。"""
 X_MEMO_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["items"],
     "properties": {"items": {"type": "array", "items": {
-        "type": "object", "additionalProperties": False, "required": ["text", "post"],
-        "properties": {"text": {"type": "string"}, "post": {"type": "integer"}}}}},
+        "type": "object", "additionalProperties": False, "required": ["kind", "field", "old", "text", "post"],
+        "properties": {"kind": {"type": "string", "enum": ["追加", "変更"]}, "field": {"type": "string"},
+                       "old": {"type": "string"}, "text": {"type": "string"}, "post": {"type": "integer"}}}}},
 }
 # 個人情報の取り扱い・問い合わせ先など、どのイベントにも付く定型文
 MEMO_BOILERPLATE_RE = re.compile(
@@ -1620,6 +1629,7 @@ MEMO_INSTRUCTION = """\
 - 出演時間・入場ルールなどが主催者のサイトにしか書かれていない外部イベントは、other に「詳細は主催者サイト（URL）で確認」と書く。
 - 参加者の行動に関わる注意事項は省かない。受付時間と締切、本人確認、入場条件、持ち込みの制限、再発行や払い戻しの不可、配布終了の条件、待機や整列の決まりは、短さより優先して書く。
 - 開催済みの販売や受付（締切が過ぎたもの）は書かなくてよい。
+- 情報元どうしで内容が食い違う場合は、公開日が新しいお知らせ記事の内容を書く（後から出た情報が最新）。
 
 項目:
 - venue: 会場名と住所
@@ -1686,16 +1696,87 @@ def related_posts(row, posts):
     return sorted(found, key=lambda p: p["date"])
 
 
-def memo_source(row, posts):
-    """AI に渡す文章（詳細ページ＋関係する記事。定型文は除く）。"""
+def memo_parts(row, posts):
+    """参加メモの材料（情報元ごとの {url, head, text, published}。published はお知らせ記事の公開日時、イベントページは None）。"""
     parts = []
     if row.get("source_text"):
-        parts.append(f"# イベントページ {row.get('event_url', row['url'])}\n{row['source_text']}")
+        url = row.get("event_url", row["url"])
+        parts.append({"url": url, "head": f"# イベントページ {url}", "text": row["source_text"], "published": None})
     for p in related_posts(row, posts):
         lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(p["content"]["rendered"])]
         body = "\n".join(ln for ln in lines if not MEMO_BOILERPLATE_RE.search(ln))
-        parts.append(f"# お知らせ記事（{p['date'][:10]} 公開）{post_title(p)}\n{p['link']}\n{body}")
-    return "\n\n".join(parts)[:MEMO_SOURCE_LIMIT]
+        parts.append({"url": p["link"], "head": f"# お知らせ記事（{p['date'][:10]} 公開）{post_title(p)}\n{p['link']}",
+                      "text": body, "published": datetime.fromisoformat(p["date"]).replace(tzinfo=JST)})
+    return parts
+
+
+def memo_source(row, posts, parts=None):
+    """AI に渡す文章（詳細ページ＋関係する記事。定型文は除く）。"""
+    parts = memo_parts(row, posts) if parts is None else parts
+    return "\n\n".join(f"{p['head']}\n{p['text']}" for p in parts)[:MEMO_SOURCE_LIMIT]
+
+
+# ---- 公式の情報元の版の記録（値が出た日時） ----
+
+def load_official_texts(path=None):
+    try:
+        with open(path or OFFICIAL_TEXTS_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return {}
+
+
+def save_official_texts(store, today, path=None):
+    """版の記録を保存する。最新の版は残し、それ以外は X_TEXTS_KEEP_DAYS を過ぎたら捨てる。"""
+    path = path or OFFICIAL_TEXTS_PATH
+    oldest = (today - timedelta(days=X_TEXTS_KEEP_DAYS)).isoformat()
+    store = {url: [v for v in versions[:-1] if v["seen"][:10] >= oldest] + versions[-1:]
+             for url, versions in store.items() if versions and versions[-1]["seen"][:10] >= oldest}
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(store, f, ensure_ascii=False, indent=1, sort_keys=True)
+
+
+def record_official_versions(parts, store, now, first_seen=None):
+    """情報元の本文が前回の版と違えば、新しい版として記録する。
+    初めて記録する情報元は、お知らせ記事なら公開日時、イベントページなら first_seen（前に参加メモを作った日）を見た日時とする。"""
+    for p in parts:
+        versions = store.setdefault(p["url"], [])
+        if versions and versions[-1]["text"] == p["text"]:
+            continue
+        seen = now if versions else min(now, p["published"] or first_seen or now)
+        versions.append({"seen": seen.isoformat(timespec="minutes"), "text": p["text"]})
+
+
+def flat_text(text):
+    return re.sub(r"\s+", "", unicodedata.normalize("NFKC", text))
+
+
+VALUE_TOKEN_RE = re.compile(r"\d{1,2}[:：]\d{2}|\d{1,2}月\d{1,2}日|\d{1,2}/\d{1,2}|[\d,]+円")
+
+
+def official_value_time(value, parts, store):
+    """参加メモの値が公式の情報元に出た日時（その値を含む版が続いている、いちばん古い版を見た日時）。
+    値がそのまま見つからなければ、値の中の時刻・日付・金額で探す。見つからなければ、情報元の今の版のいちばん新しい日時。"""
+    def appeared(needles):
+        times = []
+        for p in parts:
+            versions = store.get(p["url"], [])
+            if not versions or not all(n in flat_text(versions[-1]["text"]) for n in needles):
+                continue
+            i = len(versions) - 1
+            while i > 0 and all(n in flat_text(versions[i - 1]["text"]) for n in needles):
+                i -= 1
+            times.append(datetime.fromisoformat(versions[i]["seen"]))
+        return min(times) if times else None
+    found = appeared([flat_text(value)]) if flat_text(value) else None
+    tokens = [flat_text(t) for t in VALUE_TOKEN_RE.findall(unicodedata.normalize("NFKC", value))]
+    if found is None and tokens:
+        found = appeared(tokens)
+    if found is None:
+        latest = [datetime.fromisoformat(store[p["url"]][-1]["seen"]) for p in parts if store.get(p["url"])]
+        found = max(latest) if latest else None
+    return found
 
 
 def memo_prompt(row, source):
@@ -2166,12 +2247,27 @@ def clean_memo(memo):
     return out
 
 
-def memo_text(memo, x_items=()):
-    """参加メモの文章。公式の案内の項目の後に「📣 公式 X の最新情報」を置き、最後に注意書きを付ける。"""
+def memo_text(memo, x_items=(), x_changes=()):
+    """参加メモの文章。公式 X で変わった値を置き換え、公式の案内の項目の後に「📣 公式 X の最新情報」を置き、
+    最後に注意書きを付ける。"""
+    memo = apply_x_changes(memo, x_changes)
     lines = [f"{label}: {memo[k]}" for k, label in MEMO_FIELDS if memo.get(k)]
     if x_items:
         lines.append(f"{MEMO_X_LABEL}: {'／'.join(x_items)}")
-    return "\n".join(lines + [MEMO_FOOTER_X if x_items else MEMO_FOOTER]) if lines else ""
+    return "\n".join(lines + [MEMO_FOOTER_X if x_items or x_changes else MEMO_FOOTER]) if lines else ""
+
+
+def apply_x_changes(memo, changes):
+    """公式 X で変わった値（{field, old, text, posted}）を参加メモの項目に反映する。
+    old がそのまま見つからなければ、その項目の最後に注記する。"""
+    memo = dict(memo)
+    for c in changes:
+        value, note = memo.get(c["field"], ""), f"（{c['posted']} の公式 X で変更）"
+        if c["old"] and c["old"] in value:
+            memo[c["field"]] = value.replace(c["old"], c["text"] + note, 1)
+        else:
+            memo[c["field"]] = "／".join(x for x in (value, f"※{c['posted']} の公式 X で変更: {c['text']}") if x)
+    return memo
 
 
 def load_x_texts(path=None):
@@ -2224,8 +2320,12 @@ def x_related_posts(row, texts):
     return sorted(found)[-X_MEMO_MAX_POSTS:]
 
 
-def x_memo_items(row, official, related, today, provider, key):
-    """公式 X の投稿から、参加メモにない情報を取り出す。(「text（m/d の投稿）」のリスト, 使ったトークン) を返す。"""
+def x_memo_items(row, memo, related, today, provider, key, value_time=lambda old: None):
+    """公式 X の投稿から、参加メモにない情報（追加）と、参加メモの値と食い違う情報（変更）を取り出す。
+    変更は、投稿が公式の値の出た日時（value_time）より X_SAME_TIME を超えて新しいときだけ採る（後から出た方が最新）。
+    (追加: 「text（m/d の投稿）」のリスト, 変更: {field, old, text, posted} のリスト, 使ったトークン) を返す。"""
+    memo = memo or {}
+    official = "\n".join(f"{k}（{label}）: {memo[k]}" for k, label in MEMO_FIELDS if memo.get(k))
     blocks = [f"[{i}] {datetime.fromisoformat(posted):%Y-%m-%d %H:%M} の投稿\n{text}"
               for i, (posted, _, text) in enumerate(related)]
     times = "／".join(f"{label} {row[k]}" for k, label in (("open", "開場"), ("start", "開演"), ("end", "終演"))
@@ -2233,14 +2333,28 @@ def x_memo_items(row, official, related, today, provider, key):
     prompt = (f"基準日: {today.isoformat()}\n予定の行: {row['date']} {row['title']}（時刻: {times}／会場: {row['venue'] or '未定'}）\n\n"
               f"--- 参加メモ ---\n{official or '（なし）'}\n\n--- 公式 X の投稿 ---\n" + "\n\n".join(blocks))
     result, usage = x_llm_read(prompt, provider, key, X_MEMO_INSTRUCTION, X_MEMO_SCHEMA, "x_memo")
-    items = []
+    items, changes = [], {}
     for item in result["items"][:5]:
         text = re.sub(r"\s+", " ", item["text"]).strip().rstrip("。")
         if not text or not 0 <= item["post"] < len(related):
             continue
         posted = datetime.fromisoformat(related[item["post"]][0])
-        items.append(f"{text}（{posted.month}/{posted.day} の投稿）")
-    return items, usage
+        day = f"{posted.month}/{posted.day}"
+        field, old = item.get("field", ""), (item.get("old") or "").strip()
+        if item.get("kind") == "変更" and field in memo and old and flat_text(old) in flat_text(memo[field]):
+            since = value_time(old)
+            if since is not None and posted <= since + X_SAME_TIME:
+                print(f"    公式の方が新しい（または同時）ため、公式 X の変更を採らない: {old} → {text}（{day} の投稿）")
+                continue
+            key_ = (field, flat_text(old))
+            if key_ not in changes or changes[key_]["_posted"] < posted:  # 同じ値の変更は新しい投稿を採る
+                changes[key_] = {"field": field, "old": old if old in memo[field] else "", "text": text,
+                                 "posted": day, "_posted": posted}
+        elif item.get("kind") == "変更":
+            items.append(f"{text}（{day} の投稿で変更）")
+        else:
+            items.append(f"{text}（{day} の投稿）")
+    return items, [{k: v for k, v in c.items() if k != "_posted"} for c in changes.values()], usage
 
 
 def memo_official(r, source, entry, model, key, call, today, created, can_call, tokens):
@@ -2275,6 +2389,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
     provider, key, call = memo_provider()
     model = MEMO_MODELS.get(provider, "")
     x_texts = load_x_texts()  # 記録がない環境（手元など）では None。そのときは保存済みの 📣 の項目を使う
+    store, now = load_official_texts(), datetime.now(JST)
     calls, x_calls, tokens, kept, created = 0, 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
         if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日")) or is_release(r)
@@ -2284,7 +2399,10 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         cid = f"{r['date']}|{r.get('event_url', r['url'])}"
         entry = dict(cache[cid]) if cid in cache else None
         official = not r["category"].startswith(X_CATEGORY) and not r.get("ai")  # 公式 X だけの予定は 📣 の項目だけ
-        source = memo_source(r, posts) if official else ""
+        parts = memo_parts(r, posts) if official else []
+        generated = entry and entry.get("hash") and datetime.fromisoformat(entry["generated"]).replace(tzinfo=JST)
+        record_official_versions(parts, store, now, generated or None)
+        source = memo_source(r, posts, parts) if official else ""
         # 日時と会場くらいしか書かれていない、または「詳細は後日発表」だけの予定（見出しと URL の行は数えない）
         content = len(re.sub(r"(?m)^(#.*|https?://\S+)$", "", source).strip())
         if content < 80 or "後日発表" in source and content < 600:
@@ -2295,33 +2413,38 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
             calls += 1
             del entry["_called"]
         # 📣 公式 X の最新情報
-        x_items = (entry or {}).get("x_items", [])
+        x_items, x_changes = (entry or {}).get("x_items", []), (entry or {}).get("x_changes", [])
         if x_texts is not None:
             related = [] if campaign else x_related_posts(r, x_texts)
-            official_text = memo_text(clean_memo(entry["memo"])) if entry and entry.get("memo") else ""
+            memo = clean_memo(entry["memo"]) if entry and entry.get("memo") else {}
+            official_text = memo_text(memo)
             x_digest = hashlib.sha1(f"{X_MEMO_VERSION}|{model}|{official_text}|"
                                     f"{'|'.join(pid + text for _, pid, text in related)}".encode()).hexdigest()
             if not related:
-                x_items = []
+                x_items, x_changes = [], []
             elif (entry or {}).get("x_hash") != x_digest and key and x_calls < X_MEMO_MAX_CALLS:
                 try:
-                    x_items, usage = x_memo_items(r, official_text, related, today, provider, key)
+                    x_items, x_changes, usage = x_memo_items(
+                        r, memo, related, today, provider, key, lambda old: official_value_time(old, parts, store))
                     x_calls += 1
                     tokens = [tokens[0] + usage[0], tokens[1], tokens[2] + usage[1]]
                     entry = {**(entry or {"hash": "", "model": model, "generated": today.isoformat(), "memo": {}}),
                              "x_hash": x_digest}
-                    print(f"  参加メモに公式 X の最新情報: {r['date']} {r['title'][:40]}（{len(x_items)} 項目）")
+                    print(f"  参加メモに公式 X の最新情報: {r['date']} {r['title'][:40]}"
+                          f"（追加 {len(x_items)} 項目、変更 {len(x_changes)} 項目）")
                 except Exception as e:  # noqa: BLE001 — 失敗しても前回の 📣 の項目を使う
                     print(f"  ! 公式 X の最新情報の作成失敗: {r['date']} {r['title'][:40]} ({e})")
-            if entry is None and x_items:
+            if entry is None and (x_items or x_changes):
                 entry = {"hash": "", "model": model, "generated": today.isoformat(), "memo": {}}
         if entry is not None:
             entry["x_items"] = x_items
+            entry["x_changes"] = x_changes if entry.get("memo") else []
             if not entry.get("memo") and not x_items:
                 continue
             kept[cid] = entry
-            r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items) or \
+            r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items, entry["x_changes"]) or \
                 "\n".join([f"{MEMO_X_LABEL}: {'／'.join(x_items)}", MEMO_FOOTER_X])
+    save_official_texts(store, today)
     # 過去の予定のメモは CSV に残るので、キャッシュからは消す
     with open(cache_path, "w", encoding="utf-8") as f:
         json.dump(kept, f, ensure_ascii=False, indent=1, sort_keys=True)
