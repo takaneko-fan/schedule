@@ -112,7 +112,8 @@ class XChangesTest(unittest.TestCase):
     def read(self, items, since):
         with mock.patch.object(fs, "x_llm_read", return_value=({"items": items}, (1, 1))), \
                 contextlib.redirect_stdout(io.StringIO()):
-            return fs.x_memo_items(row(), self.MEMO, self.RELATED, TODAY, "openai", "key", lambda old: since)
+            items, changes, _, usage = fs.x_memo_items(row(), self.MEMO, self.RELATED, TODAY, "openai", "key", lambda old: since)
+            return items, changes, usage
 
     def test_newer_post_changes_value(self):
         items, changes, _ = self.read([change("flow", "START 17:00", "START 18:00")], jst("2026-11-01T12:00"))
@@ -139,6 +140,39 @@ class XChangesTest(unittest.TestCase):
         """値の書き方が少し違う（空白など）ときは、項目の最後に注記する。"""
         memo = fs.apply_x_changes({"flow": "START17:00"}, [{"field": "flow", "old": "", "text": "START 18:00", "posted": "11/10"}])
         self.assertEqual(memo["flow"], "START17:00／※11/10 の公式 X で変更: START 18:00")
+
+
+class LinksTest(unittest.TestCase):
+    """根拠の投稿の URL は「🔗 公式 X」の行に投稿ごとに 1 回だけ並べ、md では投稿日をリンクにする。"""
+
+    def test_links_line_and_markdown(self):
+        sources = [{"label": "11/14", "url": "https://x.com/takanenofficial/status/1"},
+                   {"label": "11/15", "url": "https://x.com/takanenofficial/status/2"}]
+        changes = [{"field": "flow", "old": "START 17:00", "text": "START 18:00", "posted": "11/15"}]
+        memo = fs.memo_text({"flow": "OPEN 16:30／START 17:00"}, ["2部はSOLD OUT（11/14 の投稿）", "残りわずか（11/14 の投稿）"],
+                            changes, sources, {"label": "10/23", "url": "https://x.com/takanenofficial/status/3"})
+        lines = memo.splitlines()
+        self.assertEqual(lines[-2], "🔗 公式 X: 11/14 https://x.com/takanenofficial/status/1 ／ 11/15 https://x.com/takanenofficial/status/2"
+                                    " ／ 出演時間 10/23 https://x.com/takanenofficial/status/3")
+        links = fs.memo_links(memo)
+        self.assertEqual(links["11/14"], "https://x.com/takanenofficial/status/1")
+        self.assertEqual(links["出演時間 10/23"], "https://x.com/takanenofficial/status/3")
+        self.assertEqual(fs.md_memo_links(lines[0], links),
+                         "🕙 当日の流れ: OPEN 16:30／START 18:00（[11/15 の公式 X](https://x.com/takanenofficial/status/2) で変更）")
+        self.assertEqual(fs.md_memo_links("📣 公式 X の最新情報: 2部はSOLD OUT（11/14 の投稿）", links),
+                         "📣 公式 X の最新情報: 2部はSOLD OUT（[11/14 の投稿](https://x.com/takanenofficial/status/1)）")
+
+    def test_perform_from_same_post_is_merged(self):
+        sources = [{"label": "10/23", "url": "https://x.com/takanenofficial/status/1"}]
+        memo = fs.memo_text({"venue": "O-EAST"}, ["物販 20:45〜（10/23 の投稿）"], (), sources,
+                            {"label": "10/23", "url": "https://x.com/takanenofficial/status/1"})
+        self.assertEqual(memo.splitlines()[-2], "🔗 公式 X: 10/23・出演時間 https://x.com/takanenofficial/status/1")
+        self.assertEqual(fs.memo_links(memo), {"10/23": "https://x.com/takanenofficial/status/1",
+                                               "出演時間": "https://x.com/takanenofficial/status/1"})
+
+    def test_same_day_posts_get_time(self):
+        related = [("2026-11-14T12:00+09:00", "1", ""), ("2026-11-14T21:00+09:00", "2", ""), ("2026-11-15T10:00+09:00", "3", "")]
+        self.assertEqual(fs.post_labels(related), ["11/14 12:00", "11/14 21:00", "11/15"])
 
 
 class OfficialVersionsTest(unittest.TestCase):
@@ -209,8 +243,9 @@ class XMemoItemsTest(unittest.TestCase):
         related = [("2026-10-23T16:30+09:00", "1", MARQUEE)]
         result = {"items": [add("出演時刻は19:50〜20:15。"), add("存在しない投稿", 3), add("  ")]}
         with mock.patch.object(fs, "x_llm_read", return_value=(result, (100, 10))):
-            items, changes, usage = fs.x_memo_items(row(), {"venue": "Spotify O-EAST"}, related, TODAY, "openai", "key")
+            items, changes, sources, usage = fs.x_memo_items(row(), {"venue": "Spotify O-EAST"}, related, TODAY, "openai", "key")
         self.assertEqual((items, changes, usage), (["出演時刻は19:50〜20:15（10/23 の投稿）"], [], (100, 10)))
+        self.assertEqual(sources, [{"label": "10/23", "url": "https://x.com/takanenofficial/status/1"}])
 
     def test_row_times_are_given_to_ai(self):
         """予定の行にある時刻・会場を渡す（AI がそれを繰り返さないように）。"""
@@ -243,7 +278,8 @@ class AddMemosTest(unittest.TestCase):
         cache, calls = self.run_add([r], {}, texts(("2026-10-23T16:30+09:00", MARQUEE)), ["出演時刻は19:50〜20:15"])
         self.assertEqual(calls.call_count, 1)
         self.assertEqual(r["memo"].splitlines(),
-                         ["📣 公式 X の最新情報: 出演時刻は19:50〜20:15（10/23 の投稿）", fs.MEMO_FOOTER_X])
+                         ["📣 公式 X の最新情報: 出演時刻は19:50〜20:15（10/23 の投稿）",
+                          "🔗 公式 X: 10/23 https://x.com/takanenofficial/status/1", fs.MEMO_FOOTER_X])
         self.assertEqual(cache[f"{r['date']}|{r['url']}"]["x_items"], ["出演時刻は19:50〜20:15（10/23 の投稿）"])
 
     def test_unchanged_posts_are_not_read_again(self):
