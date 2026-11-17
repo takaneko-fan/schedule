@@ -1,38 +1,4 @@
 {
- "2026-11-17|https://takanenonadeshiko.jp/events/event/marquee-fes-4/": {
-  "generated": "2026-11-07",
-  "hash": "94865bafd4e9418f4dcbfcf2cc1ed46b8ed50586",
-  "memo": {
-   "flow": "",
-   "items": "",
-   "join": "チケットはe+で案内",
-   "notes": "",
-   "other": "",
-   "parts": "",
-   "payment": "",
-   "price": "",
-   "rules": "",
-   "venue": "Spotify O-EAST（Shibuya O-EAST）"
-  },
-  "model": "gpt-5.6-luna"
- },
- "2026-11-17|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
-  "generated": "2026-11-16",
-  "hash": "df17b97eee742203c7e02ca332a22f0ccc8f3dd7",
-  "memo": {
-   "flow": "2026年11月17日（火）：対象商品購入で城月菜央プリントサイン入りスペシャルレシートを発行／キャンペーン期間：11月17日（火）～11月24日（火）",
-   "items": "",
-   "join": "対象6店舗で対象商品を購入すると、購入日のメンバー別スペシャルレシートを発行。11月17日は城月菜央。",
-   "notes": "スペシャルレシート発行店舗：渋谷・新宿・浦和・川崎・ららぽーとTOKYO-BAY・ららぽーと立川立飛。各店舗の在庫・運用状況は店舗へ確認。",
-   "other": "対象店舗でパネル展とスペシャルコメントビデオ放映も実施。パネル抽選券は予約・取り置き不可、先着順で規定枚数に達し次第終了。",
-   "parts": "",
-   "payment": "",
-   "price": "初回限定盤（VIZL-2561）：税込4,950円／たかねこ盤（VICL-66184）：税込3,300円",
-   "rules": "",
-   "venue": ""
-  },
-  "model": "gpt-5.6-luna"
- },
  "2026-11-18|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/": {
   "generated": "2026-11-16",
   "hash": "e69d4f961c1ce48b05b9b60f9702c726f86839d5",
@@ -48,7 +14,8 @@
    "rules": "会場内の録音・録画・撮影、ミニライブ中のコール・ジャンプは禁止／握手は優しく行い、会話は握手中のメンバーとする／握手はスタッフの合図まで／手荷物検査・金属探知あり",
    "venue": "ららぽーと立川立飛2F イベント広場／〒190-0015 東京都立川市泉町935番地の1"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-18|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -65,7 +32,8 @@
    "rules": "ミニライブ中のコール・ジャンプ、会場内の録音・録画・撮影は禁止／握手時は優しく握り、会話は握手中のメンバーと行う／指輪・アクセサリー・腕時計は結婚指輪を除き外す",
    "venue": "ららぽーと立川立飛2F イベント広場（東京都立川市泉町935番地の1）／レシート発行：タワーレコード渋谷・新宿・浦和・川崎・ららぽーとTOKYO-BAY・ららぽーと立川立飛店"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-19|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-16",
@@ -82,7 +50,8 @@
    "rules": "",
    "venue": ""
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-20|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-7/": {
   "generated": "2026-11-09",
@@ -99,7 +68,8 @@
    "rules": "サイン会：希望メンバーのソロサインとニックネームをミニ色紙に記入／ニックネームは10文字以内、ひらがな・カタカナ・アルファベットのみ／お話し会：1対1のビデオ通話30秒、入室順／録画・録音・スクリーンショット禁止／複数名参加・代理購入・権利譲渡禁止",
    "venue": ""
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-20|https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/": {
   "generated": "2026-11-16",
@@ -116,7 +86,8 @@
    "rules": "",
    "venue": ""
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-20|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -133,7 +104,8 @@
    "rules": "パネル展の展示パネルには触れない／パネル抽選番号券の譲渡・転売は禁止",
    "venue": "タワーレコード渋谷店／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ららぽーと立川立飛店"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-21|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-8/": {
   "generated": "2026-11-07",
@@ -150,7 +122,8 @@
    "rules": "会場内の録音・録画・撮影禁止／ミニライブ中のジャンプ禁止／握手は優しく行い、スタッフの合図まで／握手時は該当メンバーと会話／指輪・アクセサリー・腕時計は外す（結婚指輪除く）",
    "venue": "ステラタウン大宮 メローペ広場／〒331-0812 埼玉県さいたま市北区宮原町1丁目854-1"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-21|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -167,7 +140,8 @@
    "rules": "スペシャルレシートの発行対象は2026年11月21日(土)購入分。対象店舗で購入すること",
    "venue": "タワーレコード渋谷店／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ららぽーと立川立飛店"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-22|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-9/": {
   "generated": "2026-11-16",
@@ -184,7 +158,8 @@
    "rules": "1:1個別握手会／各部開始20分までは1回3枚まで、以降は複数枚をまとめて使用／優しい握手のみ、強く握る・掴む・引っ張る行為は禁止／指輪・アクセサリー・腕時計は結婚指輪を除き外す／録音・録画・撮影は禁止",
    "venue": "ベルサール飯田橋駅前／〒102-0072 東京都千代田区飯田橋3丁目8−5 住友不動産飯田橋駅前ビル1F"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-22|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -201,7 +176,8 @@
    "rules": "",
    "venue": "タワーレコード渋谷店／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ららぽーと立川立飛店"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-23|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/": {
   "generated": "2026-11-07",
@@ -218,7 +194,8 @@
    "rules": "会場内は録音・録画・撮影禁止、ミニライブ中のジャンプ禁止／握手は優しく行い、会話は握手中のメンバーとする／スタッフの声かけまでの時間／握手会参加には該当参加券が必要",
    "venue": "横浜ワールドポーターズ／ミニライブ：屋上ルーフトップワールド／特典会：6FイベントホールB／〒231-0001 神奈川県横浜市中区新港2丁目2−1"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-23|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-17",
@@ -235,7 +212,8 @@
    "rules": "展示パネルには触れない／パネル抽選券の予約・取り置き不可",
    "venue": "タワーレコード渋谷店／新宿店／浦和店／川崎店／ららぽーとTOKYO-BAY店／ららぽーと立川立飛店"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-24|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-16",
@@ -252,7 +230,8 @@
    "rules": "",
    "venue": ""
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-11-29|https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/": {
   "generated": "2026-11-07",
@@ -269,7 +248,8 @@
    "rules": "",
    "venue": "SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-12-01|https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/": {
   "generated": "2026-11-16",
@@ -286,7 +266,8 @@
    "rules": "",
    "venue": ""
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-12-02|https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/": {
   "generated": "2026-11-08",
@@ -303,7 +284,8 @@
    "rules": "",
    "venue": "Spotify O-WEST"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-12-07|https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/": {
   "generated": "2026-11-07",
@@ -320,7 +302,8 @@
    "rules": "",
    "venue": "Spotify O-EAST（東京都渋谷区道玄坂2-14-8）"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-12-10|https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/": {
   "generated": "2026-11-08",
@@ -337,7 +320,8 @@
    "rules": "",
    "venue": "Shibuya LOVEZ"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  },
  "2026-12-24|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/": {
   "generated": "2026-11-07",
@@ -354,6 +338,7 @@
    "rules": "通常席等は原則、写真・動画撮影・録音禁止。カメねこエリアのみデジタルカメラ・一眼レフで写真撮影可／動画・フラッシュ・スマホ等・三脚類は禁止／モッシュ・ダイブ・ジャンプ・リフト禁止",
    "venue": "ヒューリックホール東京（HULIC HALL TOKYO）"
   },
-  "model": "gpt-5.6-luna"
+  "model": "gpt-5.6-luna",
+  "x_items": []
  }
 }
