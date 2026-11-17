@@ -112,10 +112,6 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(ai_compare_report.load(path, "2026-10-24"), [])  # --since
 
 
-if __name__ == "__main__":
-    unittest.main()
-
-
 class AiExtraTest(unittest.TestCase):
     """ルールで読めた投稿でも、ルールが取りこぼした予定（AI だけが読めた予定）は足す。"""
 
@@ -147,3 +143,43 @@ class AiExtraTest(unittest.TestCase):
     def test_nothing_extra(self):
         self.assertEqual(len(self.read([self.program()], [self.program()])), 1)
         self.assertEqual(len(self.read([self.program()], [])), 1)
+
+
+class SaveAllEventsOfPostTest(unittest.TestCase):
+    """1 つの投稿に同じ日の予定が複数あっても、すべて x_events.json に保存する（read_x_posts）。"""
+
+    def read_posts(self, events, ai):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        tweet = AiExtraTest.TWEET
+        common = fs.x_common(tweet)
+        patches = [mock.patch.object(fs, "X_STATE_PATH", os.path.join(tmp.name, "x_state.json")),
+                   mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")),
+                   mock.patch.object(fs, "fetch_x_posts", return_value=([tweet], tweet["id"])),
+                   mock.patch.object(fs, "memo_provider", return_value=("openai", "key", None)),
+                   mock.patch.object(fs, "x_llm_candidates", return_value=[dict(c, **common, ai=True) for c in ai])]
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        with contextlib.redirect_stdout(io.StringIO()):
+            return fs.read_x_posts("token", [], events, [], None)
+
+    def programs(self):
+        t = AiExtraTest()
+        return [t.program(station="FM長崎"),
+                t.program(title="カリメン", times={"START": "21:00", "END": "22:50"}, members="涼海すう、籾山ひめり",
+                          station="RKBラジオ")]
+
+    def test_two_programs_on_same_day_are_both_saved(self):
+        saved = self.read_posts([], self.programs())
+        self.assertEqual(sorted(e["title"] for e in saved), ["FM長崎 『Colors』", "カリメン"])
+
+    def test_reread_replaces_saved_events_of_the_post_only(self):
+        old = {"date": "2026-11-17", "title": "古い読み取り", "post_id": "600", "venue": "", "open": "", "start": "",
+               "end": "", "time_note": "", "members": GROUP, "names": [], "url": "x", "posted": "", "media": "ラジオ"}
+        saved = self.read_posts([old, dict(old, title="別の投稿", post_id="599")], self.programs())
+        self.assertEqual(sorted(e["title"] for e in saved), ["FM長崎 『Colors』", "カリメン", "別の投稿"])
+
+
+if __name__ == "__main__":
+    unittest.main()

@@ -858,6 +858,9 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
                 notices[:] = [n for n in notices if n["post_id"] != notice["post_id"]] + [notice]
             pending.pop(t["id"], None)
             continue
+        # この投稿から保存する予定。投稿を読み直したときは、保存済みのこの投稿の予定をまとめて置き換える
+        # （1 つの投稿に同じ日の予定が複数あっても、すべて残すため）
+        post_events, published = [], False
         for c in read_x_with_llm(t, extract_x_candidates(t), provider, key, pending, tokens):
             d = c["date"]
             listed_rows = x_listed_rows(c, official)
@@ -871,12 +874,13 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
             print(f"  {mark} {d.isoformat()}({'月火水木金土日'[d.weekday()]}) {c['title']}  {extra}  [{status}]  {c['url']}")
             counts["◎" if c["sure"] or publish else "?"] += 1
             counts["◎ 掲載済み"] += (c["sure"] or publish) and listed
-            if publish and not x_adds_info(c, official, events):
+            published = published or publish
+            if publish and not x_adds_info(c, official, events + post_events):
                 print("    → 公式の予定に時刻・会場もそろっているため保存しない")
             elif publish:
-                # 同じ投稿・同じ日付の予定は読み直した内容で置き換える
-                events = [e for e in events if (e["post_id"], e["date"]) != (c["post_id"], d.isoformat())]
-                events.append(x_event(c))
+                post_events.append(x_event(c))
+        if published:
+            events = [e for e in events if e["post_id"] != t["id"]] + post_events
         if provider and X_CHANGE_WORDS_RE.search(" ".join(x_lines(t))):
             try:
                 change = x_change_read(t, rows + [x_event_to_row(e) for e in events], provider, key, tokens)
