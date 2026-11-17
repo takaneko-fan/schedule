@@ -15,7 +15,8 @@
 - コミット・マージ・push は、ユーザーが指示したときだけ行う。コミットは `/commit`（`.claude/skills/commit/SKILL.md`）の手順に従う。
 - push は必ず `ops/push_as_app.sh`（GitHub App の名義）で行い、`git push` は使わない。個人のアカウント名を公開の記録に残さないため。push の前にテストが自動で実行される。
 - コミットの名義は `takaneko-fan <bot@example.invalid>`。差分やメッセージに個人の名前・メールアドレスを入れない。名義が設定されていない環境（`git config --local user.name` が `takaneko-fan` でない）では、最初に `bash ops/setup_local.sh` を実行する（開発用コンテナでは作成時に自動で実行される）。
-- バージョン番号（`vMAJOR.MINOR.PATCH` の git のタグ）は、毎回のマージでは付けない。必要なときだけ、ユーザーと相談して付ける。
+- バージョン番号（`vMAJOR.MINOR.PATCH` の git のタグ）は、ユーザーが番号まではっきり指示したときだけ、`main` にマージしてテストが通った後に付ける。毎回のマージでは付けず、区切りのときは番号の案を示して提案するだけ。番号の決め方と手順は docs/operations.md の「バージョン番号」。
+- 公開したタグは消さない・付け直さない。誤りは次の番号で直す。
 
 ## 注意
 
