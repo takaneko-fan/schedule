@@ -31,6 +31,7 @@ Actions の checkout で消えないよう、リポジトリの外（`~/.local/s
 | `remind_state.json` | たかねこリマインドで送った項目（日付ごと） | `REMIND_STATE_PATH` |
 | `deadline_warnings.json` | 記載ミスの可能性（毎回置き換える） | `WARNINGS_PATH` |
 | `missed_info.json` | 会場を取り込めていない可能性（毎回置き換える） | `MISSED_PATH` |
+| `official_texts.json` | 公式の記事・イベントページの本文の版（URL → [{seen: 初めて見た日時, text}]。値が出た日時を決めるのに使う。最新の版は残し、それ以外は 400 日で捨てる。公開しない） | `OFFICIAL_TEXTS_PATH` |
 | `x_texts.json` | 読んだ公式 X の投稿の本文（投稿 ID → 投稿日時・本文。参加メモの「📣 公式 X の最新情報」の材料。投稿日から 400 日で捨てる。公開しない） | `X_TEXTS_PATH` |
 | `warned.json` | 記載ミスの可能性・会場を取り込めていない可能性で送った項目と、記録の日付（記事の公開日、または予定の日付） | `WARNED_PATH` |
 
@@ -309,7 +310,10 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 | --- | --- |
 | 本文の保存 | `read_x_posts` が読んだ投稿の本文を `save_x_texts` で `x_texts.json`（リポジトリの外）に足す。投稿の本文は公開しない |
 | 関係する投稿（`x_related_posts`） | 本文に予定の日付（「12月7日」「12/7」）があるか、投稿日が当日で「本日」「きょうの」「このあと」、前日で「明日」「あしたの」（5 時前の投稿は当日）があり、`event_phrase` を通した予定名（6 文字以上）か会場（仮の会場を除く）が本文にあるもの。`CAMPAIGN_RE` に当たり `X_EVENT_WORDS_RE`（ミニライブ・特典会・開演など）に当たらない投稿（店舗のキャンペーンだけの告知）は除く。新しいものから 10 件。キャンペーンの行（`is_campaign`）には作らない |
+| 版の記録（`record_official_versions`） | 参加メモの材料（`memo_parts`。イベントページと関係するお知らせ記事）の本文が前回の版と違えば、今の日時で版を足す。初めての情報元は、記事なら公開日時、イベントページなら `memos.json` の `generated` を見た日時にする |
+| 値が出た日時（`official_value_time`） | 値（空白を除き NFKC で比べる）を今の版に含む情報元ごとに、含む版が続いている最初の版の `seen`。値で見つからなければ値の中の時刻・日付・金額（`VALUE_TOKEN_RE`）で探す。それでもなければ、情報元の今の版の `seen` のいちばん新しいもの |
 | AI（`x_memo_items`） | 公式の要約、予定の行（日付・開場・開演・終演・会場。AI に繰り返させないため）、投稿（番号付き）と基準日を渡し、`X_MEMO_INSTRUCTION` で、要約にない事実だけを `{text, post}` で 5 項目まで返させる。投稿日は AI ではなくコードが `post` の番号から付ける |
+| 追加と変更 | AI は各項目を `kind`「追加」（要約にない情報）か「変更」（要約の項目 `field` の値 `old` と食い違う新しい内容 `text`）で返す。変更は、`old` が項目にあり、投稿日時が `official_value_time(old)` より `X_SAME_TIME`（1 時間）を超えて新しいときだけ採る。公式の方が新しいか同時なら捨てる。同じ値の変更が複数あれば新しい投稿を採る。`old` が項目にない変更は「（m/d の投稿で変更）」付きの追加にする。採った変更は `memos.json` の `x_changes` に保存し、`apply_x_changes` が項目の値を置き換えて「（m/d の公式 X で変更）」を付ける |
 | 作り直し | `memos.json` の `x_hash`（`X_MEMO_VERSION`・モデル・公式の要約・関係する投稿の ID と本文）が変わったときだけ。1 回の更新で `X_MEMO_MAX_CALLS` 件まで |
 | 保存 | `memos.json` の各予定の `x_items`（「text（m/d の投稿）」のリスト）。公式 X だけの予定は `memo` が空で `x_items` だけの記録になる |
 | 本文がない環境 | `x_texts.json` がなければ（手元など）作り直さず、保存済みの `x_items` を使う |
