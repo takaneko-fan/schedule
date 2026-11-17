@@ -14,17 +14,18 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:486227d962d5200f@takaneko-data-mine
-DTSTAMP:20261116T111824Z
+DTSTAMP:20261117T173202Z
 DTSTART;VALUE=DATE:20261201
 DTEND;VALUE=DATE:20261202
 SUMMARY:オシグラフ vol.5✿橋本・日向端
 DESCRIPTION:出演: 橋本桃呼、日向端ひな\nカテゴリ: メディ
  ア\n情報元: https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%
  b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6
- %97%a5%e5%90%91%e7%ab%af/\n\n【参加メモ】\n🕙 当日の流れ: 11
- 月9日(月)発売\nℹ️ その他: 『オシグラフ vol.5』に橋本
- 桃呼・日向端ひなが掲載\n🤖 公式の案内を AI が要約し
- たものです。必ず情報元で確認してください。
+ %97%a5%e5%90%91%e7%ab%af/\n\n【参加メモ】\n🕙 当日の流れ: 12
+ 月1日(火)発売／書籍概要では発売日を11月9日(月)と案内
+ \nℹ️ その他: 『オシグラフ vol.5』に橋本・日向端が掲
+ 載\n🤖 公式の案内を AI が要約したものです。必ず情報
+ 元で確認してください。
 URL:https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e
  3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%
  91%e7%ab%af/
