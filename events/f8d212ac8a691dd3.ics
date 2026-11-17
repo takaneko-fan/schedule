@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:f8d212ac8a691dd3@takaneko-data-mine
-DTSTAMP:20261116T181524Z
+DTSTAMP:20261117T152549Z
 DTSTART;VALUE=DATE:20261121
 DTEND;VALUE=DATE:20261122
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -36,8 +36,11 @@ DESCRIPTION:出演: 東山恵里沙\nカテゴリ: お知らせ記事\n情
  ℹ️ その他: パネル展・店頭スペシャルコメントビデ
  オも対象6店舗で実施。パネル抽選番号券は先着順で、
  規定枚数に達し次第終了／当選パネルは店頭受取のみ
- で配送不可\n🤖 公式の案内を AI が要約したものです。
- 必ず情報元で確認してください。
+ で配送不可\n📣 公式 X の最新情報: パネル展の展示期
+ 間・パネル抽選券の配布期間は11月17日(火)〜11月24日(火
+ )（11/16 の投稿）\n🤖 公式の案内と公式 X の投稿を AI 
+ が要約したものです。必ず情報元で確認してください
+ 。
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

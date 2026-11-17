@@ -16,21 +16,21 @@
   "posted": "2026-11-02T20:00+09:00"
  },
  {
-  "date": "2026-11-18",
-  "title": "ミニライブ&グループ握手会",
-  "venue": "ららぽーと立川立飛",
+  "date": "2026-11-20",
+  "title": "なでしこドリーマーズ！！",
+  "venue": "",
   "open": "",
-  "start": "",
-  "end": "",
+  "start": "25:00",
+  "end": "25:30",
   "time_note": "",
-  "members": "グループ（全員）",
+  "members": "橋本桃呼、葉月紗蘭、日向端ひな、籾山ひめり",
   "names": [
-   "A World in Our Colors"
+   "なでしこドリーマーズ！！"
   ],
-  "url": "https://x.com/takanenofficial/status/2121922514360455292",
-  "post_id": "2121922514360455292",
-  "posted": "2026-11-15T20:05+09:00",
-  "media": "",
+  "url": "https://x.com/takanenofficial/status/2122260893798940672",
+  "post_id": "2122260893798940672",
+  "posted": "2026-11-16T18:30+09:00",
+  "media": "テレビ",
   "ai": false,
   "station": ""
  },
@@ -65,6 +65,25 @@
   "url": "https://x.com/takanenofficial/status/2117210120924942713",
   "post_id": "2117210120924942713",
   "posted": "2026-11-02T20:00+09:00"
+ },
+ {
+  "date": "2026-11-22",
+  "title": "個別握手会",
+  "venue": "ベルサール飯田橋駅前",
+  "open": "",
+  "start": "",
+  "end": "",
+  "time_note": "",
+  "members": "グループ（全員）",
+  "names": [
+   "A World in Our Colors"
+  ],
+  "url": "https://x.com/takanenofficial/status/2122283557330780592",
+  "post_id": "2122283557330780592",
+  "posted": "2026-11-16T20:00+09:00",
+  "media": "",
+  "ai": false,
+  "station": ""
  },
  {
   "date": "2026-11-23",
@@ -217,39 +236,5 @@
   "url": "https://x.com/takanenofficial/status/2113797623719014512",
   "post_id": "2113797623719014512",
   "posted": "2026-10-24T10:00+09:00"
- },
- {
-  "date": "2026-12-24",
-  "title": "たかねこクリスマスパーティ2026",
-  "venue": "ヒューリックホール東京",
-  "open": "15:00",
-  "start": "16:00",
-  "end": "",
-  "time_note": "",
-  "members": "グループ（全員）",
-  "names": [],
-  "url": "https://x.com/takanenofficial/status/2121566317262114904",
-  "post_id": "2121566317262114904",
-  "posted": "2026-11-14T20:30+09:00",
-  "media": "",
-  "ai": false,
-  "station": ""
- },
- {
-  "date": "2026-12-24",
-  "title": "たかねこクリスマスパーティ2026",
-  "venue": "ヒューリックホール東京",
-  "open": "15:00",
-  "start": "16:00",
-  "end": "",
-  "time_note": "",
-  "members": "グループ（全員）",
-  "names": [],
-  "url": "https://x.com/takanenofficial/status/2121770162164756663",
-  "post_id": "2121770162164756663",
-  "posted": "2026-11-15T10:00+09:00",
-  "media": "",
-  "ai": false,
-  "station": ""
  }
 ]

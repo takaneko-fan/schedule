@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:a2869c6155615972@takaneko-data-mine
-DTSTAMP:20261116T181524Z
+DTSTAMP:20261117T152549Z
 DTSTART;VALUE=DATE:20261122
 DTEND;VALUE=DATE:20261123
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -33,7 +33,10 @@ DESCRIPTION:出演: 日向端ひな\nカテゴリ: お知らせ記事\n情
   注意: スペシャルレシートの発行対象日は11月22日(日)
  のみ／対象商品は2026年11月18日(水)発売の2形態\nℹ️ そ
  の他: 対象店舗ではパネル展・店頭スペシャルコメント
- ビデオ放映も実施\n🤖 公式の案内を AI が要約したもの
+ ビデオ放映も実施\n📣 公式 X の最新情報: 展示パネル
+ は抽選でプレゼント（11/16 の投稿）／パネル展・抽選
+ 券の配布期間は11月17日(火)〜11月24日(火)（11/16 の投稿
+ ）\n🤖 公式の案内と公式 X の投稿を AI が要約したもの
  です。必ず情報元で確認してください。
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/
 STATUS:CONFIRMED

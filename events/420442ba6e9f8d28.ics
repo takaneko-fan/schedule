@@ -14,20 +14,17 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:420442ba6e9f8d28@takaneko-data-mine
-DTSTAMP:20261116T111824Z
+DTSTAMP:20261117T152549Z
 DTSTART;TZID=Asia/Tokyo:20261121T010000
 DTEND;TZID=Asia/Tokyo:20261121T013000
-SUMMARY:BS10「なでしこドリーマーズ！！」✿橋本・葉月・
- 日向端・籾山
+SUMMARY:【テレビ】BS10「なでしこドリーマーズ！！」✿橋
+ 本・葉月・日向端・籾山
 DESCRIPTION:時間: 25:00〜25:30\n出演: 橋本桃呼、葉月紗蘭、
- 日向端ひな、籾山ひめり\nカテゴリ: メディア\n情報元: 
- https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%
- e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef
- %bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9
- c%88%e3%83%bb/\n\n【参加メモ】\n🕙 当日の流れ: 11月20日（
- 金）25:00〜25:30\n👥 部とメンバー: 橋本・葉月・日向端
- ・籾山\n🤖 公式の案内を AI が要約したものです。必ず
- 情報元で確認してください。
+ 日向端ひな、籾山ひめり\nカテゴリ: メディア / テレビ\
+ n情報元: https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%
+ aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc
+ %e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e
+ 8%91%89%e6%9c%88%e3%83%bb/
 URL:https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%
  a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba
  %ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e
