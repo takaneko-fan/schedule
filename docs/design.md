@@ -310,6 +310,8 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 | 画像の URL | `fetch_x_posts`・`fetch_x_tweets` に `expansions=attachments.media_keys`・`media.fields=url,type` を付け、`attach_photos` が投稿に `photos`（画像の URL）を付ける。画像の情報を付けても X API の料金は投稿の数だけで変わらない（2026-11-18 に利用量で確認） |
 | 読む投稿（`read_x_images`） | 画像があり、本文が `X_IMAGE_POST_RE` に当たり、まだ画像を読んでいない投稿。1 回の更新で `X_IMAGE_MAX_POSTS` 件まで、1 投稿 `X_IMAGE_MAX_PHOTOS` 枚まで。画像は `pbs.twimg.com` から取り、保存しない。OpenAI だけ対応 |
 | 読み方（`x_image_read`） | `X_IMAGE_INSTRUCTION`・`X_IMAGE_SCHEMA` で `perform`（対バン・フェスのタイムテーブルの高嶺のなでしこの出演時間）と `notes`（物販・特典会などの事実）を返させる。2 回読み、`perform` は 2 回の集合が一致したときだけ採る（`clean_perform`）。`notes` は 1 回目を使う |
+| 一覧の予定（`clean_image_events`・`image_candidates`） | `X_IMAGE_SCHEMA` の `events`（スケジュール一覧の日付・開始・終了・局・番組名）を 2 回読み、(日付, 開始, 予定名) が両方にあるものだけ採る。全体を囲む「」は外す。投稿日から 120 日以内を候補（`members` は `GROUP`、`image: True`、`x_media` で番組の種別）にし、`read_x_posts` で `x_adds_info` を通ったものを `x_events.json` に保存する。読み直した投稿の画像の予定はまとめて置き換え、同じ `image_event_key`（日付・開始・局）の予定がほかの投稿にあれば新しい投稿の方だけ残す。`X_IMAGE_VERSION` より古い読み方で読んだ投稿は、次に読んだときに読み直す |
+| 表示（`members_label`） | `add_media` が `image` の予定の category に `IMAGE_CATEGORY`（画像読み取り）を足す。`members_label` は、グループ（全員）で画像読み取りの予定を `IMAGE_MEMBERS_LABEL`（メンバー未記載）にする（md の出演列・カレンダーのメモ欄・通知の `member_names`・Web 版）。メンバー別の一覧・カレンダーにはグループの予定として出る |
 | 保存 | `save_x_texts` が `x_texts.json` の投稿に `image`（`perform`・`notes`）を足す。読み直した投稿でも前の `image` は残す |
 | 📣 への利用 | `x_related_posts` が、本文に日付がなくても画像の出演時間の日付で結び付け、本文の後に「［画像から読み取り］」と `notes` を付けて渡す |
 | 出演時間（`add_perform`） | これからの予定（`perform_target`）ごとに、投稿の古い順に、画像の出演時間（その日で開始・終了がそろい、1 通りだけ。投稿が予定名・会場を含むか、その日の対象の予定が 1 件だけ）か、本文の `PERFORM_TEXT_RE`（`perform_from_text`。違う時間が 2 つ以上なら読まない。結び付けは `x_related_posts`）を見て、新しいものを採る。結果を `perform.json` に保存し、投稿の記録がない環境ではそれを使う。`add_memos` より前に、`--no-memo` でも動かす |
@@ -332,6 +334,7 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 | 保存 | `memos.json` の各予定の `x_items`（「text（m/d の投稿）」のリスト）。公式 X だけの予定は `memo` が空で `x_items` だけの記録になる |
 | 本文がない環境 | `x_texts.json` がなければ（手元など）作り直さず、保存済みの `x_items` を使う |
 | 出力 | `memo_text` が公式の項目の後に「📣 公式 X の最新情報: A／B」の行を足し、注意書きを `MEMO_FOOTER_X` にする。`schedule.md` の注意書きはメモの最後の行を使う |
+| 根拠のリンク | `x_memo_items` が使った投稿を `post_labels`（「11/14」、同じ日が複数なら「11/14 21:00」）で呼び、`x_sources`（[{label, url}]）を返して `memos.json` に保存する。`memo_text` が「🔗 公式 X: label URL ／ …」の行（`MEMO_LINKS_LABEL`）を注意書きの前に足す。出演時間の根拠（`add_perform` が付ける `perform_url`・`perform_posted`）は「出演時間 10/23 URL」、📣 と同じ投稿なら「10/23・出演時間 URL」。`memo_links` がこの行を {label: URL} にし、md では `md_memo_links`（各項目の「（11/14 の投稿）」「（11/15 の公式 X で変更）」）と `md_time_label`（🎤）でリンクにして、この行は出さない。Web 版の `memoLinks`・`memoItemHTML`・`performHTML` も同じ |
 
 ## 更新の通知（F-13）
 

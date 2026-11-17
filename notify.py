@@ -21,8 +21,8 @@ import re
 import subprocess
 from datetime import date, datetime, timedelta
 
-from fetch_schedule import (GROUP, JST, MEMBERS, MISSED_PATH, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
-                            media_prefix, normalize, shares_phrase, time_label)
+from fetch_schedule import (GROUP, IMAGE_MEMBERS_LABEL, JST, MEMBERS, MISSED_PATH, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
+                            media_prefix, members_label, normalize, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -87,6 +87,8 @@ def diff_schedule(old_rows, new_rows, today):
 
 
 def member_names(row):
+    if members_label(row) == IMAGE_MEMBERS_LABEL:
+        return IMAGE_MEMBERS_LABEL
     if row["members"] == GROUP:
         return "全員"
     return "・".join(last for full, last, _ in MEMBERS if full in row["members"]) or row["members"]

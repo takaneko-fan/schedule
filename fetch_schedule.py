@@ -350,6 +350,8 @@ MEDIA_WORDS = {  # 投稿にこの語があれば番組とみなす（上から�
 }
 MEDIA_NOT_PROGRAM_RE = re.compile(r"サイン会|お話し?会|握手|撮影会")  # オンラインの特典会は会場がなくても番組ではない
 AI_CATEGORY = "AI読み取り"  # ルールで読めず LLM が読み取った予定の category に足す
+IMAGE_CATEGORY = "画像読み取り"  # 公式 X の告知画像の一覧（ラジオ出演のスケジュールなど）にしかない予定の category に足す
+IMAGE_MEMBERS_LABEL = "メンバー未記載"  # 画像の一覧は顔写真だけで名前がないので、出演はグループ（全員）として扱い、こう表示する
 X_LLM_MAX_TRIES = 3  # LLM の呼び出しに失敗した投稿を読み直す上限
 
 
@@ -611,14 +613,15 @@ def x_event(c):
             "open": c["times"].get("OPEN", ""), "start": c["times"].get("START", ""), "end": c["times"].get("END", ""),
             "time_note": c["time_note"], "members": c["members"], "names": c["names"],
             "url": c["url"], "post_id": c["post_id"], "posted": c["posted"], "media": c["media"],
-            "ai": c.get("ai", False), "station": c.get("station", "")}
+            "ai": c.get("ai", False), "station": c.get("station", ""), **({"image": True} if c.get("image") else {})}
 
 
 def x_event_to_row(e):
     d = date.fromisoformat(e["date"])
     return {**{k: e[k] for k in ("date", "open", "start", "end", "time_note", "title", "members", "venue", "url")},
             "weekday": "月火水木金土日"[d.weekday()], "category": X_CATEGORY, "names": e["names"],
-            "media": e.get("media", ""), "ai": e.get("ai", False), "station": e.get("station", "")}
+            "media": e.get("media", ""), "ai": e.get("ai", False), "station": e.get("station", ""),
+            "image": e.get("image", False)}
 
 
 def update_x_events(rows, today, recheck_days=None):
@@ -724,6 +727,31 @@ def apply_x_change(row, notice):
         else:
             print(f"  ! 公式の値が告知の後に変わったため反映しません: {row['date']} {row['title']} {field} {now}"
                   f"（告知: {c['before'] or '未定'}→{c['after']}）")
+
+
+def image_event_key(e):
+    return e["date"], e["start"], normalize(e.get("station", ""))
+
+
+def image_candidates(tweet, image):
+    """告知画像の一覧から読んだ予定を、extract_x_candidates と同じ形の候補にする。
+    出演は名前がないのでグループ（全員）とし、category に「画像読み取り」を付ける（表示は「メンバー未記載」）。"""
+    posted, text = x_posted(tweet), " ".join(x_lines(tweet))
+    found = []
+    for e in image.get("events", []):
+        try:
+            d = date.fromisoformat(e["date"])
+        except ValueError:
+            continue
+        if not posted.date() <= d <= posted.date() + timedelta(days=120):
+            print(f"  ! 画像の予定を不採用（日付が範囲外）: {e['date']} {e['title']} {tweet['id']}")
+            continue
+        media = x_media(e["title"], f"{e['station']} {text}", "")
+        found.append({**x_common(tweet), "members": GROUP, "names": [], "date": d, "title": e["title"], "venue": "",
+                      "times": {k: v for k, v in (("START", e["start"]), ("END", e["end"])) if v}, "time_note": "",
+                      "today": False, "sure": True, "media": media, "station": e["station"] if media else "",
+                      "image": True})
+    return found
 
 
 def x_publishable(c):
@@ -919,6 +947,26 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
             print(f"  画像の読み取り: {len(images)} 件（入力 {image_tokens[0]:,} / 出力 {image_tokens[1]:,} トークン、"
                   f"約 {(image_tokens[0] * MEMO_PRICES.get(MEMO_MODELS['openai'], (0, 0, 0))[0] + image_tokens[1] * MEMO_PRICES.get(MEMO_MODELS['openai'], (0, 0, 0))[2]) / 1e6 * USD_JPY:.1f} 円）")
         save_x_texts(tweets, datetime.now(JST).date(), images=images)  # 参加メモの材料（リポジトリの外。公開しない）
+        for t in tweets:
+            if t["id"] not in images:
+                continue
+            post_events = []
+            for c in image_candidates(t, images[t["id"]]):
+                status = "公式に掲載済み" if x_listed_rows(c, official) else "公式に未掲載"
+                time = "/".join(f"{k} {v}" for k, v in c["times"].items())
+                print(f"  ◎（画像） {c['date'].isoformat()} {c['station']} {c['title']}  {time}  [{status}]  {c['url']}")
+                if x_adds_info(c, official, events + post_events):
+                    post_events.append(x_event(c))
+                else:
+                    print("    → 公式の予定などにすでにあるため保存しない")
+            # 読み直したときは、この投稿の画像から読んだ予定をまとめて置き換える。ほかの投稿の画像に同じ日・開始時刻・局の予定が
+            # あれば、新しい投稿の方だけ残す（同じ一覧の画像が何度も更新され、古い画像の小さな文字を読み違えていることがあるため）
+            events = [e for e in events if not (e["post_id"] == t["id"] and e.get("image"))]
+            for pe in post_events:
+                same = [e for e in events if e.get("image") and image_event_key(e) == image_event_key(pe)]
+                if any(e["posted"] > pe["posted"] for e in same):
+                    continue
+                events = [e for e in events if e not in same] + [pe]
     if not recheck_days and newest and (newest != state.get("since_id") or pending != state.get("pending", {})):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
         with open(X_STATE_PATH, "w", encoding="utf-8") as f:
@@ -1242,7 +1290,7 @@ def add_media(rows):
         if r.get("station"):
             r["title"] += f"（{r['station']}）"
         media = next((m for name, m in MEDIA_PROGRAMS.items() if name in r["title"]), r.get("media"))
-        for label in (media, AI_CATEGORY if r.get("ai") else ""):
+        for label in (media, AI_CATEGORY if r.get("ai") else "", IMAGE_CATEGORY if r.get("image") else ""):
             if label and label not in r["category"].split(" / "):
                 r["category"] += f" / {label}"
 
@@ -1291,8 +1339,32 @@ def event_time_label(row):
     return row["open"] and f"OPEN {row['open']}"
 
 
+def members_label(row):
+    """出演の表示。画像の一覧から読んだ予定は名前がないので「メンバー未記載」とする。"""
+    if row["members"] == GROUP and IMAGE_CATEGORY in row["category"].split(" / "):
+        return IMAGE_MEMBERS_LABEL
+    return row["members"]
+
+
+def md_memo_links(line, links):
+    """「（11/14 の投稿）」「（11/14 の公式 X で変更）」の投稿日を、根拠の投稿へのリンクにする。"""
+    def link(m):
+        url = links.get(m.group(1))
+        return f"（[{m.group(1)} の{m.group(2)}]({url}){m.group(3)}）" if url else m.group(0)
+    return re.sub(r"（(\d{1,2}/\d{1,2}(?: \d{1,2}:\d{2})?) の(投稿|公式 X)((?: ?で変更)?)）", link, line)
+
+
 def md_escape(text):
     return text.replace("|", "｜").replace("\n", " ")
+
+
+def md_time_label(row):
+    """一覧の時間。出演時間は根拠の投稿へのリンクにする（その回の更新で出演時間を決めた予定だけ）。"""
+    label = time_label(row) or ""
+    if row.get("perform") and row.get("perform_url"):
+        perform = f"🎤 出演 {row['perform'].replace('-', '〜')}"
+        label = label.replace(perform, f"[{perform}]({row['perform_url']})")
+    return label
 
 
 def md_table(rows, show_members):
@@ -1303,12 +1375,12 @@ def md_table(rows, show_members):
         cells = [
             "✅" if r["done"] else "",
             f"{r['date']}({r['weekday']})",
-            time_label(r) or "",
+            md_time_label(r),
             f"[{md_escape(media_prefix(r) + r['title'])}]({r['url']})",
             f"[{md_escape(r['venue'])}]({r['venue_url']})" if r.get("venue_url") else md_escape(r["venue"]),
         ]
         if show_members:
-            cells.append(r["members"])
+            cells.append(members_label(r))
         lines.append("| " + " | ".join(cells) + " |")
     return "\n".join(lines)
 
@@ -1352,8 +1424,9 @@ def write_markdown(rows, path):
         out += ["## 参加メモ", "", "これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。", ""]
         for r in memo_rows:
             out += [f"### {r['date']}({r['weekday']}) [{md_escape(r['title'])}]({r['url']})", ""]
-            memo_lines = r["memo"].split("\n")
-            out += [f"- {ln}" for ln in memo_lines[:-1]] + ["", f"> {memo_lines[-1]}", ""]
+            memo_lines = [ln for ln in r["memo"].split("\n") if not ln.startswith(MEMO_LINKS_LABEL + ": ")]
+            links = memo_links(r["memo"])
+            out += [f"- {md_memo_links(ln, links)}" for ln in memo_lines[:-1]] + ["", f"> {memo_lines[-1]}", ""]
     out += ["## 全予定（日付順）", "", md_table(rows, show_members=True), ""]
     with open(path, "w", encoding="utf-8") as f:
         f.write("\n".join(out))
@@ -1605,13 +1678,15 @@ MEMO_FIELDS = [
 MEMO_FOOTER = "🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。"
 MEMO_FOOTER_X = "🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。"
 MEMO_X_LABEL = "📣 公式 X の最新情報"
+MEMO_LINKS_LABEL = "🔗 公式 X"  # 📣・変更・出演時間の根拠の投稿の URL（投稿ごとに 1 回。Web 版と md では各項目の投稿日をリンクにする）
+PERFORM_LINK_LABEL = "出演時間"
 
 # 参加メモの「📣 公式 X の最新情報」（公式の案内の要約に、公式 X の投稿にしかない情報を足す）
 # 投稿の本文は公開しない。リポジトリの外（定期の更新を動かす VPS）にだけ保存する
 X_TEXTS_PATH = (os.environ.get("X_TEXTS_PATH")
                 or os.path.expanduser("~/.local/state/takaneko-fan/x_texts.json"))
 X_TEXTS_KEEP_DAYS = 400  # 投稿日からこの日数を過ぎた本文は捨てる
-X_MEMO_VERSION = 4  # 指示文を変えたら上げる（📣 の項目を作り直す）
+X_MEMO_VERSION = 5  # 指示文や保存の形を変えたら上げる（📣 の項目を作り直す）
 # 公式の記事・イベントページの版の記録（本文と、その版を初めて見た日時。値が出た日時を決めるのに使う。公開しない）
 OFFICIAL_TEXTS_PATH = (os.environ.get("OFFICIAL_TEXTS_PATH")
                        or os.path.expanduser("~/.local/state/takaneko-fan/official_texts.json"))
@@ -2281,14 +2356,34 @@ def clean_memo(memo):
     return out
 
 
-def memo_text(memo, x_items=(), x_changes=()):
+def memo_text(memo, x_items=(), x_changes=(), x_sources=(), perform_source=None):
     """参加メモの文章。公式 X で変わった値を置き換え、公式の案内の項目の後に「📣 公式 X の最新情報」を置き、
-    最後に注意書きを付ける。"""
+    根拠の投稿の URL（「🔗 公式 X: 11/14 URL ／ …」）と注意書きを付ける。
+    x_sources は [{label, url}]（📣・変更の項目の「（11/14 の投稿）」の 11/14 が label）、perform_source は出演時間の根拠の投稿。"""
     memo = apply_x_changes(memo, x_changes)
     lines = [f"{label}: {memo[k]}" for k, label in MEMO_FIELDS if memo.get(k)]
     if x_items:
         lines.append(f"{MEMO_X_LABEL}: {'／'.join(x_items)}")
-    return "\n".join(lines + [MEMO_FOOTER_X if x_items or x_changes else MEMO_FOOTER]) if lines else ""
+    if not lines:
+        return ""
+    # 出演時間の根拠が 📣 と同じ投稿なら「10/23・出演時間 URL」と 1 回にまとめる
+    same = perform_source and perform_source["url"] in {s["url"] for s in x_sources}
+    links = [f"{s['label']}{'・' + PERFORM_LINK_LABEL if same and s['url'] == perform_source['url'] else ''} {s['url']}"
+             for s in x_sources]
+    if perform_source and not same:
+        links.append(f"{PERFORM_LINK_LABEL} {perform_source['label']} {perform_source['url']}")
+    if links:
+        lines.append(f"{MEMO_LINKS_LABEL}: {' ／ '.join(links)}")
+    return "\n".join(lines + [MEMO_FOOTER_X if x_items or x_changes else MEMO_FOOTER])
+
+
+def memo_links(memo):
+    """参加メモの「🔗 公式 X」の行を {label: URL} にする（md と Web 版で投稿日をリンクにするため）。"""
+    for line in memo.split("\n"):
+        if line.startswith(MEMO_LINKS_LABEL + ": "):
+            return {label.strip(): m[1] for m in re.findall(r"(.+?)\s(https://\S+)(?:\s／\s|$)", line[len(MEMO_LINKS_LABEL) + 2:])
+                    for label in m[0].split("・")}
+    return {}
 
 
 def apply_x_changes(memo, changes):
@@ -2309,17 +2404,24 @@ X_IMAGE_POST_RE = re.compile(r"タイムテーブル|タイテ|TIME ?TABLE|出�
                              r"Schedule|スケジュール|リリイベ情報|物販|グッズ|会場案内|詳細は画像", re.I)
 X_IMAGE_MAX_POSTS = 10  # 1 回の更新で画像を読む投稿の上限
 X_IMAGE_MAX_PHOTOS = 4
+X_IMAGE_VERSION = 2  # 読み取る項目を変えたら上げる（前の版で読んだ画像を読み直す）
 X_IMAGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の告知画像を読む係です。投稿の本文と画像を渡します。
 画像に書かれた文字だけを読み、推測しないでください。顔写真からメンバーを推測しないでください。
 
 - perform: 対バン・フェスなど複数のグループが出るイベントのタイムテーブルに書かれた「高嶺のなでしこ」の出演時間（ステージに立つ時間）。
   date は YYYY-MM-DD（年が書かれていなければ投稿日から決める）、start と end は HH:MM。
   単独公演・リリースイベントのミニライブや特典会の時間、ほかのグループの出演時間、物販の時間、イベント全体の開場・開演は入れない。なければ空の配列。
+- events: ラジオ・テレビ・配信・イベントの出演予定を並べたスケジュール一覧に書かれた、高嶺のなでしこの出演予定のうち、本文に書かれていないもの。
+  date は YYYY-MM-DD、start と end は HH:MM（なければ空）、station は放送局や配信元（なければ空）、title は番組名・イベント名（「」は付けない）。
+  タイムテーブルのほかのグループの出演、同じイベントの部ごとの時間や特典会、イベントのフライヤーの開催日は入れない。なければ空の配列。
 - notes: 画像にあり本文にない、参加する人に役立つ高嶺のなでしこに関する事実（物販・特典会の時間と場所、当日券、リストバンド交換、料金、注意など）。
   1 項目 80 字程度まで、5 項目まで。ほかのグループだけに関することや、写真の説明は書かない。なければ空の配列。"""
 X_IMAGE_SCHEMA = {
-    "type": "object", "additionalProperties": False, "required": ["perform", "notes"],
+    "type": "object", "additionalProperties": False, "required": ["perform", "events", "notes"],
     "properties": {
+        "events": {"type": "array", "items": {
+            "type": "object", "additionalProperties": False, "required": ["date", "start", "end", "station", "title"],
+            "properties": {k: {"type": "string"} for k in ("date", "start", "end", "station", "title")}}},
         "perform": {"type": "array", "items": {
             "type": "object", "additionalProperties": False, "required": ["date", "start", "end"],
             "properties": {"date": {"type": "string"}, "start": {"type": "string"}, "end": {"type": "string"}}}},
@@ -2353,14 +2455,32 @@ def clean_perform(items):
     return out
 
 
+def clean_image_events(items):
+    """画像から読んだ予定を整える。{(日付, 開始, 予定名の比較用): 予定} を返す。"""
+    out = {}
+    for e in items:
+        title = unicodedata.normalize("NFKC", e.get("title", "")).strip()
+        wrapped = re.fullmatch(r"[「『]([^「『」』]*)[」』]", title)  # 全体を囲むかっこだけ外す
+        title = (wrapped.group(1) if wrapped else title).strip()
+        start = re.fullmatch(r"(\d{1,2})[:：](\d{2})", e.get("start", "").strip())
+        end = re.fullmatch(r"(\d{1,2})[:：](\d{2})", e.get("end", "").strip())
+        if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", e.get("date", "")) and title):
+            continue
+        event = {"date": e["date"], "start": "%d:%s" % (int(start[1]), start[2]) if start else "",
+                 "end": "%d:%s" % (int(end[1]), end[2]) if end else "", "station": e.get("station", "").strip(), "title": title}
+        out[(event["date"], event["start"], normalize(title))] = event
+    return out
+
+
 def read_x_images(tweets, texts, provider, key):
     """告知らしい投稿の画像を 2 回読む。出演時間は 2 回とも同じだったものだけ採る（小さな文字の読み違いを除くため）。
     {投稿 ID: {perform: [[date, start, end]], notes: [...]}} と、使ったトークンを返す。"""
     found, tokens = {}, [0, 0]
     if provider != "openai" or not key:
         return found, tokens
+    # まだ読んでいない投稿と、前の版（X_IMAGE_VERSION より古い読み方）で読んだ投稿を読む
     targets = [t for t in tweets if t.get("photos") and X_IMAGE_POST_RE.search(unicodedata.normalize("NFKC", "\n".join(x_lines(t))))
-               and "image" not in (texts or {}).get(t["id"], {})][:X_IMAGE_MAX_POSTS]
+               and (texts or {}).get(t["id"], {}).get("image", {"v": 0}).get("v", 1) < X_IMAGE_VERSION][:X_IMAGE_MAX_POSTS]
     for t in targets:
         try:
             (a, ua), (b, ub) = x_image_read(t, key), x_image_read(t, key)
@@ -2372,8 +2492,13 @@ def read_x_images(tweets, texts, provider, key):
         if perform != other:
             print(f"  ! 画像の出演時間が 2 回の読み取りで食い違うため採らない: {t['id']} {sorted(perform)} / {sorted(other)}")
         notes = [re.sub(r"\s+", " ", n).strip() for n in a["notes"][:5] if n.strip()]
-        found[t["id"]] = {"perform": sorted(perform & other), "notes": notes}
-        print(f"  画像を読み取り: {t['id']}（出演時間 {len(perform & other)} 件、情報 {len(notes)} 件）")
+        events_a, events_b = clean_image_events(a.get("events", [])), clean_image_events(b.get("events", []))
+        if set(events_a) != set(events_b):
+            print(f"  ! 画像の予定が 2 回の読み取りで食い違うものは採らない: {t['id']} "
+                  f"{sorted(k[2] for k in set(events_a) ^ set(events_b))}")
+        events = [events_a[k] for k in sorted(set(events_a) & set(events_b))]
+        found[t["id"]] = {"v": X_IMAGE_VERSION, "perform": sorted(perform & other), "events": events, "notes": notes}
+        print(f"  画像を読み取り: {t['id']}（出演時間 {len(perform & other)} 件、予定 {len(events)} 件、情報 {len(notes)} 件）")
     return found, tokens
 
 
@@ -2485,7 +2610,7 @@ def add_perform(rows, today, path="perform.json"):
                              "url": f"https://x.com/takanenofficial/status/{pid}"}
         if entry:
             kept[cid] = entry
-            r["perform"] = entry["perform"]
+            r["perform"], r["perform_url"], r["perform_posted"] = entry["perform"], entry["url"], entry["posted"]
             if saved.get(cid, {}).get("perform") != entry["perform"]:
                 print(f"  出演時間: {r['date']} {r['title'][:40]} → {entry['perform']}（{entry['url']}）")
     with open(path, "w", encoding="utf-8") as f:
@@ -2508,13 +2633,15 @@ def x_memo_items(row, memo, related, today, provider, key, value_time=lambda old
     prompt = (f"基準日: {today.isoformat()}\n予定の行: {row['date']} {row['title']}（時刻: {times}／会場: {row['venue'] or '未定'}）\n\n"
               f"--- 参加メモ ---\n{official or '（なし）'}\n\n--- 公式 X の投稿 ---\n" + "\n\n".join(blocks))
     result, usage = x_llm_read(prompt, provider, key, X_MEMO_INSTRUCTION, X_MEMO_SCHEMA, "x_memo")
-    items, changes = [], {}
+    labels = post_labels(related)
+    items, changes, used = [], {}, {}
     for item in result["items"][:5]:
         text = re.sub(r"\s+", " ", item["text"]).strip().rstrip("。")
         if not text or not 0 <= item["post"] < len(related):
             continue
         posted = datetime.fromisoformat(related[item["post"]][0])
-        day = f"{posted.month}/{posted.day}"
+        day = labels[item["post"]]
+        used[item["post"]] = day
         field, old = item.get("field", ""), (item.get("old") or "").strip()
         if item.get("kind") == "変更" and field in memo and old and flat_text(old) in flat_text(memo[field]):
             since = value_time(old)
@@ -2529,7 +2656,15 @@ def x_memo_items(row, memo, related, today, provider, key, value_time=lambda old
             items.append(f"{text}（{day} の投稿で変更）")
         else:
             items.append(f"{text}（{day} の投稿）")
-    return items, [{k: v for k, v in c.items() if k != "_posted"} for c in changes.values()], usage
+    sources = [{"label": labels[i], "url": f"https://x.com/takanenofficial/status/{related[i][1]}"} for i in sorted(used)]
+    return items, [{k: v for k, v in c.items() if k != "_posted"} for c in changes.values()], sources, usage
+
+
+def post_labels(related):
+    """投稿の呼び方（「11/14」。同じ日の投稿が 2 つ以上あれば「11/14 21:00」）。"""
+    times = [datetime.fromisoformat(posted) for posted, _, _ in related]
+    days = [f"{t.month}/{t.day}" for t in times]
+    return [f"{d} {t:%H:%M}" if days.count(d) > 1 else d for d, t in zip(days, times)]
 
 
 def memo_official(r, source, entry, model, key, call, today, created, can_call, tokens):
@@ -2589,6 +2724,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
             del entry["_called"]
         # 📣 公式 X の最新情報
         x_items, x_changes = (entry or {}).get("x_items", []), (entry or {}).get("x_changes", [])
+        x_sources = (entry or {}).get("x_sources", [])
         if x_texts is not None:
             related = [] if campaign else x_related_posts(r, x_texts)
             memo = clean_memo(entry["memo"]) if entry and entry.get("memo") else {}
@@ -2596,10 +2732,10 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
             x_digest = hashlib.sha1(f"{X_MEMO_VERSION}|{model}|{official_text}|{r.get('perform', '')}|"
                                     f"{'|'.join(pid + text for _, pid, text in related)}".encode()).hexdigest()
             if not related:
-                x_items, x_changes = [], []
+                x_items, x_changes, x_sources = [], [], []
             elif (entry or {}).get("x_hash") != x_digest and key and x_calls < X_MEMO_MAX_CALLS:
                 try:
-                    x_items, x_changes, usage = x_memo_items(
+                    x_items, x_changes, x_sources, usage = x_memo_items(
                         r, memo, related, today, provider, key, lambda old: official_value_time(old, parts, store))
                     x_calls += 1
                     tokens = [tokens[0] + usage[0], tokens[1], tokens[2] + usage[1]]
@@ -2614,11 +2750,15 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         if entry is not None:
             entry["x_items"] = x_items
             entry["x_changes"] = x_changes if entry.get("memo") else []
+            entry["x_sources"] = x_sources
             if not entry.get("memo") and not x_items:
                 continue
             kept[cid] = entry
-            r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items, entry["x_changes"]) or \
-                "\n".join([f"{MEMO_X_LABEL}: {'／'.join(x_items)}", MEMO_FOOTER_X])
+            perform_source = None
+            if r.get("perform_url"):  # Web 版で出演時間をリンクにするため、根拠の投稿を「出演時間」として並べる
+                posted = datetime.fromisoformat(r["perform_posted"])
+                perform_source = {"label": f"{posted.month}/{posted.day}", "url": r["perform_url"]}
+            r["memo"] = memo_text(clean_memo(entry.get("memo") or {}), x_items, entry["x_changes"], x_sources, perform_source)
     save_official_texts(store, today)
     print(f"公式の版の記録: {len(store)} 情報元・{sum(len(v) for v in store.values())} 版（今回の新しい版 {new_versions} 件）")
     # 過去の予定のメモは CSV に残るので、キャッシュからは消す
@@ -2714,7 +2854,7 @@ def ics_description(row):
     lines = []
     if time_label(row):
         lines.append(f"時間: {time_label(row)}")
-    lines += [f"出演: {row['members']}", f"カテゴリ: {row['category']}", f"情報元: {row['url']}"]
+    lines += [f"出演: {members_label(row)}", f"カテゴリ: {row['category']}", f"情報元: {row['url']}"]
     if row.get("venue_url"):
         lines.append(f"会場の情報元: {row['venue_url']}")
     if row.get("memo"):

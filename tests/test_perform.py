@@ -82,7 +82,8 @@ class ImageReadTest(unittest.TestCase):
     def test_perform_needs_two_matching_reads(self):
         a = {"perform": [{"date": "2026-12-07", "start": "19:50", "end": "20:15"}], "notes": ["物販 20:45〜 2F ブース AB"]}
         found, tokens = self.run_read(a, a)
-        self.assertEqual(found["1"], {"perform": [("2026-12-07", "19:50", "20:15")], "notes": ["物販 20:45〜 2F ブース AB"]})
+        self.assertEqual(found["1"], {"v": fs.X_IMAGE_VERSION, "perform": [("2026-12-07", "19:50", "20:15")], "events": [],
+                                      "notes": ["物販 20:45〜 2F ブース AB"]})
         self.assertEqual(tokens, [200, 20])
         b = {"perform": [{"date": "2026-12-07", "start": "19:55", "end": "20:15"}], "notes": []}
         found, _ = self.run_read(a, b)
@@ -91,8 +92,25 @@ class ImageReadTest(unittest.TestCase):
     def test_only_announcement_posts_with_photos_not_read_before(self):
         photo = tweet("2", "✞ TAKANEKO HALLOWEEN ✞", photos=["https://example.invalid/b.jpg"])
         no_photo = tweet("3", "⏰タイムテーブル公開⏰")
-        found, _ = self.run_read(tweets=[photo, no_photo, self.TIMETABLE], texts={"1": {"image": {}}})
+        found, _ = self.run_read(tweets=[photo, no_photo, self.TIMETABLE], texts={"1": {"image": {"v": fs.X_IMAGE_VERSION}}})
         self.assertEqual(found, {})
+
+    def test_old_version_is_read_again(self):
+        a = {"perform": [], "events": [], "notes": []}
+        found, _ = self.run_read(a, a, texts={"1": {"image": {"perform": [], "notes": []}}})  # 版のない前の読み取り
+        self.assertEqual(list(found), ["1"])
+
+    def test_image_events_need_two_matching_reads(self):
+        a = {"perform": [], "notes": [], "events": [
+            {"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "「HIT STREET」"},
+            {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダミノ"}]}
+        b = {"perform": [], "notes": [], "events": [
+            {"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "HIT STREET"},
+            {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダノノ"}]}
+        found, _ = self.run_read(a, b)
+        self.assertEqual(found["1"]["events"], [{"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪",
+                                                 "title": "HIT STREET"}])  # 読み違えた「ヒダノノ」は採らない
+
 
     def test_attach_photos(self):
         body = {"data": [{"id": "1", "attachments": {"media_keys": ["3_a", "7_b"]}}, {"id": "2"}],
@@ -108,6 +126,29 @@ class ImageReadTest(unittest.TestCase):
         fs.save_x_texts([self.TIMETABLE], TODAY, path, images={"1": image})
         fs.save_x_texts([self.TIMETABLE], TODAY, path)
         self.assertEqual(fs.load_x_texts(path)["1"]["image"], image)
+
+
+class ImageEventsTest(unittest.TestCase):
+    POST = tweet("5", "°˖✿ Release campaign Schedule ✿˖°\nメディア出演スケジュールを更新！🐈‍⬛📻", created="2026-11-16T13:30:00.000Z")
+
+    def test_candidates(self):
+        image = {"events": [{"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "HIT STREET"},
+                            {"date": "2026-10-01", "start": "", "end": "", "station": "", "title": "過去の予定"}]}
+        with contextlib.redirect_stdout(io.StringIO()):
+            cands = fs.image_candidates(self.POST, image)
+        self.assertEqual(len(cands), 1)
+        c = cands[0]
+        self.assertEqual((c["date"], c["title"], c["members"], c["media"], c["station"], c["times"], c["image"]),
+                         (date(2026, 11, 23), "HIT STREET", GROUP, "ラジオ", "FM大阪", {"START": "23:55", "END": "24:00"}, True))
+        e = fs.x_event(c)
+        self.assertTrue(e["image"])
+        r = fs.x_event_to_row(e)
+        r["category"] = fs.X_CATEGORY
+        fs.add_media([r])
+        self.assertEqual((r["title"], r["category"]), ("HIT STREET（FM大阪）", "公式X / ラジオ / 画像読み取り"))
+        self.assertEqual(fs.members_label(r), "メンバー未記載")
+        self.assertEqual(notify.member_names(r), "メンバー未記載")
+        self.assertIn("出演: メンバー未記載", fs.ics_description({**row(), **r}))
 
 
 class AddPerformTest(unittest.TestCase):
