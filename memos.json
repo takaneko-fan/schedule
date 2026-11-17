@@ -158,9 +158,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "8c1a0548ad11d13c133017f51b431eb161f137df",
+  "x_hash": "69d0d762a3c9c58a5d33fc1eaee910e31ea2769e",
   "x_items": [
-   "会場限定抽選会では限定チェキ・写ルンですが当たる（11/16 の投稿）"
+   "抽選会の賞品は限定チェキまたは限定写ルンです（11/16 の投稿）"
   ]
  },
  "2026-11-22|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
@@ -310,9 +310,10 @@
   "memo": {},
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "1f99b1b690c294ec73f51ae8a5dac7b457bca789",
+  "x_hash": "8ae261ddaf07fadc72e03696e434f86f402111d0",
   "x_items": [
-   "チケット受付は11月17日21:00から先着順（11/16 の投稿）"
+   "チケット受付：11/17(火)21:00〜（先着）（11/16 の投稿）",
+   "料金：前方7,500円、一般2,500円、女性専用エリア1,500円（各D代別）（11/16 の投稿）"
   ]
  },
  "2026-12-07|https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/": {
@@ -367,9 +368,11 @@
   "memo": {},
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "94d78af2bf8002ac005a8b034ee466c69d7d39d3",
+  "x_hash": "01995a50838aac5eecabc2f08cbff28ff8840e0d",
   "x_items": [
-   "チケット抽選販売は11月23日（火）23:59まで（11/17 の投稿）"
+   "抽選販売は11月23日(火)23:59まで（11/17 の投稿）",
+   "前方チケット7,000円、一般チケット0円。当日券は各券種＋1,000円（11/17 の投稿）",
+   "別途ドリンク代が必要。チケット価格は変更の可能性あり（11/17 の投稿）"
   ]
  },
  "2026-12-24|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/": {
