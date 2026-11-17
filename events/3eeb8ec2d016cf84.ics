@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:3eeb8ec2d016cf84@takaneko-data-mine
-DTSTAMP:20261117T192246Z
+DTSTAMP:20261117T202048Z
 DTSTART;TZID=Asia/Tokyo:20261215T181500
 DTEND;TZID=Asia/Tokyo:20261215T201500
 SUMMARY:DRAMATIC POP DX
@@ -22,13 +22,13 @@ LOCATION:品川プリンスホテル ステラボール
 DESCRIPTION:時間: OPEN 17:30 / START 18:15\n出演: グループ（全員
  ）\nカテゴリ: 公式X\n情報元: https://x.com/takanenofficial/statu
  s/2122650959117435037\n\n【参加メモ】\n📣 公式 X の最新情報
- : 抽選販売は11月23日(火)23:59まで。前方チケット7\,000円
- 、一般チケット0円。別途ドリンク代が必要（11/17 の投
- 稿）／当日券は各券種＋1\,000円。チケット価格は変更
- の可能性あり（11/17 の投稿）\n🔗 公式 X: 11/17 https://x.co
- m/takanenofficial/status/2122650959117435037\n🤖 公式の案内と公
- 式 X の投稿を AI が要約したものです。必ず情報元で確
- 認してください。
+ : 抽選販売は11月23日(火)23:59まで（11/17 の投稿）／前方
+ チケット7\,000円、一般チケット0円（11/17 の投稿）／当
+ 日券は各種チケットに＋1\,000円（11/17 の投稿）／別途
+ ドリンク代が必要（11/17 の投稿）\n🔗 公式 X: 11/17 https:
+ //x.com/takanenofficial/status/2122650959117435037\n🤖 公式の案内
+ と公式 X の投稿を AI が要約したものです。必ず情報元
+ で確認してください。
 URL:https://x.com/takanenofficial/status/2122650959117435037
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
