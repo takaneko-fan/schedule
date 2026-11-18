@@ -1714,7 +1714,24 @@ X_MEMO_VERSION = 5  # 指示文や保存の形を変えたら上げる（📣 �
 # 公式の記事・イベントページの版の記録（本文と、その版を初めて見た日時。値が出た日時を決めるのに使う。公開しない）
 OFFICIAL_TEXTS_PATH = (os.environ.get("OFFICIAL_TEXTS_PATH")
                        or os.path.expanduser("~/.local/state/takaneko-fan/official_texts.json"))
-X_SAME_TIME = timedelta(hours=1)  # 公式と公式 X の差がこれ以内なら同時とみなし、公式を採る
+X_SAME_TIME = timedelta(hours=1)
+# 公式 X の投稿がどの予定についてか（候補の予定が 2 件以上ある投稿だけ AI で判断する。結果は投稿の一部を含むので公開しない）
+X_LINKS_PATH = (os.environ.get("X_LINKS_PATH")
+                or os.path.expanduser("~/.local/state/takaneko-fan/x_links.json"))
+X_LINK_VERSION = 1  # 指示文を変えたら上げる（判断し直す）
+X_LINK_MAX_CALLS = 20  # 1 回の更新で AI を呼ぶ上限
+X_LINK_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿が、どの予定についての情報かを判断する係です。
+投稿の本文と、候補の予定の一覧（番号付き）を渡します。
+- 投稿がその予定について何か情報（告知・時刻・会場・チケット・物販・当日の案内など）を伝えていれば、その予定の番号を links に入れる。
+- 1 つの投稿が複数の予定を扱っていれば、すべて入れる。part には、投稿のうちその予定について書かれた部分を短く書き写す（60 字程度まで）。
+- 店舗のキャンペーン（レシート・パネル展など）とイベント（ミニライブ・握手会など）は別の予定として区別する。
+- 同じアルバム名が出てくるだけ、同じ日付が出てくるだけの予定は入れない。どれにも当てはまらなければ空の配列。"""
+X_LINK_SCHEMA = {
+    "type": "object", "additionalProperties": False, "required": ["links"],
+    "properties": {"links": {"type": "array", "items": {
+        "type": "object", "additionalProperties": False, "required": ["event", "part"],
+        "properties": {"event": {"type": "integer"}, "part": {"type": "string"}}}}},
+}  # 公式と公式 X の差がこれ以内なら同時とみなし、公式を採る
 X_MEMO_MAX_CALLS = 30  # 1 回の更新で AI を呼ぶ上限
 X_MEMO_MAX_POSTS = 10  # 1 つの予定に渡す投稿の数（新しいものから）
 X_MEMO_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の予定の「参加メモ」に、公式 X の投稿の情報を補う係です。
@@ -1798,40 +1815,68 @@ def post_title(post):
     return html.unescape(re.sub(r"<[^>]+>", "", post["title"]["rendered"])).strip()
 
 
-def related_posts(row, posts):
+def related_posts(row, posts, rows=()):
     """予定に関係するお知らせ記事（情報元そのもの、または同じ日付・同じイベント名の記事）。
-    店舗のキャンペーンの行とイベントの行は、同じ日・同じ作品名でも互いの記事を使わない（参加メモが混ざるため）。"""
-    day = date.fromisoformat(row["date"])
-    campaign = is_campaign(row)
-    found = []
-    for p in posts:
-        title = post_title(p)
-        if p["link"] in (row["url"], row.get("venue_url")):
-            found.append(p)
-            continue
-        if bool(CAMPAIGN_RE.search(title)) != campaign:
-            continue
-        m = POST_DATE_RE.match(title)
-        published = date.fromisoformat(p["date"][:10])
-        if title.startswith("【") and m:
-            # タイトルに開催日がある記事は、その日の予定の記事
-            same_day = infer_date(*m.groups()[:3], published) == day
-        else:
-            # 本文に開催日が書かれている（「2026年11月18日(水)発売」のような発売日の記載は除く）
-            same_day = re.search(rf"{day.year}年{day.month}月{day.day}日(?!\s*[(（][^)）]*[)）]\s*(発売|リリース))",
-                                 unicodedata.normalize("NFKC", html.unescape(p["content"]["rendered"])))
-        if same_day and shares_phrase(row["title"].replace("高嶺のなでしこ", ""), title.replace("高嶺のなでしこ", ""), n=5):
-            found.append(p)
+    rows（ほかの予定）を渡すと、情報元でない記事は、同じ日の対象の予定のうち一番よく一致する予定（post_match_score）にだけ
+    結び付ける（「ニューアルバム『…』」のような共通の語だけで、同じ日の店舗のキャンペーンなどに混ざらないように）。"""
+    found = [p for p in posts if p["link"] in (row["url"], row.get("venue_url")) or post_matches(row, p)]
+    rivals = [r for r in rows if r is not row and r["date"] == row["date"] and memo_target(r)]
+    found = [p for p in found if p["link"] in (row["url"], row.get("venue_url"))
+             or not any(post_match_score(r, p) > post_match_score(row, p) for r in rivals if post_matches(r, p))]
     return sorted(found, key=lambda p: p["date"])
 
 
-def memo_parts(row, posts):
+def post_match_score(row, p):
+    """記事と予定の一致の度合い（情報元なら一番。ほかは名前の共通部分の長さ、同じなら名前に占める割合）。"""
+    if p["link"] in (row["url"], row.get("venue_url")):
+        return (10 ** 6, 1.0)
+    a = normalize(row["title"].replace("高嶺のなでしこ", ""))
+    b = normalize(post_title(p).replace("高嶺のなでしこ", ""))
+    common = longest_common(a, b)
+    return (common, 2 * common / max(len(a) + len(b), 1))
+
+
+def longest_common(a, b):
+    """最長の共通部分文字列の長さ。"""
+    best, prev = 0, [0] * (len(b) + 1)
+    for i in range(1, len(a) + 1):
+        cur = [0] * (len(b) + 1)
+        for j in range(1, len(b) + 1):
+            if a[i - 1] == b[j - 1]:
+                cur[j] = prev[j - 1] + 1
+                best = max(best, cur[j])
+        prev = cur
+    return best
+
+
+def memo_target(row):
+    """参加メモを付ける種類の予定か（発売日の行・番組・誕生日・Eventernote を除く。日付は見ない）。"""
+    return not (row["category"].startswith(("Eventernote", "誕生日")) or is_release(row) or media_of(row))
+
+
+def post_matches(row, p):
+    """情報元でない記事が、予定と同じ日付・同じイベント名の記事か。"""
+    day = date.fromisoformat(row["date"])
+    title = post_title(p)
+    m = POST_DATE_RE.match(title)
+    published = date.fromisoformat(p["date"][:10])
+    if title.startswith("【") and m:
+        # タイトルに開催日がある記事は、その日の予定の記事
+        same_day = infer_date(*m.groups()[:3], published) == day
+    else:
+        # 本文に開催日が書かれている（「2026年11月18日(水)発売」のような発売日の記載は除く）
+        same_day = re.search(rf"{day.year}年{day.month}月{day.day}日(?!\s*[(（][^)）]*[)）]\s*(発売|リリース))",
+                             unicodedata.normalize("NFKC", html.unescape(p["content"]["rendered"])))
+    return bool(same_day and shares_phrase(row["title"].replace("高嶺のなでしこ", ""), title.replace("高嶺のなでしこ", ""), n=5))
+
+
+def memo_parts(row, posts, rows=()):
     """参加メモの材料（情報元ごとの {url, head, text, published}。published はお知らせ記事の公開日時、イベントページは None）。"""
     parts = []
     if row.get("source_text"):
         url = row.get("event_url", row["url"])
         parts.append({"url": url, "head": f"# イベントページ {url}", "text": row["source_text"], "published": None})
-    for p in related_posts(row, posts):
+    for p in related_posts(row, posts, rows):
         lines = [unicodedata.normalize("NFKC", ln) for ln in html_to_lines(p["content"]["rendered"])]
         body = "\n".join(ln for ln in lines if not MEMO_BOILERPLATE_RE.search(ln))
         parts.append({"url": p["link"], "head": f"# お知らせ記事（{p['date'][:10]} 公開）{post_title(p)}\n{p['link']}",
@@ -2560,9 +2605,77 @@ def save_x_texts(tweets, today, path=None, images=None):
 X_EVENT_WORDS_RE = re.compile(r"ミニライブ|特典会|握手|サイン会|撮影会|チェキ|開演|開場|START|OPEN|出演")
 
 
-def x_related_posts(row, texts):
+def x_post_dated(row, v):
+    """投稿が予定の日付のものか（日付が書かれている、当日の「本日」・前日の「明日」、画像の出演時間の日付）。"""
+    day, posted = date.fromisoformat(row["date"]), datetime.fromisoformat(v["posted"])
+    if posted.date() > day:
+        return False
+    flat = unicodedata.normalize("NFKC", v["text"])
+    return bool(re.search(rf"(?<!\d){day.month}\s*(?:月\s*|/){day.day}(?!\d)", flat)
+                or posted.date() == day and re.search(r"本日|きょうの|このあと", flat)
+                or posted.date() + timedelta(days=1 if posted.hour >= X_NIGHT_HOUR else 0) == day
+                and re.search(r"明日|あしたの", flat)
+                or any(p[0] == row["date"] for p in v.get("image", {}).get("perform", [])))
+
+
+def row_key(row):
+    return f"{row['date']}|{row.get('event_url', row['url'])}"
+
+
+def link_x_posts(rows, today, provider=None, key=None, path=None, texts=None):
+    """候補の予定（その日付のこれからの予定）が 2 件以上ある公式 X の投稿について、どの予定についての投稿かを AI で判断する。
+    {投稿 ID: {予定のキー: その予定について書かれた部分}} を返す（判断していない投稿は含めない。x_related_posts はルールで結び付ける）。
+    結果は投稿の本文と候補が変わらなければ使い回す。投稿の記録がない環境（手元など）では空。"""
+    texts = load_x_texts() if texts is None else texts
+    if texts is None:
+        return {}
+    if provider is None:
+        provider, key, _ = memo_provider()
+    path = path or X_LINKS_PATH
+    try:
+        with open(path, encoding="utf-8") as f:
+            cache = json.load(f)
+    except FileNotFoundError:
+        cache = {}
+    candidates = [r for r in rows if r["date"] >= today.isoformat() and memo_target(r)]
+    judged, kept, calls, tokens = {}, {}, 0, [0, 0]
+    for pid, v in sorted(texts.items(), key=lambda kv: kv[1]["posted"]):
+        cands = [r for r in candidates if x_post_dated(r, v)]
+        if len(cands) < 2:
+            continue
+        lines = [f"[{i}] {r['date']} {r['title']}（会場: {r['venue'] or '未定'}／時刻: {time_label(r) or '未定'}）"
+                 for i, r in enumerate(cands)]
+        notes = v.get("image", {}).get("notes", [])
+        text = (f"投稿日時: {v['posted']}\n本文:\n{v['text']}" + ("\n［画像から読み取り］\n" + "\n".join(notes) if notes else "")
+                + "\n\n候補の予定:\n" + "\n".join(lines))
+        digest = hashlib.sha1(f"{X_LINK_VERSION}|{MEMO_MODELS.get(provider, '')}|{text}".encode()).hexdigest()
+        entry = cache.get(pid)
+        if not (entry and entry["hash"] == digest):
+            if not key or calls >= X_LINK_MAX_CALLS:
+                continue  # 判断できなければルールで結び付ける
+            try:
+                result, usage = x_llm_read(text, provider, key, X_LINK_INSTRUCTION, X_LINK_SCHEMA, "x_link")
+            except Exception as e:  # noqa: BLE001 — 失敗したらルールで結び付ける（次の回に判断し直す）
+                print(f"  ! 投稿と予定の結び付けの AI 判断に失敗: {pid} ({e})")
+                continue
+            calls += 1
+            tokens = [tokens[0] + usage[0], tokens[1] + usage[1]]
+            links = {row_key(cands[x["event"]]): x["part"].strip() for x in result["links"] if 0 <= x["event"] < len(cands)}
+            entry = {"hash": digest, "links": links}
+        kept[pid] = entry
+        judged[pid] = entry["links"]
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(kept, f, ensure_ascii=False, indent=1, sort_keys=True)
+    print(f"公式 X の投稿と予定の結び付け（AI）: {len(judged)} 件（今回判断 {calls} 件、"
+          f"入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン）")
+    return judged
+
+
+def x_related_posts(row, texts, judged=None):
     """予定に関係する公式 X の投稿（日付が書かれているか当日・前日の投稿で、予定名か会場が本文にあるもの。古い順）。
-    店舗のキャンペーンだけの投稿（イベントの言葉がない）は、同じ店で開くイベントの投稿として扱わない。"""
+    店舗のキャンペーンだけの投稿（イベントの言葉がない）は、同じ店で開くイベントの投稿として扱わない。
+    judged（link_x_posts の結果）にある投稿は、AI の判断に従い、その予定について書かれた部分を本文の後に付ける。"""
     day = date.fromisoformat(row["date"])
     name = normalize(event_phrase(row["title"]))
     venue = "" if TBD_VENUE_RE.search(row["venue"]) else normalize(re.split(r"[（(〒]", row["venue"])[0])
@@ -2571,17 +2684,18 @@ def x_related_posts(row, texts):
         text, posted = v["text"], datetime.fromisoformat(v["posted"])
         if posted.date() > day:
             continue
+        notes = v.get("image", {}).get("notes", [])
+        full = text + ("\n［画像から読み取り］\n" + "\n".join(notes) if notes else "")
+        if judged and pid in judged:
+            if row_key(row) in judged[pid]:
+                part = judged[pid][row_key(row)]
+                found.append((v["posted"], pid, full + (f"\n［この予定について書かれた部分］{part}" if part else "")))
+            continue
         flat = unicodedata.normalize("NFKC", text)
         if CAMPAIGN_RE.search(flat) and not X_EVENT_WORDS_RE.search(flat):
             continue
-        dated = (re.search(rf"(?<!\d){day.month}\s*(?:月\s*|/){day.day}(?!\d)", flat)
-                 or posted.date() == day and re.search(r"本日|きょうの|このあと", flat)
-                 or posted.date() + timedelta(days=1 if posted.hour >= X_NIGHT_HOUR else 0) == day
-                 and re.search(r"明日|あしたの", flat)
-                 or any(p[0] == row["date"] for p in v.get("image", {}).get("perform", [])))
-        if dated and x_names_row(row, flat, name, venue):
-            notes = v.get("image", {}).get("notes", [])
-            found.append((v["posted"], pid, text + ("\n［画像から読み取り］\n" + "\n".join(notes) if notes else "")))
+        if x_post_dated(row, v) and x_names_row(row, flat, name, venue):
+            found.append((v["posted"], pid, full))
     return sorted(found)[-X_MEMO_MAX_POSTS:]
 
 
@@ -2608,7 +2722,7 @@ def perform_target(row):
     return not (is_release(row) or media_of(row) or is_campaign(row) or row["category"].startswith(("Eventernote", "誕生日")))
 
 
-def add_perform(rows, today, path="perform.json"):
+def add_perform(rows, today, path="perform.json", judged=None):
     """これからの予定に、高嶺のなでしこの出演時間（row["perform"]、例「19:50-20:15」）を付ける。
     材料は公式 X の投稿の本文と、告知画像から読み取った出演時間（新しい投稿を優先）。
     投稿の記録がない環境（手元など）では、前回の結果（perform.json）を使う。"""
@@ -2631,11 +2745,14 @@ def add_perform(rows, today, path="perform.json"):
                 flat = unicodedata.normalize("NFKC", v["text"])
                 image = ["%s-%s" % (p[1], p[2]) for p in v.get("image", {}).get("perform", [])
                          if p[0] == r["date"] and p[2]]  # 開始だけのもの（ミニライブの開始など）は採らない
-                named = x_names_row(r, flat) or len(same_day) == 1 and not any(x_names_row(x, flat) for x in rows if x is not r
-                                                                              and x["date"] == r["date"])
+                if judged and pid in judged:
+                    named = row_key(r) in judged[pid]  # AI がこの予定についての投稿と判断したか
+                else:
+                    named = x_names_row(r, flat) or len(same_day) == 1 and not any(x_names_row(x, flat) for x in rows
+                                                                                  if x is not r and x["date"] == r["date"])
                 if image and named and len(set(image)) == 1:
                     entry = {"perform": image[0], "posted": v["posted"], "url": f"https://x.com/takanenofficial/status/{pid}"}
-                elif any(post[1] == pid for post in x_related_posts(r, {pid: v})) and perform_from_text(v["text"]):
+                elif any(post[1] == pid for post in x_related_posts(r, {pid: v}, judged)) and perform_from_text(v["text"]):
                     entry = {"perform": perform_from_text(v["text"]), "posted": v["posted"],
                              "url": f"https://x.com/takanenofficial/status/{pid}"}
         if entry:
@@ -2718,7 +2835,7 @@ def memo_official(r, source, entry, model, key, call, today, created, can_call, 
         return entry if entry and entry.get("hash") else None
 
 
-def add_memos(rows, posts, today, cache_path="memos.json"):
+def add_memos(rows, posts, today, cache_path="memos.json", judged=None):
     """これからの予定に参加メモ（row["memo"]）を付ける。材料の文章が変わっていなければ前回のメモを使う。
     今回 AI で作った予定を (row, "新規" または "更新") のリストで返す。"""
     try:
@@ -2739,7 +2856,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         cid = f"{r['date']}|{r.get('event_url', r['url'])}"
         entry = dict(cache[cid]) if cid in cache else None
         official = not r["category"].startswith(X_CATEGORY) and not r.get("ai")  # 公式 X だけの予定は 📣 の項目だけ
-        parts = memo_parts(r, posts) if official else []
+        parts = memo_parts(r, posts, rows) if official else []
         generated = entry and entry.get("hash") and datetime.fromisoformat(entry["generated"]).replace(tzinfo=JST)
         new_versions += record_official_versions(parts, store, now, generated or None)
         source = memo_source(r, posts, parts) if official else ""
@@ -2756,7 +2873,7 @@ def add_memos(rows, posts, today, cache_path="memos.json"):
         x_items, x_changes = (entry or {}).get("x_items", []), (entry or {}).get("x_changes", [])
         x_sources = (entry or {}).get("x_sources", [])
         if x_texts is not None:
-            related = [] if campaign else x_related_posts(r, x_texts)
+            related = [] if campaign else x_related_posts(r, x_texts, judged)
             memo = clean_memo(entry["memo"]) if entry and entry.get("memo") else {}
             official_text = memo_text(memo)
             x_digest = hashlib.sha1(f"{X_MEMO_VERSION}|{model}|{official_text}|{r.get('perform', '')}|"
@@ -3163,10 +3280,12 @@ def main():
     print(f"{len(past)} 件の過去の予定を引き継ぎ")
     rows = sort_rows(past + rows)
     add_media(rows)
-    add_perform(rows, today)
+    # 候補が 2 件以上ある投稿は、どの予定についてかを AI で判断する（--no-memo のときは AI を呼ばず、前回の判断だけ使う）
+    judged = link_x_posts(rows, today, *(("", "") if args.no_memo else ()))
+    add_perform(rows, today, judged=judged)
     memo_created = []
     if not args.no_memo:
-        memo_created = add_memos(rows, posts, today)
+        memo_created = add_memos(rows, posts, today, judged=judged)
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     assign_uids(rows, prev)

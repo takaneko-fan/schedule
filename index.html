@@ -429,19 +429,39 @@ function commonLength(a, b) {  // 最長の共通部分文字列の長さ
   return best;
 }
 
-const dlCache = new Map();
-function deadlinesFor(r) {
-  if (dlCache.has(r.uid)) return dlCache.get(r.uid);
-  const [, mo, da] = r.date.split("-").map(Number);
-  const title = normName(r.title);
+// 申込・締切と予定の一致の度合い。結び付けられなければ null。[共通部分の長さ, 名前全体に占める共通部分の割合]
+function deadlineScore(d, r) {
   const limit = new Date(Date.parse(r.date) - 150 * 864e5).toISOString().slice(0, 10);
-  const found = r.category === "誕生日" ? [] : deadlines.filter(d => {
-    if (d.date > r.date || d.date < limit) return false;
-    if (d.held) return d.held[0] === mo && d.held[1] === da && commonLength(d.name, title) >= 6;
-    return commonLength(d.name, title) >= 8;
-  });
-  dlCache.set(r.uid, found);
-  return found;
+  if (r.category === "誕生日" || d.date > r.date || d.date < limit) return null;
+  const [, mo, da] = r.date.split("-").map(Number);
+  if (d.held && (d.held[0] !== mo || d.held[1] !== da)) return null;  // 開催日が違えば比べない（重い比較を減らす）
+  const title = normName(r.title);
+  const common = commonLength(d.name, title);
+  const ok = common >= (d.held ? 6 : 8);
+  return ok ? [common, 2 * common / (d.name.length + title.length)] : null;
+}
+
+// 申込・締切ごとに、結び付けられる予定のうち一番よく一致する予定（同点ならそのすべて）にだけ結び付ける。
+// 「ニューアルバム『…』」のような共通の語だけで、同じ日のほかの予定（店舗のキャンペーンなど）に結び付かないように
+let dlLinks = null;
+function deadlinesFor(r) {
+  if (!dlLinks) {
+    dlLinks = new Map();
+    for (const d of deadlines) {
+      let best = null, targets = [];
+      for (const x of rows) {
+        const s = deadlineScore(d, x);
+        if (!s) continue;
+        const cmp = best ? s[0] - best[0] || s[1] - best[1] : 1;
+        if (cmp > 0) { best = s; targets = [x]; } else if (cmp === 0) targets.push(x);
+      }
+      for (const x of targets) {
+        if (!dlLinks.has(x.uid)) dlLinks.set(x.uid, []);
+        dlLinks.get(x.uid).push(d);
+      }
+    }
+  }
+  return dlLinks.get(r.uid) || [];
 }
 
 // 1 つの予定に別々のイベント（サイン会とお話し会など）の申込が結び付いているとき、どれの申込かを示す短い名前。

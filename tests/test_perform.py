@@ -225,6 +225,59 @@ class LatestImageEventsTest(unittest.TestCase):
         self.assertEqual(sorted(e["title"] for e in events), ["HIT STREET", "ヒダミノ"])
 
 
+class LinkXPostsTest(unittest.TestCase):
+    """候補の予定が 2 件以上ある投稿は、どの予定についてかを AI で判断する（link_x_posts）。"""
+
+    SANNO = row(date="2026-11-07", title="産業能率大学 第61回産能祭", venue="産業能率大学", url="https://example.invalid/sanno")
+    LARME = row(date="2026-11-07", title="LARME FES’26", venue="東京ガーデンシアター", url="https://example.invalid/larme")
+    POST = {"posted": "2026-11-06T20:30+09:00",
+            "text": "#あしたのたかねこ\n『 産業能率大学 第61回産能祭 』\n⏰OPEN 12:00\n- - -\n『 LARME FES'26 』\n🎫見切れ席チケット販売中"}
+
+    def run_link(self, texts, ai_links, cache=None):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, "links.json")
+        if cache is not None:
+            with open(path, "w", encoding="utf-8") as f:
+                json.dump(cache, f)
+        read = mock.Mock(return_value=({"links": ai_links}, (10, 1)))
+        with mock.patch.object(fs, "x_llm_read", read), contextlib.redirect_stdout(io.StringIO()):
+            judged = fs.link_x_posts([self.SANNO, self.LARME], date(2026, 11, 6), "openai", "key", path, texts)
+        with open(path, encoding="utf-8") as f:
+            return judged, read, json.load(f)
+
+    def test_multi_event_post_is_split(self):
+        judged, read, cache = self.run_link({"1": self.POST}, [{"event": 0, "part": "産能祭 OPEN 12:00"},
+                                                               {"event": 1, "part": "見切れ席チケット販売中"},
+                                                               {"event": 9, "part": "候補にない番号"}])
+        self.assertEqual(judged, {"1": {fs.row_key(self.SANNO): "産能祭 OPEN 12:00", fs.row_key(self.LARME): "見切れ席チケット販売中"}})
+        related = fs.x_related_posts(self.LARME, {"1": self.POST}, judged)
+        self.assertTrue(related[0][2].endswith("［この予定について書かれた部分］見切れ席チケット販売中"))
+        # 投稿と候補が変わらなければ AI を呼ばない
+        judged2, read2, _ = self.run_link({"1": self.POST}, [], cache)
+        self.assertEqual((judged2, read2.call_count), (judged, 0))
+
+    def test_single_candidate_uses_rules(self):
+        post = {"posted": "2026-11-06T20:30+09:00", "text": "#あしたのたかねこ\n『 LARME FES'26 』"}
+        texts = {"1": post}
+        with mock.patch.object(fs, "x_llm_read") as read, contextlib.redirect_stdout(io.StringIO()):
+            tmp = tempfile.TemporaryDirectory()
+            self.addCleanup(tmp.cleanup)
+            judged = fs.link_x_posts([self.LARME], date(2026, 11, 6), "openai", "key", os.path.join(tmp.name, "l.json"), texts)
+        self.assertEqual((judged, read.call_count), ({}, 0))
+        self.assertEqual(len(fs.x_related_posts(self.LARME, texts, judged)), 1)
+
+    def test_ai_says_not_related(self):
+        judged, _, _ = self.run_link({"1": self.POST}, [{"event": 0, "part": "産能祭"}])
+        self.assertEqual(fs.x_related_posts(self.LARME, {"1": self.POST}, judged), [])  # 名前が本文にあっても AI の判断に従う
+
+    def test_no_texts_no_judgement(self):
+        """投稿の記録がない環境（手元など）では判断しない（AI も呼ばない）。"""
+        with mock.patch.object(fs, "load_x_texts", return_value=None), mock.patch.object(fs, "x_llm_read") as read:
+            self.assertEqual(fs.link_x_posts([self.SANNO, self.LARME], date(2026, 11, 6), "openai", "key"), {})
+        self.assertEqual(read.call_count, 0)
+
+
 class AddPerformTest(unittest.TestCase):
     def run_add(self, rows, texts, saved=None):
         tmp = tempfile.TemporaryDirectory()

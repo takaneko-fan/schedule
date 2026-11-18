@@ -217,25 +217,32 @@ def article(link, title, body, published="2026-11-16T12:00:00"):
 
 
 class RelatedArticlesTest(unittest.TestCase):
-    """参加メモの材料の記事で、店舗のキャンペーンとイベントを混ぜない。"""
+    """参加メモの材料の記事は、同じ日の予定のうち一番よく一致する予定にだけ結び付ける（キャンペーンとイベントが混ざらない）。"""
 
     EVENT = article("https://example.invalid/event", "【11月18日(水)】ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛",
                     "<p>ミニライブ 17:00</p>", "2026-11-02T12:00:00")
     CAMPAIGN = article("https://example.invalid/cp", "ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン開催決定！",
                        "<p>2026年11月18日(水) 涼海すう プリントサイン入りスペシャルレシート</p>")
+    CAMPAIGN_ROW = row(date="2026-11-18", url="https://example.invalid/schedule/cp",
+                       title="ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート")
+    EVENT_ROW = row(date="2026-11-18", url="https://example.invalid/schedule/1118",
+                    title="ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛")
 
-    def links(self, r):
-        return [p["link"] for p in fs.related_posts(r, [self.EVENT, self.CAMPAIGN])]
+    def links(self, r, rows):
+        return [p["link"] for p in fs.related_posts(r, [self.EVENT, self.CAMPAIGN], rows)]
 
-    def test_campaign_row_uses_only_campaign_articles(self):
-        r = row(date="2026-11-18", url=self.CAMPAIGN["link"],
-                title="ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート")
-        self.assertEqual(self.links(r), [self.CAMPAIGN["link"]])
+    def test_each_article_goes_to_best_matching_row(self):
+        rows = [self.EVENT_ROW, self.CAMPAIGN_ROW]
+        self.assertEqual(self.links(self.CAMPAIGN_ROW, rows), [self.CAMPAIGN["link"]])
+        self.assertEqual(self.links(self.EVENT_ROW, rows), [self.EVENT["link"]])
 
-    def test_event_row_does_not_use_campaign_articles(self):
-        r = row(date="2026-11-18", url="https://example.invalid/schedule/1118",
-                title="ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛")
-        self.assertEqual(self.links(r), [self.EVENT["link"]])
+    def test_without_rivals_all_matching_articles(self):
+        """同じ日にほかの予定がなければ、名前の重なる記事はすべて使う。"""
+        self.assertEqual(self.links(self.EVENT_ROW, [self.EVENT_ROW]), [self.EVENT["link"], self.CAMPAIGN["link"]])  # 公開日順
+
+    def test_own_source_article_is_always_used(self):
+        r = {**self.EVENT_ROW, "url": self.CAMPAIGN["link"]}
+        self.assertIn(self.CAMPAIGN["link"], self.links(r, [r, self.CAMPAIGN_ROW]))
 
 
 class XMemoItemsTest(unittest.TestCase):
