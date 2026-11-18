@@ -972,7 +972,7 @@
 
 ### 2026-12-15(火) [DRAMATIC POP DX](https://x.com/takanenofficial/status/2122650959117435037)
 
-- 📣 公式 X の最新情報: 抽選販売は11月23日(火)23:59まで（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）／前方チケット7,000円、一般チケット0円（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）／当日券は各種チケットに＋1,000円（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）／別途ドリンク代が必要（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）
+- 📣 公式 X の最新情報: 抽選販売は11月23日(火)23:59まで。前方チケット7,000円、一般チケット0円（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）／当日券は各券種＋1,000円（[11/17 の投稿](https://x.com/takanenofficial/status/2122650959117435037)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
