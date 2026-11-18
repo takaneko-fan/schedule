@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:b6510b85ae023851@takaneko-data-mine
-DTSTAMP:20261117T201612Z
+DTSTAMP:20261118T111801Z
 DTSTART;TZID=Asia/Tokyo:20261120T170000
 DTEND;TZID=Asia/Tokyo:20261120T192000
 SUMMARY:高嶺のなでしこ ニューアルバム『A World in Our Colors
@@ -52,12 +52,12 @@ DESCRIPTION:時間: 第1部 17:00～18:00 ／ 第2部 18:20～19:20\n出演
  典はイベント終了後5営業日以降に順次発送（予約商品
  は発売日以降）／海外発送なし／サイン会は各メンバ
  ーのSHOWROOMアカウントで配信\n📣 公式 X の最新情報: オ
- ンラインお話し会は第1部19:40〜20:40、第2部21:00〜22:00（1
- 1/9 の投稿）／お話し会の入室期限は各部開始20分前か
- ら開始10分後まで（11/9 の投稿）\n🔗 公式 X: 11/9 https://x
- .com/takanenofficial/status/2119763182080172313\n🤖 公式の案内と
- 公式 X の投稿を AI が要約したものです。必ず情報元で
- 確認してください。
+ ンラインお話し会：第1部19:40〜20:40／第2部21:00〜22:00（1
+ 1/9 の投稿）／オンラインお話し会の入室期限は各部開
+ 始20分前から開始10分後まで（11/9 の投稿）\n🔗 公式 X: 
+ 11/9 https://x.com/takanenofficial/status/2119763182080172313\n🤖 公式
+ の案内と公式 X の投稿を AI が要約したものです。必ず
+ 情報元で確認してください。
 URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
