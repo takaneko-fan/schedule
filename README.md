@@ -26,6 +26,7 @@
 | [`docs/spec.md`](docs/spec.md) | 機能仕様書（何をするか） |
 | [`docs/design.md`](docs/design.md) / [`docs/operations.md`](docs/operations.md) / [`docs/notes.md`](docs/notes.md) | 設計（どう作っているか）／運用（自動更新・push・障害時の確認）／検証記録・経緯 |
 | [`docs/flow.html`](docs/flow.html) | 処理の流れの図（ブラウザで開く）。処理の流れを変えたら一緒に直す |
+| [`docs/backlog.md`](docs/backlog.md) | 保留中の作業（提案済みで、時期や実例を待っているもの） |
 | [`tests/`](tests/) | 通知・申込締切の読み取り・予定の統合・リマインドのテスト（`python3 -m unittest discover -s tests`） |
 | [`ops/`](ops/) | VPS で自動更新を時刻どおりに起動する仕組み（スクリプトと systemd タイマー）、App の名義で push するスクリプト、手元の開発環境に git の設定（コミットの名義など）を入れるスクリプト（`setup_local.sh`）、ルールと AI の読み取りの比べ合わせを集計するスクリプト（`ai_compare_report.py`） |
 | [`assets/`](assets/) | アイコンなどの素材（`X_icon_takaneko_fanweb.jpeg` は X @takaneko_fanweb のプロフィール画像） |
