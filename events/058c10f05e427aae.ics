@@ -14,14 +14,14 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:058c10f05e427aae@takaneko-data-mine
-DTSTAMP:20261117T195847Z
+DTSTAMP:20261118T150714Z
 DTSTART;TZID=Asia/Tokyo:20261130T180000
 DTEND;TZID=Asia/Tokyo:20261130T182500
-SUMMARY:【ラジオ】ヒダミノノ（岐阜放送）
+SUMMARY:【ラジオ】ヒダノノ（岐阜放送）
 DESCRIPTION:時間: 18:00〜18:25\n出演: メンバー未記載\nカテゴ
  リ: 公式X / ラジオ / 画像読み取り\n情報元: https://x.com/ta
- kanenofficial/status/2119399536548299110
-URL:https://x.com/takanenofficial/status/2119399536548299110
+ kanenofficial/status/2122321289478382070
+URL:https://x.com/takanenofficial/status/2122321289478382070
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

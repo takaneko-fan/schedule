@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）、Eventernote （公式X等の告知の補完・非公式）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 98 件（うち済 51 件）
+- 件数: 98 件（うち済 60 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -60,9 +60,9 @@
 | ✅ | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -74,7 +74,7 @@
 |  | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -96,8 +96,8 @@
 | ✅ | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター |
 | ✅ | 2026-11-17(火) | 16:00〜18:54 | [【ラジオ】Colors（FM長崎）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-17(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：城月菜央 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
-|  | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
@@ -144,11 +144,11 @@
 | ✅ | 2026-11-17(火) | 16:00〜18:54 | [【ラジオ】Colors（FM長崎）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
 | ✅ | 2026-11-17(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：城月菜央 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
-|  | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -161,7 +161,7 @@
 |  | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -182,8 +182,8 @@
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  |
-|  | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -227,11 +227,11 @@
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -243,7 +243,7 @@
 |  | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -312,9 +312,9 @@
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) | 16:00〜18:54 | [【ラジオ】Colors（FM長崎）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-19(木) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：橋本桃呼 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
@@ -328,7 +328,7 @@
 |  | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
@@ -354,9 +354,9 @@
 | ✅ | 2026-11-07(土) | 20:30〜21:00 | [【ラジオ】IN OUR NIGHT（FM AICHI）](https://x.com/takanenofficial/status/2118697409928999107) |  |
 | ✅ | 2026-11-14(土) | 8:00〜11:00 | [【ラジオ】ラジオ土曜便（岐阜放送）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-14(土) | 11:00〜12:00 | [【ラジオ】TAKE ON presents 鎌田菜月のTAKE A RIDE（FM AICHI）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 |  | 2026-11-20(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：葉月紗蘭 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
@@ -406,12 +406,12 @@
 | ✅ | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -425,7 +425,7 @@
 |  | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -451,8 +451,8 @@
 | ✅ | 2026-11-07(土) | 20:30〜21:00 | [【ラジオ】IN OUR NIGHT（FM AICHI）](https://x.com/takanenofficial/status/2118697409928999107) |  |
 | ✅ | 2026-11-14(土) | 8:00〜11:00 | [【ラジオ】ラジオ土曜便（岐阜放送）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-14(土) | 11:00〜12:00 | [【ラジオ】TAKE ON presents 鎌田菜月のTAKE A RIDE（FM AICHI）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-21(土) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：東山恵里沙 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
@@ -504,11 +504,11 @@
 | ✅ | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -523,7 +523,7 @@
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -545,7 +545,7 @@
 | ✅ | 2026-10-26(月) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-18/) |  |
 | ✅ | 2026-10-30(金) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 | ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
-|  | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 |  | 2026-11-22(日) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：日向端ひな プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
@@ -595,10 +595,10 @@
 | ✅ | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -614,7 +614,7 @@
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
@@ -683,9 +683,9 @@
 | ✅ | 2026-11-14(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at イオンモール津田沼](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-4/) | イオンモール津田沼South ハチステ ソラ |
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -699,7 +699,7 @@
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -722,7 +722,7 @@
 | ✅ | 2026-11-05(木) | 7:30〜10:00 | [【ラジオ】MORNING SPLASH](https://x.com/takanenofficial/status/2117994023311012070) |  |
 | ✅ | 2026-11-10(火) | 19:00 | [たかねこ初恋キッチン。](https://x.com/takanenofficial/status/2113525838004060622) |  |
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  |
-|  | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 |  | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
@@ -770,10 +770,10 @@
 | ✅ | 2026-11-15(日) | 1部 11:30-12:30 涼海すう / 橋本桃呼 / 東山恵里沙 / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 葉月紗蘭 / 日向端ひな / 松本ももな | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念個別特典イベント](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-5/) | [サンシャインシティ展示ホールD-4 (〒170-0013 東京都豊島区東池袋３丁目１−４ 文化会館ビル 2F)](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1115-2/) |
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) |
-|  | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
+| ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-20(金) | 第1部 17:00～18:00 ／ 第2部 18:20～19:20 | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念オンラインサイン会＆オンラインお話会](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-1120-2/) |  |
@@ -787,7 +787,7 @@
 |  | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL |
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
@@ -800,29 +800,6 @@
 ## 参加メモ
 
 これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。
-
-### 2026-11-18(水) [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/)
-
-- 📍 会場: ららぽーと立川立飛2F イベント広場／〒190-0015 東京都立川市泉町935番地の1
-- 🕙 当日の流れ: 11月18日(水)15:00～CD販売／16:40優先エリア入場開始／17:00ミニライブ開始
-- 🎫 参加方法・当日券: 対象CDを1枚購入で、優先エリア入場券1枚または希望グループの握手会参加券2枚を先着配布。ミニライブは観覧無料／CD販売は2Fイベント広場特設即売ブース
-- 💴 料金: ニューアルバム『A World in Our Colors』たかねこ盤（VICL-66184）：税込3,300円
-- 🎒 持ち物: マスク／参加券／手荷物は原則1人1個、3辺合計115cm（55×40×25cm）未満／指輪・アクセサリー・腕時計は外す（結婚指輪を除く）
-- 📸 ルール: ミニライブ中のコール・ジャンプ、会場内の撮影・録音・録画は禁止。握手は優しく行い、握手中のメンバーと会話／スタッフの声かけまで。参加時はマスク必須
-- ⚠️ 注意: 手荷物検査・金属探知に協力し、拒否時は入場不可。液体・危険物・酒類等の持込、飲酒状態、ペット同伴は禁止／クロークなし。参加券は当日限り有効で再発行不可、紛失・破損・盗難に注意。券は数量限定で配布終了の場合あり。握手会の新規受付締切は開始時に会場アナウンス。販売前の早朝待機・前日泊まり込み・代表待ち・割り込みは禁止
-- ℹ️ その他: 優先エリア入場券は券記載の集合時間に集合。整理番号はランダム配布／優先入場終了後、定員未達時のみ一般観覧可。Aグループ：城月・橋本・葉月・日向端／Bグループ：涼海・東山・松本・籾山
-
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
-
-### 2026-11-18(水) [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/)
-
-- 🕙 当日の流れ: 2026年11月18日（水）発売／対象期間：2026年11月17日（火）～11月24日（火）
-- 🎫 参加方法・当日券: 対象6店舗で期間中に対象商品を購入すると、購入日のメンバーのスペシャルレシートを発行
-- 💴 料金: 初回限定盤：税込4,950円／たかねこ盤：税込3,300円
-- ⚠️ 注意: 11月18日（水）は涼海すうのプリントサイン入りレシート／対象店舗・対象商品購入者限定／レシート発行の詳細は各店舗で確認
-- ℹ️ その他: 対象店舗：タワーレコード渋谷・新宿・浦和・川崎・ららぽーとTOKYO-BAY・ららぽーと立川立飛／パネル展・スペシャルコメントビデオも実施
-
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-11-19(木) [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：橋本桃呼 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/)
 
@@ -898,7 +875,7 @@
 - 📸 ルール: 1:1個別握手会。開始20分までは1回3枚まで、以降は複数枚をまとめて使用／優しい握手のみ、指輪・アクセサリー・腕時計は外す／録音・録画・撮影、握手券の譲渡・転売は禁止
 - ⚠️ 注意: 本人確認書類は顔写真付き1点、または顔写真なし2点。コピー・期限切れ不可／受付時間を過ぎると参加不可／QR・参加券は再発行不可／手荷物検査・金属探知あり、荷物は原則1個、再入場不可／危険物・液体・酒類等は持込不可／マスク必須、発熱等がある場合は入場不可／前日泊まり込み・早朝整列禁止
 - ℹ️ その他: オンライン当日販売は10:30開始。商品は送料無料で後日登録住所へ配送、参加券は当日会場の当日販売窓口でQR提示後に受取／会場限定抽選会は10:30〜18:30、特典がなくなり次第終了。参加券1枚で2回抽選
-- 📣 公式 X の最新情報: 会場限定抽選会の特典は限定チェキまたは写ルンです（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）／抽選会への参加は、11月22日の握手会参加券を持つ本人のみ（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）／会場CD販売は各部・各メンバーの開始30分後まで（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）
+- 📣 公式 X の最新情報: 抽選予約販売は各部開始30分後まで。対象者本人1名のみ入場可（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）／会場CD販売は各部・各メンバー開始30分後に終了（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）／抽選会の賞品は限定チェキまたは写ルンです。各種1枚限定・数量限定（[11/16 の投稿](https://x.com/takanenofficial/status/2122283557330780592)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -972,7 +949,7 @@
 
 ### 2026-12-05(土) [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975)
 
-- 📣 公式 X の最新情報: チケット料金：前方席7,500円、一般2,500円、女性専用エリア1,500円（女性割）（[11/16 の投稿](https://x.com/takanenofficial/status/2122298645781315975)）
+- 📣 公式 X の最新情報: チケット受付は11月17日21:00から先着。前方7,500円、一般2,500円、女性専用エリア1,500円（D代別）（[11/16 の投稿](https://x.com/takanenofficial/status/2122298645781315975)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -1069,15 +1046,15 @@
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  | 涼海すう、籾山ひめり |
 | ✅ | 2026-11-17(火) |  | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-4/) | Spotify O-EAST(Shibuya O-EAST) | グループ（全員） |
 | ✅ | 2026-11-17(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：城月菜央 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  | 城月菜央 |
-|  | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 城月菜央、葉月紗蘭 |
-|  | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 葉月紗蘭、東山恵里沙 |
-|  | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 涼海すう、籾山ひめり |
-|  | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 城月菜央、日向端ひな |
-|  | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 葉月紗蘭、東山恵里沙 |
-|  | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  | グループ（全員） |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 | グループ（全員） |
-|  | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  | 涼海すう |
+| ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 城月菜央、葉月紗蘭 |
+| ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 葉月紗蘭、東山恵里沙 |
+| ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 涼海すう、籾山ひめり |
+| ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 城月菜央、日向端ひな |
+| ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 葉月紗蘭、東山恵里沙 |
+| ✅ | 2026-11-18(水) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『 A World in Our Colors 』2026年11月18日(水)リリース](https://takanenonadeshiko.jp/newalbum-aworldinourcolors/) |  | グループ（全員） |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ららぽーと立川立飛](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-6/) | ららぽーと立川立飛2F イベント広場 | グループ（全員） |
+| ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  | 涼海すう |
 |  | 2026-11-19(木) | 21:00〜23:00 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
 |  | 2026-11-19(木) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：橋本桃呼 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  | 橋本桃呼 |
 |  | 2026-11-20(金) | 15:00〜19:00 | [【ラジオ】music × serendipity（LOVE FM）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
@@ -1099,7 +1076,7 @@
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 東山恵里沙、松本ももな |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE | 東山恵里沙、日向端ひな |
-|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノノ（岐阜放送）](https://x.com/takanenofficial/status/2119399536548299110) |  | メンバー未記載 |
+|  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  | 橋本桃呼、日向端ひな |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST(Shibuya O-WEST) | グループ（全員） |
 |  | 2026-12-05(土) | OPEN 13:00 / START 13:30 | [TP Links vol.1](https://x.com/takanenofficial/status/2122298645781315975) | KANDA SQUARE HALL | グループ（全員） |
