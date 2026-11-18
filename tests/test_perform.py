@@ -107,10 +107,10 @@ class ImageReadTest(unittest.TestCase):
         b = {"perform": [], "notes": [], "events": [
             {"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "HIT STREET"},
             {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダノノ"}]}
+        b["events"].append({"date": "2026-12-01", "start": "18:00", "end": "", "station": "岐阜放送", "title": "別の日"})
         found, _ = self.run_read(a, b)
-        self.assertEqual(found["1"]["events"], [{"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪",
-                                                 "title": "HIT STREET"}])  # 読み違えた「ヒダノノ」は採らない
-        self.assertEqual(found["1"]["unsure"], [["2026-11-30", "18:00", "岐阜放送"]])
+        # 番組名が食い違っても同じイベントと判断できれば採り、後（2 回目）の読み取りを使う。片方にしかない予定は採らない
+        self.assertEqual([e["title"] for e in found["1"]["events"]], ["HIT STREET", "ヒダノノ"])
 
 
     def test_attach_photos(self):
@@ -132,6 +132,17 @@ class ImageReadTest(unittest.TestCase):
 class ImageEventsTest(unittest.TestCase):
     POST = tweet("5", "°˖✿ Release campaign Schedule ✿˖°\nメディア出演スケジュールを更新！🐈‍⬛📻", created="2026-11-16T13:30:00.000Z")
 
+    def test_live_in_media_post_is_not_program(self):
+        """本文に「📻」があっても、会場のある予定はライブ・イベント。局だけで種別が分からない番組は本文で決める。"""
+        image = {"events": [{"date": "2026-11-21", "start": "12:00", "end": "", "station": "", "venue": "ステラタウン大宮",
+                             "title": "ミニライブ"},
+                            {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "venue": "",
+                             "title": "ヒダミノ"}]}
+        with contextlib.redirect_stdout(io.StringIO()):
+            live, radio = fs.image_candidates(self.POST, image)
+        self.assertEqual((live["media"], live["venue"], live["station"]), ("", "ステラタウン大宮", ""))
+        self.assertEqual((radio["media"], radio["station"], radio["venue"]), ("ラジオ", "岐阜放送", ""))
+
     def test_candidates(self):
         image = {"events": [{"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "HIT STREET"},
                             {"date": "2026-10-01", "start": "", "end": "", "station": "", "title": "過去の予定"}]}
@@ -152,18 +163,40 @@ class ImageEventsTest(unittest.TestCase):
         self.assertIn("出演: メンバー未記載", fs.ics_description({**row(), **r}))
 
 
-class UnsureImageEventsTest(unittest.TestCase):
-    """新しい投稿の画像で読み取りが食い違った予定は、古い投稿の画像から読んだ同じ予定も外す（read_x_posts）。"""
+class SameImageEventTest(unittest.TestCase):
+    def ev(self, title, start="18:00", station="岐阜放送", day="2026-11-30"):
+        return {"date": day, "start": start, "end": "", "station": station, "title": title}
 
-    def test_old_misread_is_dropped(self):
+    def test_same_or_different(self):
+        same = fs.same_image_event
+        self.assertTrue(same(self.ev("ヒダミノノ"), self.ev("ヒダミノ")))  # 番組名の読み違い
+        self.assertTrue(same(self.ev("ヒダカノ"), self.ev("全然違う名前")))  # 同じ局・同じ時刻
+        self.assertTrue(same(self.ev("ヒダミノ", station="岐阜放送"), self.ev("ヒダミノ", station="ぎふチャン")))  # 局の書き方の違い
+        self.assertFalse(same(self.ev("ヒダミノ"), self.ev("ヒダミノ", day="2026-12-01")))  # 日付が違う
+        self.assertFalse(same(self.ev("ヒダミノ"), self.ev("ヒダミノ", start="19:00")))  # 開始時刻が違う
+        self.assertFalse(same(self.ev("ドラ魂キング", "16:00", "CBCラジオ"), self.ev("江本一真のゴッジ", "16:00", "広島FM")))
+
+    def test_live_events_use_venue(self):
+        same = fs.same_image_event
+
+        def live(title, venue, start="12:00"):
+            return {"date": "2026-11-21", "start": start, "end": "", "station": "", "venue": venue, "title": title}
+        # 名前が似ていても会場が違えば別（同じ日のリリースイベント）
+        self.assertFalse(same(live("リリースイベント at ららぽーと立川立飛", "ららぽーと立川立飛"),
+                              live("リリースイベント at ステラタウン大宮", "ステラタウン大宮")))
+        self.assertTrue(same(live("ミニライブ&握手会", "ステラタウン大宮 メローペ広場"), live("ミニライブ＆グループ握手会", "ステラタウン大宮")))
+        self.assertTrue(same(live("ミニライブ", "Zepp Haneda"), live("全然違う名前", "Zepp Haneda")))  # 同じ会場・同じ時刻
+        self.assertFalse(same(live("ミニライブ", ""), live("トークショー", "")))  # 会場がなければ名前で判断
+
+
+class LatestImageEventsTest(unittest.TestCase):
+    """同じイベントがほかの投稿の画像にもあれば、新しい投稿の読み取りを使う（read_x_posts）。"""
+
+    def run_posts(self, images):
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         old = tweet("100", "Release campaign Schedule 📻", created="2026-11-08T12:00:00.000Z", photos=["https://example.invalid/a.jpg"])
         new = tweet("200", "Release campaign Schedule 📻", created="2026-11-16T13:30:00.000Z", photos=["https://example.invalid/b.jpg"])
-        hidamino = {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダミノノ"}
-        images = {"100": {"v": fs.X_IMAGE_VERSION, "perform": [], "notes": [], "events": [hidamino]},
-                  "200": {"v": fs.X_IMAGE_VERSION, "perform": [], "notes": [], "events": [],
-                          "unsure": [["2026-11-30", "18:00", "岐阜放送"]]}}
         patches = [mock.patch.object(fs, "X_STATE_PATH", os.path.join(tmp.name, "s.json")),
                    mock.patch.object(fs, "X_TEXTS_PATH", os.path.join(tmp.name, "t.json")),
                    mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")),
@@ -174,12 +207,22 @@ class UnsureImageEventsTest(unittest.TestCase):
             p.start()
             self.addCleanup(p.stop)
         with contextlib.redirect_stdout(io.StringIO()):
-            events = fs.read_x_posts("token", [], [], [], 30)
-        self.assertEqual([e for e in events if e.get("image")], [])
-        del images["200"]["unsure"]  # 新しい画像で食い違いがなければ、古い画像の予定は残る
-        with contextlib.redirect_stdout(io.StringIO()):
-            events = fs.read_x_posts("token", [], [], [], 30)
-        self.assertEqual([e["title"] for e in events if e.get("image")], ["ヒダミノノ"])
+            return [e for e in fs.read_x_posts("token", [], [], [], 30) if e.get("image")]
+
+    def image(self, *events):
+        return {"v": fs.X_IMAGE_VERSION, "perform": [], "notes": [], "events": list(events)}
+
+    def test_newest_read_wins(self):
+        old = {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダミノノ"}
+        new = {**old, "title": "ヒダカノ"}
+        events = self.run_posts({"100": self.image(old), "200": self.image(new)})
+        self.assertEqual([(e["title"], e["post_id"]) for e in events], [("ヒダカノ", "200")])
+
+    def test_different_events_are_kept(self):
+        a = {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダミノ"}
+        b = {"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪", "title": "HIT STREET"}
+        events = self.run_posts({"100": self.image(a), "200": self.image(b)})
+        self.assertEqual(sorted(e["title"] for e in events), ["HIT STREET", "ヒダミノ"])
 
 
 class AddPerformTest(unittest.TestCase):

@@ -12,6 +12,7 @@ import argparse
 import contextlib
 import base64
 import csv
+import difflib
 import hashlib
 import html
 import io
@@ -729,8 +730,24 @@ def apply_x_change(row, notice):
                   f"（告知: {c['before'] or '未定'}→{c['after']}）")
 
 
-def image_event_key(e):
-    return e["date"], e["start"], normalize(e.get("station", ""))
+def similar(a, b, ratio=0.6):
+    """読み違いを含めて同じ名前とみなせるか（片方がもう片方を含むか、文字の一致の割合が ratio 以上）。"""
+    a, b = normalize(a), normalize(b)
+    return bool(a and b) and (a in b or b in a or difflib.SequenceMatcher(None, a, b).ratio() >= ratio)
+
+
+def same_image_event(a, b):
+    """画像から読んだ 2 つの予定が同じイベントか（情報の一致具合で判断する）。日付は必須で、開始時刻・会場が両方にあれば
+    一致（会場は近いこと）も必須。そのうえで番組名・イベント名が近いか、開始時刻と局・会場が一致すれば同じとみなす
+    （同じ局・同じ会場の同じ時刻に別の予定はないため）。"""
+    if a["date"] != b["date"] or a["start"] and b["start"] and a["start"] != b["start"]:
+        return False
+    if a.get("venue") and b.get("venue") and not similar(a["venue"], b["venue"]):
+        return False  # 名前が似ていても会場が違えば別のイベント（同じ日のリリースイベントなど）
+    if similar(a["title"], b["title"]):
+        return True
+    return bool(a["start"] and a["start"] == b["start"]
+                and (similar(a.get("station", ""), b.get("station", "")) or similar(a.get("venue", ""), b.get("venue", ""))))
 
 
 def image_candidates(tweet, image):
@@ -746,8 +763,12 @@ def image_candidates(tweet, image):
         if not posted.date() <= d <= posted.date() + timedelta(days=120):
             print(f"  ! 画像の予定を不採用（日付が範囲外）: {e['date']} {e['title']} {tweet['id']}")
             continue
-        media = x_media(e["title"], f"{e['station']} {text}", "")
-        found.append({**x_common(tweet), "members": GROUP, "names": [], "date": d, "title": e["title"], "venue": "",
+        # 番組かどうかは、その予定の局・番組名・会場で決める（会場があればライブ・イベント）。
+        # 局があるのに種別が分からないとき（「岐阜放送」など）だけ、投稿の本文（「📻」など）で種別を決める
+        venue = e.get("venue", "")
+        media = "" if venue else (x_media(e["title"], f"{e['station']} {e['title']}", "")
+                                  or (x_media(e["title"], text, "") if e["station"] else ""))
+        found.append({**x_common(tweet), "members": GROUP, "names": [], "date": d, "title": e["title"], "venue": venue,
                       "times": {k: v for k, v in (("START", e["start"]), ("END", e["end"])) if v}, "time_note": "",
                       "today": False, "sure": True, "media": media, "station": e["station"] if media else "",
                       "image": True})
@@ -959,20 +980,16 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
                     post_events.append(x_event(c))
                 else:
                     print("    → 公式の予定などにすでにあるため保存しない")
-            # 読み直したときは、この投稿の画像から読んだ予定をまとめて置き換える。ほかの投稿の画像に同じ日・開始時刻・局の予定が
-            # あれば、新しい投稿の方だけ残す（同じ一覧の画像が何度も更新され、古い画像の小さな文字を読み違えていることがあるため）
+            # 読み直したときは、この投稿の画像から読んだ予定をまとめて置き換える。ほかの投稿の画像に同じイベント（same_image_event）が
+            # あれば、新しい投稿の読み取りだけ残す（同じ一覧の画像が何度も更新されるため。後から読み取った情報を最新とする）
             events = [e for e in events if not (e["post_id"] == t["id"] and e.get("image"))]
-            # この投稿の画像で読み取りが食い違った予定は、古い投稿の画像から読んだ同じ予定も外す
-            # （古い画像で 2 回とも同じ読み違いをしていることがあるため。読み取りが不確かなものは載せない）
-            unsure = {tuple(k) for k in images[t["id"]].get("unsure", [])}
-            dropped = [e for e in events if e.get("image") and image_event_key(e) in unsure and e["posted"] < x_posted(t).isoformat(timespec="minutes")]
-            for e in dropped:
-                print(f"  ! 新しい画像で読み取りが食い違うため、古い画像の予定を外す: {e['date']} {e['station']} {e['title']} {e['post_id']}")
-            events = [e for e in events if e not in dropped]
             for pe in post_events:
-                same = [e for e in events if e.get("image") and image_event_key(e) == image_event_key(pe)]
+                same = [e for e in events if e.get("image") and same_image_event(e, pe)]
                 if any(e["posted"] > pe["posted"] for e in same):
                     continue
+                for e in same:
+                    if e["title"] != pe["title"]:
+                        print(f"  画像の予定を新しい投稿の読み取りに置き換え: {e['date']} {e['title']} → {pe['title']}")
                 events = [e for e in events if e not in same] + [pe]
     if not recheck_days and newest and (newest != state.get("since_id") or pending != state.get("pending", {})):
         os.makedirs(os.path.dirname(X_STATE_PATH), exist_ok=True)
@@ -2411,7 +2428,7 @@ X_IMAGE_POST_RE = re.compile(r"タイムテーブル|タイテ|TIME ?TABLE|出�
                              r"Schedule|スケジュール|リリイベ情報|物販|グッズ|会場案内|詳細は画像", re.I)
 X_IMAGE_MAX_POSTS = 10  # 1 回の更新で画像を読む投稿の上限
 X_IMAGE_MAX_PHOTOS = 4
-X_IMAGE_VERSION = 3  # 読み取る項目・保存の形を変えたら上げる（前の版で読んだ画像を読み直す）
+X_IMAGE_VERSION = 4  # 読み取る項目・保存の形・採り方を変えたら上げる（前の版で読んだ画像を読み直す）
 X_IMAGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の告知画像を読む係です。投稿の本文と画像を渡します。
 画像に書かれた文字だけを読み、推測しないでください。顔写真からメンバーを推測しないでください。
 
@@ -2419,7 +2436,8 @@ X_IMAGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなで�
   date は YYYY-MM-DD（年が書かれていなければ投稿日から決める）、start と end は HH:MM。
   単独公演・リリースイベントのミニライブや特典会の時間、ほかのグループの出演時間、物販の時間、イベント全体の開場・開演は入れない。なければ空の配列。
 - events: ラジオ・テレビ・配信・イベントの出演予定を並べたスケジュール一覧に書かれた、高嶺のなでしこの出演予定のうち、本文に書かれていないもの。
-  date は YYYY-MM-DD、start と end は HH:MM（なければ空）、station は放送局や配信元（なければ空）、title は番組名・イベント名（「」は付けない）。
+  date は YYYY-MM-DD、start と end は HH:MM（なければ空）、title は番組名・イベント名（「」は付けない）。
+  station はラジオ・テレビ・配信の番組の放送局や配信元、venue はライブ・イベントの会場（どちらも、なければ空）。
   タイムテーブルのほかのグループの出演、同じイベントの部ごとの時間や特典会、イベントのフライヤーの開催日は入れない。なければ空の配列。
 - notes: 画像にあり本文にない、参加する人に役立つ高嶺のなでしこに関する事実（物販・特典会の時間と場所、当日券、リストバンド交換、料金、注意など）。
   1 項目 80 字程度まで、5 項目まで。ほかのグループだけに関することや、写真の説明は書かない。なければ空の配列。"""
@@ -2427,8 +2445,8 @@ X_IMAGE_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["perform", "events", "notes"],
     "properties": {
         "events": {"type": "array", "items": {
-            "type": "object", "additionalProperties": False, "required": ["date", "start", "end", "station", "title"],
-            "properties": {k: {"type": "string"} for k in ("date", "start", "end", "station", "title")}}},
+            "type": "object", "additionalProperties": False, "required": ["date", "start", "end", "station", "venue", "title"],
+            "properties": {k: {"type": "string"} for k in ("date", "start", "end", "station", "venue", "title")}}},
         "perform": {"type": "array", "items": {
             "type": "object", "additionalProperties": False, "required": ["date", "start", "end"],
             "properties": {"date": {"type": "string"}, "start": {"type": "string"}, "end": {"type": "string"}}}},
@@ -2474,7 +2492,8 @@ def clean_image_events(items):
         if not (re.fullmatch(r"\d{4}-\d{2}-\d{2}", e.get("date", "")) and title):
             continue
         event = {"date": e["date"], "start": "%d:%s" % (int(start[1]), start[2]) if start else "",
-                 "end": "%d:%s" % (int(end[1]), end[2]) if end else "", "station": e.get("station", "").strip(), "title": title}
+                 "end": "%d:%s" % (int(end[1]), end[2]) if end else "", "station": e.get("station", "").strip(),
+                 "venue": e.get("venue", "").strip(), "title": title}
         out[(event["date"], event["start"], normalize(title))] = event
     return out
 
@@ -2499,15 +2518,16 @@ def read_x_images(tweets, texts, provider, key):
         if perform != other:
             print(f"  ! 画像の出演時間が 2 回の読み取りで食い違うため採らない: {t['id']} {sorted(perform)} / {sorted(other)}")
         notes = [re.sub(r"\s+", " ", n).strip() for n in a["notes"][:5] if n.strip()]
-        events_a, events_b = clean_image_events(a.get("events", [])), clean_image_events(b.get("events", []))
-        if set(events_a) != set(events_b):
-            print(f"  ! 画像の予定が 2 回の読み取りで食い違うものは採らない: {t['id']} "
-                  f"{sorted(k[2] for k in set(events_a) ^ set(events_b))}")
-        events = [events_a[k] for k in sorted(set(events_a) & set(events_b))]
-        # 2 回で食い違った予定の日・開始時刻・局（古い投稿の画像から読んだ同じ予定も外すのに使う）
-        unsure = sorted({image_event_key(e) for k, e in {**events_a, **events_b}.items() if k in set(events_a) ^ set(events_b)})
-        found[t["id"]] = {"v": X_IMAGE_VERSION, "perform": sorted(perform & other), "events": events, "notes": notes,
-                          **({"unsure": [list(k) for k in unsure]} if unsure else {})}
+        # 予定は、2 回の読み取りで同じイベント（same_image_event）と判断できたものだけ採り、内容は後（2 回目）の読み取りを使う。
+        # 番組名の小さな文字は読むたびに違うことがあるが、正しいかどうかは決められないので、最後に読み取った情報にする
+        events_a = list(clean_image_events(a.get("events", [])).values())
+        events_b = list(clean_image_events(b.get("events", [])).values())
+        events = [e for e in events_b if any(same_image_event(e, x) for x in events_a)]
+        missing = [e for e in events_a + events_b if not any(same_image_event(e, x) for x in (events_b if e in events_a else events_a))]
+        if missing:
+            print(f"  ! 画像の予定が 2 回の読み取りで食い違う（日付・時刻など）ものは採らない: {t['id']} "
+                  f"{sorted(e['date'] + ' ' + e['title'] for e in missing)}")
+        found[t["id"]] = {"v": X_IMAGE_VERSION, "perform": sorted(perform & other), "events": events, "notes": notes}
         print(f"  画像を読み取り: {t['id']}（出演時間 {len(perform & other)} 件、予定 {len(events)} 件、情報 {len(notes)} 件）")
     return found, tokens
 
