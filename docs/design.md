@@ -303,6 +303,18 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 - 出力: iCalendar のメモ欄（【参加メモ】）、schedule.md の「参加メモ」節、Web 版の折りたたみ「参加メモ」（URL はリンクにする）、schedule.csv の `memo` 列。どれにも「公式の案内を AI が要約したものです。必ず情報元で確認してください。」を付ける。
 - ログ: 実行の最後に、今回メモを作った予定（新規／更新）と、AI 利用料の概算（トークン数 × `MEMO_PRICES`、1 ドル 150 円で換算）を表示する。
 
+### 公式 X の申込・締切（F-10）
+
+| 項目 | 内容 |
+| --- | --- |
+| 読む投稿（`x_deadline_rows`） | `x_texts.json` の投稿（画像の `notes` を含む）のうち、投稿日から `X_DEADLINE_DAYS` 日以内で、`X_DEADLINE_WORDS_RE` と日付（「11/9」「11月9日」）があるもの。新しい投稿から、1 回の更新で `X_DEADLINE_MAX_CALLS` 件まで |
+| AI | `X_DEADLINE_INSTRUCTION`・`X_DEADLINE_SCHEMA` で `{kind, date, time, event, held, detail, note}` を返させる |
+| 確かめ（`x_deadline_reject`） | 日付（月日）と時刻が本文にある、受付開始・当落発表・一般発売が投稿日より前でない、イベント名がある |
+| 保存 | `x_deadlines.json`（リポジトリ）に投稿 ID ごとに `{hash, posted, items}`。`hash` は本文・版・モデルから作り、変わらなければ読み直さない。投稿の記録がない環境では保存済みの `items` だけを使う |
+| 行 | `held` があればイベント名の前に「12/10 」を付け、情報元は投稿の URL |
+| 統合（`merge_x_deadlines`） | `collect_deadlines` の後に足す。種別・日付・時刻が同じで、開催日が同じか `deadline_event` に 6 文字以上の共通部分がある記事の行があれば足さない |
+| 時刻の表記 | `deadline_time_text` の時刻のない締切は、注記の「〜」の後が時刻の言い方（時・分・まで・迄・後・前・中・正午・時刻、20 文字まで）のときだけ使う |
+
 ### 出演時間と告知画像（F-19）
 
 | 項目 | 内容 |

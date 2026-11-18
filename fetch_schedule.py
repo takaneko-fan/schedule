@@ -1596,6 +1596,130 @@ def collect_deadlines(posts, end, today, warnings=None):
     return rows
 
 
+# ---- 公式 X の申込・締切（記事に載らない他団体のイベントのチケット受付、追加販売など） ----
+
+X_DEADLINES_PATH = "x_deadlines.json"  # 投稿ごとの読み取り結果（本文は含めない。投稿の記録がない環境でも使えるようリポジトリに置く）
+X_DEADLINE_VERSION = 1  # 指示文を変えたら上げる（読み直す）
+X_DEADLINE_MAX_CALLS = 20  # 1 回の更新で AI を呼ぶ上限
+X_DEADLINE_DAYS = 120  # 投稿日からこの日数以内の投稿だけ読む
+X_DEADLINE_WORDS_RE = re.compile(r"受付|販売|先行|抽選|締切|締め切り|予約|申し?込")
+X_DEADLINE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿から、申込・締切（チケットや特典会の受付、抽選、先着販売、
+追加販売、グッズの通信販売の期間など）を読み取る係です。投稿に書かれた日時だけを使い、推測しないでください。
+
+- kind は「受付開始」「受付締切」「当落発表」「入金締切」「一般発売」のどれか。期間（「11/9 21:00〜12/9 23:59」）は受付開始と受付締切の 2 つにする。
+  「〜11/23 23:59」のように終わりだけなら受付締切だけ。「抽選販売スタート」など、開始の日時が書かれていないものは入れない。
+- date は YYYY-MM-DD（年が書かれていなければ投稿日から決める）、time は HH:MM（なければ空）。
+- event はイベント名（『』は付けない。グループ名は付けない）、held はイベントの開催日 YYYY-MM-DD（分からなければ空）。
+- detail は受付の区分を短く（「抽選」「先着」「注釈付き指定席」「プラチナ会員先行」「グッズ受注販売」など）。
+- note は投稿の中の日時の書き方をそのまま短く書き写す（例「11/9(月)21:00~12/9(水)23:59」）。
+- 会場での当日販売・物販、イベントの開場・開演、CD や雑誌の発売日、配信中の販売は入れない。なければ空の配列。"""
+X_DEADLINE_SCHEMA = {
+    "type": "object", "additionalProperties": False, "required": ["items"],
+    "properties": {"items": {"type": "array", "items": {
+        "type": "object", "additionalProperties": False,
+        "required": ["kind", "date", "time", "event", "held", "detail", "note"],
+        "properties": {"kind": {"type": "string", "enum": DEADLINE_KINDS},
+                       **{k: {"type": "string"} for k in ("date", "time", "event", "held", "detail", "note")}}}}},
+}
+
+
+def x_deadline_reject(item, text, posted):
+    """AI が読んだ申込・締切を使ってよいか。使えなければ理由を返す。"""
+    try:
+        day = date.fromisoformat(item["date"])
+    except ValueError:
+        return "日付が読めない"
+    flat = re.sub(r"\s+", "", unicodedata.normalize("NFKC", text))
+    if not re.search(rf"(?<!\d){day.month}(?:月|/){day.day}(?!\d)", flat):
+        return "日付が本文にない"
+    if item["time"] and not re.search(rf"(?<!\d)0?{item['time'].replace(':', '[:：]')}", flat):
+        return "時刻が本文にない"
+    if day < posted.date() and item["kind"] not in ("受付締切", "入金締切"):
+        return "投稿日より前"
+    if not item["event"].strip():
+        return "イベント名がない"
+    return ""
+
+
+def x_deadline_rows(today, provider=None, key=None, path=X_DEADLINES_PATH, texts=None):
+    """公式 X の投稿から申込・締切を読む（受付・販売などの言葉と日付がある投稿だけ AI で読む）。
+    結果は投稿ごとに path に保存し、本文が変わらなければ使い回す。投稿の記録がない環境では保存済みの結果だけを使う。"""
+    try:
+        with open(path, encoding="utf-8") as f:
+            saved = json.load(f)
+    except FileNotFoundError:
+        saved = {}
+    texts = load_x_texts() if texts is None else texts
+    if provider is None:
+        provider, key, _ = memo_provider()
+    calls, tokens = 0, [0, 0]
+    if texts is not None:
+        oldest = (today - timedelta(days=X_DEADLINE_DAYS)).isoformat()
+        # 新しい投稿から読む（上限で読み切れないときも、これからの申込に関係する告知を先に入れる）
+        for pid, v in sorted(texts.items(), key=lambda kv: kv[1]["posted"], reverse=True):
+            notes = v.get("image", {}).get("notes", [])
+            text = v["text"] + ("\n［画像から読み取り］\n" + "\n".join(notes) if notes else "")
+            flat = unicodedata.normalize("NFKC", text)
+            if v["posted"][:10] < oldest or not (X_DEADLINE_WORDS_RE.search(flat) and re.search(r"\d{1,2}(?:月|/)\d{1,2}", flat)):
+                continue
+            digest = hashlib.sha1(f"{X_DEADLINE_VERSION}|{MEMO_MODELS.get(provider, '')}|{text}".encode()).hexdigest()
+            if saved.get(pid, {}).get("hash") == digest or not key or calls >= X_DEADLINE_MAX_CALLS:
+                continue
+            posted = datetime.fromisoformat(v["posted"])
+            try:
+                result, usage = x_llm_read(f"投稿日時: {v['posted']}\n本文:\n{text}", provider, key,
+                                           X_DEADLINE_INSTRUCTION, X_DEADLINE_SCHEMA, "x_deadlines")
+            except Exception as e:  # noqa: BLE001 — 次の回に読み直す
+                print(f"  ! 公式 X の申込・締切の読み取り失敗: {pid} ({e})")
+                continue
+            calls += 1
+            tokens = [tokens[0] + usage[0], tokens[1] + usage[1]]
+            items = []
+            for item in result["items"]:
+                item = {k: (item.get(k) or "").strip() for k in ("kind", "date", "time", "event", "held", "detail", "note")}
+                item["time"] = re.sub(r"^0(?=\d:)", "", item["time"])
+                reason = x_deadline_reject(item, text, posted)
+                if reason:
+                    print(f"  ! 公式 X の申込・締切を不採用（{reason}）: {item['date']} {item['kind']} {item['event']} {pid}")
+                    continue
+                items.append(item)
+            saved[pid] = {"hash": digest, "posted": v["posted"], "items": items}
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(saved, f, ensure_ascii=False, indent=1, sort_keys=True)
+            f.write("\n")
+    rows = []
+    for pid, entry in saved.items():
+        for item in entry["items"]:
+            day = date.fromisoformat(item["date"])
+            event = re.sub(r"^高嶺のなでしこ\s*", "", unicodedata.normalize("NFKC", item["event"]).strip("『』「」 "))
+            if re.fullmatch(r"\d{4}-\d{2}-\d{2}", item["held"]):
+                held = date.fromisoformat(item["held"])
+                event = f"{held.month}/{held.day} {event}"
+            rows.append({"date": item["date"], "weekday": "月火水木金土日"[day.weekday()], "time": item["time"],
+                         "kind": item["kind"], "event": event, "detail": item["detail"], "note": item["note"],
+                         "url": f"https://x.com/takanenofficial/status/{pid}"})
+    if calls:
+        print(f"  公式 X の申込・締切: {calls} 件の投稿を AI で読み取り（入力 {tokens[0]:,} / 出力 {tokens[1]:,} トークン）")
+    return rows
+
+
+def merge_x_deadlines(rows, x_rows):
+    """記事の申込・締切に、公式 X の申込・締切を足す。同じ種別・日時で、開催日が同じかイベント名が重なるものは記事を優先する。"""
+    def held(event):
+        m = re.match(r"(\d{1,2}/\d{1,2}) ", event)
+        return m.group(1) if m else ""
+
+    out = list(rows)
+    for x in sorted(x_rows, key=lambda r: r["url"]):
+        same = [r for r in out if r["kind"] == x["kind"] and r["date"] == x["date"] and r["time"] == x["time"]
+                and (held(r["event"]) and held(r["event"]) == held(x["event"])
+                     or shares_phrase(deadline_event(r["event"]), deadline_event(x["event"]), 6))]
+        if not same:
+            out.append(x)
+    out.sort(key=lambda r: (r["date"], time_key(r["time"]), DEADLINE_KINDS.index(r["kind"]), r["event"]))
+    return out
+
+
 def write_deadline_warnings(warnings, path=WARNINGS_PATH):
     """記載ミスの可能性を notify.py --warnings 用に書き出す（毎回置き換える。リポジトリの外に置き、コミットしない）。"""
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -1638,7 +1762,9 @@ def deadline_time_text(row):
     if "締切" not in row["kind"]:
         return ""
     m = re.search(r"[~〜～]\s*([^~〜～]+)$", row["note"])
-    return re.sub(r"^.*?\d{1,2}日\s*[(（][^)）]*[)）]\s*", "", m.group(1)).strip() if m else ""
+    text = re.sub(r"^.*?\d{1,2}日\s*[(（][^)）]*[)）]\s*", "", m.group(1)).strip() if m else ""
+    # 時刻の言い方（「各部開始10分後まで」「11/11中」）だけを使う。「11/30(月)購入の方限定…」のような文は使わない
+    return text if len(text) <= 20 and re.search(r"時|分|まで|迄|後|前|中|正午|\d{1,2}[:：]\d{2}", text) else ""
 
 
 def add_deadline_labels(rows):
@@ -1655,10 +1781,10 @@ def write_deadlines_markdown(rows, path):
     out = [
         "# 高嶺のなでしこ 申込・締切一覧",
         "",
-        f"- 取得元: {BASE_URL}/news/ （お知らせ記事の「受付期間」「抽選結果」などの記載）",
+        f"- 取得元: {BASE_URL}/news/ （お知らせ記事の「受付期間」「抽選結果」などの記載）、公式X @takanenofficial （記事にない受付・販売の告知。AI で読み取り）",
         f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
         "",
-        "お知らせ記事から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・"
+        "お知らせ記事と公式 X の告知から自動で読み取ったものです。読み取りの誤りや記事に書かれていない受付（FC サイト・"
         "プレイガイドのみの告知など）もあるので、申し込む前に必ず情報元の記事・受付ページを確認してください。",
         "",
         "| 済 | 日付 | 時刻 | 内容 | イベント | 記事の記載 |",
@@ -3299,6 +3425,9 @@ def main():
 
     warnings = []
     deadlines = collect_deadlines(posts, args.end, today, warnings)
+    # 公式 X だけで告知される申込・締切（--no-memo のときは AI を呼ばず、保存済みの結果だけ使う）
+    deadlines = merge_x_deadlines(deadlines, [r for r in x_deadline_rows(today, *(("", "") if args.no_memo else ()))
+                                              if r["date"] < args.end.isoformat()])
     write_deadline_warnings(warnings)
     add_deadline_labels(deadlines)
     for r in deadlines:
