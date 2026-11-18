@@ -200,7 +200,7 @@
     <p>ほかのカレンダーアプリでは、この URL を「URL で追加」してください。</p>
     <h3>⏰ 申込・締切カレンダー</h3>
     チケットや特典会の受付開始・受付締切・当落発表・入金締切・一般発売を、スケジュールとは別のカレンダーとして照会できます。
-    お知らせ記事から自動で読み取ったものなので、申し込む前に必ず受付ページをご確認ください（<a href="https://github.com/takaneko-fan/schedule/blob/main/deadlines.md">一覧</a>）。
+    お知らせ記事と公式 X から自動で読み取ったものなので、申し込む前に必ず受付ページをご確認ください（<a href="https://github.com/takaneko-fan/schedule/blob/main/deadlines.md">一覧</a>）。
     <div class="ics-url">
       <a class="button" href="webcal://takaneko-fan.github.io/schedule/deadlines.ics">照会する</a>
       <input readonly value="https://takaneko-fan.github.io/schedule/deadlines.ics" aria-label="申込・締切の iCalendar の URL">
@@ -493,7 +493,7 @@ function deadlinesHTML(r, today) {
   }).join("");
   const open = going.has(r.uid) && next ? " open" : "";
   return `<details class="dl"${open}><summary>申込・締切 ${list.length} 件${next ? `（次: ${esc(next.label || next.kind)} ${Number(next.date.slice(5, 7))}/${Number(next.date.slice(8))}）` : ""}</summary>
-    <ul>${items}</ul><p class="ai">お知らせ記事から自動で読み取り、イベント名と日付で自動的に結び付けています。申し込む前に必ず受付ページを確認してください。</p></details>`;
+    <ul>${items}</ul><p class="ai">お知らせ記事と公式 X から自動で読み取り、イベント名と日付で自動的に結び付けています。申し込む前に必ず受付ページを確認してください。</p></details>`;
 }
 
 // 出演時間。根拠の投稿があればリンクにする（参加メモの「🔗 公式 X」の「出演時間 …」）
