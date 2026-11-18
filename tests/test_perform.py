@@ -110,6 +110,7 @@ class ImageReadTest(unittest.TestCase):
         found, _ = self.run_read(a, b)
         self.assertEqual(found["1"]["events"], [{"date": "2026-11-23", "start": "23:55", "end": "24:00", "station": "FM大阪",
                                                  "title": "HIT STREET"}])  # 読み違えた「ヒダノノ」は採らない
+        self.assertEqual(found["1"]["unsure"], [["2026-11-30", "18:00", "岐阜放送"]])
 
 
     def test_attach_photos(self):
@@ -149,6 +150,36 @@ class ImageEventsTest(unittest.TestCase):
         self.assertEqual(fs.members_label(r), "メンバー未記載")
         self.assertEqual(notify.member_names(r), "メンバー未記載")
         self.assertIn("出演: メンバー未記載", fs.ics_description({**row(), **r}))
+
+
+class UnsureImageEventsTest(unittest.TestCase):
+    """新しい投稿の画像で読み取りが食い違った予定は、古い投稿の画像から読んだ同じ予定も外す（read_x_posts）。"""
+
+    def test_old_misread_is_dropped(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        old = tweet("100", "Release campaign Schedule 📻", created="2026-11-08T12:00:00.000Z", photos=["https://example.invalid/a.jpg"])
+        new = tweet("200", "Release campaign Schedule 📻", created="2026-11-16T13:30:00.000Z", photos=["https://example.invalid/b.jpg"])
+        hidamino = {"date": "2026-11-30", "start": "18:00", "end": "18:25", "station": "岐阜放送", "title": "ヒダミノノ"}
+        images = {"100": {"v": fs.X_IMAGE_VERSION, "perform": [], "notes": [], "events": [hidamino]},
+                  "200": {"v": fs.X_IMAGE_VERSION, "perform": [], "notes": [], "events": [],
+                          "unsure": [["2026-11-30", "18:00", "岐阜放送"]]}}
+        patches = [mock.patch.object(fs, "X_STATE_PATH", os.path.join(tmp.name, "s.json")),
+                   mock.patch.object(fs, "X_TEXTS_PATH", os.path.join(tmp.name, "t.json")),
+                   mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")),
+                   mock.patch.object(fs, "memo_provider", return_value=("openai", "", None)),
+                   mock.patch.object(fs, "fetch_x_posts", return_value=([old, new], "200")),
+                   mock.patch.object(fs, "read_x_images", return_value=(images, [0, 0]))]
+        for p in patches:
+            p.start()
+            self.addCleanup(p.stop)
+        with contextlib.redirect_stdout(io.StringIO()):
+            events = fs.read_x_posts("token", [], [], [], 30)
+        self.assertEqual([e for e in events if e.get("image")], [])
+        del images["200"]["unsure"]  # 新しい画像で食い違いがなければ、古い画像の予定は残る
+        with contextlib.redirect_stdout(io.StringIO()):
+            events = fs.read_x_posts("token", [], [], [], 30)
+        self.assertEqual([e["title"] for e in events if e.get("image")], ["ヒダミノノ"])
 
 
 class AddPerformTest(unittest.TestCase):

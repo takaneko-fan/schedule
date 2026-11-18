@@ -962,6 +962,13 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
             # 読み直したときは、この投稿の画像から読んだ予定をまとめて置き換える。ほかの投稿の画像に同じ日・開始時刻・局の予定が
             # あれば、新しい投稿の方だけ残す（同じ一覧の画像が何度も更新され、古い画像の小さな文字を読み違えていることがあるため）
             events = [e for e in events if not (e["post_id"] == t["id"] and e.get("image"))]
+            # この投稿の画像で読み取りが食い違った予定は、古い投稿の画像から読んだ同じ予定も外す
+            # （古い画像で 2 回とも同じ読み違いをしていることがあるため。読み取りが不確かなものは載せない）
+            unsure = {tuple(k) for k in images[t["id"]].get("unsure", [])}
+            dropped = [e for e in events if e.get("image") and image_event_key(e) in unsure and e["posted"] < x_posted(t).isoformat(timespec="minutes")]
+            for e in dropped:
+                print(f"  ! 新しい画像で読み取りが食い違うため、古い画像の予定を外す: {e['date']} {e['station']} {e['title']} {e['post_id']}")
+            events = [e for e in events if e not in dropped]
             for pe in post_events:
                 same = [e for e in events if e.get("image") and image_event_key(e) == image_event_key(pe)]
                 if any(e["posted"] > pe["posted"] for e in same):
@@ -2404,7 +2411,7 @@ X_IMAGE_POST_RE = re.compile(r"タイムテーブル|タイテ|TIME ?TABLE|出�
                              r"Schedule|スケジュール|リリイベ情報|物販|グッズ|会場案内|詳細は画像", re.I)
 X_IMAGE_MAX_POSTS = 10  # 1 回の更新で画像を読む投稿の上限
 X_IMAGE_MAX_PHOTOS = 4
-X_IMAGE_VERSION = 2  # 読み取る項目を変えたら上げる（前の版で読んだ画像を読み直す）
+X_IMAGE_VERSION = 3  # 読み取る項目・保存の形を変えたら上げる（前の版で読んだ画像を読み直す）
 X_IMAGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の告知画像を読む係です。投稿の本文と画像を渡します。
 画像に書かれた文字だけを読み、推測しないでください。顔写真からメンバーを推測しないでください。
 
@@ -2497,7 +2504,10 @@ def read_x_images(tweets, texts, provider, key):
             print(f"  ! 画像の予定が 2 回の読み取りで食い違うものは採らない: {t['id']} "
                   f"{sorted(k[2] for k in set(events_a) ^ set(events_b))}")
         events = [events_a[k] for k in sorted(set(events_a) & set(events_b))]
-        found[t["id"]] = {"v": X_IMAGE_VERSION, "perform": sorted(perform & other), "events": events, "notes": notes}
+        # 2 回で食い違った予定の日・開始時刻・局（古い投稿の画像から読んだ同じ予定も外すのに使う）
+        unsure = sorted({image_event_key(e) for k, e in {**events_a, **events_b}.items() if k in set(events_a) ^ set(events_b)})
+        found[t["id"]] = {"v": X_IMAGE_VERSION, "perform": sorted(perform & other), "events": events, "notes": notes,
+                          **({"unsure": [list(k) for k in unsure]} if unsure else {})}
         print(f"  画像を読み取り: {t['id']}（出演時間 {len(perform & other)} 件、予定 {len(events)} 件、情報 {len(notes)} 件）")
     return found, tokens
 
