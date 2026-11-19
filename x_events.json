@@ -1,23 +1,5 @@
 [
  {
-  "date": "2026-11-19",
-  "title": "カリメン",
-  "venue": "",
-  "open": "",
-  "start": "21:00",
-  "end": "23:00",
-  "time_note": "",
-  "members": "グループ（全員）",
-  "names": [],
-  "url": "https://x.com/takanenofficial/status/2122321289478382070",
-  "post_id": "2122321289478382070",
-  "posted": "2026-11-16T22:30+09:00",
-  "media": "ラジオ",
-  "ai": false,
-  "station": "RKBラジオ",
-  "image": true
- },
- {
   "date": "2026-11-20",
   "title": "なでしこドリーマーズ！！",
   "venue": "",
@@ -143,6 +125,25 @@
   "ai": false,
   "station": "FM大阪",
   "image": true
+ },
+ {
+  "date": "2026-11-28",
+  "title": "mimilait (ミミレ)",
+  "venue": "北参道-ROADSIDE-",
+  "open": "",
+  "start": "",
+  "end": "",
+  "time_note": "",
+  "members": "松本ももな",
+  "names": [
+   "mimilait (ミミレ)"
+  ],
+  "url": "https://x.com/takanenofficial/status/2123408451808227781",
+  "post_id": "2123408451808227781",
+  "posted": "2026-11-19T22:30+09:00",
+  "media": "",
+  "ai": false,
+  "station": ""
  },
  {
   "date": "2026-11-29",
