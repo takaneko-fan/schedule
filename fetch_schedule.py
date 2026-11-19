@@ -321,7 +321,7 @@ def post_item_to_row(item):
 # ---- 公式 X（@takanenofficial）の告知（公式サイト未掲載の予定の補完） ----
 
 X_API_URL = "https://api.x.com/2"
-X_USER_ID = "1518855666177568769"  # @takanenofficial（メンバー個人のアカウントは対象外）
+X_USER_ID = "1518855666177568769"  # @takanenofficial（メンバー個人のアカウントは対象外。ops/check_x.py にも同じ値がある）
 # 前回読んだ最新の投稿 ID（同じ投稿を読み直して課金されないため）。
 # Actions の checkout で消えないよう、リポジトリの外（実行ユーザーのホーム）に置く
 X_STATE_PATH = os.environ.get("X_STATE_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/x_state.json")
@@ -3384,6 +3384,8 @@ def save_official_snapshot(events_count, rows, posts, eventernote, path=None):
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"taken": datetime.now(JST).isoformat(timespec="minutes"), "events_count": events_count,
                    "rows": rows, "posts": posts, "eventernote": eventernote}, f, ensure_ascii=False)
+    print(f"公式サイトの内容を保存（公式 X だけの更新で使う）: イベント {events_count} 件・お知らせ記事 {len(posts)} 件・"
+          f"Eventernote {len(eventernote)} 件（{os.path.getsize(path) // 1024:,} KB）")
 
 
 def load_official_snapshot(now, path=None):

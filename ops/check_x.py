@@ -17,6 +17,8 @@ import urllib.parse
 import urllib.request
 from datetime import datetime, timedelta, timezone
 
+# VPS でリポジトリなしに動かすので、fetch_schedule.py と同じ値をここにも持つ（食い違えば tests/test_x_check.py が失敗する）。
+# 問い合わせの書き方（リポスト・返信を除くなど）は fetch_x_posts と合わせる
 JST = timezone(timedelta(hours=9))
 X_API_URL = "https://api.x.com/2"
 X_USER_ID = "1518855666177568769"  # @takanenofficial（fetch_schedule.py の X_USER_ID と同じ）

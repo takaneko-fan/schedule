@@ -27,6 +27,15 @@ import fetch_schedule as fs  # noqa: E402
 NOW = datetime.fromisoformat("2026-11-20T21:30:00+09:00")
 
 
+class SameSettingsTest(unittest.TestCase):
+    def test_check_x_uses_same_settings_as_fetch_schedule(self):
+        """check_x.py は VPS でリポジトリなしに動くので値を別に持つ。fetch_schedule.py と食い違わないようにする。"""
+        self.assertEqual(check_x.X_USER_ID, fs.X_USER_ID)
+        self.assertEqual(check_x.X_API_URL, fs.X_API_URL)
+        self.assertEqual(check_x.X_STATE_PATH, fs.X_STATE_PATH)
+        self.assertEqual(check_x.ENV_PATH, fs.CONFIG_ENV_PATH)
+
+
 class ShouldDispatchTest(unittest.TestCase):
     def test_rules(self):
         self.assertFalse(check_x.should_dispatch("", {}, NOW))  # 新しい投稿なし
@@ -97,7 +106,9 @@ class SnapshotTest(unittest.TestCase):
         self.addCleanup(tmp.cleanup)
         path = os.path.join(tmp.name, "snapshot.json")
         self.assertIsNone(fs.load_official_snapshot(NOW, path))
-        fs.save_official_snapshot(20, [{"date": "2026-11-21", "title": "A"}], [{"link": "u"}], [], path)
+        with contextlib.redirect_stdout(io.StringIO()) as out:
+            fs.save_official_snapshot(20, [{"date": "2026-11-21", "title": "A"}], [{"link": "u"}], [], path)
+        self.assertIn("公式サイトの内容を保存（公式 X だけの更新で使う）: イベント 20 件・お知らせ記事 1 件・Eventernote 0 件", out.getvalue())
         snapshot = fs.load_official_snapshot(datetime.now(fs.JST), path)
         self.assertEqual((snapshot["events_count"], snapshot["rows"][0]["title"]), (20, "A"))
         self.assertIsNone(fs.load_official_snapshot(datetime.now(fs.JST) + timedelta(hours=25), path))  # 古ければ使わない
