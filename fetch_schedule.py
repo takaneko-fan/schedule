@@ -327,6 +327,7 @@ X_USER_ID = "1518855666177568769"  # @takanenofficial（メンバー個人のア
 X_STATE_PATH = os.environ.get("X_STATE_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/x_state.json")
 X_FIRST_DAYS = 7                   # 初回（x_state.json がないとき）にさかのぼる日数
 X_MAX_PAGES = 3                    # 1 回の実行で読む上限（100 件 × ページ数、1 件 $0.005）
+X_POST_PRICE = 0.005               # 投稿 1 件を読む料金（ドル。同じ日（UTC）に読んだ投稿は二重に数えられない）
 X_DATE_RE = re.compile(r"(?:(\d{4})[年/.])?(\d{1,2})(?:月\s*|/)(\d{1,2})日?\s*[(（]([^)）]{1,6})[)）]")
 # 日付を書かずに「明日」「このあと」の予定を告知する投稿（タグ・語 → 投稿日からの日数）
 X_RELATIVE_WORDS = {"#あしたのたかねこ": 1, "このあと": 0, "本日": 0}
@@ -625,6 +626,27 @@ def x_event_to_row(e):
             "image": e.get("image", False)}
 
 
+def x_usage_text(data):
+    """X API の利用量（/2/usage/tweets の data）を 1 行にする。"""
+    used = int(data.get("project_usage", 0))
+    daily = data.get("daily_project_usage", {}).get("usage", [])
+    today = int(daily[-1]["usage"]) if daily else 0
+    usd = used * X_POST_PRICE
+    return (f"X API 利用量: 今月 {used:,} 件（約 ${usd:.2f}・約 {usd * USD_JPY:.0f} 円、毎月 {data.get('cap_reset_day', '?')} 日に"
+            f"リセット）／今日（UTC） {today:,} 件")
+
+
+def print_x_usage(token):
+    """X API の今月の利用量を実行ログに出す（想定外の費用に早く気づくため）。取れなくても更新は続ける。"""
+    try:
+        req = urllib.request.Request(f"{X_API_URL}/usage/tweets?days=1&usage.fields=daily_project_usage",
+                                     headers={"Authorization": f"Bearer {token}"})
+        with urllib.request.urlopen(req, timeout=30) as res:
+            print(x_usage_text(json.load(res)["data"]))
+    except Exception as e:  # noqa: BLE001 — 利用量は確認のためだけなので、失敗しても続ける
+        print(f"  ! X API の利用量を取得できません: {e}")
+
+
 def update_x_events(rows, today, recheck_days=None):
     """公式 X の新しい投稿から予定を読み取って x_events.json に足し、保存済みの予定を行データで返す。
     中止・欠席の告知は x_notices.json に足し、保存済みの告知と一緒に (予定の行, 告知, 会場の手がかり) で返す。
@@ -645,6 +667,7 @@ def update_x_events(rows, today, recheck_days=None):
             events = read_x_posts(token, rows, events, notices, recheck_days, hints)
         except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても保存済みの予定で続行
             print(f"  ! X 取得失敗: {e}")
+        print_x_usage(token)
     save_x_events(events, today)
     save_x_events(notices, today, X_NOTICES_PATH)
     return [x_event_to_row(e) for e in events if e["date"] >= today.isoformat()], notices, hints

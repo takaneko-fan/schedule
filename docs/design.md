@@ -119,7 +119,7 @@ Web 版の申込・締切の一覧、たかねこリマインド、`deadlines.md
 | 取得 | X API v2 の `GET /2/users/:id/tweets`（リポスト・返信を除く）。トークンは `.env` か環境変数の `X_BEARER_TOKEN` |
 | 読む範囲 | 前回読んだ最新の投稿より新しいものだけ。初回（記録がないとき）は 7 日前から。1 回 300 件まで |
 | 記録 | 前回読んだ最新の投稿 ID（`since_id`）と、AI 読み取りに失敗した投稿 ID（`pending`）を `~/.local/state/takaneko-fan/x_state.json` に保存（環境変数 `X_STATE_PATH` で変更可）。Actions の checkout で消えないようリポジトリの外に置き、コミットしない。手元と VPS で記録は別々 |
-| 料金 | 従量課金で投稿 1 件 $0.005。同じ投稿を同じ日（UTC）に読み直しても 1 回分 |
+| 料金 | 従量課金で投稿 1 件 $0.005（`X_POST_PRICE`）。同じ投稿を同じ日（UTC）に読み直しても 1 回分。画像の情報（`expansions`）を付けても変わらない。毎回、`print_x_usage` が `/2/usage/tweets` の今月の件数（`project_usage`、毎月 `cap_reset_day` 日にリセット）と今日（UTC）の件数を実行ログに出す（利用量の確認は件数に数えられない）。取れなくても更新は続ける |
 
 読み取りの規則（`extract_x_candidates`）：
 

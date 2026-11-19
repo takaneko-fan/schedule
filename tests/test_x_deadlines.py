@@ -107,5 +107,20 @@ class MergeTest(unittest.TestCase):
         self.assertEqual(fs.deadline_time_text({**row, "note": "11月6日〜各部開始10分後まで"}), "各部開始10分後まで")
 
 
+class XUsageTest(unittest.TestCase):
+    def test_usage_text(self):
+        data = {"cap_reset_day": 28, "project_usage": "461",
+                "daily_project_usage": {"usage": [{"date": "2026-11-18T00:00:00.000Z", "usage": "41"}]}}
+        with mock.patch.object(fs, "USD_JPY", 150):
+            self.assertEqual(fs.x_usage_text(data),
+                             "X API 利用量: 今月 461 件（約 $2.31・約 346 円、毎月 28 日にリセット）／今日（UTC） 41 件")
+
+    def test_failure_does_not_stop(self):
+        out = io.StringIO()
+        with mock.patch("urllib.request.urlopen", side_effect=OSError("timeout")), contextlib.redirect_stdout(out):
+            fs.print_x_usage("token")
+        self.assertIn("X API の利用量を取得できません", out.getvalue())
+
+
 if __name__ == "__main__":
     unittest.main()
