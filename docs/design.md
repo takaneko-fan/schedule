@@ -303,6 +303,15 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 - 出力: iCalendar のメモ欄（【参加メモ】）、schedule.md の「参加メモ」節、Web 版の折りたたみ「参加メモ」（URL はリンクにする）、schedule.csv の `memo` 列。どれにも「公式の案内を AI が要約したものです。必ず情報元で確認してください。」を付ける。
 - ログ: 実行の最後に、今回メモを作った予定（新規／更新）と、AI 利用料の概算（トークン数 × `MEMO_PRICES`、1 ドル 150 円で換算）を表示する。
 
+### 公式 X の確認と「公式 X だけ」の更新（F-17）
+
+| 項目 | 内容 |
+| --- | --- |
+| 確認（`ops/check_x.py`） | VPS のタイマー（10 分ごと）から動く。`x_state.json` の `since_id` があれば、`/2/users/:id/tweets?since_id=…&max_results=5` の `meta.newest_id` を見る。新しい投稿があり、`should_dispatch`（前回起動した投稿と違うか、同じでも `REDISPATCH_AFTER`（30 分）たった）なら `dispatch_update.sh --x-only` を実行し、`x_check.json` に起動した投稿と時刻を残す。X API のエラーは何もせず終わる。トークンは環境変数か `~/.config/takaneko-fan/.env` |
+| 起動（`dispatch_update.sh --x-only`） | `update.yml` を入力 `mode: x` で起動する。実行の名前は「公式 X の確認」（`run-name`）。`concurrency` は種類ごとのグループ（`update-full`・`update-x`）にし、待っている全体の更新が公式 X の確認に置き換えられないようにする（ランナーは 1 台なので順に動く） |
+| 公式サイトの内容の保存（`save_official_snapshot`） | 全体の更新の最後（安全策を通った後）に、統合前のカレンダーの行（`build_rows` の結果）・お知らせ記事・Eventernote の行と、カレンダーの件数を `OFFICIAL_SNAPSHOT_PATH`（VPS の `official_snapshot.json`）に保存する。`--no-detail` のときは保存しない |
+| 「公式 X だけ」の更新（`--x-only`） | `load_official_snapshot` が保存した内容を読み（なければ、または `OFFICIAL_SNAPSHOT_MAX_AGE`（24 時間）より古ければ何もせず終わる）、今日以降の行に絞って、全体の更新と同じ処理（記事の予定の統合、公式 X、Eventernote、参加メモ、申込・締切、出力）を通す。公式サイトと Eventernote にはアクセスしない。保存した内容で全体の更新と同じ出力になることを試した（2026-11-20） |
+
 ### 公式 X の申込・締切（F-10）
 
 | 項目 | 内容 |

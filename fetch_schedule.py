@@ -3371,6 +3371,33 @@ def print_changes(prev_rows, rows, memo_created):
         print(f"  ✎ {row_label(r)}（{kind}）")
 
 
+# 全体の更新で取った公式サイトの内容（カレンダーの予定とイベントページ、お知らせ記事、Eventernote）。
+# 「公式 X だけ」の更新（--x-only）は公式サイトにアクセスせず、これを使って全体の更新と同じ処理を通す。記事の本文を含むので公開しない
+OFFICIAL_SNAPSHOT_PATH = (os.environ.get("OFFICIAL_SNAPSHOT_PATH")
+                          or os.path.expanduser("~/.local/state/takaneko-fan/official_snapshot.json"))
+OFFICIAL_SNAPSHOT_MAX_AGE = timedelta(hours=24)  # これより古い内容では「公式 X だけ」の更新をしない
+
+
+def save_official_snapshot(events_count, rows, posts, eventernote, path=None):
+    path = path or OFFICIAL_SNAPSHOT_PATH
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump({"taken": datetime.now(JST).isoformat(timespec="minutes"), "events_count": events_count,
+                   "rows": rows, "posts": posts, "eventernote": eventernote}, f, ensure_ascii=False)
+
+
+def load_official_snapshot(now, path=None):
+    """保存した公式サイトの内容。なければ、または OFFICIAL_SNAPSHOT_MAX_AGE より古ければ None。"""
+    try:
+        with open(path or OFFICIAL_SNAPSHOT_PATH, encoding="utf-8") as f:
+            snapshot = json.load(f)
+    except FileNotFoundError:
+        return None
+    if now - datetime.fromisoformat(snapshot["taken"]) > OFFICIAL_SNAPSHOT_MAX_AGE:
+        return None
+    return snapshot
+
+
 def main():
     today = datetime.now(JST).date()
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -3388,19 +3415,33 @@ def main():
     parser.add_argument("--force", action="store_true",
                         help="予定が大きく減っていても出力する（安全策のチェックを飛ばす）")
     parser.add_argument("--no-memo", action="store_true", help="参加メモを作らない（前回のメモも付けない）")
+    parser.add_argument("--x-only", action="store_true",
+                        help="公式サイトにアクセスせず、前回の全体の更新で取った内容と公式 X の新しい投稿で更新する")
     parser.add_argument("--x-recheck", type=int, metavar="DAYS",
                         help="公式 X を DAYS 日前から読み直す（読み取った予定は保存する。前回の続きの記録は変えない）")
     args = parser.parse_args()
     load_env()
 
-    # API は開始日当日のイベントを含めないため 1 日前から取得して絞り込む
-    events = [ev for ev in fetch_events(args.start - timedelta(days=1), args.end)
-              if args.start.isoformat() <= ev["start"][:10] < args.end.isoformat()]
-    print(f"{len(events)} 件のイベントを取得")
-    rows = build_rows(events, with_detail=not args.no_detail)
-
-    posts = fetch_posts(args.start - timedelta(days=args.post_days))
-    print(f"{len(posts)} 件のお知らせ記事を確認")
+    snapshot = None
+    if args.x_only:
+        snapshot = load_official_snapshot(datetime.now(JST))
+        if snapshot is None:
+            print("公式 X だけの更新: 前回の全体の更新で取った公式サイトの内容がない（または古い）ため、何もしません")
+            return
+        print(f"公式 X だけの更新: 公式サイトは {snapshot['taken']} に取った内容を使う")
+        events_count = snapshot["events_count"]
+        rows = [r for r in snapshot["rows"] if args.start.isoformat() <= r["date"] < args.end.isoformat()]
+        posts = snapshot["posts"]
+    else:
+        # API は開始日当日のイベントを含めないため 1 日前から取得して絞り込む
+        events = [ev for ev in fetch_events(args.start - timedelta(days=1), args.end)
+                  if args.start.isoformat() <= ev["start"][:10] < args.end.isoformat()]
+        events_count = len(events)
+        print(f"{events_count} 件のイベントを取得")
+        rows = build_rows(events, with_detail=not args.no_detail)
+        posts = fetch_posts(args.start - timedelta(days=args.post_days))
+        print(f"{len(posts)} 件のお知らせ記事を確認")
+    calendar_rows = json.loads(json.dumps(rows, ensure_ascii=False))  # 保存用（統合で書き換わる前の写し）
     post_rows = [post_item_to_row(it) for p in posts for it in extract_post_items(p)
                  if args.start <= it["date"] < args.end]
     post_rows += post_llm_rows(posts, args.start, args.end)  # ルールで読めない記事（ラジオ出演の一覧など）
@@ -3412,16 +3453,22 @@ def main():
     x_rows, x_notices, x_hints = update_x_events(rows, today, args.x_recheck)
     x_rows = [r for r in x_rows if args.start.isoformat() <= r["date"] < args.end.isoformat()]
     rows = merge_post_rows(rows, sorted(x_rows, key=lambda r: (r["date"], int(r["url"].rsplit("/", 1)[1]))))
-    try:
-        rows = merge_post_rows(rows, fetch_eventernote_rows(args.start, args.end))
-    except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
-        print(f"  ! Eventernote 取得失敗: {e}")
+    eventernote = None
+    if snapshot is not None:
+        eventernote = [r for r in snapshot["eventernote"] if args.start.isoformat() <= r["date"] < args.end.isoformat()]
+    else:
+        try:
+            eventernote = fetch_eventernote_rows(args.start, args.end)
+        except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
+            print(f"  ! Eventernote 取得失敗: {e}")
+    if eventernote is not None:
+        rows = merge_post_rows(rows, eventernote)
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     apply_x_notices(rows, x_notices)
     write_deadline_warnings(find_missed_venues(rows, posts, x_hints, today), MISSED_PATH)
     prev = load_prev_rows(args.csv)
-    problem = None if args.force else check_drop(prev, rows, args.start, args.end, len(events))
+    problem = None if args.force else check_drop(prev, rows, args.start, args.end, events_count)
     if problem:
         raise SystemExit(f"中止: {problem}\n"
                          "ファイルは書き換えていません。取得に問題がなければ --force を付けて実行してください。")
@@ -3461,6 +3508,9 @@ def main():
     ics_note = "" if write_deadlines_ics(deadlines, f"{base}.ics") else "（変更なし・書き直さず）"
     print(f"{len(deadlines)} 件の申込・締切 → 出力: {base}.md, {base}.csv, {base}.ics{ics_note}")
     print_changes(prev, rows, memo_created)
+    if snapshot is None and not args.no_detail:
+        # 「公式 X だけ」の更新で使う。安全策（check_drop）を通った内容だけを保存する
+        save_official_snapshot(events_count, calendar_rows, posts, eventernote or [])
 
 
 if __name__ == "__main__":

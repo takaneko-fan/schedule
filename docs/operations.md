@@ -89,6 +89,8 @@
 | `x_state.json` | 公式 X をどこまで読んだか |
 | `x_texts.json` | 公式 X の投稿の本文と、告知画像から読み取った出演時間・情報（参加メモの「📣 公式 X の最新情報」と出演時間の材料） |
 | `official_texts.json` | 公式の記事・イベントページの本文の版（公式と公式 X のどちらが後に出たかを決める） |
+| `official_snapshot.json` | 直前の全体の更新で取った公式サイトの内容（「公式 X だけ」の更新で使う。毎回置き換える） |
+| `x_check.json` | 公式 X の確認（`check_x.py`）が最後に起動した投稿と時刻 |
 | `x_links.json` | 候補の予定が 2 件以上ある公式 X の投稿が、どの予定についてかの AI の判断（投稿の一部を含む） |
 | `ai_compare.jsonl` | ルールと AI の読み取りの比べ合わせ（下の「AI の読み取りの評価」） |
 
@@ -157,6 +159,34 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 | タイマー | `ops/takaneko-dispatch.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*-*-* 00,09,12,16,18,20,21,22:17:00 Asia/Tokyo`、`Persistent=true`（止まっていて逃した回は起動後に 1 回実行） |
 
 確認は `systemctl list-timers takaneko-dispatch.timer`（次回の時刻）、`journalctl -u takaneko-dispatch.service`（起動の結果）。鍵を作り直したときは App の Credentials → Key pairs で新しい鍵を作り、VPS の `app.pem` を置き換えてから古い鍵を削除する。VPS が止まっている間は更新されない（再開後に逃した回を 1 回実行する）。
+
+### 公式 X の確認（10 分ごと）
+
+公式 X の告知（当日の中止・変更、先着販売の開始、売り切れなど）を早く反映するため、VPS で 10 分ごとに公式 X の新しい投稿を確かめ、あったときだけ「公式 X だけ」の更新を起動する。新しい投稿がなければ GitHub Actions は動かない。
+
+| 項目 | 内容 |
+| --- | --- |
+| スクリプト | `ops/check_x.py` → VPS の `/home/runner/bin/check_x.py`（`dispatch_update.sh` と同じフォルダに置く）。前回の更新で読んだ投稿（`~/.local/state/takaneko-fan/x_state.json`）より新しい投稿があれば `dispatch_update.sh --x-only` を実行する。同じ投稿では 30 分たつまで起動し直さない（`x_check.json`）。X API のエラー（回数の上限など）のときは何もせず、次の回に任せる |
+| トークン | `/home/runner/.config/takaneko-fan/.env` の `X_BEARER_TOKEN`（`runner` だけが読める 600）。更新の実行は GitHub の Secrets のトークンを使う（この `.env` は Secrets の値を上書きしない） |
+| タイマー | `ops/takaneko-xcheck.timer` / `.service` → `/etc/systemd/system/`。`OnCalendar=*:0/10`、`RandomizedDelaySec=60` |
+| 「公式 X だけ」の更新 | GitHub Actions の実行の一覧では「公式 X の確認」と表示される。`run_update.sh --x-only`（`fetch_schedule.py --x-only`）で、公式サイトにはアクセスせず、直前の全体の更新で保存した公式サイトの内容（`official_snapshot.json`）と公式 X の新しい投稿で、全体の更新と同じ処理をする。保存した内容がない、または 24 時間より古いときは何もしない |
+| 費用 | 新しい投稿の分だけ（今までと同じ）。確認で読んだ投稿をその後の更新でも読むが、同じ日（UTC）なら二重に数えられない。問い合わせは 1 日 144 回で、上限（15 分あたり 10,000 回）の 0.02% 未満 |
+
+**入れ方（VPS で 1 回だけ）:**
+
+```sh
+# トークン（値は画面に出さない。エディタで書く）
+sudo -u runner sh -c 'umask 077; touch /home/runner/.config/takaneko-fan/.env'
+sudo -u runner nano /home/runner/.config/takaneko-fan/.env     # X_BEARER_TOKEN=… を書く
+# スクリプトとタイマー（リポジトリの最新の main から）
+sudo install -o runner -g runner -m 755 ops/check_x.py ops/dispatch_update.sh /home/runner/bin/
+sudo cp ops/takaneko-xcheck.service ops/takaneko-xcheck.timer /etc/systemd/system/
+sudo systemctl daemon-reload && sudo systemctl enable --now takaneko-xcheck.timer
+# 確かめる（起動はしない）
+sudo -u runner python3 /home/runner/bin/check_x.py --dry-run
+```
+
+確認は `systemctl list-timers takaneko-xcheck.timer`、`journalctl -u takaneko-xcheck.service`。止まっても、1 日 8 回の全体の更新で公式 X は読まれる（反映が遅れるだけ）。`dispatch_update.sh` を直したときは、VPS の `/home/runner/bin/` にも入れ直す。
 
 ### 手元からの push
 

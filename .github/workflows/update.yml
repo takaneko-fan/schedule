@@ -2,6 +2,8 @@
 # 公式サイトは国外からの REST API・管理画面へのアクセスを受け付けないため、
 # GitHub のサーバーではなく ConoHa VPS（大阪）のセルフホストランナーで動かす。
 name: 予定の更新
+# 公式 X だけの更新は、実行の一覧で区別できるよう名前を変える
+run-name: ${{ inputs.mode == 'x' && '公式 X の確認' || '予定の更新' }}
 
 on:
   # VPS の systemd タイマーが日本時間 0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17 に GitHub App の名義で起動する（ops/dispatch_update.sh）。
@@ -10,6 +12,10 @@ on:
   # 公式 X をさかのぼって読み直すときは、起動時に日数を渡す（ops/dispatch_update.sh 日数。読んだ件数分の料金がかかる）
   workflow_dispatch:
     inputs:
+      mode:
+        description: 更新の種類（full は全体、x は公式 X だけ。x は ops/check_x.py が新しい投稿を見つけたときに使う）
+        required: false
+        default: full
       x_recheck:
         description: 公式 X を読み直す日数（空なら前回の続きから読む）
         required: false
@@ -18,9 +24,10 @@ on:
 permissions:
   contents: write
 
-# 起動が重なっても、push がぶつからないよう 1 つずつ動かす
+# 起動が重なっても、push がぶつからないよう 1 つずつ動かす（ランナーは 1 台なので、種類が違っても順に動く）。
+# 待っている実行は同じグループの新しい起動に置き換えられるので、全体の更新が公式 X の確認に置き換えられないよう、種類ごとにグループを分ける
 concurrency:
-  group: update
+  group: update-${{ inputs.mode || 'full' }}
   cancel-in-progress: false
 
 jobs:
@@ -47,8 +54,11 @@ jobs:
           # 未登録なら今日の申込のリマインドを送らない
           NTFY_REMIND_TOPIC: ${{ secrets.NTFY_REMIND_TOPIC }}
           X_RECHECK: ${{ inputs.x_recheck }}
+          MODE: ${{ inputs.mode }}
         run: |
-          if [ -n "$X_RECHECK" ]; then
+          if [ "$MODE" = x ]; then
+            ./run_update.sh --x-only
+          elif [ -n "$X_RECHECK" ]; then
             [[ "$X_RECHECK" =~ ^[1-9][0-9]?$ ]] || { echo "読み直す日数は 1〜99 で指定してください: $X_RECHECK"; exit 1; }
             ./run_update.sh --x-recheck "$X_RECHECK"
           else

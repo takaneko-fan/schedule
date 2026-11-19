@@ -1,0 +1,107 @@
+"""公式 X の確認（ops/check_x.py）と、公式サイトの内容の保存（「公式 X だけ」の更新）のテスト。
+
+X API・GitHub への起動・公式サイトには接続しない。
+実行: python3 -m unittest discover -s tests
+"""
+
+import contextlib
+import io
+import json
+import os
+import sys
+import tempfile
+import unittest
+from datetime import datetime, timedelta
+from unittest import mock
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.dirname(__file__))
+
+import no_network  # noqa: E402,F401 — テストから外部に通信しない
+
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", "ops"))
+
+import check_x  # noqa: E402
+import fetch_schedule as fs  # noqa: E402
+
+NOW = datetime.fromisoformat("2026-11-20T21:30:00+09:00")
+
+
+class ShouldDispatchTest(unittest.TestCase):
+    def test_rules(self):
+        self.assertFalse(check_x.should_dispatch("", {}, NOW))  # 新しい投稿なし
+        self.assertTrue(check_x.should_dispatch("200", {}, NOW))
+        self.assertTrue(check_x.should_dispatch("201", {"dispatched": "200", "at": "2026-11-20T21:25:00+09:00"}, NOW))
+        # 同じ投稿で起動済みなら、30 分たつまでは起動し直さない（起動した更新の読み込み待ち）
+        self.assertFalse(check_x.should_dispatch("200", {"dispatched": "200", "at": "2026-11-20T21:10:00+09:00"}, NOW))
+        self.assertTrue(check_x.should_dispatch("200", {"dispatched": "200", "at": "2026-11-20T20:55:00+09:00"}, NOW))
+
+
+class MainTest(unittest.TestCase):
+    def setUp(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.state = os.path.join(tmp.name, "x_state.json")
+        self.check = os.path.join(tmp.name, "x_check.json")
+        with open(self.state, "w", encoding="utf-8") as f:
+            json.dump({"since_id": "100"}, f)
+        for p in (mock.patch.object(check_x, "X_STATE_PATH", self.state), mock.patch.object(check_x, "CHECK_STATE_PATH", self.check),
+                  mock.patch.object(check_x, "load_token", return_value="token")):
+            p.start()
+            self.addCleanup(p.stop)
+
+    def run_main(self, newest=None, error=None):
+        with mock.patch.object(check_x, "newest_post_id", return_value=newest, side_effect=error) as read, \
+                mock.patch.object(check_x.subprocess, "run") as run, contextlib.redirect_stdout(io.StringIO()) as out:
+            code = check_x.main([], NOW)
+        return code, read, run, out.getvalue()
+
+    def test_dispatch_once_for_new_post(self):
+        code, read, run, _ = self.run_main("200")
+        self.assertEqual((code, read.call_args[0][1], run.call_count), (0, "100", 1))
+        self.assertEqual(run.call_args[0][0][1:], ["--x-only"])
+        code, _, run, out = self.run_main("200")  # 次の回（10 分後）はまだ読み込み待ち
+        self.assertEqual((code, run.call_count), (0, 0))
+        self.assertIn("起動済み", out)
+
+    def test_no_new_post(self):
+        code, _, run, out = self.run_main("")
+        self.assertEqual((code, run.call_count), (0, 0))
+        self.assertIn("新しい投稿なし", out)
+
+    def test_api_error_waits_for_next(self):
+        code, _, run, out = self.run_main(error=OSError("HTTP Error 429: Too Many Requests"))
+        self.assertEqual((code, run.call_count), (0, 0))
+        self.assertIn("確かめられませんでした", out)
+
+    def test_no_state_yet(self):
+        os.remove(self.state)
+        code, read, run, _ = self.run_main("200")
+        self.assertEqual((code, read.call_count, run.call_count), (0, 0, 0))
+
+
+class LoadTokenTest(unittest.TestCase):
+    def test_reads_env_file(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, ".env")
+        with open(path, "w", encoding="utf-8") as f:
+            f.write("OPENAI_API_KEY=x\nX_BEARER_TOKEN=\"abc\"\n")
+        with mock.patch.dict(os.environ, {"X_BEARER_TOKEN": ""}):
+            self.assertEqual(check_x.load_token(path), "abc")
+
+
+class SnapshotTest(unittest.TestCase):
+    def test_save_and_load_with_age(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, "snapshot.json")
+        self.assertIsNone(fs.load_official_snapshot(NOW, path))
+        fs.save_official_snapshot(20, [{"date": "2026-11-21", "title": "A"}], [{"link": "u"}], [], path)
+        snapshot = fs.load_official_snapshot(datetime.now(fs.JST), path)
+        self.assertEqual((snapshot["events_count"], snapshot["rows"][0]["title"]), (20, "A"))
+        self.assertIsNone(fs.load_official_snapshot(datetime.now(fs.JST) + timedelta(hours=25), path))  # 古ければ使わない
+
+
+if __name__ == "__main__":
+    unittest.main()
