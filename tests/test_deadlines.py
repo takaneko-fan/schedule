@@ -12,6 +12,9 @@ import unittest
 from datetime import date
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.dirname(__file__))
+
+import no_network  # noqa: E402,F401 — テストから外部に通信しない
 
 import fetch_schedule as fs  # noqa: E402
 

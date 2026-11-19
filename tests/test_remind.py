@@ -15,6 +15,9 @@ import unittest
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.dirname(__file__))
+
+import no_network  # noqa: E402,F401 — テストから外部に通信しない
 
 import remind  # noqa: E402
 

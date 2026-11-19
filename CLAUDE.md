@@ -11,7 +11,7 @@
 - 作業を始めるときは [保留中の作業](docs/backlog.md) を確認する。保留にした作業はそこに足し、終わった項目は消す（経緯は検証記録に残す）。
 - 長く使うブランチは `main` だけ。`develop` などは作らない。予定データの自動の更新（1 日 8 回）が `main` に直接コミットする。
 - プログラム・文書の変更は、`main` を最新にしてから作業ごとの `feature/…` を作って行い、`main` に `--no-ff` でマージする（`chore: <ブランチ名> をマージ`）。マージした `feature/…` は手元で消す。
-- 変更にはテスト（`tests/`、`python3 -m unittest discover -s tests`）を足し、実データでの通しの実行や過去のデータでの試算で確かめる。通知などの外部への送信は `--dry-run` で確かめる。
+- 変更にはテスト（`tests/`、`python3 -m unittest discover -s tests`）を足し（テストは外部に通信しない。新しいテストファイルも最初に `tests/no_network.py` を import する）、実データでの通しの実行や過去のデータでの試算で確かめる。通知などの外部への送信は `--dry-run` で確かめる。
 - 機能・処理の流れを変えたら、[機能仕様書](docs/spec.md)・[設計](docs/design.md)・[運用](docs/operations.md)・[検証記録](docs/notes.md) と [処理の流れの図](docs/flow.html) も直す。
 - コミット・マージ・push は、ユーザーが指示したときだけ行う。コミットは `/commit`（`.claude/skills/commit/SKILL.md`）の手順に従う。
 - push は必ず `ops/push_as_app.sh`（GitHub App の名義）で行い、`git push` は使わない。個人のアカウント名を公開の記録に残さないため。push の前にテストが自動で実行される。
