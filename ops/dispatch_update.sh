@@ -4,12 +4,18 @@
 # 起動は GitHub App（takaneko-fan-updater）の名義で行い、個人のアカウントを使わない。
 #
 # 使い方: ops/dispatch_update.sh [公式 X を読み直す日数]（日数を渡すと、その日数分をさかのぼって読み直す。料金がかかる）
+#         ops/dispatch_update.sh --x-only（公式 X だけの更新。ops/check_x.py が新しい投稿を見つけたときに使う）
 #
 # 必要なもの: curl, openssl, python3
 # 鍵: GitHub App の秘密鍵（.pem）。既定は ~/.config/takaneko-fan/app.pem（本人だけが読める権限にする）
 set -euo pipefail
 
 RECHECK="${1:-}"
+MODE=full
+if [ "$RECHECK" = "--x-only" ]; then
+    MODE=x
+    RECHECK=""
+fi
 if [ -n "$RECHECK" ] && ! [[ "$RECHECK" =~ ^[1-9][0-9]?$ ]]; then
     echo "読み直す日数は 1〜99 で指定してください: $RECHECK" >&2
     exit 1
@@ -41,7 +47,10 @@ installation=$(api GET "/repos/$REPO/installation" "$jwt" | json id)
 token=$(api POST "/app/installations/$installation/access_tokens" "$jwt" | json token)
 
 # 3. ワークフローを起動する（成功すると 204 で本文なし）
-if [ -n "$RECHECK" ]; then
+if [ "$MODE" = x ]; then
+    api POST "/repos/$REPO/actions/workflows/$WORKFLOW/dispatches" "$token" '{"ref":"main","inputs":{"mode":"x"}}'
+    echo "公式 X だけの更新を起動しました: $(TZ=Asia/Tokyo date '+%F %T')"
+elif [ -n "$RECHECK" ]; then
     api POST "/repos/$REPO/actions/workflows/$WORKFLOW/dispatches" "$token" \
         "{\"ref\":\"main\",\"inputs\":{\"x_recheck\":\"$RECHECK\"}}"
     echo "予定の更新を起動しました（公式 X を $RECHECK 日分読み直す）: $(TZ=Asia/Tokyo date '+%F %T')"

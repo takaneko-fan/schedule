@@ -1,0 +1,11 @@
+# 10 分ごとに公式 X の新しい投稿を確かめる（新しい投稿がなければ何もしない）
+[Unit]
+Description=takaneko-fan/schedule: 公式 X の新しい投稿を 10 分ごとに確認
+
+[Timer]
+OnCalendar=*:0/10
+# 全体の更新（毎時 17 分）と同時に起動しないよう、少しずらす
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target

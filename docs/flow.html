@@ -149,7 +149,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
   </header>
 
   <section aria-labelledby="s1">
-    <h2 id="s1"><span class="stage">STAGE 1</span>起動（1 日 8 回）</h2>
+    <h2 id="s1"><span class="stage">STAGE 1</span>起動（1 日 8 回＋公式 X の新しい投稿があったとき）</h2>
     <div class="chain">
       <div class="node"><b>VPS のタイマー</b><small class="mono">0:17 / 9:17 / 12:17 / 16:17 / 18:17 / 20:17 / 21:17 / 22:17</small></div>
       <span class="arrow" aria-hidden="true">→</span>
@@ -158,6 +158,13 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <div class="node"><b>VPS のランナーで実行</b><small><code>run_update.sh</code>（公式サイトは国外からのアクセスを受け付けないため国内の VPS で動かす）</small></div>
       <span class="arrow" aria-hidden="true">→</span>
       <div class="node"><b>停止の検知</b><small>healthchecks.io に成功・失敗を連絡。連絡が途絶えると知らせが届く</small></div>
+    </div>
+    <div class="chain">
+      <div class="node"><b>VPS のタイマー（10 分ごと）</b><small><code>check_x.py</code> が公式 X に新しい投稿があるかだけを確かめる。なければ何もしない</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>「公式 X の確認」を起動</b><small>新しい投稿があったときだけ。GitHub App の名義</small></div>
+      <span class="arrow" aria-hidden="true">→</span>
+      <div class="node"><b>公式 X だけの更新</b><small><code>run_update.sh --x-only</code>。公式サイトにはアクセスせず、直前の全体の更新で保存した内容を使い、以下の処理を同じように通す</small></div>
     </div>
   </section>
 
@@ -331,7 +338,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
   </section>
 
   <footer>
-    <span>2026-11-18 時点の takaneko-fan/schedule の <code>main</code> のコードから整理。リポジトリの <code>docs/flow.html</code> と同じ内容です。</span>
+    <span>2026-11-20 時点の takaneko-fan/schedule の <code>main</code> のコードから整理。リポジトリの <code>docs/flow.html</code> と同じ内容です。</span>
     <span>非公式のファンメイドのツールです。予定は必ず公式サイト・公式 X で確認してください。</span>
   </footer>
 </div>

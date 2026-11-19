@@ -1,0 +1,10 @@
+# 公式 X に新しい投稿があるかを確かめ、あれば「公式 X だけ」の更新を起動する（takaneko-xcheck.timer から実行）
+[Unit]
+Description=takaneko-fan/schedule: 公式 X の新しい投稿を確認
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=runner
+ExecStart=/usr/bin/python3 /home/runner/bin/check_x.py
