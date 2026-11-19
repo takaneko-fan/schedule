@@ -16,6 +16,9 @@ from datetime import date
 from unittest import mock
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
+sys.path.insert(0, os.path.dirname(__file__))
+
+import no_network  # noqa: E402,F401 — テストから外部に通信しない
 
 import fetch_schedule as fs  # noqa: E402
 import notify  # noqa: E402
@@ -163,6 +166,17 @@ class ImageEventsTest(unittest.TestCase):
         self.assertIn("出演: メンバー未記載", fs.ics_description({**row(), **r}))
 
 
+class NoNetworkTest(unittest.TestCase):
+    def test_network_is_blocked_in_tests(self):
+        """テストから外部に接続しようとすると失敗する（no_network）。"""
+        import socket
+        import no_network
+        before = len(no_network.ATTEMPTS)
+        with self.assertRaises(OSError):
+            socket.create_connection(("example.invalid", 443))
+        del no_network.ATTEMPTS[before:]  # このテスト自体は失敗にしない
+
+
 class SameImageEventTest(unittest.TestCase):
     def ev(self, title, start="18:00", station="岐阜放送", day="2026-11-30"):
         return {"date": day, "start": start, "end": "", "station": station, "title": title}
@@ -200,7 +214,7 @@ class LatestImageEventsTest(unittest.TestCase):
         patches = [mock.patch.object(fs, "X_STATE_PATH", os.path.join(tmp.name, "s.json")),
                    mock.patch.object(fs, "X_TEXTS_PATH", os.path.join(tmp.name, "t.json")),
                    mock.patch.object(fs, "AI_COMPARE_PATH", os.path.join(tmp.name, "c.jsonl")),
-                   mock.patch.object(fs, "memo_provider", return_value=("openai", "", None)),
+                   mock.patch.object(fs, "memo_provider", return_value=(None, "", None)),  # AI は使わない（本文はルールで読む）
                    mock.patch.object(fs, "fetch_x_posts", return_value=([old, new], "200")),
                    mock.patch.object(fs, "read_x_images", return_value=(images, [0, 0]))]
         for p in patches:
