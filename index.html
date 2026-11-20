@@ -441,24 +441,37 @@ function deadlineScore(d, r) {
   return ok ? [common, 2 * common / (d.name.length + title.length)] : null;
 }
 
-// 申込・締切ごとに、結び付けられる予定のうち一番よく一致する予定（同点ならそのすべて）にだけ結び付ける。
-// 「ニューアルバム『…』」のような共通の語だけで、同じ日のほかの予定（店舗のキャンペーンなど）に結び付かないように
+// 申込・締切ごとに、結び付ける予定を決める。
+// 1. 申込・締切の元の記事・投稿が、予定の情報元（または会場の情報元）と同じなら、その予定に結び付ける（同じ記事から作った予定）
+// 2. そうでなければ、名前が一番よく一致する予定（同点ならそのすべて）に結び付ける。
+//    ただし開催日の付いていない申込・締切は、毎月のオンラインお話し会のように同じ名前の回がいくつもあるので、
+//    別の記事から作られた予定には結び付けず、同点なら申込の後で一番近い日の予定だけにする
+// 「ニューアルバム『…』」のような共通の語だけで、同じ日のほかの予定（店舗のキャンペーンなど）に結び付かないようにもしている
+const ARTICLE = /^https:\/\/takanenonadeshiko\.jp\/(?!events\/)/;
 let dlLinks = null;
 function deadlinesFor(r) {
   if (!dlLinks) {
     dlLinks = new Map();
+    const link = (x, d) => {
+      if (!dlLinks.has(x.uid)) dlLinks.set(x.uid, []);
+      dlLinks.get(x.uid).push(d);
+    };
     for (const d of deadlines) {
+      const sources = rows.filter(x => x.category !== "誕生日" && d.date <= x.date && (x.url === d.url || x.venue_url === d.url));
+      if (sources.length) { sources.forEach(x => link(x, d)); continue; }
       let best = null, targets = [];
       for (const x of rows) {
+        if (!d.held && ARTICLE.test(d.url) && ARTICLE.test(x.url) && x.url !== d.url) continue;
         const s = deadlineScore(d, x);
         if (!s) continue;
         const cmp = best ? s[0] - best[0] || s[1] - best[1] : 1;
         if (cmp > 0) { best = s; targets = [x]; } else if (cmp === 0) targets.push(x);
       }
-      for (const x of targets) {
-        if (!dlLinks.has(x.uid)) dlLinks.set(x.uid, []);
-        dlLinks.get(x.uid).push(d);
+      if (!d.held && targets.length) {
+        const first = targets.reduce((a, x) => x.date < a ? x.date : a, targets[0].date);
+        targets = targets.filter(x => x.date === first);
       }
+      targets.forEach(x => link(x, d));
     }
   }
   return dlLinks.get(r.uid) || [];
