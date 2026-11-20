@@ -9,7 +9,7 @@
 | 対応するバージョン | v1.1.1（[変更履歴](../CHANGELOG.md)） |
 | 公開リポジトリ | [takaneko-fan/schedule](https://github.com/takaneko-fan/schedule) |
 | 公開サイト | https://takaneko-fan.github.io/schedule/ （GitHub Pages） |
-| 関連文書 | [構想書](concept.md)（なぜ作るか・基本の考え方）／[設計](design.md)（関数・定数・AI への指示文など）／[運用](operations.md)（自動更新の仕組み・push・障害時の確認）／[検証記録・経緯](notes.md)／[処理の流れの図](flow.html) |
+| 関連文書 | [構想書](concept.md)（なぜ作るか・基本の考え方）／[設計](design.md)（関数・定数・AI への指示文など）／[運用](operations.md)（自動更新の仕組み・push・障害時の確認）／[VPS の構築手順書](vps-setup.md)／[検証記録・経緯](notes.md)／[処理の流れの図](flow.html) |
 
 この文書は「何をするか」を定めます。「どう作っているか」は設計、「どう動かしているか」は運用の文書に書きます。
 

@@ -26,6 +26,7 @@
 7. **マージ:** `main` を最新にしてから `--no-ff` でマージする（`chore: <ブランチ名> をマージ`）。
 8. **push:** `ops/push_as_app.sh` で送る。送る前にテストが自動で実行され、失敗したら送らない。
 9. **後片付け:** マージした `feature/…` は手元で消す（`git branch -d`）。マージコミットが残るので履歴は消えない。
+   - 6〜9（コミット・マージ・push・後片付け）は、Claude Code では `/ship`（または「反映して」）でまとめて行える（`.claude/skills/ship/SKILL.md`。タグは付けない）。
 10. **確認:** 必要なら、次の定期の更新が正常に動くかを確かめる。
 
 取り消すときは、マージコミットを `git revert -m 1 <マージコミット>` で取り消してから push する。
@@ -138,9 +139,9 @@ push されると、GitHub が自動で Pages を更新します（`main` の全
 | 実行先 | `runs-on: [self-hosted, conoha]`。ConoHa VPS 1GB（大阪、Ubuntu 24.04、Python 3.12）、ランナー名 `conoha-osaka` |
 | サーバー | ランナーは専用ユーザー `runner`（sudo なし）のサービスとして常駐。ssh は鍵のみ、ufw で外からは 22 番だけ許可 |
 | 権限 | `contents: write`（`GITHUB_TOKEN` で push する） |
-| 同時実行 | `concurrency: update` で 1 つずつ実行し、push の衝突を防ぐ |
+| 同時実行 | `concurrency` のグループを種類ごと（全体の更新は `update-full`、公式 X の確認は `update-x`）に分け、`cancel-in-progress: false` で 1 つずつ実行する。待っている実行は同じグループの新しい起動に置き換えられるので、全体の更新が公式 X の確認に置き換えられないよう分けている。ランナーは 1 台なので、種類が違っても順に動き、push は衝突しない |
 | API キー | リポジトリの Secrets の `OPENAI_API_KEY` / `GEMINI_API_KEY`。未登録なら既存の参加メモだけを使う |
-| X のトークン | Secrets の `X_BEARER_TOKEN`。未登録なら公式 X の確認を飛ばす |
+| X のトークン | Secrets の `X_BEARER_TOKEN`。未登録なら公式 X の確認を飛ばす。10 分ごとの公式 X の確認（`check_x.py`）は、VPS の `.env` の同じトークンを使う（下記「公式 X の確認（10 分ごと）」） |
 | 通知のトピック | Secrets の `NTFY_TOPIC`。未登録なら通知を送らない |
 | リマインドのトピック | Secrets の `NTFY_REMIND_TOPIC`。未登録ならリマインドを送らない |
 | 停止の検知 | Secrets の `HC_PING_URL`（healthchecks.io の Ping URL、`takaneko-fan@proton.me` のアカウント）。成功で `HC_PING_URL`、失敗・タイムアウトで `HC_PING_URL/fail` に連絡する。チェックは Cron `17 0,9,12,16,18,20,21,22 * * *`（Asia/Tokyo）、猶予 1 時間で、更新が 1 回抜けると知らせが届く。**VPS のタイマーの時刻を変えたら、この Cron も合わせる** |
@@ -172,21 +173,13 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 | 「公式 X だけ」の更新 | GitHub Actions の実行の一覧では「公式 X の確認」と表示される。`run_update.sh --x-only`（`fetch_schedule.py --x-only`）で、公式サイトにはアクセスせず、直前の全体の更新で保存した公式サイトの内容（`official_snapshot.json`）と公式 X の新しい投稿で、全体の更新と同じ処理をする。保存した内容がない、または 24 時間より古いときは何もしない |
 | 費用 | 新しい投稿の分だけ（今までと同じ）。確認で読んだ投稿をその後の更新でも読むが、同じ日（UTC）なら二重に数えられない。問い合わせは 1 日 144 回で、上限（15 分あたり 10,000 回）の 0.02% 未満 |
 
-**入れ方（VPS で 1 回だけ）:**
+**入れ方:** [VPS の構築手順書](vps-setup.md) の手順 3（トークン）と手順 4（`ops/setup_vps.sh`）。
 
-```sh
-# トークン（値は画面に出さない。エディタで書く）
-sudo -u runner sh -c 'umask 077; touch /home/runner/.config/takaneko-fan/.env'
-sudo -u runner nano /home/runner/.config/takaneko-fan/.env     # X_BEARER_TOKEN=… を書く
-# スクリプトとタイマー（リポジトリの最新の main から）
-sudo install -o runner -g runner -m 755 ops/check_x.py ops/dispatch_update.sh /home/runner/bin/
-sudo cp ops/takaneko-xcheck.service ops/takaneko-xcheck.timer /etc/systemd/system/
-sudo systemctl daemon-reload && sudo systemctl enable --now takaneko-xcheck.timer
-# 確かめる（起動はしない）
-sudo -u runner python3 /home/runner/bin/check_x.py --dry-run
-```
+確認は `systemctl list-timers takaneko-xcheck.timer`、`journalctl -u takaneko-xcheck.service`。止まっても、1 日 8 回の全体の更新で公式 X は読まれる（反映が遅れるだけ）。`dispatch_update.sh`・`check_x.py`・タイマーを直したときは、`main` に入れた後に VPS で `ops/setup_vps.sh` を実行して入れ直す（[VPS の構築手順書](vps-setup.md) の手順 4）。
 
-確認は `systemctl list-timers takaneko-xcheck.timer`、`journalctl -u takaneko-xcheck.service`。止まっても、1 日 8 回の全体の更新で公式 X は読まれる（反映が遅れるだけ）。`dispatch_update.sh` を直したときは、VPS の `/home/runner/bin/` にも入れ直す。
+### VPS の作り直し
+
+VPS を一から作り直すときは、[VPS の構築手順書](vps-setup.md) のとおりに行う（VPS を作る、ランナーを登録する、秘密の情報を置く、`ops/setup_vps.sh` でスクリプトとタイマーを入れる、前の VPS を止める、記録を作り直す、動いたかを確かめる）。
 
 ### 手元からの push
 
@@ -234,7 +227,7 @@ VPS やランナーが止まっていると更新自体が動かないので、�
 - プログラムは、リポジトリに `.env` がなければ `~/.config/takaneko-fan/.env` を直接読む（`load_env`）。開発用コンテナには、このフォルダが読み取り専用でマウントされるので、PC 側でもコンテナの中でも同じファイルが使われ、clone やコンテナの作り直しのたびに作り直さなくてよい。リポジトリに `.env` があればそちらを優先する。
 - 置くのは、実際に push や通しの実行をする PC だけにする。テストや文書だけの作業には要らない。
 - `~/.config` を dotfiles として公開リポジトリや同期サービスで管理している場合は、`takaneko-fan` を対象から外す。
-- 定期の更新（VPS）は、これとは別に GitHub の Secrets と VPS の鍵を使う（上記「自動更新」「VPS のタイマーからの起動」）。
+- 定期の更新（VPS）は、これとは別に GitHub の Secrets と VPS の鍵（`/home/runner/.config/takaneko-fan/` の `app.pem` と、公式 X の確認用の `.env` の `X_BEARER_TOKEN`）を使う（上記「自動更新」「VPS のタイマーからの起動」「公式 X の確認（10 分ごと）」）。
 
 **PC 側での置き方（コンテナの外で行う）:**
 
@@ -249,9 +242,9 @@ bash <リポジトリ>/ops/setup_local.sh                # 権限の確認（コ
 
 | 対象 | 対応 |
 | --- | --- |
-| `app.pem` | App の Credentials → Key pairs で新しい鍵を作り、`app.pem` を置き換えてから古い鍵を削除する |
+| `app.pem` | App の Credentials → Key pairs で新しい鍵を作り、手元の PC と VPS（`/home/runner/.config/takaneko-fan/app.pem`）の両方の `app.pem` を置き換えてから古い鍵を削除する |
 | `OPENAI_API_KEY` / `GEMINI_API_KEY` | 各サービスの画面でキーを無効にして作り直し、`.env` と GitHub の Secrets を差し替える。利用料の画面で不審な利用がないか確かめる |
-| `X_BEARER_TOKEN` | X の開発者ポータルでトークンを作り直し、`.env` と Secrets を差し替える。利用料を確かめる |
+| `X_BEARER_TOKEN` | X の開発者ポータルでトークンを作り直し、手元の PC の `.env`、GitHub の Secrets、VPS の `/home/runner/.config/takaneko-fan/.env`（公式 X の確認用）の 3 か所を差し替える。差し替えた後、VPS で `sudo -u runner python3 /home/runner/bin/check_x.py --dry-run` が「新しい投稿なし」などと出ることを確かめる。利用料を確かめる |
 
 ## コミット名義
 
