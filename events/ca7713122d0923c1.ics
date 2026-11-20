@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:ca7713122d0923c1@takaneko-data-mine
+DTSTAMP:20261120T151749Z
+DTSTART;TZID=Asia/Tokyo:20261126T180000
+DTEND;TZID=Asia/Tokyo:20261126T213000
+SUMMARY:【橋本・東山・日向端・松本・籾山】高嶺のなで
+ しこメンバーとオンライン個別お話し会
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 橋
+ 本桃呼、東山恵里沙、日向端ひな、松本ももな、籾山
+ ひめり\nカテゴリ: お知らせ記事\n情報元: https://takanenona
+ deshiko.jp/spacemake-202611/\n\n【参加メモ】\n🕙 当日の流れ: 
+ 11月21日(土)21:00〜公式LINEで販売開始／11月26日(木)18:00〜
+ 21:30開催\n👥 部とメンバー: 1〜6部（18:00/18:35/19:10/19:50/2
+ 0:25/21:00）：橋本・東山・日向端・松本・籾山\n🎫 参加
+ 方法・当日券: 公式LINEアカウントを友だち登録し、LINE
+ 上でオンライン個別お話し会のチケットを購入。SPACE MA
+ KEで参加／メンバーごとに11月21日(土)21:30〜22:10から販
+ 売、先着順\n💴 料金: 1枠（60秒）：3\,300円(税込)／メン
+ バー1名あたり30分内最大20枠／購入上限は1名30分あたり
+ 最大5枠\n🎒 持ち物: 高嶺のなでしこ公式LINEアカウント
+ の友だち登録が必要\n📸 ルール: SPACE MAKEによる1対1の
+ ライブトーク（ビデオ通話）／1枠60秒\n⚠️ 注意: メン
+ バーごとに先着順で販売／購入上限はメンバー1名30分
+ あたり最大5枠\nℹ️ その他: SPACE MAKEを使用して実施／S
+ PACE MAKEの使い方・よくある質問は案内ページで確認\n
+ 📣 公式 X の最新情報: オンライン個別お話し会は11月25
+ 日(水)にも開催（11/20 の投稿）\n🔗 公式 X: 11/20 https://x.
+ com/takanenofficial/status/2123772282724389040\n🤖 公式の案内と公
+ 式 X の投稿を AI が要約したものです。必ず情報元で確
+ 認してください。
+URL:https://takanenonadeshiko.jp/spacemake-202611/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

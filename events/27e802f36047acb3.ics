@@ -1,0 +1,43 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:27e802f36047acb3@takaneko-data-mine
+DTSTAMP:20261120T151749Z
+DTSTART;TZID=Asia/Tokyo:20261125T180000
+DTEND;TZID=Asia/Tokyo:20261125T213000
+SUMMARY:【城月・涼海・葉月】高嶺のなでしこメンバーと
+ オンライン個別お話し会
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 城
+ 月菜央、涼海すう、葉月紗蘭\nカテゴリ: お知らせ記事\
+ n情報元: https://takanenonadeshiko.jp/spacemake-202611/\n\n【参加メ
+ モ】\n🕙 当日の流れ: 11月21日（土）21:00〜販売開始／11
+ 月25日（水）18:00〜21:30開催\n👥 部とメンバー: 1〜6部（
+ 18:00/18:35/19:10/19:50/20:25/21:00）：城月・涼海・葉月\n🎫 
+ 参加方法・当日券: 高嶺のなでしこ公式LINEアカウント
+ を友達登録し、LINE上でオンライン個別お話し会のチケ
+ ットを購入／メンバーごとに先着順\n💴 料金: 1枠60秒
+ ・3\,300円（税込）／1名あたり30分内最大5枠／各メンバ
+ ー最大20枠\n🎒 持ち物: 高嶺のなでしこ公式LINEアカウ
+ ントの友達登録\n📸 ルール: SPACE MAKEで1対1のライブト
+ ーク（ビデオ通話）を実施\n⚠️ 注意: 販売開始時刻は
+ 城月21:00、涼海21:10、葉月21:20／枠数には限りあり、先
+ 着順／購入上限はメンバー1名あたり最大5枠\nℹ️ その
+ 他: SPACE MAKEを使用\n🤖 公式の案内を AI が要約したもの
+ です。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/spacemake-202611/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR
