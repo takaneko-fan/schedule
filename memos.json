@@ -73,15 +73,20 @@
    "venue": "ステラタウン大宮 メローペ広場／〒331-0812 埼玉県さいたま市北区宮原町1丁目854-1"
   },
   "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "affe5d715bf1cdba7324425fff085421232d4469",
-  "x_items": [
-   "CD販売、優先エリア整理番号・グループ握手会参加券の配布は10:00から（11/2 の投稿）"
+  "x_changes": [
+   {
+    "field": "flow",
+    "old": "11月21日(土)10:00 CD販売開始",
+    "posted": "11/20",
+    "text": "11月21日(土)10:00 CD予約・優先エリア整理番号／グループ握手会参加券の配布開始"
+   }
   ],
+  "x_hash": "a40882d43b103687e2fcf66947b3fe1f6c4c9074",
+  "x_items": [],
   "x_sources": [
    {
-    "label": "11/2",
-    "url": "https://x.com/takanenofficial/status/2117210120924942713"
+    "label": "11/20",
+    "url": "https://x.com/takanenofficial/status/2123785937734025269"
    }
   ]
  },
