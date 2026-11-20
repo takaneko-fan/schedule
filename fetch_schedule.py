@@ -1622,7 +1622,7 @@ def collect_deadlines(posts, end, today, warnings=None):
 # ---- 公式 X の申込・締切（記事に載らない他団体のイベントのチケット受付、追加販売など） ----
 
 X_DEADLINES_PATH = "x_deadlines.json"  # 投稿ごとの読み取り結果（本文は含めない。投稿の記録がない環境でも使えるようリポジトリに置く）
-X_DEADLINE_VERSION = 2  # 指示文を変えたら上げる（読み直す）
+X_DEADLINE_VERSION = 3  # 指示文を変えたら上げる（読み直す）
 X_DEADLINE_MAX_CALLS = 20  # 1 回の更新で AI を呼ぶ上限
 X_DEADLINE_DAYS = 120  # 投稿日からこの日数以内の投稿だけ読む
 X_DEADLINE_WORDS_RE = re.compile(r"受付|販売|先行|抽選|締切|締め切り|予約|申し?込")
@@ -1632,11 +1632,12 @@ X_DEADLINE_INSTRUCTION = """あなたはアイドルグループ「高嶺のな�
 - kind は「受付開始」「受付締切」「当落発表」「入金締切」「一般発売」のどれか。期間（「11/9 21:00〜12/9 23:59」）は受付開始と受付締切の 2 つにする。
   「〜11/23 23:59」のように終わりだけなら受付締切だけ。「抽選販売スタート」など、開始の日時が書かれていないものは入れない。
   一般発売は、投稿に「一般発売」「一般販売」と書かれているときだけ。「販売開始」「発売開始」などは受付開始にする。
+  一般発売の期間（「11/7 10:00〜12/6 23:59」）も、始まりを一般発売、終わりを受付締切にする。
 - date は YYYY-MM-DD（年が書かれていなければ投稿日から決める）、time は HH:MM（なければ空）。
 - event はイベント名（『』は付けない。グループ名は付けない）、held はイベントの開催日 YYYY-MM-DD（分からなければ空）。
 - detail は受付の区分を短く（「抽選」「先着」「注釈付き指定席」「プラチナ会員先行」「グッズ受注販売」など）。
 - note は投稿の中の日時の書き方をそのまま短く書き写す（例「11/9(月)21:00~12/9(水)23:59」）。
-- 会場での当日販売・物販、イベントの開場・開演、CD や雑誌の発売日、配信中の販売は入れない。なければ空の配列。"""
+- 会場での当日販売・物販、会場で当日に行う抽選会・特典会の受付、イベントの開場・開演、CD や雑誌の発売日、配信中の販売は入れない。なければ空の配列。"""
 X_DEADLINE_SCHEMA = {
     "type": "object", "additionalProperties": False, "required": ["items"],
     "properties": {"items": {"type": "array", "items": {
@@ -1727,15 +1728,21 @@ def x_deadline_rows(today, provider=None, key=None, path=X_DEADLINES_PATH, texts
     return rows
 
 
+def same_kind(a, b):
+    """申込・締切の種別が同じか。受付開始と一般発売はどちらも「始まり」なので同じとみなす（記事と公式 X で書き方が揺れるため）。"""
+    starts = ("受付開始", "一般発売")
+    return a == b or a in starts and b in starts
+
+
 def merge_x_deadlines(rows, x_rows):
-    """記事の申込・締切に、公式 X の申込・締切を足す。同じ種別・日時で、開催日が同じかイベント名が重なるものは記事を優先する。"""
+    """記事の申込・締切に、公式 X の申込・締切を足す。同じ種別（受付開始と一般発売は同じとみなす）・日時で、開催日が同じかイベント名が重なるものは記事を優先する。"""
     def held(event):
         m = re.match(r"(\d{1,2}/\d{1,2}) ", event)
         return m.group(1) if m else ""
 
     out = list(rows)
     for x in sorted(x_rows, key=lambda r: r["url"]):
-        same = [r for r in out if r["kind"] == x["kind"] and r["date"] == x["date"] and r["time"] == x["time"]
+        same = [r for r in out if same_kind(r["kind"], x["kind"]) and r["date"] == x["date"] and r["time"] == x["time"]
                 and (held(r["event"]) and held(r["event"]) == held(x["event"])
                      or shares_phrase(deadline_event(r["event"]), deadline_event(x["event"]), 6))]
         if not same:
