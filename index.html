@@ -445,7 +445,7 @@ function deadlineScore(d, r) {
 // 1. 申込・締切の元の記事・投稿が、予定の情報元（または会場の情報元）と同じなら、その予定に結び付ける（同じ記事から作った予定）
 // 2. そうでなければ、名前が一番よく一致する予定（同点ならそのすべて）に結び付ける。
 //    ただし開催日の付いていない申込・締切は、毎月のオンラインお話し会のように同じ名前の回がいくつもあるので、
-//    別の記事から作られた予定には結び付けず、同点なら申込の後で一番近い日の予定だけにする
+//    別の記事から作られた予定には結び付けず、同点で何月の回か分からなければ、どの予定にも結び付けない
 // 「ニューアルバム『…』」のような共通の語だけで、同じ日のほかの予定（店舗のキャンペーンなど）に結び付かないようにもしている
 const ARTICLE = /^https:\/\/takanenonadeshiko\.jp\/(?!events\/)/;
 let dlLinks = null;
@@ -467,10 +467,7 @@ function deadlinesFor(r) {
         const cmp = best ? s[0] - best[0] || s[1] - best[1] : 1;
         if (cmp > 0) { best = s; targets = [x]; } else if (cmp === 0) targets.push(x);
       }
-      if (!d.held && targets.length) {
-        const first = targets.reduce((a, x) => x.date < a ? x.date : a, targets[0].date);
-        targets = targets.filter(x => x.date === first);
-      }
+      if (!d.held && targets.length > 1) continue;
       targets.forEach(x => link(x, d));
     }
   }

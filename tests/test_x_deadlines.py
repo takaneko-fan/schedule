@@ -100,6 +100,16 @@ class MergeTest(unittest.TestCase):
         merged = fs.merge_x_deadlines([self.ARTICLE], [self.x("11/20 オンラインサイン会")])  # 開催日が同じ
         self.assertEqual(merged, [self.ARTICLE])
 
+    def test_same_sale_without_held_date_is_not_added(self):
+        """毎月のお話し会の「販売開始」を、記事は受付開始・公式 X も受付開始と読めば 1 つにまとまる（種類が違うとまとまらない）。"""
+        article = {**self.ARTICLE, "date": "2026-10-20", "event": "メンバーとオンライン個別お話し会", "detail": "販売開始"}
+        x = self.x("オンライン個別お話し会", date="2026-10-20", detail="販売")
+        self.assertEqual(fs.merge_x_deadlines([article], [x]), [article])
+        self.assertEqual(len(fs.merge_x_deadlines([article], [{**x, "kind": "一般発売"}])), 2)
+
+    def test_instruction_limits_general_sale(self):
+        self.assertIn("一般発売は、投稿に「一般発売」「一般販売」と書かれているときだけ", fs.X_DEADLINE_INSTRUCTION)
+
     def test_x_only_deadline_is_added(self):
         x = self.x("12/10 ッスッゴイライブ-8th Anniversary SP-")
         self.assertEqual(fs.merge_x_deadlines([self.ARTICLE], [x]), [self.ARTICLE, x])
