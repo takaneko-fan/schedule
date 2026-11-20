@@ -100,6 +100,20 @@ class LoadTokenTest(unittest.TestCase):
             self.assertEqual(check_x.load_token(path), "abc")
 
 
+class SetupVpsTest(unittest.TestCase):
+    def test_setup_vps_installs_existing_files(self):
+        """ops/setup_vps.sh が取ってくるファイルが ops/ にあり、タイマーとサービスの組がそろっている。"""
+        import re
+        ops = os.path.join(os.path.dirname(__file__), "..", "ops")
+        with open(os.path.join(ops, "setup_vps.sh"), encoding="utf-8") as f:
+            script = f.read()
+        names = re.findall(r"for f in ([^;]+);", script)[0].split() + re.search(r'UNITS="([^"]+)"', script).group(1).split()
+        for name in names:
+            self.assertTrue(os.path.exists(os.path.join(ops, name)), name)
+        with open(os.path.join(ops, "takaneko-xcheck.service"), encoding="utf-8") as f:
+            self.assertIn("/home/runner/bin/check_x.py", f.read())
+
+
 class SnapshotTest(unittest.TestCase):
     def test_save_and_load_with_age(self):
         tmp = tempfile.TemporaryDirectory()
