@@ -26,6 +26,7 @@
 7. **マージ:** `main` を最新にしてから `--no-ff` でマージする（`chore: <ブランチ名> をマージ`）。
 8. **push:** `ops/push_as_app.sh` で送る。送る前にテストが自動で実行され、失敗したら送らない。
 9. **後片付け:** マージした `feature/…` は手元で消す（`git branch -d`）。マージコミットが残るので履歴は消えない。
+   - 6〜9（コミット・マージ・push・後片付け）は、Claude Code では `/ship`（または「反映して」）でまとめて行える（`.claude/skills/ship/SKILL.md`。タグは付けない）。
 10. **確認:** 必要なら、次の定期の更新が正常に動くかを確かめる。
 
 取り消すときは、マージコミットを `git revert -m 1 <マージコミット>` で取り消してから push する。
@@ -172,114 +173,13 @@ GitHub の定時実行（`schedule`）は混雑で数時間遅れたり、実行
 | 「公式 X だけ」の更新 | GitHub Actions の実行の一覧では「公式 X の確認」と表示される。`run_update.sh --x-only`（`fetch_schedule.py --x-only`）で、公式サイトにはアクセスせず、直前の全体の更新で保存した公式サイトの内容（`official_snapshot.json`）と公式 X の新しい投稿で、全体の更新と同じ処理をする。保存した内容がない、または 24 時間より古いときは何もしない |
 | 費用 | 新しい投稿の分だけ（今までと同じ）。確認で読んだ投稿をその後の更新でも読むが、同じ日（UTC）なら二重に数えられない。問い合わせは 1 日 144 回で、上限（15 分あたり 10,000 回）の 0.02% 未満 |
 
-**入れ方:** 下の「VPS の作り直し」の ③（トークン）と ④（`ops/setup_vps.sh`）。
+**入れ方:** [VPS の構築手順書](vps-setup.md) の手順 3（トークン）と手順 4（`ops/setup_vps.sh`）。
 
-確認は `systemctl list-timers takaneko-xcheck.timer`、`journalctl -u takaneko-xcheck.service`。止まっても、1 日 8 回の全体の更新で公式 X は読まれる（反映が遅れるだけ）。`dispatch_update.sh`・`check_x.py`・タイマーを直したときは、`main` に入れた後に VPS で `ops/setup_vps.sh` を実行して入れ直す（下の「VPS の作り直し」の ④）。
+確認は `systemctl list-timers takaneko-xcheck.timer`、`journalctl -u takaneko-xcheck.service`。止まっても、1 日 8 回の全体の更新で公式 X は読まれる（反映が遅れるだけ）。`dispatch_update.sh`・`check_x.py`・タイマーを直したときは、`main` に入れた後に VPS で `ops/setup_vps.sh` を実行して入れ直す（[VPS の構築手順書](vps-setup.md) の手順 4）。
 
 ### VPS の作り直し
 
-VPS を作り直すときは、上から順に行う。作業はすべて VPS の root（鍵で ssh）で行う（③ の鍵のコピーだけ手元の PC）。今の VPS（2026-11-20 に確認）と同じ状態になる。
-
-**① VPS を作る**
-
-| 項目 | 今の VPS |
-| --- | --- |
-| サービス | ConoHa VPS、メモリ 1GB、大阪。ConoHa の管理画面のファイアウォール（セキュリティグループ）は使わない（ufw だけ） |
-| OS | Ubuntu 24.04 LTS（Python 3.12・git・curl・openssl は最初から入っている）。スワップは 2GB（`/var/spool/swap/swapfile`、ConoHa の標準のイメージにある） |
-| 時刻 | Asia/Tokyo |
-| ssh | 22 番。root は鍵だけ（`PermitRootLogin prohibit-password`）、パスワードのログインは不可 |
-| ufw | 入ってくる通信は 22 番だけ許可 |
-| 自動の更新 | `unattended-upgrades` を有効（標準で有効） |
-| ユーザー | `runner`（sudo なし。ランナーと更新を動かす）。ほかのユーザーは作らない |
-
-```sh
-timedatectl set-timezone Asia/Tokyo
-apt-get update && apt-get install -y git curl openssl python3     # 入っていなければ
-# ssh は鍵だけ（ConoHa の作成時に鍵を登録しておく。鍵でログインできることを確かめてから行う）
-printf 'PermitRootLogin prohibit-password\nPasswordAuthentication no\n' > /etc/ssh/sshd_config.d/90-takaneko.conf
-sshd -t && systemctl reload ssh
-ufw allow OpenSSH && ufw --force enable
-systemctl is-enabled unattended-upgrades                         # enabled であること
-swapon --show                                                    # なければ 2GB のスワップを作る
-adduser --disabled-password --gecos "" runner
-```
-
-**② GitHub Actions のランナーを入れて登録する**
-
-組織（`takaneko-fan`）単位で登録する。名前は `conoha-osaka`、ラベルは `conoha`（`update.yml` の `runs-on: [self-hosted, conoha]` に合わせる）。
-
-1. GitHub で、組織の Settings → Actions → Runners を開く。前の VPS のランナー（`conoha-osaka`、Offline）が残っていれば、Remove で消す。
-2. 「New runner」→「New self-hosted runner」→ Linux・x64 を選び、画面に出るコマンド（ランナーのダウンロードと、`config.sh` に渡す登録トークン）を確かめる。
-3. VPS で、`runner` として入れて登録する（バージョンとトークンは、2 の画面の値を使う）。
-
-```sh
-sudo -u runner -i
-mkdir actions-runner && cd actions-runner
-curl -o actions-runner.tar.gz -L https://github.com/actions/runner/releases/download/v<バージョン>/actions-runner-linux-x64-<バージョン>.tar.gz
-tar xzf actions-runner.tar.gz
-./config.sh --url https://github.com/takaneko-fan --token <登録トークン> \
-    --name conoha-osaka --labels conoha --work _work --unattended
-exit
-```
-
-4. root に戻り、サービスとして常駐させる（`runner` ユーザーで動く）。
-
-```sh
-cd /home/runner/actions-runner && ./svc.sh install runner && ./svc.sh start
-systemctl status actions.runner.takaneko-fan.conoha-osaka --no-pager
-```
-
-5. 組織の Settings → Actions → Runners で `conoha-osaka` が Idle で、ラベルに `conoha` があることを確かめる。Settings → Actions → Runner groups → Default で、`schedule` リポジトリが使えること（公開リポジトリの使用を許可していること）を確かめる。
-
-**③ 秘密の情報を置く**
-
-```sh
-# 手元の PC で（App の鍵をコピーする）
-scp ~/.config/takaneko-fan/app.pem root@<VPS のアドレス>:/root/app.pem
-```
-
-```sh
-# VPS の root で
-install -d -o runner -g runner -m 700 /home/runner/.config/takaneko-fan
-install -o runner -g runner -m 600 /root/app.pem /home/runner/.config/takaneko-fan/app.pem && rm /root/app.pem
-sudo -u runner sh -c 'umask 077; touch /home/runner/.config/takaneko-fan/.env'
-sudo -u runner nano /home/runner/.config/takaneko-fan/.env     # X_BEARER_TOKEN=… を書く（値は画面に出さない）
-```
-
-API キー・トークン・通知のトピック・停止の検知の URL は、GitHub の Secrets にあるので、VPS を作り直しても置き直さなくてよい。
-
-**④ スクリプトとタイマーを入れる**
-
-```sh
-curl -fsSL -o /root/setup_vps.sh https://raw.githubusercontent.com/takaneko-fan/schedule/main/ops/setup_vps.sh
-bash /root/setup_vps.sh
-```
-
-`dispatch_update.sh`・`check_x.py` を `/home/runner/bin/` に、2 つのタイマーを `/etc/systemd/system/` に置いて有効にし、③ の秘密の情報があるかと権限を確かめる。最後に「完了」と出ればよい（`!` が出たら直してもう一度実行する）。
-
-**⑤ 記録を作り直す**
-
-VPS の記録（上記「VPS にだけある記録」）は作り直すと消える。次の順で作り直す。
-
-```sh
-sudo -u runner /home/runner/bin/dispatch_update.sh       # 全体の更新を 1 回（公式サイトの内容の保存、公式 X の続きの記録）
-# 終わったら（Actions の画面で成功を確かめてから）、公式 X を 30 日分読み直す（X API で 0.7 ドル前後、AI で十数円）
-sudo -u runner /home/runner/bin/dispatch_update.sh 30
-```
-
-- 公式 X の投稿の本文と告知画像の読み取り（`x_texts.json`）は、読み直した分から作り直される。1 回で画像を読むのは 10 件までなので、`dispatch_update.sh 30` を、ログの「画像の読み取り」が 10 件より少なくなるまで繰り返す（同じ日（UTC）なら X API の料金は二重にならない）。
-- 消えて作り直されないもの: ルールと AI の比べ合わせ（`ai_compare.jsonl`。評価は作り直した日から数え直す）、公式の記事・ページの版（`official_texts.json`。作り直した日からの版になる）。
-- 記載ミスの可能性・取りこぼしの通知を送ったかの記録（`warned.json`）とリマインドの記録（`remind_state.json`）も消えるので、同じ知らせがもう一度届くことがある。
-
-**⑥ 動いたかを確かめる**
-
-| 確かめること | 方法 |
-| --- | --- |
-| ランナー | 組織の Settings → Actions → Runners で `conoha-osaka` が Idle |
-| タイマー | `systemctl list-timers 'takaneko-*'` に 2 つが出る |
-| 全体の更新 | ⑤ の実行が Actions の画面で成功し、ログの最後に「公式サイトの内容を保存（公式 X だけの更新で使う）: …」が出る |
-| 公式 X の確認 | `sudo -u runner python3 /home/runner/bin/check_x.py --dry-run` が「新しい投稿なし」などと出る。10 分後に `journalctl -u takaneko-xcheck.service` に記録が出る |
-| 停止の検知 | healthchecks.io のチェックが成功（緑）になる |
+VPS を一から作り直すときは、[VPS の構築手順書](vps-setup.md) のとおりに行う（VPS を作る、ランナーを登録する、秘密の情報を置く、`ops/setup_vps.sh` でスクリプトとタイマーを入れる、前の VPS を止める、記録を作り直す、動いたかを確かめる）。
 
 ### 手元からの push
 

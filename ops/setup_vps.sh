@@ -25,7 +25,7 @@ if [ "$(id -u)" -ne 0 ]; then
     exit 1
 fi
 if ! id runner >/dev/null 2>&1; then
-    echo "ユーザー runner がいません（運用の文書「VPS の作り直し」の ① を先に行う）" >&2
+    echo "ユーザー runner がいません（docs/vps-setup.md の手順 1 を先に行う）" >&2
     exit 1
 fi
 
@@ -56,7 +56,7 @@ systemctl enable --now takaneko-dispatch.timer takaneko-xcheck.timer
 ok=1
 for f in app.pem .env; do
     if [ ! -f "$CONFIG/$f" ]; then
-        echo "! $CONFIG/$f がありません（運用の文書「VPS の作り直し」の ③）"
+        echo "! $CONFIG/$f がありません（docs/vps-setup.md の手順 3）"
         ok=0
     elif [ "$(stat -c '%U %a' "$CONFIG/$f")" != "runner 600" ]; then
         echo "! $CONFIG/$f の持ち主・権限が runner・600 ではありません: $(stat -c '%U %a' "$CONFIG/$f")"
