@@ -14,7 +14,7 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:ca7713122d0923c1@takaneko-data-mine
-DTSTAMP:20261120T151749Z
+DTSTAMP:20261121T032211Z
 DTSTART;TZID=Asia/Tokyo:20261126T180000
 DTEND;TZID=Asia/Tokyo:20261126T213000
 SUMMARY:【橋本・東山・日向端・松本・籾山】高嶺のなで
@@ -37,11 +37,8 @@ DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 橋
  バーごとに先着順で販売／購入上限はメンバー1名30分
  あたり最大5枠\nℹ️ その他: SPACE MAKEを使用して実施／S
  PACE MAKEの使い方・よくある質問は案内ページで確認\n
- 📣 公式 X の最新情報: オンライン個別お話し会は11月25
- 日(水)にも開催（11/20 の投稿）\n🔗 公式 X: 11/20 https://x.
- com/takanenofficial/status/2123772282724389040\n🤖 公式の案内と公
- 式 X の投稿を AI が要約したものです。必ず情報元で確
- 認してください。
+ 🤖 公式の案内を AI が要約したものです。必ず情報元
+ で確認してください。
 URL:https://takanenonadeshiko.jp/spacemake-202611/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT

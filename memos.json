@@ -18,17 +18,17 @@
   "x_changes": [
    {
     "field": "flow",
-    "old": "11月21日(土)10:00 CD販売開始",
-    "posted": "11/20",
-    "text": "11月21日(土)10:00 CD予約・優先エリア整理番号／グループ握手会参加券の配布開始"
+    "old": "1部12:00開始・優先エリア入場11:40",
+    "posted": "11/21",
+    "text": "1部は12:45〜グループ握手会、終了し次第ミニライブ開催"
    }
   ],
-  "x_hash": "a40882d43b103687e2fcf66947b3fe1f6c4c9074",
+  "x_hash": "53fe0888bab2cafb2cfc0f690aa89d7c7be68359",
   "x_items": [],
   "x_sources": [
    {
-    "label": "11/20",
-    "url": "https://x.com/takanenofficial/status/2123785937734025269"
+    "label": "11/21",
+    "url": "https://x.com/takanenofficial/status/2123979739547451726"
    }
   ]
  },
@@ -70,10 +70,10 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "0e224ba650af71757a0ae4e8548da044e8c0d78a",
+  "x_hash": "8a621d4a5453a70f6c5ee986d47c012eb38f97bc",
   "x_items": [
-   "対象者本人1名のみ入場可（11/16 の投稿）",
-   "会場限定抽選会の賞品は限定チェキまたは写ルンです（11/16 の投稿）",
+   "入場できるのは対象者本人1名のみ（11/16 の投稿）",
+   "会場CD販売は各部・各メンバーの開始30分後に終了（11/16 の投稿）",
    "抽選会の特典は各種1枚限定・数量限定（11/16 の投稿）"
   ],
   "x_sources": [
@@ -121,7 +121,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "2f7521020298c0d4a438e5fbe3bab1a8637c6bcc",
+  "x_hash": "a770db18b387b493b8be9a14ad4ab9639fc7d3db",
   "x_items": [],
   "x_sources": []
  },
@@ -184,7 +184,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "20f8b94f73f68bdc2e12c68ea66a94450d5e16ca",
+  "x_hash": "29c47d790e37bc0512cea2d10f3fd618c779bfbf",
   "x_items": [],
   "x_sources": []
  },
@@ -205,16 +205,9 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "28064068e8f0e0bad44113ccf47f1b4ee71aeccb",
-  "x_items": [
-   "オンライン個別お話し会は11月25日(水)にも開催（11/20 の投稿）"
-  ],
-  "x_sources": [
-   {
-    "label": "11/20",
-    "url": "https://x.com/takanenofficial/status/2123772282724389040"
-   }
-  ]
+  "x_hash": "df92d690f414afcc1045af8de49eba7d5b47c401",
+  "x_items": [],
+  "x_sources": []
  },
  "2026-11-28|https://x.com/takanenofficial/status/2123408451808227781": {
   "generated": "2026-11-20",
