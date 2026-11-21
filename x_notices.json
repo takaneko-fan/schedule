@@ -22,5 +22,34 @@
   "post_id": "2123979739547451726",
   "posted": "2026-11-21T12:20+09:00",
   "ai": true
+ },
+ {
+  "date": "2026-11-21",
+  "status": "change",
+  "label": "時刻変更",
+  "names": [],
+  "members": [],
+  "substitutes": [],
+  "changes": [
+   {
+    "field": "start",
+    "before": "",
+    "after": "15:45"
+   },
+   {
+    "field": "time_note",
+    "before": "1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10）",
+    "after": "優先観覧エリア入場 15:25"
+   }
+  ],
+  "target": {
+   "date": "2026-11-21",
+   "title": "高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at ステラタウン大宮",
+   "url": "https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-8/"
+  },
+  "url": "https://x.com/takanenofficial/status/2124023219602747552",
+  "post_id": "2124023219602747552",
+  "posted": "2026-11-21T15:12+09:00",
+  "ai": true
  }
 ]
