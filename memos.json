@@ -18,16 +18,16 @@
   "x_changes": [
    {
     "field": "venue",
-    "old": "ミニライブ：屋上ルーフトップワールド",
-    "posted": "11/23",
-    "text": "ミニライブ：屋上ルーフトップフロア"
+    "old": "屋上ルーフトップワールド",
+    "posted": "11/23 09:00",
+    "text": "屋上ルーフトップフロア"
    }
   ],
-  "x_hash": "d8161c7f7ab3a8c68e503dee2a31f509794902f1",
+  "x_hash": "cb739c76d5f172ea0b4e198cc8846280f133aeca",
   "x_items": [],
   "x_sources": [
    {
-    "label": "11/23",
+    "label": "11/23 09:00",
     "url": "https://x.com/takanenofficial/status/2124654168035959258"
    }
   ]
