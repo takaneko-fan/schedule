@@ -260,7 +260,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <li class="step">
         <div class="step-body">
           <div class="step-title"><h3>予定を書き出す</h3></div>
-          <p><code>schedule.md</code>・<code>schedule.csv</code>・<code>schedule.ics</code>・<code>events/&lt;uid&gt;.ics</code>。【中止】【延期】の予定はカレンダーで「キャンセル」になる。</p>
+          <p><code>schedule.md</code>・<code>schedule.csv</code>・<code>schedule.ics</code>・<code>events/&lt;uid&gt;.ics</code>。項目ごとの元の発表（会場・時刻・出演・出演時間・中止の印を決めた記事や投稿）は <code>sources.json</code>。【中止】【延期】の予定はカレンダーで「キャンセル」になる。</p>
         </div>
       </li>
       <li class="step">
@@ -300,7 +300,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <table>
         <thead><tr><th>届く先</th><th>内容</th></tr></thead>
         <tbody>
-          <tr><td>Web 版（GitHub Pages）</td><td><code>schedule.csv</code>・<code>deadlines.csv</code> を表示。★ 行く、申込・締切、カレンダーへの追加。Pages は <code>main</code> ブランチの全ファイルをそのまま公開する</td></tr>
+          <tr><td>Web 版（GitHub Pages）</td><td><code>schedule.csv</code>・<code>deadlines.csv</code> を表示。★ 行く、申込・締切、カレンダーへの追加。先頭に「最近の更新」（<code>updates.json</code>。7 日間の変化と元の発表へのリンク）。Pages は <code>main</code> ブランチの全ファイルをそのまま公開する</td></tr>
           <tr><td>照会カレンダー</td><td><code>schedule.ics</code>（予定）と <code>deadlines.ics</code>（申込・締切）。カレンダーアプリが自動で取り直す</td></tr>
           <tr><td>ntfy</td><td>更新の通知、記載ミスの可能性、たかねこリマインド（別のトピック）</td></tr>
         </tbody>
