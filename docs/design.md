@@ -72,6 +72,13 @@ Web 版の申込・締切の一覧、たかねこリマインド、`deadlines.md
 - `schedule.csv` を読み込んだとき、終わった予定と一覧にない uid を両方から捨てる（`pruneMarks`）。
 - ★ を外しても「追加済み」は残す。付け直してまとめて追加したときに二重登録しないため。ページからはカレンダーの予定を消せないので、行かなくなった予定は利用者がカレンダーアプリで消す（README に記載）。
 
+### 最近の更新
+
+- **記録:** `run_update.sh` が、コミットの前に `notify.py --record` を実行する。最後のコミット（`HEAD`）と作業中の `schedule.csv`・`deadlines.csv` を、通知と同じ比べ方（`diff_schedule`・`diff_deadlines`・`classify`）で比べ、`update_items` が項目にして `updates.json`（リポジトリ。公開）の先頭に `{at, items}` を足す。項目は `{level, kind, date, title, change, uid}`、申込・締切は `uid` の代わりに `deadline`（`date`・`time`・`kind`・`event`・`url`）。参加メモなどだけの変更（`classify` が空）は入れない。
+- **重複を避ける:** AI の読み直しや記事と公式 X の書き方の違いで申込・締切の行が変わると「追加」に見えるので、7 日間の記録に同じもの（`same_deadline`: 日時が同じで、元が同じか、種別が同じ（受付開始と一般発売は同じ）でイベント名が 6 文字以上重なる）があれば足さない。
+- **古い記録:** 7 日（`UPDATES_DAYS`）より古い記録は、新しい項目を足すときだけ捨てる。変化のない回に `updates.json` だけが変わってコミットされないように。
+- **Web 版:** `updates.json` を読み（読めなくても予定は表示する）、7 日間の項目を並べる。申込・締切は、Web 版の結び付け（`deadlinesFor`）から、日時と元が同じ申込・締切の付く予定を探して飛び先にする。押すと `forceShow` にその予定を入れて絞り込みによらず表示し、`scrollIntoView` で飛ぶ（PC は上に固定した絞り込みの分 `scroll-margin-top` を空ける）。新着は localStorage の `takaneko-schedule-updates-seen`（前に見た一番新しい記録の時刻）と比べる。初めて開いた端末では新着の印を付けない。開閉は `takaneko-schedule-updates-open`。
+
 ### 申込・締切の結び付け（自動で判定）
 
 `deadlines.csv` の `event` と予定の `title` を、「高嶺のなでしこ」「たかねこ」・空白・記号を除いて NFKC で正規化し、最長の共通部分文字列の長さで判定します。
