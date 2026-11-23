@@ -15,10 +15,22 @@
    "venue": "横浜ワールドポーターズ（〒231-0001 神奈川県横浜市中区新港2丁目2−1）／ミニライブ：屋上ルーフトップワールド／特典会：6FイベントホールB"
   },
   "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "576cee7361c69ad6e339ef61773cdae5f92b4e7d",
+  "x_changes": [
+   {
+    "field": "venue",
+    "old": "ミニライブ：屋上ルーフトップワールド",
+    "posted": "11/23",
+    "text": "ミニライブ：屋上ルーフトップフロア"
+   }
+  ],
+  "x_hash": "d8161c7f7ab3a8c68e503dee2a31f509794902f1",
   "x_items": [],
-  "x_sources": []
+  "x_sources": [
+   {
+    "label": "11/23",
+    "url": "https://x.com/takanenofficial/status/2124654168035959258"
+   }
+  ]
  },
  "2026-11-23|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
   "generated": "2026-11-18",
