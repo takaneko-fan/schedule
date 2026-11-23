@@ -43,6 +43,7 @@ WARNINGS_TITLE = "高嶺のなでしこ 記載ミスの可能性"
 MISSED_TITLE = "高嶺のなでしこ 会場を取り込めていない可能性"
 UPDATES_PATH = "updates.json"  # Web 版の「最近の更新」（公開する。予定の情報だけを書く）
 UPDATES_DAYS = 7  # この日数より古い記録は捨てる
+SOURCES_PATH = "sources.json"  # fetch_schedule.py が書く、予定の項目ごとの元の発表
 WORKTREE = "作業中"  # read_csv でコミットの代わりに使うと、作業中のファイルを読む
 WARNED_PATH = os.environ.get("WARNED_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/warned.json")
 
@@ -213,12 +214,41 @@ def build_message(added, updated, removed, deadlines):
     return "\n".join(lines), bool(important)
 
 
-def update_items(added, updated, removed, deadlines):
+def change_fields(kind, old, new):
+    """変化の種類（classify の kind）から、変わった項目を返す（元の発表を探すのに使う）。"""
+    if kind == "日付変更":
+        return ["date"]
+    if kind.startswith("時刻"):
+        return [f for f in TIME_FIELDS if old[f] != new[f]]
+    if kind.startswith("出演時間"):
+        return ["perform"]
+    if kind.startswith("会場"):
+        return ["venue"]
+    if kind.startswith("出演"):
+        return ["members"]
+    return ["title"]  # 中止・欠席・延期などの印
+
+
+def source_of(row, fields, sources):
+    """項目の値を決めた発表の URL。覚えていなければ、会場は会場の情報元、ほかは予定の情報元。"""
+    known = sources.get(row["uid"], {})
+    for f in fields:
+        if known.get(f):
+            return known[f]
+    if "venue" in fields and row.get("venue_url"):
+        return row["venue_url"]
+    return row["url"]
+
+
+def update_items(added, updated, removed, deadlines, sources=None):
     """Web 版の「最近の更新」の項目。区分と言葉は通知（build_message）と同じにする。参加メモなどだけの変更は入れない。
-    level: important（⚠️）・decided（✅）・added（新規）・deadline（申込）。uid は飛び先の予定（削除はなし）。"""
-    def item(level, kind, row, change, uid=None):
+    level: important（⚠️）・decided（✅）・added（新規）・deadline（申込）。uid は飛び先の予定（削除はなし）。
+    source は変化の元の発表（sources は fetch_schedule.py の sources.json。削除にはない）。"""
+    sources = sources or {}
+
+    def item(level, kind, row, change, uid=None, source=""):
         return {"level": level, "kind": kind, "date": row["date"], "title": short_title(row["title"]),
-                "change": change, "uid": row["uid"] if uid is None else uid}
+                "change": change, "uid": row["uid"] if uid is None else uid, "source": source}
 
     items = []
     for old, new in updated:
@@ -229,15 +259,15 @@ def update_items(added, updated, removed, deadlines):
                 change = f"{clip(before, 40)} → {clip(after, 40)}" if before or after else ""
             else:
                 change = clip(after, 40)
-            items.append(item(level, kind, new, change))
+            items.append(item(level, kind, new, change, source=source_of(new, change_fields(kind, old, new), sources)))
     items += [item("important", "削除", r, "一覧から消えました", "") for r in removed]
-    items += [item("added", "新規", r, " ・ ".join(x for x in (clip(time_label(r), 40), r["venue"] and clip(r["venue"], 30)) if x))
-              for r in added]
+    items += [item("added", "新規", r, " ・ ".join(x for x in (clip(time_label(r), 40), r["venue"] and clip(r["venue"], 30)) if x),
+                   source=r["url"]) for r in added]
     for d in deadlines:
         when = f"{with_weekday(d['date'])} {d.get('time_text') or d['time']}".strip()
         event = " ".join(re.sub(r"^\d{1,2}/\d{1,2}\s*", "", deadline_event(d["event"])).split())
         items.append({"level": "deadline", "kind": "申込", "date": d["date"], "title": clip(event, MAX_LABEL_LENGTH),
-                      "change": f"{d.get('label') or d['kind']} {when}",
+                      "change": f"{d.get('label') or d['kind']} {when}", "source": d["url"],
                       "deadline": {k: d[k] for k in ("date", "time", "kind", "event", "url")}})
     return items
 
@@ -256,7 +286,7 @@ def record_updates(today, now, path=UPDATES_PATH, dry_run=False):
     schedule = read_pair("HEAD", WORKTREE, "schedule.csv")
     deadlines = read_pair("HEAD", WORKTREE, "deadlines.csv")
     items = update_items(*(diff_schedule(*schedule, today) if schedule else ([], [], [])),
-                         diff_deadlines(*deadlines, today) if deadlines else [])
+                         diff_deadlines(*deadlines, today) if deadlines else [], load_json(SOURCES_PATH, {}))
     oldest = (date.fromisoformat(today) - timedelta(days=UPDATES_DAYS)).isoformat()
     records = [r for r in load_json(path, []) if r["at"][:10] >= oldest]
     known = [i["deadline"] for r in records for i in r["items"] if "deadline" in i]

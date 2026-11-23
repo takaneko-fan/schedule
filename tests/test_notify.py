@@ -169,6 +169,18 @@ class RecordUpdatesTest(unittest.TestCase):
         self.assertEqual((items[2]["uid"], items[2]["change"]), ("", "一覧から消えました"))
         self.assertEqual((items[4]["title"], items[4]["change"]), ("オンラインサイン会", "抽選の締切 11/15(日) 23:59まで"))
 
+    def test_source_of_each_change(self):
+        post = "https://x.com/takanenofficial/status/1"
+        old, new = row(start="18:00", venue="東京都内某所"), row(start="19:00", venue="Zepp", venue_url="https://example.invalid/news/3")
+        items = notify.update_items([row(uid="u2")], [(old, new)], [row(uid="u3")], [deadline()], {"u1": {"start": post}})
+        self.assertEqual([(i["kind"], i.get("source")) for i in items], [
+            ("時刻変更", post),  # 告知の投稿（sources.json）
+            ("会場決定", "https://example.invalid/news/3"),  # 覚えていなければ会場の情報元
+            ("削除", ""),
+            ("新規", "https://example.invalid/event/1"),  # 予定の情報元
+            ("申込", "https://example.invalid/news/1"),  # 申込の元の記事
+        ])
+
     def test_memo_only_change_is_not_recorded(self):
         self.assertEqual(notify.update_items([], [(row(), row(memo="📍 会場: …"))], [], []), [])
 

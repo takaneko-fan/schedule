@@ -78,7 +78,7 @@ Web 版の申込・締切の一覧、たかねこリマインド、`deadlines.md
 
 ### 最近の更新
 
-- **記録:** `run_update.sh` が、コミットの前に `notify.py --record` を実行する。最後のコミット（`HEAD`）と作業中の `schedule.csv`・`deadlines.csv` を、通知と同じ比べ方（`diff_schedule`・`diff_deadlines`・`classify`）で比べ、`update_items` が項目にして `updates.json`（リポジトリ。公開）の先頭に `{at, items}` を足す。項目は `{level, kind, date, title, change, uid}`、申込・締切は `uid` の代わりに `deadline`（`date`・`time`・`kind`・`event`・`url`）。参加メモなどだけの変更（`classify` が空）は入れない。
+- **記録:** `run_update.sh` が、コミットの前に `notify.py --record` を実行する。最後のコミット（`HEAD`）と作業中の `schedule.csv`・`deadlines.csv` を、通知と同じ比べ方（`diff_schedule`・`diff_deadlines`・`classify`）で比べ、`update_items` が項目にして `updates.json`（リポジトリ。公開）の先頭に `{at, items}` を足す。項目は `{level, kind, date, title, change, uid, source}`、申込・締切は `uid` の代わりに `deadline`（`date`・`time`・`kind`・`event`・`url`）。参加メモなどだけの変更（`classify` が空）は入れない。`source` は変化の元の発表で、変更・決定は `change_fields` で変わった項目を出し、`sources.json` の元（なければ会場は `venue_url`、ほかは予定の `url`）、新しい予定は `url`、申込は申込の `url`。
 - **重複を避ける:** AI の読み直しや記事と公式 X の書き方の違いで申込・締切の行が変わると「追加」に見えるので、7 日間の記録に同じもの（`same_deadline`: 日時が同じで、元が同じか、種別が同じ（受付開始と一般発売は同じ）でイベント名が 6 文字以上重なる）があれば足さない。
 - **古い記録:** 7 日（`UPDATES_DAYS`）より古い記録は、新しい項目を足すときだけ捨てる。変化のない回に `updates.json` だけが変わってコミットされないように。
 - **Web 版:** `updates.json` を読み（読めなくても予定は表示する）、7 日間の項目を並べる。申込・締切は、Web 版の結び付け（`deadlinesFor`）から、日時と元が同じ申込・締切の付く予定を探して飛び先にする。押すと `forceShow` にその予定を入れて絞り込みと「終わった予定も表示」によらず表示し、その予定へ `window.scrollTo` で飛ぶ（PC の幅で上に固定した絞り込みに隠れないよう、その高さをその都度測って空ける）。新着は localStorage の `takaneko-schedule-updates-seen`（前に見た一番新しい記録の時刻）と比べる。初めて開いた端末では新着の印を付けない。開閉は `takaneko-schedule-updates-open`。
