@@ -48,6 +48,11 @@ def kinds(old, new):
 
 
 class ClassifyTest(unittest.TestCase):
+    def test_shorter_venue_is_not_notified(self):
+        self.assertEqual(kinds(row(venue="ヒューリックホール東京（HULIC HALL TOKYO）"), row(venue="ヒューリックホール東京")), [])
+        self.assertEqual(kinds(row(venue="ヒューリックホール東京"), row(venue="ヒューリックホール東京（HULIC HALL TOKYO）")),
+                         [("decided", "会場の追記")])
+
     def test_no_change(self):
         self.assertEqual(kinds(row(), row()), [])
 
@@ -108,6 +113,12 @@ class ClassifyTest(unittest.TestCase):
 
 
 class DiffScheduleTest(unittest.TestCase):
+    def test_shorter_venue_only_is_ignored(self):
+        old = [row(venue="ヒューリックホール東京（HULIC HALL TOKYO）")]
+        self.assertEqual(notify.diff_schedule(old, [row(venue="ヒューリックホール東京")], TODAY), ([], [], []))
+        changed = notify.diff_schedule(old, [row(venue="ヒューリックホール東京", start="18:00")], TODAY)[1]
+        self.assertEqual(len(changed), 1)  # ほかの項目も変わっていれば知らせる
+
     def test_added_updated_removed(self):
         old = [row(uid="a", title="A公演"), row(uid="b", title="B公演")]
         new = [row(uid="a", title="A公演", start="13:00"), row(uid="c", title="C公演", url="https://example.invalid/c")]
