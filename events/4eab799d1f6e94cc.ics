@@ -14,13 +14,13 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:4eab799d1f6e94cc@takaneko-data-mine
-DTSTAMP:20261120T142107Z
+DTSTAMP:20261123T185221Z
 DTSTART;TZID=Asia/Tokyo:20261202T190000
 DTEND;TZID=Asia/Tokyo:20261202T210000
 SUMMARY:なみだ色の消しごむ presents 『高嶺の猫と、世界の
  猫と、借りてきた猫。～借りてきた猫では終われない
  ！～』
-LOCATION:Spotify O-WEST(Shibuya O-WEST)
+LOCATION:Spotify O-WEST
 DESCRIPTION:時間: OPEN 18:15 / START 19:00 ／ 🎤 出演 19:10〜19:40\
  n出演: グループ（全員）\nカテゴリ: ライブ／イベント\
  n情報元: https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e
