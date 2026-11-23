@@ -16,7 +16,7 @@ python3 notify.py --warnings || echo "記載ミスの可能性の通知に失敗
 # Web 版の「最近の更新」に、今回の変化を記録する（コミットする前の CSV を比べる）。失敗しても更新は続ける
 python3 notify.py --record || echo "最近の更新の記録に失敗しました（更新は続けます）"
 
-git add updates.json schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json post_ai.json events x_events.json x_notices.json perform.json x_deadlines.json
+git add updates.json sources.json schedule.md schedule.csv schedule.ics deadlines.md deadlines.csv deadlines.ics memos.json post_ai.json events x_events.json x_notices.json perform.json x_deadlines.json
 if git diff --cached --quiet; then
     echo "予定に変化なし（コミットしません）"
     exit 0

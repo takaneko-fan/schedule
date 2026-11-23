@@ -72,6 +72,10 @@ Web 版の申込・締切の一覧、たかねこリマインド、`deadlines.md
 - `schedule.csv` を読み込んだとき、終わった予定と一覧にない uid を両方から捨てる（`pruneMarks`）。
 - ★ を外しても「追加済み」は残す。付け直してまとめて追加したときに二重登録しないため。ページからはカレンダーの予定を消せないので、行かなくなった予定は利用者がカレンダーアプリで消す（README に記載）。
 
+### 項目ごとの元の発表（`sources.json`）
+
+予定の項目の値を、予定の情報元（`url`）とは別の発表で決めたとき、`note_source` で行の `sources`（項目 → URL）に覚える。覚える場所は、会場の補い（`fill_tbd_venues`・`replace_tbd_venue`）、記事・公式 X の予定とのまとめ（`merge_post_rows` で空の時刻・会場・出演を埋めたとき、詳しい会場の表記にしたとき）、中止・欠席の告知（`apply_x_notices` の予定名の印と出演）、変更の告知（`apply_x_change`）、出演時間（`add_perform`）。`assign_uids` の後に `write_sources` が、これからの予定の分を `sources.json`（`{uid: {項目: URL}}`、情報元と同じものは省く）に書き出す。覚えていない項目の元は予定の情報元とみなす。
+
 ### 最近の更新
 
 - **記録:** `run_update.sh` が、コミットの前に `notify.py --record` を実行する。最後のコミット（`HEAD`）と作業中の `schedule.csv`・`deadlines.csv` を、通知と同じ比べ方（`diff_schedule`・`diff_deadlines`・`classify`）で比べ、`update_items` が項目にして `updates.json`（リポジトリ。公開）の先頭に `{at, items}` を足す。項目は `{level, kind, date, title, change, uid}`、申込・締切は `uid` の代わりに `deadline`（`date`・`time`・`kind`・`event`・`url`）。参加メモなどだけの変更（`classify` が空）は入れない。
