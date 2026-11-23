@@ -108,8 +108,8 @@ class AssignUidsTest(unittest.TestCase):
         self.assertEqual(self.assign([row(uid="keepthisuid00000")]), ["keepthisuid00000"])
 
     def test_uid_is_inherited_when_source_changes(self):
-        """Eventernote → 公式カレンダーのように情報元が変わっても、同じ日の同じ予定なら前回の ID を使う。"""
-        prev = [dict(row(url="https://www.eventernote.com/events/1"), uid="prevuid000000000")]
+        """お知らせ記事 → 公式カレンダーのように情報元が変わっても、同じ日の同じ予定なら前回の ID を使う。"""
+        prev = [dict(row(url="https://example.invalid/news/1"), uid="prevuid000000000")]
         self.assertEqual(self.assign([row()], prev), ["prevuid000000000"])
 
     def test_uid_is_inherited_from_x_post(self):
@@ -118,12 +118,12 @@ class AssignUidsTest(unittest.TestCase):
         self.assertEqual(self.assign([merged], prev), ["xuid000000000000"])
 
     def test_uid_is_not_inherited_when_ambiguous(self):
-        prev = [dict(row(url="https://www.eventernote.com/events/1"), uid="prevuid000000000")]
+        prev = [dict(row(url="https://example.invalid/news/1"), uid="prevuid000000000")]
         new = [row(title="ミニライブ&特典会 1部"), row(title="ミニライブ&特典会 2部")]
         self.assertNotIn("prevuid000000000", self.assign(new, prev))
 
     def test_uid_is_not_inherited_from_other_day(self):
-        prev = [dict(row(date="2026-11-21", url="https://www.eventernote.com/events/1"), uid="prevuid000000000")]
+        prev = [dict(row(date="2026-11-21", url="https://example.invalid/news/1"), uid="prevuid000000000")]
         self.assertNotEqual(self.assign([row()], prev), ["prevuid000000000"])
 
 
@@ -147,9 +147,8 @@ class CheckDropTest(unittest.TestCase):
         small = self.prev(4)
         self.assertIsNone(fs.check_drop(small, [], self.START, self.END, 1))  # 4 件しか消えていない
 
-    def test_eventernote_and_out_of_range_are_ignored(self):
-        prev = self.prev(10, category="Eventernote（非公式）")
-        prev += [row(date="2026-10-01", url=f"https://example.invalid/past/{i}") for i in range(10)]
+    def test_out_of_range_is_ignored(self):
+        prev = [row(date="2026-10-01", url=f"https://example.invalid/past/{i}") for i in range(10)]
         self.assertIsNone(fs.check_drop(prev, [], self.START, self.END, 1))
 
     def test_event_found_by_x_url(self):

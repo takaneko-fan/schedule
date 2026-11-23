@@ -121,8 +121,8 @@ class SnapshotTest(unittest.TestCase):
         path = os.path.join(tmp.name, "snapshot.json")
         self.assertIsNone(fs.load_official_snapshot(NOW, path))
         with contextlib.redirect_stdout(io.StringIO()) as out:
-            fs.save_official_snapshot(20, [{"date": "2026-11-21", "title": "A"}], [{"link": "u"}], [], path)
-        self.assertIn("公式サイトの内容を保存（公式 X だけの更新で使う）: イベント 20 件・お知らせ記事 1 件・Eventernote 0 件", out.getvalue())
+            fs.save_official_snapshot(20, [{"date": "2026-11-21", "title": "A"}], [{"link": "u"}], path)
+        self.assertIn("公式サイトの内容を保存（公式 X だけの更新で使う）: イベント 20 件・お知らせ記事 1 件（", out.getvalue())
         snapshot = fs.load_official_snapshot(datetime.now(fs.JST), path)
         self.assertEqual((snapshot["events_count"], snapshot["rows"][0]["title"]), (20, "A"))
         self.assertIsNone(fs.load_official_snapshot(datetime.now(fs.JST) + timedelta(hours=25), path))  # 古ければ使わない

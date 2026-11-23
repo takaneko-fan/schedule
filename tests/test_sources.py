@@ -59,6 +59,12 @@ class NoteSourceTest(unittest.TestCase):
         rows = quiet(fs.merge_post_rows, [r], [pr])
         self.assertEqual((len(rows), r["venue"], r["sources"]), (1, "Zepp Haneda", {"venue": POST}))
 
+    def test_more_detailed_venue_keeps_source(self):
+        r = row(venue="ヒューリックホール東京")
+        pr = row(category="お知らせ記事", url="https://example.invalid/news/1", venue="ヒューリックホール東京（HULIC HALL TOKYO）")
+        quiet(fs.merge_post_rows, [r], [pr])
+        self.assertEqual((r["venue"], r.get("sources")), ("ヒューリックホール東京（HULIC HALL TOKYO）", None))
+
     def test_write_sources_skips_same_as_url_and_past(self):
         rows = [row(sources={"venue": POST, "start": OFFICIAL}), row(uid="u2", date="2026-11-01", sources={"venue": POST}),
                 row(uid="u3")]

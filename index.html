@@ -98,7 +98,6 @@
   .meta a { color: inherit; }
   .tags { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
   .tag { font-size: .72rem; border: 1px solid var(--line); border-radius: 4px; padding: 0 6px; color: var(--muted); }
-  .tag.unofficial { border-color: var(--accent); color: var(--accent); }
   .links { font-size: .8rem; margin-top: 4px; display: flex; gap: 12px; }
   .links a { color: var(--accent); }
   .meta .perform { color: var(--accent); font-weight: 700; white-space: nowrap; }
@@ -252,7 +251,7 @@
   </section>
 
   <footer>
-    取得元: 高嶺のなでしこ公式サイト（カレンダー・お知らせ記事）、公式 X、Eventernote（非公式）。
+    取得元: 高嶺のなでしこ公式サイト（カレンダー・お知らせ記事）、公式 X。
     <a href="https://github.com/takaneko-fan/schedule">GitHub</a> ・ <a href="schedule.csv">CSV</a>
     <p class="legal">
       本サイトは公式・所属事務所とは関係のない非公式のファンメイドサイトです。
@@ -568,7 +567,6 @@ function eventHTML(r, today) {
   const [, m, d] = r.date.split("-").map(Number);
   const wdClass = r.weekday === "土" ? "sat" : r.weekday === "日" ? "sun" : "";
   const time = timeLabel(r);
-  const unofficial = r.category.startsWith("Eventernote");
   // 画像の一覧から読んだ予定は名前がないので「メンバー未記載」（fetch_schedule.py の members_label と同じ）
   const members = r.members === GROUP ? (categoriesOf(r).includes("画像読み取り") ? "メンバー未記載" : "全員")
     : r.members.split("、").join("・");
@@ -589,7 +587,7 @@ function eventHTML(r, today) {
       ${r.venue ? `<div class="meta">📍 ${esc(r.venue)}</div>` : ""}
       <div class="tags">
         <span class="tag">${esc(members)}</span>
-        ${categoriesOf(r).map(c => `<span class="tag${unofficial ? " unofficial" : ""}">${esc(c)}</span>`).join("")}
+        ${categoriesOf(r).map(c => `<span class="tag">${esc(c)}</span>`).join("")}
       </div>
       <div class="links">
         ${r.url ? `<a href="${esc(r.url)}" target="_blank" rel="noopener">情報元</a>` : ""}
