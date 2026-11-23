@@ -79,6 +79,13 @@ def content(row):
     return tuple(v for k, v in row.items() if k not in NOTIFY_IGNORE_COLUMNS)
 
 
+def shorter_venue_only(old, new):
+    """変わったのが会場の書き方だけで、短くなっただけか（「…（HULIC HALL TOKYO）」→「…」）。通知にも最近の更新にも出さない。"""
+    changed = {k for k in new if k not in NOTIFY_IGNORE_COLUMNS and old.get(k) != new[k]}
+    a, b = normalize(old["venue"]), normalize(new["venue"])
+    return changed == {"venue"} and bool(b) and b != a and b in a
+
+
 def diff_schedule(old_rows, new_rows, today):
     """(追加, 変更の (前, 後) の組, 削除) を返す。
     ID は日付と情報元から作るので、日付や情報元が変わると削除と追加に見え、同じ記事・同じ日の予定が複数あると
@@ -89,7 +96,8 @@ def diff_schedule(old_rows, new_rows, today):
     same = {uid for uid in old.keys() & new.keys() if shares_phrase(old[uid]["title"], new[uid]["title"])
             or old[uid]["title"] == new[uid]["title"]}
     added = [r for uid, r in new.items() if uid not in same and r["date"] >= today]
-    updated = [(old[uid], r) for uid, r in new.items() if uid in same and content(r) != content(old[uid]) and r["date"] >= today]
+    updated = [(old[uid], r) for uid, r in new.items() if uid in same and content(r) != content(old[uid]) and r["date"] >= today
+               and not shorter_venue_only(old[uid], r)]
     removed = [r for uid, r in old.items() if uid not in same and r["date"] >= today]
     for gone in list(removed):
         moved = next((r for r in added if (r["url"] == gone["url"] or r["date"] == gone["date"])
@@ -136,7 +144,9 @@ def classify(old, new):
     if a != b and b:
         if not a:
             out.append(("decided", "会場決定", "", new["venue"]))
-        elif a in b or b in a:  # 「ららぽーと立川立飛」→「ららぽーと立川立飛2F イベント広場」のような追記
+        elif b in a:
+            pass  # 「ヒューリックホール東京（HULIC HALL TOKYO）」→「ヒューリックホール東京」のように短くなっただけ。知らせない
+        elif a in b:  # 「ららぽーと立川立飛」→「ららぽーと立川立飛2F イベント広場」のような追記
             out.append(("decided", "会場の追記", old["venue"], new["venue"]))
         elif shares_phrase(old["venue"], new["venue"], 6):  # 「Spotify O-EAST(Shibuya O-EAST)」→「渋谷Spotify O-EAST」
             out.append(("decided", "会場の表記", old["venue"], new["venue"]))
