@@ -935,7 +935,7 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
         tweets = again + tweets
     provider, key, _ = memo_provider()
     tokens = [0, 0]
-    official = [r for r in rows if not r["category"].startswith("Eventernote")]
+    official = rows
     counts = {"◎": 0, "◎ 掲載済み": 0, "?": 0}
     for t in tweets:
         if hints is not None:
@@ -1023,42 +1023,6 @@ def read_x_posts(token, rows, events, notices, recheck_days, hints=None):
             json.dump({"since_id": newest, "pending": pending}, f)
             f.write("\n")
     return events
-
-
-# ---- Eventernote（公式 X などで告知され、公式サイト未掲載の出演情報の補完） ----
-
-EVENTERNOTE_URL = ("https://www.eventernote.com/actors/"
-                   "%E9%AB%98%E5%B6%BA%E3%81%AE%E3%81%AA%E3%81%A7%E3%81%97%E3%81%93/67857/events")
-
-
-def fetch_eventernote_rows(start, end):
-    """Eventernote（ファン有志のイベント DB）の出演一覧を行データにする。
-
-    公式 X はログインなしでは取得できないため、X 告知分の補完として使う。
-    """
-    rows = []
-    page = fetch(EVENTERNOTE_URL)
-    for block in re.findall(r'<li class="clearfix[^"]*">(.*?)</li>\s*(?=<li class="clearfix|</ul>)', page, re.S):
-        m = re.search(r'<p class="day\d">(\d{4}-\d{2}-\d{2})', block)
-        t = re.search(r'<h4><a href="(/events/\d+)">(.*?)</a>', block, re.S)
-        if not (m and t):
-            continue
-        d = date.fromisoformat(m.group(1))
-        if not start <= d < end:
-            continue
-        v = re.search(r'会場:\s*<a[^>]*>(.*?)</a>', block, re.S)
-        rows.append({
-            "date": d.isoformat(),
-            "weekday": "月火水木金土日"[d.weekday()],
-            "open": "", "start": "", "end": "", "time_note": "",
-            "title": html.unescape(t.group(2)).strip(),
-            "category": "Eventernote（非公式）",
-            "members": GROUP,
-            "venue": html.unescape(v.group(1)).strip() if v else "",
-            "url": f"https://www.eventernote.com{t.group(1)}",
-            "post_text": "",
-        })
-    return rows
 
 
 def normalize(text):
@@ -1357,8 +1321,7 @@ def merge_post_rows(rows, post_rows):
             # 記事の統合順に左右されないよう、同じ会場ならより詳しい表記を採用
             if (pr["venue"] and dup["venue"] and len(pr["venue"]) > len(dup["venue"])
                     and normalize(dup["venue"]) in normalize(pr["venue"])):
-                dup["venue"] = pr["venue"]
-                note_source(dup, ["venue"], pr["url"])
+                dup["venue"] = pr["venue"]  # 書き方を詳しくしただけなので、会場の元は書き換えない
             continue
         added.append(pr)
         print(f"  + 追加（{pr['category']}）: {pr['date']} {pr['title']} -> {pr['members']}")
@@ -1472,7 +1435,7 @@ def write_markdown(rows, path):
     out = [
         "# 高嶺のなでしこ メンバー別スケジュール一覧",
         "",
-        f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）、Eventernote （公式X等の告知の補完・非公式）",
+        f"- 取得元: {BASE_URL}/schedule/ （カレンダー）、{BASE_URL}/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）",
         "- 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定",
         f"- 件数: {len(rows)} 件（うち済 {sum(1 for r in rows if r['done'])} 件）",
         "",
@@ -1481,8 +1444,7 @@ def write_markdown(rows, path):
         "「グループ（全員）」はタイトル等に個別メンバーの記載がないイベントです。"
         "各メンバーの一覧にはグループ出演分も含めています。"
         "カテゴリが「お知らせ記事」の予定は、カレンダー未掲載でお知らせ記事にのみ書かれているものです。"
-        "「公式X」は公式 X の告知から読み取った、公式サイトにまだ載っていない予定です。"
-        "「Eventernote（非公式）」はファン有志のイベント DB にのみ載っている予定で、公式サイトには未掲載です。",
+        "「公式X」は公式 X の告知から読み取った、公式サイトにまだ載っていない予定です。",
         "",
         "## 目次",
         "",
@@ -2042,8 +2004,8 @@ def longest_common(a, b):
 
 
 def memo_target(row):
-    """参加メモを付ける種類の予定か（発売日の行・番組・誕生日・Eventernote を除く。日付は見ない）。"""
-    return not (row["category"].startswith(("Eventernote", "誕生日")) or is_release(row) or media_of(row))
+    """参加メモを付ける種類の予定か（発売日の行・番組・誕生日を除く。日付は見ない）。"""
+    return not (row["category"].startswith("誕生日") or is_release(row) or media_of(row))
 
 
 def post_matches(row, p):
@@ -2911,7 +2873,7 @@ def perform_from_text(text):
 
 
 def perform_target(row):
-    return not (is_release(row) or media_of(row) or is_campaign(row) or row["category"].startswith(("Eventernote", "誕生日")))
+    return not (is_release(row) or media_of(row) or is_campaign(row) or row["category"].startswith("誕生日"))
 
 
 def add_perform(rows, today, path="perform.json", judged=None):
@@ -3042,7 +3004,7 @@ def add_memos(rows, posts, today, cache_path="memos.json", judged=None):
     store, now, new_versions = load_official_texts(), datetime.now(JST), 0
     calls, x_calls, tokens, kept, created = 0, 0, [0, 0, 0], {}, []  # tokens: 入力・うちキャッシュ・出力
     for r in rows:
-        if (r["date"] < today.isoformat() or r["category"].startswith(("Eventernote", "誕生日")) or is_release(r)
+        if (r["date"] < today.isoformat() or r["category"].startswith("誕生日") or is_release(r)
                 or media_of(r)):  # 発売日の行・番組は参加する予定ではない
             continue
         campaign = is_campaign(r)  # 店舗のキャンペーンは公式の要約だけ（📣 は日ごとの行に同じ内容が並ぶため付けない）
@@ -3185,8 +3147,6 @@ def ics_summary(row):
         if not all(n in title for n in names):
             title = f"【{'・'.join(names)}】{title}"
     title = media_prefix(row) + title
-    if row["category"].startswith("Eventernote"):
-        title += "（非公式）"
     return (notice.group(0) if notice else "") + title
 
 
@@ -3199,8 +3159,6 @@ def ics_description(row):
         lines.append(f"会場の情報元: {row['venue_url']}")
     if row.get("memo"):
         lines += ["", "【参加メモ】", row["memo"]]
-    if row["category"].startswith("Eventernote"):
-        lines.append("※公式サイト未掲載（Eventernote の情報）")
     return "\n".join(lines)
 
 
@@ -3269,7 +3227,7 @@ def same_event(a, b):
 def assign_uids(rows, prev_rows=()):
     """予定ごとの ID（iCalendar の UID・Web 版の「行く」の印・1 件ずつの .ics のファイル名）を r["uid"] に入れる。
 
-    ID は日付と情報元から作るが、情報元が変わった予定（Eventernote → 公式カレンダーなど）は
+    ID は日付と情報元から作るが、情報元が変わった予定（公式 X → 公式カレンダーなど）は
     前回の schedule.csv の ID を引き継ぐ。カレンダーの予定が作り直されたり「行く」の印が外れたりしないように。"""
     seen = set()
     for r in rows:
@@ -3315,7 +3273,7 @@ def ics_event(r, suffix="takaneko-data"):
     ev += [f"DESCRIPTION:{ics_escape(ics_description(r))}",
            f"URL:{r['url']}",
            "STATUS:" + ("CANCELLED" if r["title"].startswith(("【中止】", "【延期】"))
-                        else "TENTATIVE" if r["category"].startswith("Eventernote") else "CONFIRMED"),
+                        else "CONFIRMED"),
            "TRANSP:TRANSPARENT"]  # 個人の予定の「空き時間」を塞がない
     return ev
 
@@ -3385,9 +3343,7 @@ def check_drop(prev_rows, rows, start, end, n_events):
     """取得結果が前回より不自然に少なければ、理由を返す（問題なければ None）。"""
     if n_events == 0:
         return "公式カレンダーから 1 件も取得できませんでした"
-    # Eventernote は補助ソースで取得失敗も許しているので比較しない
-    prev = [r for r in prev_rows
-            if start.isoformat() <= r["date"] < end.isoformat() and not r["category"].startswith("Eventernote")]
+    prev = [r for r in prev_rows if start.isoformat() <= r["date"] < end.isoformat()]
     keys = {(r["date"], u) for r in rows for u in (r["url"], r.get("event_url"), *r.get("x_urls", ()))}
     removed = [r for r in prev if (r["date"], r["url"]) not in keys]
     if len(removed) >= DROP_MIN and len(removed) >= len(prev) * DROP_RATIO:
@@ -3397,7 +3353,7 @@ def check_drop(prev_rows, rows, start, end, n_events):
 
 
 def row_label(r):
-    note = f" ［{r['category']}］" if r["category"].startswith(("Eventernote", "お知らせ記事", X_CATEGORY)) else ""
+    note = f" ［{r['category']}］" if r["category"].startswith(("お知らせ記事", X_CATEGORY)) else ""
     title = re.sub(r"\s+", " ", r["title"]).strip()
     return f"{r['date']}({r['weekday']}) {title}{note}"
 
@@ -3415,21 +3371,21 @@ def print_changes(prev_rows, rows, memo_created):
         print(f"  ✎ {row_label(r)}（{kind}）")
 
 
-# 全体の更新で取った公式サイトの内容（カレンダーの予定とイベントページ、お知らせ記事、Eventernote）。
+# 全体の更新で取った公式サイトの内容（カレンダーの予定とイベントページ、お知らせ記事）。
 # 「公式 X だけ」の更新（--x-only）は公式サイトにアクセスせず、これを使って全体の更新と同じ処理を通す。記事の本文を含むので公開しない
 OFFICIAL_SNAPSHOT_PATH = (os.environ.get("OFFICIAL_SNAPSHOT_PATH")
                           or os.path.expanduser("~/.local/state/takaneko-fan/official_snapshot.json"))
 OFFICIAL_SNAPSHOT_MAX_AGE = timedelta(hours=24)  # これより古い内容では「公式 X だけ」の更新をしない
 
 
-def save_official_snapshot(events_count, rows, posts, eventernote, path=None):
+def save_official_snapshot(events_count, rows, posts, path=None):
     path = path or OFFICIAL_SNAPSHOT_PATH
     os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w", encoding="utf-8") as f:
         json.dump({"taken": datetime.now(JST).isoformat(timespec="minutes"), "events_count": events_count,
-                   "rows": rows, "posts": posts, "eventernote": eventernote}, f, ensure_ascii=False)
-    print(f"公式サイトの内容を保存（公式 X だけの更新で使う）: イベント {events_count} 件・お知らせ記事 {len(posts)} 件・"
-          f"Eventernote {len(eventernote)} 件（{os.path.getsize(path) // 1024:,} KB）")
+                   "rows": rows, "posts": posts}, f, ensure_ascii=False)
+    print(f"公式サイトの内容を保存（公式 X だけの更新で使う）: イベント {events_count} 件・お知らせ記事 {len(posts)} 件"
+          f"（{os.path.getsize(path) // 1024:,} KB）")
 
 
 def load_official_snapshot(now, path=None):
@@ -3499,16 +3455,6 @@ def main():
     x_rows, x_notices, x_hints = update_x_events(rows, today, args.x_recheck)
     x_rows = [r for r in x_rows if args.start.isoformat() <= r["date"] < args.end.isoformat()]
     rows = merge_post_rows(rows, sorted(x_rows, key=lambda r: (r["date"], int(r["url"].rsplit("/", 1)[1]))))
-    eventernote = None
-    if snapshot is not None:
-        eventernote = [r for r in snapshot["eventernote"] if args.start.isoformat() <= r["date"] < args.end.isoformat()]
-    else:
-        try:
-            eventernote = fetch_eventernote_rows(args.start, args.end)
-        except Exception as e:  # noqa: BLE001 — 補助ソースなので失敗しても続行
-            print(f"  ! Eventernote 取得失敗: {e}")
-    if eventernote is not None:
-        rows = merge_post_rows(rows, eventernote)
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     apply_x_notices(rows, x_notices)
@@ -3557,7 +3503,7 @@ def main():
     print_changes(prev, rows, memo_created)
     if snapshot is None and not args.no_detail:
         # 「公式 X だけ」の更新で使う。安全策（check_drop）を通った内容だけを保存する
-        save_official_snapshot(events_count, calendar_rows, posts, eventernote or [])
+        save_official_snapshot(events_count, calendar_rows, posts)
 
 
 if __name__ == "__main__":
