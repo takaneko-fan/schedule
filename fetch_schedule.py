@@ -731,10 +731,12 @@ def apply_x_notices(rows, notices):
             prefix = f"【{n['label']}】"
             if not r["title"].startswith(prefix):
                 r["title"] = prefix + r["title"]
+                note_source(r, ["title"], n["url"])
             if n["status"] == "absent" and r["members"] != GROUP:
                 names = [full for full, _, _ in MEMBERS
                          if (full in r["members"] and full not in n["members"]) or full in n["substitutes"]]
                 r["members"] = "、".join(names) or GROUP
+                note_source(r, ["members"], n["url"])
             print(f"  ⚠ {n['label']}: {r['date']} {r['title']}")
 
 
@@ -747,6 +749,7 @@ def apply_x_change(row, notice):
             continue
         if normalize(now) == normalize(c["before"]):
             row[field] = c["after"]
+            note_source(row, [field], notice["url"])
             print(f"  ⚠ {notice['label']}: {row['date']} {row['title']} {now or '未定'}→{c['after']}")
         else:
             print(f"  ! 公式の値が告知の後に変わったため反映しません: {row['date']} {row['title']} {field} {now}"
@@ -1208,6 +1211,31 @@ def find_missed_venues(rows, posts, x_hints, today):
     return out
 
 
+# ---- 項目ごとの元の発表（最近の更新の「元の発表」に使う） ----
+
+SOURCES_PATH = "sources.json"  # 予定ごとに、項目の値を決めた発表の URL（予定の情報元と同じものは書かない。公開する）
+
+
+def note_source(row, keys, url):
+    """予定の項目（venue・members など）の値を決めた発表を覚える。覚えていない項目は、予定の情報元（url）が元。"""
+    if url:
+        for key in keys:
+            row.setdefault("sources", {})[key] = url
+
+
+def write_sources(rows, today, path=SOURCES_PATH):
+    """これからの予定の、項目ごとの元の発表を書き出す（{uid: {項目: URL}}）。情報元と同じものは省く。"""
+    out = {}
+    for r in rows:
+        src = {k: v for k, v in sorted(r.get("sources", {}).items()) if v != r["url"]}
+        if r["date"] >= today.isoformat() and r.get("uid") and src:
+            out[r["uid"]] = src
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(out, f, ensure_ascii=False, indent=1, sort_keys=True)
+        f.write("\n")
+    return out
+
+
 def fill_tbd_venues(rows, posts):
     """会場が「東京都内某所（詳細は後日発表）」の予定に、後から出た記事の会場名を入れる（新しい記事を優先）。"""
     for post, targets in dated_posts(rows, posts):
@@ -1217,6 +1245,7 @@ def fill_tbd_venues(rows, posts):
             print(f"  会場を補完: {r['date']} {r['venue']} → {venue}")
             r["venue"] = venue
             r["venue_url"] = post["link"]  # 情報元（url）とは別の記事から補ったので出どころを残す
+            note_source(r, ["venue"], post["link"])
 
 
 def link_detail_posts(rows, posts):
@@ -1244,6 +1273,7 @@ def replace_tbd_venue(dup, pr):
     """まとめる先の会場が「東京都内某所（詳細は後日発表）」のような仮の会場で、後の情報元に実際の会場があれば置き換える。"""
     if dup["venue"] and TBD_VENUE_RE.search(dup["venue"]) and pr["venue"] and not TBD_VENUE_RE.search(pr["venue"]):
         dup["venue"] = pr["venue"]
+        note_source(dup, ["venue"], pr["url"])
 
 
 CAMPAIGN_RE = re.compile(r"キャンペーン|レシート|ポスター|パネル展|パネル展示|特典配布|購入特典")
@@ -1308,7 +1338,9 @@ def merge_post_rows(rows, post_rows):
             if dup["category"] == X_CATEGORY:
                 # 同じ予定を告知した別の投稿: 先の投稿で空いている項目を後の投稿で埋める
                 for key in ("open", "start", "end", "time_note", "venue"):
-                    dup[key] = dup[key] or pr[key]
+                    if not dup[key] and pr[key]:
+                        dup[key] = pr[key]
+                        note_source(dup, [key], pr["url"])
                 replace_tbd_venue(dup, pr)
                 continue
         if dup:
@@ -1316,14 +1348,17 @@ def merge_post_rows(rows, post_rows):
             # どの予定にも付く語を除いた予定名が一致）だけ。別の催しとまとめても出演を書き換えないように
             if dup["members"] == GROUP and pr["members"] != GROUP and same_event_strictly(pr, dup):
                 dup["members"] = pr["members"]
+                note_source(dup, ["members"], pr["url"])
             for key in ("venue", "time_note"):
-                if not dup[key] and not (dup["open"] or dup["start"]):
+                if not dup[key] and not (dup["open"] or dup["start"]) and pr[key]:
                     dup[key] = pr[key]
+                    note_source(dup, [key], pr["url"])
             replace_tbd_venue(dup, pr)
             # 記事の統合順に左右されないよう、同じ会場ならより詳しい表記を採用
             if (pr["venue"] and dup["venue"] and len(pr["venue"]) > len(dup["venue"])
                     and normalize(dup["venue"]) in normalize(pr["venue"])):
                 dup["venue"] = pr["venue"]
+                note_source(dup, ["venue"], pr["url"])
             continue
         added.append(pr)
         print(f"  + 追加（{pr['category']}）: {pr['date']} {pr['title']} -> {pr['members']}")
@@ -2915,6 +2950,7 @@ def add_perform(rows, today, path="perform.json", judged=None):
         if entry:
             kept[cid] = entry
             r["perform"], r["perform_url"], r["perform_posted"] = entry["perform"], entry["url"], entry["posted"]
+            note_source(r, ["perform"], entry["url"])
             if saved.get(cid, {}).get("perform") != entry["perform"]:
                 print(f"  出演時間: {r['date']} {r['title'][:40]} → {entry['perform']}（{entry['url']}）")
     with open(path, "w", encoding="utf-8") as f:
@@ -3495,6 +3531,7 @@ def main():
     for r in rows:
         r["done"] = "済" if r["date"] < today.isoformat() else ""
     assign_uids(rows, prev)
+    write_sources(rows, today)
     write_markdown(rows, args.md)
     write_csv(rows, args.csv)
     ics_note = "" if write_ics(rows, args.ics) else "（予定に変更なし・書き直さず）"

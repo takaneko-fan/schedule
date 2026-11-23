@@ -144,8 +144,9 @@
   .ulist .uday:first-child { border-top: 0; padding-top: 0; }
   .up { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; width: 100%; text-align: left; font: inherit; color: inherit;
     background: none; border: 0; border-radius: 8px; padding: 6px 4px; }
-  button.up { cursor: pointer; }
-  button.up:hover { background: var(--accent-soft); }
+  .up.jump { cursor: pointer; }
+  .up.jump:hover { background: var(--accent-soft); }
+  .l2 .src { color: var(--accent); white-space: nowrap; margin-left: 6px; }
   .kind { grid-row: span 2; align-self: start; font-size: .7rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; white-space: nowrap; margin-top: 2px; }
   .k-important { background: var(--warn-soft); color: var(--warn); }
   .k-decided { background: var(--ok-soft); color: var(--ok); }
@@ -704,14 +705,17 @@ function updateRowHTML(item, at, seen, today) {
   const row = uid && rows.find(r => r.uid === uid);
   const gone = !item.deadline && !row;
   const past = item.date < today;
-  const link = row && row.date >= today;
-  const tag = link ? `button type="button" class="up" data-uid="${esc(uid)}"` : `div class="up${gone ? " gone" : ""}${past ? " past" : ""}"`;
+  const link = Boolean(row);  // 終わった予定も、押せばその予定だけを表示して飛ぶ（visible の forceShow）
+  // 行は押すと予定へ飛ぶ。中に「元の発表」のリンクを置くので、button ではなく role="button" の div にする
+  const cls = `up${link ? " jump" : ""}${gone ? " gone" : ""}${past ? " past" : ""}`;
+  const attrs = link ? ` role="button" tabindex="0" data-uid="${esc(uid)}"` : "";
+  const source = item.source ? ` <a class="src" href="${esc(item.source)}" target="_blank" rel="noopener">元の発表 ↗</a>` : "";
   const target = item.deadline && row ? ` ・ ${Number(row.date.slice(5, 7))}/${Number(row.date.slice(8))} の予定` : "";
-  return `<${tag}>
+  return `<div class="${cls}"${attrs}>
     <span class="kind k-${esc(item.level)}">${LEVEL_MARK[item.level] || ""} ${esc(item.kind)}</span>
     <span class="l1"><span class="when">${esc(mdw(item.date))}</span><span class="name">${esc(item.title)}</span>${at > seen ? '<span class="dot" title="新着"></span>' : ""}</span>
-    <span class="l2">${item.change ? `<span class="chg">${esc(item.change)}</span> ・ ` : ""}<span class="at">${esc(at.slice(11, 16))}</span>${esc(target)}</span>
-  </${link ? "button" : "div"}>`;
+    <span class="l2">${item.change ? `<span class="chg">${esc(item.change)}</span> ・ ` : ""}<span class="at">${esc(at.slice(11, 16))}</span>${esc(target)}${source}</span>
+  </div>`;
 }
 let updatesAll = false;
 let updatesSeen = null;
@@ -759,9 +763,19 @@ document.getElementById("updates").addEventListener("click", e => {
     renderUpdates(todayJST());
     return;
   }
-  const b = e.target.closest("button.up");
+  if (e.target.closest("a")) return;  // 「元の発表」はそのままリンクを開く
+  const b = e.target.closest(".up.jump");
   if (!b) return;
-  forceShow = b.dataset.uid;
+  jumpTo(b.dataset.uid);
+});
+document.getElementById("updates").addEventListener("keydown", e => {
+  const b = e.target.closest?.(".up.jump");
+  if (!b || e.target !== b || (e.key !== "Enter" && e.key !== " ")) return;
+  e.preventDefault();
+  jumpTo(b.dataset.uid);
+});
+function jumpTo(uid) {
+  forceShow = uid;
   renderList();
   const card = document.querySelector(`#list article[data-uid="${CSS.escape(forceShow)}"]`);
   if (!card) return;
@@ -772,7 +786,7 @@ document.getElementById("updates").addEventListener("click", e => {
                     behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   card.classList.add("flash");
   setTimeout(() => card.classList.remove("flash"), 1800);
-});
+}
 
 function update() {
   savePrefs();

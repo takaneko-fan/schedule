@@ -24,6 +24,7 @@
 | [`post_ai.json`](post_ai.json) | ルールで読めないお知らせ記事（ラジオ出演の一覧など）を AI で読み取った結果。本文が変わらない限り再利用する |
 | [`memos.json`](memos.json) | 参加メモ（AI による要約）の保存先。材料が変わらない限り再利用する |
 | [`x_events.json`](x_events.json) | 公式 X の告知から読み取った、これからの予定（日時・予定名・会場など。投稿の本文は保存しない） |
+| [`sources.json`](sources.json) | これからの予定の、項目（会場・時刻・出演・出演時間・中止の印など）ごとの元の発表の URL（予定の情報元と違うものだけ） |
 | [`updates.json`](updates.json) | Web 版の「最近の更新」の記録（この 7 日間の予定・申込・締切の変化。`notify.py --record` が書く） |
 | [`x_deadlines.json`](x_deadlines.json) | 公式 X の告知から読み取った申込・締切（投稿ごと。投稿の本文は保存しない）。記事の申込・締切と合わせて deadlines.* に出す |
 | [`perform.json`](perform.json) | 対バン・フェスでの高嶺のなでしこの出演時間（予定ごと。根拠の公式 X の投稿の URL 付き） |
