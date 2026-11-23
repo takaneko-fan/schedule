@@ -704,8 +704,8 @@ function updateRowHTML(item, at, seen, today) {
   const row = uid && rows.find(r => r.uid === uid);
   const gone = !item.deadline && !row;
   const past = item.date < today;
-  const link = row && row.date >= today;
-  const tag = link ? `button type="button" class="up" data-uid="${esc(uid)}"` : `div class="up${gone ? " gone" : ""}${past ? " past" : ""}"`;
+  const link = Boolean(row);  // 終わった予定も、押せばその予定だけを表示して飛ぶ（visible の forceShow）
+  const tag = link ? `button type="button" class="up${past ? " past" : ""}" data-uid="${esc(uid)}"` : `div class="up${gone ? " gone" : ""}${past ? " past" : ""}"`;
   const target = item.deadline && row ? ` ・ ${Number(row.date.slice(5, 7))}/${Number(row.date.slice(8))} の予定` : "";
   return `<${tag}>
     <span class="kind k-${esc(item.level)}">${LEVEL_MARK[item.level] || ""} ${esc(item.kind)}</span>
