@@ -18,6 +18,7 @@
     --today: #fff3c4;
     --sat: #2f6fb5;
     --sun: #c8402f;
+    --warn: #b3261e; --warn-soft: #fdecea; --ok: #2e7d4f; --ok-soft: #e7f4ec; --new: #8a5a00; --new-soft: #fff4d6; --flash: #ffe28a;
     color-scheme: light;
   }
   @media (prefers-color-scheme: dark) {
@@ -33,6 +34,7 @@
       --today: #3d3520;
       --sat: #7fb2ef;
       --sun: #f08a7a;
+      --warn: #ff8a80; --warn-soft: #3e2022; --ok: #7fd3a0; --ok-soft: #1f3328; --new: #f2c86b; --new-soft: #3a3120; --flash: #6b5a1e;
       color-scheme: dark;
     }
   }
@@ -128,6 +130,44 @@
     font-size: .82rem; color: var(--muted);
   }
   .going-bar[hidden] { display: none; }  /* display: flex が hidden 属性より優先されるため */
+  /* 最近の更新（notify.py --record が書く updates.json）。スマホは 1 件 2 行、PC は 1 行 */
+  .updates { margin-top: 12px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; }
+  .updates > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 10px 12px; font-weight: 700; font-size: .92rem; }
+  .updates > summary::-webkit-details-marker { display: none; }
+  .updates > summary .sub { font-weight: 400; color: var(--muted); font-size: .78rem; }
+  .updates > summary .fresh { font-size: .72rem; font-weight: 700; padding: 0 7px; border-radius: 999px; background: var(--accent); color: var(--accent-text); }
+  .updates > summary .caret { margin-left: auto; color: var(--muted); font-size: .8rem; transition: transform .2s; }
+  .updates[open] > summary .caret { transform: rotate(180deg); }
+  .updates > summary:focus-visible, .up:focus-visible, .more:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .ulist { padding: 0 12px 10px; }
+  .uday { font-size: .74rem; color: var(--muted); font-weight: 700; letter-spacing: .04em; padding: 8px 0 2px; border-top: 1px solid var(--line); }
+  .ulist .uday:first-child { border-top: 0; padding-top: 0; }
+  .up { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0 8px; width: 100%; text-align: left; font: inherit; color: inherit;
+    background: none; border: 0; border-radius: 8px; padding: 6px 4px; }
+  button.up { cursor: pointer; }
+  button.up:hover { background: var(--accent-soft); }
+  .kind { grid-row: span 2; align-self: start; font-size: .7rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; white-space: nowrap; margin-top: 2px; }
+  .k-important { background: var(--warn-soft); color: var(--warn); }
+  .k-decided { background: var(--ok-soft); color: var(--ok); }
+  .k-added { background: var(--new-soft); color: var(--new); }
+  .k-deadline { background: var(--accent-soft); color: var(--accent); }
+  .l1 { font-size: .86rem; font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .l1 .when { font-weight: 700; margin-right: 6px; font-variant-numeric: tabular-nums; }
+  .l2 { font-size: .78rem; color: var(--muted); overflow-wrap: anywhere; }
+  .l2 .chg { color: var(--text); }
+  .l2 .at { font-variant-numeric: tabular-nums; }
+  .up.gone .l1, .up.past .l1 { color: var(--muted); }
+  .up.gone .l1 .name { text-decoration: line-through; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); margin-left: 6px; vertical-align: 2px; }
+  .more { display: block; width: 100%; margin-top: 4px; padding: 6px; font: inherit; font-size: .8rem; color: var(--accent);
+    background: none; border: 1px dashed var(--line); border-radius: 8px; cursor: pointer; }
+  @media (min-width: 640px) {
+    .up { grid-template-columns: 6.6em minmax(0, 1fr) minmax(0, 1.1fr); align-items: baseline; }
+    .kind { grid-row: auto; justify-self: start; }
+  }
+  .event { transition: background-color .6s; }
+  .event.flash { background: var(--flash); }
+  @media (prefers-reduced-motion: reduce) { .event, .updates > summary .caret { transition: none; } }
   .notice { margin: 10px 0 0; padding: 8px 12px; border-radius: 8px; background: var(--accent-soft); font-size: .82rem; }
   body.has-going .wrap { padding-bottom: 120px; }  /* 最後の予定やフッターがバーに隠れないように */
   .going-bar button {
@@ -173,6 +213,8 @@
     <h1><span class="flower">✿</span> 高嶺のなでしこ 非公式スケジュール</h1>
     <p class="note">非公式のファンメイドのデータです。予定は急に変更されることがあります。参加前には必ず公式サイト・公式 X をご確認ください。</p>
   </header>
+
+  <details class="updates" id="updates" hidden></details>
 
   <div class="controls">
     <div class="row" id="members"><span class="label">メンバー</span></div>
@@ -228,8 +270,14 @@ const GOING_KEY = "takaneko-schedule-going";  // 「行く」の印を付けた�
 const ADDED_KEY = "takaneko-schedule-added";  // 「カレンダーに追加」を押した予定の uid（二重登録を避けるため）
 
 const state = { member: "", categories: [], includeGroup: true, showDone: false, goingOnly: false };
+const UPDATES_SEEN_KEY = "takaneko-schedule-updates-seen";  // 前に「最近の更新」を見たときの一番新しい記録の時刻（新着の印に使う）
+const UPDATES_OPEN_KEY = "takaneko-schedule-updates-open";  // 「最近の更新」の枠を開いているか
+const UPDATES_DAYS = 7;  // notify.py の UPDATES_DAYS と同じ
+const UPDATES_FIRST = 5;  // 最初に見せる数
 let rows = [];
 let deadlines = [];
+let updates = [];
+let forceShow = "";  // 「最近の更新」から飛んだ予定は、絞り込みで隠れていても表示する
 let going = new Set();
 let added = new Set();
 
@@ -352,6 +400,7 @@ function renderControls() {
 }
 
 function visible(r, today) {
+  if (r.uid && r.uid === forceShow) return true;
   if (!state.showDone && r.date < today) return false;
   if (state.goingOnly) return going.has(r.uid) && r.date >= today;
   if (state.member) {
@@ -526,7 +575,7 @@ function eventHTML(r, today) {
   const cls = ["event", r.date === today && "today", r.date < today && "done", isGoing && "going"].filter(Boolean).join(" ");
   // 「東京都内某所」「オンライン」などは地図で探せないのでリンクを付けない
   const map = r.venue && !/某所|オンライン|未定/.test(r.venue) && `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(r.venue)}`;
-  return `<article class="${cls}">
+  return `<article class="${cls}" data-uid="${esc(r.uid)}">
     <div class="date">${m}/${d}<span class="wd ${wdClass}">(${esc(r.weekday)})</span>${r.date === today ? '<span class="badge">今日</span>' : ""}</div>
     <div>
       <div class="head">
@@ -634,10 +683,102 @@ function renderGoingBar(today) {
   });
 }
 
+// ---- 最近の更新 ----
+const WEEKDAYS = "日月火水木金土";
+function mdw(iso) {
+  const [y, m, d] = iso.split("-").map(Number);
+  return `${m}/${d}(${WEEKDAYS[new Date(Date.UTC(y, m - 1, d)).getUTCDay()]})`;
+}
+// 申込・締切の記録から、Web 版で結び付けている予定を探す（記録の後に AI が読み直して行が変わっていても、日時と元が同じなら同じとみなす）
+function deadlineTarget(key) {
+  if (!rows.length) return null;
+  deadlinesFor(rows[0]);  // 結び付けを作る
+  for (const [uid, list] of dlLinks) {
+    if (list.some(d => d.date === key.date && d.time === key.time && d.url === key.url)) return uid;
+  }
+  return null;
+}
+const LEVEL_MARK = { important: "⚠️", decided: "✅", added: "🆕", deadline: "🎫" };
+function updateRowHTML(item, at, seen, today) {
+  const uid = item.deadline ? deadlineTarget(item.deadline) : item.uid;
+  const row = uid && rows.find(r => r.uid === uid);
+  const gone = !item.deadline && !row;
+  const past = item.date < today;
+  const link = row && row.date >= today;
+  const tag = link ? `button type="button" class="up" data-uid="${esc(uid)}"` : `div class="up${gone ? " gone" : ""}${past ? " past" : ""}"`;
+  const target = item.deadline && row ? ` ・ ${Number(row.date.slice(5, 7))}/${Number(row.date.slice(8))} の予定` : "";
+  return `<${tag}>
+    <span class="kind k-${esc(item.level)}">${LEVEL_MARK[item.level] || ""} ${esc(item.kind)}</span>
+    <span class="l1"><span class="when">${esc(mdw(item.date))}</span><span class="name">${esc(item.title)}</span>${at > seen ? '<span class="dot" title="新着"></span>' : ""}</span>
+    <span class="l2">${item.change ? `<span class="chg">${esc(item.change)}</span> ・ ` : ""}<span class="at">${esc(at.slice(11, 16))}</span>${esc(target)}</span>
+  </${link ? "button" : "div"}>`;
+}
+let updatesAll = false;
+let updatesSeen = null;
+function renderUpdates(today) {
+  const box = document.getElementById("updates");
+  const oldest = new Date(Date.parse(today) - UPDATES_DAYS * 86400000).toISOString().slice(0, 10);
+  const records = updates.filter(r => r.at.slice(0, 10) >= oldest);
+  const total = records.reduce((n, r) => n + r.items.length, 0);
+  box.hidden = total === 0;
+  if (!total) return;
+  if (updatesSeen === null) {  // 開いたときに 1 回だけ読み、今回の一番新しい記録を「見た」として残す
+    try { updatesSeen = localStorage.getItem(UPDATES_SEEN_KEY) || ""; } catch (e) { updatesSeen = ""; }
+    try { localStorage.setItem(UPDATES_SEEN_KEY, records[0].at); } catch (e) { /* 無視 */ }
+    let open = "1";
+    try { open = localStorage.getItem(UPDATES_OPEN_KEY) ?? "1"; } catch (e) { /* 既定は開く */ }
+    box.open = open === "1";
+  }
+  // 初めて開いた端末では、すべてを新着にしない
+  const seen = updatesSeen || records[0].at;
+  const fresh = records.filter(r => r.at > seen).reduce((n, r) => n + r.items.length, 0);
+  let html = "", shown = 0, day = "";
+  const yesterday = new Date(Date.parse(today) - 86400000).toISOString().slice(0, 10);
+  for (const r of records) {
+    for (const item of r.items) {
+      if (!updatesAll && shown >= UPDATES_FIRST) break;
+      const d = r.at.slice(0, 10);
+      if (d !== day) {
+        day = d;
+        html += `<div class="uday">${d === today ? "今日 " : d === yesterday ? "昨日 " : ""}${esc(mdw(d))}</div>`;
+      }
+      html += updateRowHTML(item, r.at, seen, today);
+      shown++;
+    }
+  }
+  if (shown < total) html += `<button type="button" class="more">もっと見る（ほか ${total - shown} 件）</button>`;
+  box.innerHTML = `<summary>🔔 最近の更新 <span class="sub">${UPDATES_DAYS} 日間 ${total} 件</span>${fresh ? `<span class="fresh">新着 ${fresh}</span>` : ""}<span class="caret">▾</span></summary>
+    <div class="ulist">${html}</div>`;
+}
+document.getElementById("updates").addEventListener("toggle", e => {
+  try { localStorage.setItem(UPDATES_OPEN_KEY, e.target.open ? "1" : "0"); } catch (err) { /* 無視 */ }
+});
+document.getElementById("updates").addEventListener("click", e => {
+  if (e.target.closest(".more")) {
+    updatesAll = true;
+    renderUpdates(todayJST());
+    return;
+  }
+  const b = e.target.closest("button.up");
+  if (!b) return;
+  forceShow = b.dataset.uid;
+  renderList();
+  const card = document.querySelector(`#list article[data-uid="${CSS.escape(forceShow)}"]`);
+  if (!card) return;
+  // 上に固定した絞り込み（PC の幅だけ固定）に隠れないよう、その高さを測って少し上に余白を空ける
+  const controls = document.querySelector(".controls");
+  const covered = getComputedStyle(controls).position === "sticky" ? controls.offsetHeight : 0;
+  window.scrollTo({ top: card.getBoundingClientRect().top + window.scrollY - covered - 12,
+                    behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+  card.classList.add("flash");
+  setTimeout(() => card.classList.remove("flash"), 1800);
+});
+
 function update() {
   savePrefs();
   renderControls();
   renderList();
+  renderUpdates(todayJST());
 }
 
 document.getElementById("includeGroup").addEventListener("change", e => { state.includeGroup = e.target.checked; update(); });
@@ -677,7 +818,12 @@ const loadDeadlines = fetch("deadlines.csv", { cache: "no-cache" })
     }) : [];
   })
   .catch(() => { deadlines = []; });
-Promise.all([fetch("schedule.csv", { cache: "no-cache" }), loadDeadlines])
+// 最近の更新も補助的な表示なので、読み込めなくても予定は表示する
+const loadUpdates = fetch("updates.json", { cache: "no-cache" })
+  .then(res => res.ok ? res.json() : [])
+  .then(data => { updates = Array.isArray(data) ? data : []; })
+  .catch(() => { updates = []; });
+Promise.all([fetch("schedule.csv", { cache: "no-cache" }), loadDeadlines, loadUpdates])
   .then(([res]) => { if (!res.ok) throw new Error(res.status); return res.text(); })
   .then(text => {
     rows = parseCSV(text);  // fetch_schedule.py が日付順に並べて出力している

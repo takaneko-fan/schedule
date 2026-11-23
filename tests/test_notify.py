@@ -158,6 +158,46 @@ class DiffDeadlinesTest(unittest.TestCase):
         self.assertEqual(notify.diff_deadlines(old, new, TODAY), [])
 
 
+class RecordUpdatesTest(unittest.TestCase):
+    def test_items_use_same_levels_as_message(self):
+        old, new = row(start="18:00"), row(start="19:00", venue="ららぽーと立川立飛 2F")
+        items = notify.update_items([row(uid="u2", title="新しいライブ", start="17:00")], [(old, new)],
+                                    [row(uid="u3", title="消えた予定")], [deadline(label="抽選の締切", time_text="23:59まで")])
+        self.assertEqual([(i["level"], i["kind"]) for i in items],
+                         [("important", "時刻変更"), ("decided", "会場の追記"), ("important", "削除"), ("added", "新規"), ("deadline", "申込")])
+        self.assertEqual(items[0]["change"], "18:00 → 19:00")
+        self.assertEqual((items[2]["uid"], items[2]["change"]), ("", "一覧から消えました"))
+        self.assertEqual((items[4]["title"], items[4]["change"]), ("オンラインサイン会", "抽選の締切 11/15(日) 23:59まで"))
+
+    def test_memo_only_change_is_not_recorded(self):
+        self.assertEqual(notify.update_items([], [(row(), row(memo="📍 会場: …"))], [], []), [])
+
+    def test_same_deadline(self):
+        a = deadline()
+        self.assertTrue(notify.same_deadline(a, deadline(note="書き写しが変わった")))
+        self.assertTrue(notify.same_deadline(a, deadline(kind="当落発表")))  # 元が同じで日時が同じ（AI の読み直しで種別が変わった）
+        self.assertTrue(notify.same_deadline(deadline(kind="受付開始"), deadline(kind="一般発売", url="https://x.com/1")))
+        self.assertFalse(notify.same_deadline(a, deadline(time="18:00")))
+
+    def test_record_keeps_seven_days_and_skips_known_deadlines(self):
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        path = os.path.join(tmp.name, "updates.json")
+        known = {"level": "deadline", "kind": "申込", "date": "2026-11-15", "title": "オンラインサイン会", "change": "",
+                 "deadline": {k: deadline()[k] for k in ("date", "time", "kind", "event", "url")}}
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump([{"at": "2026-11-10T09:17", "items": [known]}, {"at": "2026-11-01T09:17", "items": [known]}], f)
+        pairs = {"schedule.csv": ([row()], [row(), row(uid="u2", title="新しいライブ")]),
+                 "deadlines.csv": ([], [deadline(), deadline(event="12/1 ライブ", url="https://example.invalid/news/2")])}
+        with mock.patch.object(notify, "read_pair", side_effect=lambda a, b, p: pairs[p]), \
+                contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(notify.record_updates(TODAY, "2026-11-11T09:17", path), 2)
+        with open(path, encoding="utf-8") as f:
+            records = json.load(f)
+        self.assertEqual([r["at"] for r in records], ["2026-11-11T09:17", "2026-11-10T09:17"])  # 7 日より古い記録を捨てる
+        self.assertEqual([i["title"] for i in records[0]["items"]], ["新しいライブ", "ライブ"])  # 記録済みの申込は足さない
+
+
 class BuildMessageTest(unittest.TestCase):
     def test_nothing_to_notify(self):
         self.assertEqual(notify.build_message([], [], [], []), (None, False))

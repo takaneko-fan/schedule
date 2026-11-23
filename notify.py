@@ -5,10 +5,14 @@
 申込・締切の追加を 1 件の通知にまとめる。「済」が付いただけの変更は通知しない。
 トピック名は環境変数か .env の NTFY_TOPIC。未設定なら何も送らない。
 
+--record を付けると、最後のコミットと作業中の CSV を比べ、変化を Web 版の「最近の更新」の記録（updates.json）に足す
+（run_update.sh がコミットの前に実行する）。
+
 --warnings を付けると、代わりに fetch_schedule.py が書き出した申込・締切の記載ミスの可能性を知らせる
 （run_update.sh が予定に変化がない回も毎回実行する。送った項目は WARNED_PATH に記録し、二重に送らない）。
 
 使い方: python3 notify.py [--dry-run] [--today YYYY-MM-DD] [前のコミット] [後のコミット]
+        python3 notify.py --record [--dry-run]
         python3 notify.py --warnings [--dry-run]
 """
 
@@ -22,7 +26,7 @@ import subprocess
 from datetime import date, datetime, timedelta
 
 from fetch_schedule import (GROUP, IMAGE_MEMBERS_LABEL, JST, MEMBERS, MISSED_PATH, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
-                            media_prefix, members_label, normalize, shares_phrase, time_label)
+                            media_prefix, members_label, normalize, same_kind, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -37,15 +41,25 @@ MAX_LABELS = 3  # 本文に出す予定名の数。残りは「ほか○件」�
 MAX_LABEL_LENGTH = 28
 WARNINGS_TITLE = "高嶺のなでしこ 記載ミスの可能性"
 MISSED_TITLE = "高嶺のなでしこ 会場を取り込めていない可能性"
+UPDATES_PATH = "updates.json"  # Web 版の「最近の更新」（公開する。予定の情報だけを書く）
+UPDATES_DAYS = 7  # この日数より古い記録は捨てる
+WORKTREE = "作業中"  # read_csv でコミットの代わりに使うと、作業中のファイルを読む
 WARNED_PATH = os.environ.get("WARNED_PATH") or os.path.expanduser("~/.local/state/takaneko-fan/warned.json")
 
 
 def read_csv(rev, path):
     """コミット時点の CSV を (見出し, 行のリスト) で返す。ファイルがなければ None。"""
-    result = subprocess.run(["git", "show", f"{rev}:{path}"], capture_output=True)
-    if result.returncode != 0:
-        return None
-    reader = csv.DictReader(io.StringIO(result.stdout.decode("utf-8-sig"), newline=""))
+    if rev == WORKTREE:
+        if not os.path.exists(path):
+            return None
+        with open(path, encoding="utf-8-sig", newline="") as f:
+            text = f.read()
+    else:
+        result = subprocess.run(["git", "show", f"{rev}:{path}"], capture_output=True)
+        if result.returncode != 0:
+            return None
+        text = result.stdout.decode("utf-8-sig")
+    reader = csv.DictReader(io.StringIO(text, newline=""))
     rows = list(reader)
     return reader.fieldnames, rows
 
@@ -199,6 +213,68 @@ def build_message(added, updated, removed, deadlines):
     return "\n".join(lines), bool(important)
 
 
+def update_items(added, updated, removed, deadlines):
+    """Web 版の「最近の更新」の項目。区分と言葉は通知（build_message）と同じにする。参加メモなどだけの変更は入れない。
+    level: important（⚠️）・decided（✅）・added（新規）・deadline（申込）。uid は飛び先の予定（削除はなし）。"""
+    def item(level, kind, row, change, uid=None):
+        return {"level": level, "kind": kind, "date": row["date"], "title": short_title(row["title"]),
+                "change": change, "uid": row["uid"] if uid is None else uid}
+
+    items = []
+    for old, new in updated:
+        for level, kind, before, after in classify(old, new):
+            if kind == "日付変更":
+                change = f"{before} → {after}"
+            elif level == "important":
+                change = f"{clip(before, 40)} → {clip(after, 40)}" if before or after else ""
+            else:
+                change = clip(after, 40)
+            items.append(item(level, kind, new, change))
+    items += [item("important", "削除", r, "一覧から消えました", "") for r in removed]
+    items += [item("added", "新規", r, " ・ ".join(x for x in (clip(time_label(r), 40), r["venue"] and clip(r["venue"], 30)) if x))
+              for r in added]
+    for d in deadlines:
+        when = f"{with_weekday(d['date'])} {d.get('time_text') or d['time']}".strip()
+        event = " ".join(re.sub(r"^\d{1,2}/\d{1,2}\s*", "", deadline_event(d["event"])).split())
+        items.append({"level": "deadline", "kind": "申込", "date": d["date"], "title": clip(event, MAX_LABEL_LENGTH),
+                      "change": f"{d.get('label') or d['kind']} {when}",
+                      "deadline": {k: d[k] for k in ("date", "time", "kind", "event", "url")}})
+    return items
+
+
+def same_deadline(a, b):
+    """同じ申込・締切か。AI の読み直しや記事と公式 X の書き方の違いで行が変わっても、同じものを何度も記録しないように
+    （日時が同じで、元の記事・投稿が同じか、種別が同じ（受付開始と一般発売は同じ）でイベント名が 6 文字以上重なる）。"""
+    return (a["date"] == b["date"] and a["time"] == b["time"]
+            and (a["url"] == b["url"] or same_kind(a["kind"], b["kind"])
+                 and shares_phrase(deadline_event(a["event"]), deadline_event(b["event"]), 6)))
+
+
+def record_updates(today, now, path=UPDATES_PATH, dry_run=False):
+    """最後のコミットと作業中の CSV を比べ、変化があれば記録に足す。古い記録はこのときだけ捨てる
+    （変化のない回に記録のファイルだけが変わってコミットされないように）。足した項目の数を返す。"""
+    schedule = read_pair("HEAD", WORKTREE, "schedule.csv")
+    deadlines = read_pair("HEAD", WORKTREE, "deadlines.csv")
+    items = update_items(*(diff_schedule(*schedule, today) if schedule else ([], [], [])),
+                         diff_deadlines(*deadlines, today) if deadlines else [])
+    oldest = (date.fromisoformat(today) - timedelta(days=UPDATES_DAYS)).isoformat()
+    records = [r for r in load_json(path, []) if r["at"][:10] >= oldest]
+    known = [i["deadline"] for r in records for i in r["items"] if "deadline" in i]
+    items = [i for i in items if "deadline" not in i or not any(same_deadline(i["deadline"], k) for k in known)]
+    if not items:
+        print("最近の更新: 記録する変化なし")
+        return 0
+    if dry_run:
+        print(f"最近の更新（記録しない）: {json.dumps(items, ensure_ascii=False, indent=1)}")
+        return len(items)
+    records.insert(0, {"at": now, "items": items})
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(records, f, ensure_ascii=False, indent=1)
+        f.write("\n")
+    print(f"最近の更新: {len(items)} 件を記録しました")
+    return len(items)
+
+
 def warning_key(w):
     return "|".join(w[k] for k in ("url", "date", "time", "kind", "event"))
 
@@ -294,8 +370,12 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="送らずに本文を表示する")
     parser.add_argument("--today", default=datetime.now(JST).date().isoformat(), help="これより前の日付を除く（既定: 今日）")
     parser.add_argument("--warnings", action="store_true", help="申込・締切の記載ミスの可能性を知らせる")
+    parser.add_argument("--record", action="store_true", help="作業中の CSV の変化を Web 版の「最近の更新」に記録する")
     args = parser.parse_args()
 
+    if args.record:
+        record_updates(args.today, datetime.now(JST).strftime("%Y-%m-%dT%H:%M"), dry_run=args.dry_run)
+        return
     load_env()
     if args.warnings:
         notify_warnings(args.dry_run, args.today)

@@ -1,0 +1,466 @@
+[
+ {
+  "at": "2026-11-21T15:20",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "時刻決定",
+    "date": "2026-11-21",
+    "title": "ステラタウン大宮",
+    "change": "1部：12:45〜グループ握手会、グループ握手会終了し次第ミニライブ開催",
+    "uid": "ea2bb8a58d9224e6"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-21T12:22",
+  "items": [
+   {
+    "level": "important",
+    "kind": "時刻変更",
+    "date": "2026-11-21",
+    "title": "ステラタウン大宮",
+    "change": "1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30… → 1部：12:45〜グループ握手会、グループ握手会終了し次第ミニライブ開催",
+    "uid": "ea2bb8a58d9224e6"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-21T02:25",
+  "items": [
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-11-30",
+    "title": "オシグラフ vol.5",
+    "change": "抽選の締切 11/30(月)",
+    "deadline": {
+     "date": "2026-11-30",
+     "time": "",
+     "kind": "受付締切",
+     "event": "オシグラフ vol.5",
+     "url": "https://x.com/takanenofficial/status/2120358355700977981"
+    }
+   }
+  ]
+ },
+ {
+  "at": "2026-11-21T00:17",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-25",
+    "title": "メンバーとオンライン個別お話し会",
+    "change": "①18:00-18:30 ／ … ／ ⑥21:00-21:30",
+    "uid": "27e802f36047acb3"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-26",
+    "title": "メンバーとオンライン個別お話し会",
+    "change": "①18:00-18:30 ／ … ／ ⑥21:00-21:30",
+    "uid": "ca7713122d0923c1"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-20T22:41",
+  "items": [
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-11-21",
+    "title": "オンライン個別お話し会",
+    "change": "販売開始 11/21(土) 21:00〜",
+    "deadline": {
+     "date": "2026-11-21",
+     "time": "21:00",
+     "kind": "受付開始",
+     "event": "オンライン個別お話し会",
+     "url": "https://x.com/takanenofficial/status/2123772282724389040"
+    }
+   }
+  ]
+ },
+ {
+  "at": "2026-11-20T15:31",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-12-16",
+    "title": "日経エンタテインメント！ アイドルSpecial GI…",
+    "change": "①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 ・ HMV&BOOKS SHIBUYA 5FイベントスペースA",
+    "uid": "7fd904f5ed4f850d"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-12-17",
+    "title": "日経エンタテインメント！ アイドルSpecial GI…",
+    "change": "①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 ・ HMV&BOOKS SHIBUYA 6FイベントスペースA",
+    "uid": "1bac2ea99a8f6703"
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-11-27",
+    "title": "日経エンタテインメント! アイドルSpecial GI…",
+    "change": "先着販売の開始 11/27(金) 18:00〜",
+    "deadline": {
+     "date": "2026-11-27",
+     "time": "18:00",
+     "kind": "受付開始",
+     "event": "日経エンタテインメント! アイドルSpecial GIRL POP VELOCITY 発売記念イベント",
+     "url": "https://x.com/takanenofficial/status/2123665141783019785"
+    }
+   }
+  ]
+ },
+ {
+  "at": "2026-11-20T00:17",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-28",
+    "title": "mimilait (ミミレ)",
+    "change": "北参道-ROADSIDE-",
+    "uid": "b6377c770e66602b"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-19T01:40",
+  "items": [
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-06",
+    "title": "MARQUEE祭 Vol.186",
+    "change": "受付締切（一般発売） 12/6(日) 23:59まで",
+    "deadline": {
+     "date": "2026-12-06",
+     "time": "23:59",
+     "kind": "受付締切",
+     "event": "12/7 MARQUEE祭 Vol.186",
+     "url": "https://x.com/takanenofficial/status/2113533382886072741"
+    }
+   }
+  ]
+ },
+ {
+  "at": "2026-11-19T01:39",
+  "items": [
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-11-23",
+    "title": "DRAMATIC POP DX",
+    "change": "抽選の締切 11/23(月) 23:59まで",
+    "deadline": {
+     "date": "2026-11-23",
+     "time": "23:59",
+     "kind": "受付締切",
+     "event": "12/15 DRAMATIC POP DX",
+     "url": "https://x.com/takanenofficial/status/2122650959117435037"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-11-24",
+    "title": "タワーレコードCP",
+    "change": "抽選の締切 11/24(火)",
+    "deadline": {
+     "date": "2026-11-24",
+     "time": "",
+     "kind": "受付締切",
+     "event": "タワーレコードCP",
+     "url": "https://x.com/takanenofficial/status/2122258372385001958"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-02",
+    "title": "リリース記念 ダウンロードキャンペーン",
+    "change": "応募の締切 12/2(水) 23:59まで",
+    "deadline": {
+     "date": "2026-12-02",
+     "time": "23:59",
+     "kind": "受付締切",
+     "event": "ニューアルバム『 A World in Our Colors 』リリース記念 ダウンロードキャンペーン",
+     "url": "https://x.com/takanenofficial/status/2122887526474023388"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-09",
+    "title": "ッスッゴイライブ-8th Anniversary SP-",
+    "change": "受付締切（チケット受付） 12/9(水) 23:59まで",
+    "deadline": {
+     "date": "2026-12-09",
+     "time": "23:59",
+     "kind": "受付締切",
+     "event": "12/10 ッスッゴイライブ-8th Anniversary SP-",
+     "url": "https://x.com/takanenofficial/status/2119404568174104839"
+    }
+   }
+  ]
+ },
+ {
+  "at": "2026-11-18T05:20",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-18",
+    "title": "カリメン（RKBラジオ）",
+    "change": "21:00〜23:00",
+    "uid": "4655edcae69a035c"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-19",
+    "title": "カリメン（RKBラジオ）",
+    "change": "21:00〜23:00",
+    "uid": "3742c1918fd38c56"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-20",
+    "title": "music × serendipity（LOVE FM）",
+    "change": "15:00〜19:00",
+    "uid": "c06d405837ad93f8"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-21",
+    "title": "Saturday Sonic Style（FM FUK…",
+    "change": "20:00〜20:30",
+    "uid": "f96b2a356d92b002"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-23",
+    "title": "HIT STREET（FM大阪）",
+    "change": "23:55〜24:00",
+    "uid": "280335b196f131a1"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-24",
+    "title": "HIT STREET（FM大阪）",
+    "change": "23:55〜24:00",
+    "uid": "1ae8cea0f4561ee8"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-25",
+    "title": "HIT STREET（FM大阪）",
+    "change": "23:55〜24:00",
+    "uid": "7d63deac12327123"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-26",
+    "title": "HIT STREET（FM大阪）",
+    "change": "23:55〜24:00",
+    "uid": "d6521d4f46eb359a"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-18T04:58",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-30",
+    "title": "ヒダミノノ（岐阜放送）",
+    "change": "18:00〜18:25",
+    "uid": "058c10f05e427aae"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-18T03:47",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "出演時間決定",
+    "date": "2026-12-02",
+    "title": "なみだ色の消しごむ presents 『高嶺の猫と、世…",
+    "change": "19:10〜19:40",
+    "uid": "4eab799d1f6e94cc"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-17T22:17",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "会場の追記",
+    "date": "2026-12-15",
+    "title": "DRAMATIC POP DX",
+    "change": "品川プリンスホテル ステラボール",
+    "uid": "3eeb8ec2d016cf84"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-17T21:17",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-12-15",
+    "title": "DRAMATIC POP DX",
+    "change": "OPEN 17:30 / START 18:15 ・ ステラボール",
+    "uid": "3eeb8ec2d016cf84"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-17T19:12",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-17",
+    "title": "カリメン（RKBラジオ）",
+    "change": "21:00〜22:50",
+    "uid": "389eb73ca883ceac"
+   }
+  ]
+ },
+ {
+  "at": "2026-11-17T03:15",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "時刻決定",
+    "date": "2026-11-17",
+    "title": "Colors（FM長崎）",
+    "change": "16:00〜18:54",
+    "uid": "4a39c50a3aa12789"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-17",
+    "title": "Colors（FM長崎）",
+    "change": "城月 → 城月・橋本",
+    "uid": "4a39c50a3aa12789"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-18",
+    "title": "ららぽーと立川立飛",
+    "change": "涼海 → 全員",
+    "uid": "f90e02494e2ef452"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-20",
+    "title": "オンラインサイン会＆オンラインお話会",
+    "change": "葉月 → 全員",
+    "uid": "b6510b85ae023851"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-21",
+    "title": "ステラタウン大宮",
+    "change": "東山 → 全員",
+    "uid": "ea2bb8a58d9224e6"
+   },
+   {
+    "level": "decided",
+    "kind": "会場決定",
+    "date": "2026-11-22",
+    "title": "個別特典イベント",
+    "change": "ベルサール飯田橋駅前",
+    "uid": "e0ddd46fe90b85c8"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-22",
+    "title": "個別特典イベント",
+    "change": "日向端 → 全員",
+    "uid": "e0ddd46fe90b85c8"
+   },
+   {
+    "level": "important",
+    "kind": "出演変更",
+    "date": "2026-11-23",
+    "title": "横浜ワールドポーターズ",
+    "change": "松本 → 全員",
+    "uid": "cae3dda54cf95a66"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-17",
+    "title": "タワーレコードキャンペーン：：城月菜央 プリントサイン…",
+    "change": "",
+    "uid": "5ccef23dd2655c82"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-18",
+    "title": "タワーレコードキャンペーン：：涼海すう プリントサイン…",
+    "change": "",
+    "uid": "a331570e6a711e9a"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-20",
+    "title": "タワーレコードキャンペーン：：葉月紗蘭 プリントサイン…",
+    "change": "",
+    "uid": "f3465667b88a59a5"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-21",
+    "title": "タワーレコードキャンペーン：：東山恵里沙 プリントサイ…",
+    "change": "",
+    "uid": "f8d212ac8a691dd3"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-22",
+    "title": "タワーレコードキャンペーン：：日向端ひな プリントサイ…",
+    "change": "",
+    "uid": "a2869c6155615972"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-23",
+    "title": "タワーレコードキャンペーン：：松本ももな プリントサイ…",
+    "change": "",
+    "uid": "8728ebbb644c4d2d"
+   }
+  ]
+ }
+]
