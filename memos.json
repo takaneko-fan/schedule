@@ -1,25 +1,4 @@
 {
- "2026-11-24|https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/": {
-  "generated": "2026-11-18",
-  "hash": "fd36f17340fb8d137f9b7f304ad3c81094e6456a",
-  "memo": {
-   "flow": "2026年11月24日（火）：対象商品購入で籾山ひめりプリントサイン入りスペシャルレシート発行／キャンペーン期間は11月17日（火）〜11月24日（火）",
-   "items": "",
-   "join": "2026年11月24日（火）に対象6店舗で対象商品を購入すると、籾山ひめりプリントサイン入りスペシャルレシートを発行",
-   "notes": "対象店舗はタワーレコード渋谷・新宿・浦和・川崎・ららぽーとTOKYO-BAY・ららぽーと立川立飛／対象商品購入時に発行／各店舗の在庫・運用状況は店舗へ確認",
-   "other": "対象商品：2026年11月18日（水）発売『A World in Our Colors』",
-   "parts": "",
-   "payment": "",
-   "price": "初回限定盤：税込4,950円／たかねこ盤：税込3,300円",
-   "rules": "",
-   "venue": ""
-  },
-  "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "5d7b97709797fc2ff0d4583a8e9d508fe8bb8a31",
-  "x_items": [],
-  "x_sources": []
- },
  "2026-11-25|https://takanenonadeshiko.jp/spacemake-202611/": {
   "generated": "2026-11-21",
   "hash": "75a81a1e4abb9a0aecafb5249ae03cdc823a6992",
