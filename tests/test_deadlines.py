@@ -183,3 +183,12 @@ class LabelTest(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class WebGenericWordsTest(unittest.TestCase):
+    def test_web_uses_same_generic_words(self):
+        """Web 版の申込・締切の結び付けは、どの予定にも付く語を fetch_schedule.py と同じ決まりで除く。"""
+        import re
+        with open(os.path.join(os.path.dirname(__file__), "..", "index.html"), encoding="utf-8") as f:
+            js = re.search(r"const GENERIC_TITLE_RE = /(.*)/g;", f.read()).group(1)
+        self.assertEqual(js, fs.GENERIC_TITLE_RE.pattern)
