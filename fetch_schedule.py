@@ -350,6 +350,9 @@ MEDIA_WORDS = {  # 投稿にこの語があれば番組とみなす（上から�
     "テレビ": re.compile(r"テレビ|📺|TV|地上波"),
     "配信": re.compile(r"生配信|ライブ配信|配信番組|YouTube|ニコニコ|ABEMA|SHOWROOM|インスタライブ"),
 }
+# テレビ局の名前。「テレビ」の語を含まない局名（メ〜テレなど）でも、📻 などラジオの語より優先してテレビとする
+# （2026-11-12 の推し寺アイドルまつりの放送は「📻本日オンエア📻」「メ〜テレにて放送」だった）
+TV_STATION_RE = re.compile(r"メ[〜~ー－]?テレ|日テレ|テレ朝|テレ東|フジテレビ|TOKYO ?MX|BS\d|BS(?:日テレ|朝日|TBS|テレ東|フジ)")
 MEDIA_NOT_PROGRAM_RE = re.compile(r"サイン会|お話し?会|握手|撮影会")  # オンラインの特典会は会場がなくても番組ではない
 AI_CATEGORY = "AI読み取り"  # ルールで読めず LLM が読み取った予定の category に足す
 IMAGE_CATEGORY = "画像読み取り"  # 公式 X の告知画像の一覧（ラジオ出演のスケジュールなど）にしかない予定の category に足す
@@ -423,6 +426,8 @@ def x_media(title, text, venue):
     """投稿の予定が番組なら種別を返す。会場のある予定は、配信付きのライブなどを含むので番組としない。"""
     if venue or MEDIA_NOT_PROGRAM_RE.search(title):
         return ""
+    if TV_STATION_RE.search(text):
+        return "テレビ"
     return next((media for media, words in MEDIA_WORDS.items() if words.search(text)), "")
 
 
@@ -431,6 +436,7 @@ def x_title(lines):
     text = " ".join(ln for ln in lines if ln and not X_MARK_RE.match(ln))
     text = re.sub(r"#(高嶺のなでしこ|たかねこ)(?=\s|$)", "", strip_emoji(text)).replace("#", "")
     text = re.sub(r"\s+", " ", re.sub(r"([『「])\s+|\s+([』」])", r"\1\2", text)).strip()
+    text = re.sub(r"^出演(?:決定)?\s+(?=[『「])", "", text)  # 「#高嶺のなでしこ 出演」の行の後に『』の名前が続く書き方
     m = re.fullmatch(r"[『「]([^』」]+)[』」]", text)  # 全体が『』で囲まれていれば外す
     return m.group(1) if m else text
 
@@ -2386,7 +2392,8 @@ def x_change_prompt(text, posted, events):
     for i, r in enumerate(events):
         weekday = "月火水木金土日"[date.fromisoformat(r["date"]).weekday()]
         lines.append(f"[{i}] {r['date']}({weekday}) {' '.join(r['title'].split())} | 会場: {r['venue'] or '未定'}"
-                     f" | 時刻: {time_label(r) or '未定'}")
+                     f" | 時刻: {time_label(r) or '未定'}"
+                     + (" | 部ごとの時間あり（時刻の変更は time_note で返す）" if len(part_labels(r["time_note"])) >= 2 else ""))
     return "\n".join(lines)
 
 
@@ -2459,6 +2466,91 @@ def part_labels(text):
     return labels
 
 
+def split_parts(note):
+    """時間の注記を「 ／ 」で区切った部分。"""
+    return [seg.strip() for seg in re.split(r"\s*／\s*", note) if seg.strip()]
+
+
+def part_of(seg):
+    """区切った部分の部の番号。部の番号がないか 2 つ以上あれば None。"""
+    labels = part_labels(seg)
+    return next(iter(labels)) if len(labels) == 1 else None
+
+
+def restore_unchanged_parts(before, after, text):
+    """変更後の時間の注記のうち、投稿に時刻が書かれていない部（「2部 現状予定通り」など）と、消えた部を、
+    変更前の書き方に戻す。AI は変わらない部を書き換えたり落としたりすることがあるため。"""
+    old = {part_of(seg): seg for seg in split_parts(before) if part_of(seg)}
+    if len(old) < 2:
+        return after
+    segs = []
+    for seg in split_parts(after):
+        p = part_of(seg)
+        times = re.findall(r"\d{1,2}:\d{2}", seg.replace("：", ":"))
+        if p in old and not any(x_time_in_text(t, text) for t in times):
+            seg = old[p]
+        segs.append(seg)
+    seen = {part_of(seg) for seg in segs}
+    missing = [seg for p, seg in old.items() if p not in seen]
+    if missing:  # 消えた部を足し、部の番号の順に並べる（番号のない部分は直前の部の後ろのまま）
+        keys, key = [], 0
+        for seg in segs + missing:
+            key = int(part_of(seg) or key)
+            keys.append(key)
+        segs = [seg for _, seg in sorted(zip(keys, segs + missing), key=lambda x: x[0])]
+    return " ／ ".join(segs)
+
+
+def edit_part_times(seg, values):
+    """部の時間の書き方を残したまま、開演（括弧の外の最初の時刻）・終了（括弧の外の 2 つ目の時刻）・
+    開場（括弧の中の時刻。「優先エリア入場」など）を書き換える。書き換える場所がなければ None。"""
+    mask = re.sub(r"[（(][^）)]*[）)]", lambda m: "\0" * len(m.group()), seg)
+    times = list(re.finditer(r"\d{1,2}[:：]\d{2}", seg))
+    main = [m for m in times if mask[m.start()] != "\0"]
+    inner = [m for m in times if mask[m.start()] == "\0"]
+    edits = []
+    if "start" in values:
+        if not main:
+            return None
+        edits.append((*main[0].span(), values["start"]))
+    if "end" in values:
+        if len(main) >= 2:
+            edits.append((*main[1].span(), values["end"]))
+        elif main:
+            edits.append((main[0].end(), main[0].end(), f"〜{values['end']}"))
+        else:
+            return None
+    if "open" in values:
+        if not inner:
+            return None
+        edits.append((*inner[0].span(), values["open"]))
+    for start, end, value in sorted(edits, reverse=True):
+        seg = seg[:start] + value + seg[end:]
+    return seg
+
+
+def x_change_part_times(event, merged, text):
+    """部ごとの時間がある予定で、AI が一部の部の時刻を開場・開演・終了として返したら、
+    投稿に書かれた部（1 つだけのとき）の時間の注記を書き換える形に直す。直せなければそのまま返す。"""
+    fields = [f for f in ("open", "start", "end") if f in merged]
+    parts = part_labels(event["time_note"])
+    if len(parts) < 2 or not fields:
+        return merged
+    rest = {f: v for f, v in merged.items() if f not in fields}
+    if "time_note" in merged:
+        return rest  # 時間の注記の全体も返していれば、そちらを使う
+    target = part_labels(text) & parts
+    if len(target) != 1:
+        return merged
+    segs = split_parts(event["time_note"])
+    i = next((k for k, seg in enumerate(segs) if part_of(seg) in target), None)
+    seg = edit_part_times(segs[i], {f: merged[f] for f in fields}) if i is not None else None
+    if seg is None:
+        return merged
+    segs[i] = seg
+    return {**rest, "time_note": " ／ ".join(segs)}
+
+
 def x_change_drops_parts(event, field, after, post_id):
     """部ごとの時間が書かれた予定で、変更を書き込むと部の時間が崩れるなら True（その変更は反映しない）。
     time_note の変更で今ある部が消えるとき（変わった部だけを返した読み取り）と、
@@ -2499,6 +2591,9 @@ def x_change_read(tweet, rows, provider, key, tokens):
     for c in result["changes"] if kind == "change" else []:
         value = x_change_value(c["field"], c["after"])
         merged[c["field"]] = f"{merged[c['field']]} ／ {value}" if c["field"] == "time_note" and c["field"] in merged else value
+    merged = x_change_part_times(event, merged, text)
+    if "time_note" in merged:
+        merged["time_note"] = restore_unchanged_parts(event["time_note"], merged["time_note"], text)
     changes = [{"field": f, "before": event[f], "after": v} for f, v in merged.items()
                if normalize(v) != normalize(event[f])]
     if any(x_change_drops_parts(event, c["field"], c["after"], tweet["id"]) for c in changes):
