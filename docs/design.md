@@ -309,6 +309,8 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 例外として `ops/add_past.py` は、後から足す過去の予定に、基準日を期間の開始日にして `add_memos` でメモを付けます。`memos.json`・公式の版の記録は一時的な場所に向けて書き換えず、公式 X の投稿も使いません。足した後は CSV から引き継ぎます。出演時間の根拠の URL は CSV にないので、`perform.json` から付け直して `schedule.md` を書きます。
 
+`ops/add_past_x.py` は、期間を区切って公式 X を読み（`fetch_x_posts` の `period`）、`read_x_posts` を `fetch_x_posts` を差し替え、`recheck_days` を付けて呼びます（前回の続きの記録を書かない）。投稿の記録は一時的な場所に向けます（`X_TEXTS_KEEP_DAYS` も一時的に延ばす）。読んだ予定は `merge_post_rows` で期間の予定とまとめ、告知は `apply_x_notices`、出演時間は基準日を期間の開始日にした `add_perform`（結果の記録は一時的な場所）で反映します。
+
 ### AI・保存・出力
 
 - AI: `.env` の `OPENAI_API_KEY` があれば OpenAI（`gpt-5.6-luna`）、なければ `GEMINI_API_KEY` で Gemini（`gemini-3.1-flash-lite`）。どちらのキーもなければ新しいメモは作らず、`memos.json` の既存のメモだけを使う。`--no-memo` でメモを付けずに出力する。

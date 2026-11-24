@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 111 件（うち済 85 件）
+- 件数: 113 件（うち済 87 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -27,13 +27,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
 | ✅ | 2026-09-28(月) |  | [たかねこ初恋キッチン。](https://takanenonadeshiko.jp/events/event/%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e5%88%9d%e6%81%8b%e3%82%ad%e3%83%83%e3%83%81%e3%83%b3%e3%80%82-5/) |  |
@@ -95,7 +96,7 @@
 
 ## 城月菜央
 
-個別 10 件 ／ グループ含む合計 76 件
+個別 10 件 ／ グループ含む合計 77 件
 
 ### 個別スケジュール
 
@@ -117,13 +118,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -195,7 +197,7 @@
 
 ## 涼海すう
 
-個別 7 件 ／ グループ含む合計 73 件
+個別 7 件 ／ グループ含む合計 74 件
 
 ### 個別スケジュール
 
@@ -214,13 +216,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -289,7 +292,7 @@
 
 ## 橋本桃呼
 
-個別 9 件 ／ グループ含む合計 75 件
+個別 9 件 ／ グループ含む合計 76 件
 
 ### 個別スケジュール
 
@@ -310,13 +313,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -387,7 +391,7 @@
 
 ## 葉月紗蘭
 
-個別 14 件 ／ グループ含む合計 80 件
+個別 14 件 ／ グループ含む合計 81 件
 
 ### 個別スケジュール
 
@@ -413,13 +417,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -495,12 +500,13 @@
 
 ## 東山恵里沙
 
-個別 15 件 ／ グループ含む合計 81 件
+個別 16 件 ／ グループ含む合計 83 件
 
 ### 個別スケジュール
 
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
+| ✅ | 2026-09-17(木) | 22:00 | [【ラジオ】CBCラジオ 「チュウモリ『推しマシ』」](https://x.com/takanenofficial/status/2100568096927019028) |  |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-10-30(金) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-19/) |  |
 | ✅ | 2026-11-05(木) | 7:30〜10:00 | [【ラジオ】MORNING SPLASH](https://x.com/takanenofficial/status/2117994023311012070) |  |
@@ -522,13 +528,15 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
+| ✅ | 2026-09-17(木) | 22:00 | [【ラジオ】CBCラジオ 「チュウモリ『推しマシ』」](https://x.com/takanenofficial/status/2100568096927019028) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -605,7 +613,7 @@
 
 ## 日向端ひな
 
-個別 12 件 ／ グループ含む合計 78 件
+個別 12 件 ／ グループ含む合計 79 件
 
 ### 個別スケジュール
 
@@ -629,13 +637,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -709,7 +718,7 @@
 
 ## 松本ももな
 
-個別 9 件 ／ グループ含む合計 75 件
+個別 9 件 ／ グループ含む合計 76 件
 
 ### 個別スケジュール
 
@@ -730,13 +739,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -807,7 +817,7 @@
 
 ## 籾山ひめり
 
-個別 10 件 ／ グループ含む合計 76 件
+個別 10 件 ／ グループ含む合計 77 件
 
 ### 個別スケジュール
 
@@ -829,13 +839,14 @@
 | 済 | 日付 | 時間 | タイトル | 会場 |
 |:-:|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら |
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa |
 | ✅ | 2026-09-27(日) |  | [エンタパークフェス2026](https://takanenonadeshiko.jp/events/event/%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%91%e3%83%bc%e3%82%af%e3%83%95%e3%82%a7%e3%82%b92026/) | イオンモールむさし村山 つむぐ広場特設会場 |
@@ -1027,13 +1038,15 @@
 | 済 | 日付 | 時間 | タイトル | 会場 | 出演 |
 |:-:|---|---|---|---|---|
 | ✅ | 2026-09-13(日) | OPEN 13:30 / START 14:30 | [高嶺のなでしこワンマンライブ 〜CROWNED IN BLOOM〜 /「個別2ショット撮影会」](https://takanenonadeshiko.jp/events/event/%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88%e2%ac%9b%f0%9f%90%88/) | Shibuya LOVEZ | グループ（全員） |
-| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | Spotify O-EAST | グループ（全員） |
-| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール | グループ（全員） |
+| ✅ | 2026-09-16(水) | OPEN 14:00 / START 14:30 ／ [🎤 出演 20:15〜20:40](https://x.com/takanenofficial/status/2099838143113707849) | [MARQUEE Fes.](https://takanenonadeshiko.jp/events/event/marquee-fes-3/) | 渋谷Spotify O-EAST | グループ（全員） |
+| ✅ | 2026-09-17(木) | OPEN 9:30 / START 10:00 ／ [🎤 出演 20:20〜20:45](https://x.com/takanenofficial/status/2100230730257494498) | [文化放送 presents  『 idoLove You♫-On Stage QR-vol.2 』](https://takanenonadeshiko.jp/events/event/%e6%96%87%e5%8c%96%e6%94%be%e9%80%81-presents-%e3%80%8e-idolove-you%e2%99%ab-on-stage-qr-vol-2-%e3%80%8f/) | 品川ステラボール | グループ（全員） |
+| ✅ | 2026-09-17(木) | 21:00 | [【配信】TAKANEKO TUBE](https://x.com/takanenofficial/status/2100543309852926206) |  | グループ（全員） |
+| ✅ | 2026-09-17(木) | 22:00 | [【ラジオ】CBCラジオ 「チュウモリ『推しマシ』」](https://x.com/takanenofficial/status/2100568096927019028) |  | 東山恵里沙 |
 | ✅ | 2026-09-19(土) | 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーとTOYKO-BAY](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%8d%83%e8%91%89%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーとTOKYO-BAY North Gate　みどりの広場 | グループ（全員） |
-| ✅ | 2026-09-20(日) |  | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ | グループ（全員） |
+| ✅ | 2026-09-20(日) | [🎤 出演 14:00〜](https://x.com/takanenofficial/status/2101524249794003151) | [IDOL RUNWAY COLLECTION 2026 AUTUMN/WINTER Supported by TGC](https://takanenonadeshiko.jp/events/event/idol-runway-collection-2026-autumn-winter-supported-by-tgc/) | 横浜アリーナ | グループ（全員） |
 | ✅ | 2026-09-21(月) | 1部 11:30-12:30 涼海すう / 葉月紗蘭 / 日向端ひな / 籾山ひめり ／ … ／ 6部 18:00-19:00 城月菜央 / 橋本桃呼 / 東山恵里沙 / 松本ももな | [『  A World in Our Colors 』リリース記念イベントat 都内某所](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e9%83%bd%e5%86%85%e6%9f%90%e6%89%80/) | [シティホール&ギャラリー五反田](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-0921-2/) | グループ（全員） |
 | ✅ | 2026-09-22(火) |  | [『  A World in Our Colors 』リリース記念イベントat イオンレイクタウンmori](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e5%9f%bc%e7%8e%89%e7%9c%8c%e6%9f%90%e6%89%80-2/) | イオンレイクタウンmori TREE STAGE（1F　木の広場） | グループ（全員） |
-| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら | グループ（全員） |
+| ✅ | 2026-09-23(水) | OPEN 9:00 / START 10:00 ／ [🎤 出演 16:35〜17:05](https://x.com/takanenofficial/status/2102586249810940264) | [SPARK2026 in YAMANAKAKO](https://takanenonadeshiko.jp/events/event/spark2026-in-yamanakako/) | 山中湖交流プラザきらら | グループ（全員） |
 | ✅ | 2026-09-24(木) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [✿SPACE MAKE✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bfspace-make%e2%9c%bf-17/) |  | 城月菜央、涼海すう、葉月紗蘭、東山恵里沙、松本ももな |
 | ✅ | 2026-09-25(金) | ①19:00-19:30 ／ … ／ ⑥22:00-22:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%a1%e3%83%b3%e3%83%90%e3%83%bc%e3%81%a8%e3%82%aa%e3%83%b3%e3%83%a9%e3%82%a4%e3%83%b3%e5%80%8b%e5%88%a5%e3%81%8a-43/) |  | 橋本桃呼、日向端ひな、籾山ひめり |
 | ✅ | 2026-09-26(土) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [『  A World in Our Colors 』リリース記念イベントat ららぽーと横浜](https://takanenonadeshiko.jp/events/event/%e3%80%8e-a-world-in-our-colors-%e3%80%8f%e3%83%aa%e3%83%aa%e3%83%bc%e3%82%b9%e8%a8%98%e5%bf%b5%e3%82%a4%e3%83%99%e3%83%b3%e3%83%88at-%e7%a5%9e%e5%a5%88%e5%b7%9d%e7%9c%8c%e6%9f%90%e6%89%80/) | ららぽーと横浜1F セントラルガーデンKiLaLa | グループ（全員） |
