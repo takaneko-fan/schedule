@@ -307,6 +307,8 @@ AI には JSON スキーマで次の 10 項目を返させます（`MEMO_FIELDS`
 
 過去の予定、誕生日、発売日の行、材料が 80 字未満（見出しと URL の行は数えない）、「後日発表」を含み 600 字未満の予定にはメモを付けません。
 
+例外として `ops/add_past.py` は、後から足す過去の予定に、基準日を期間の開始日にして `add_memos` でメモを付けます。`memos.json`・公式の版の記録は一時的な場所に向けて書き換えず、公式 X の投稿も使いません。足した後は CSV から引き継ぎます。出演時間の根拠の URL は CSV にないので、`perform.json` から付け直して `schedule.md` を書きます。
+
 ### AI・保存・出力
 
 - AI: `.env` の `OPENAI_API_KEY` があれば OpenAI（`gpt-5.6-luna`）、なければ `GEMINI_API_KEY` で Gemini（`gemini-3.1-flash-lite`）。どちらのキーもなければ新しいメモは作らず、`memos.json` の既存のメモだけを使う。`--no-memo` でメモを付けずに出力する。
