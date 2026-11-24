@@ -207,18 +207,48 @@ class PartsTest(unittest.TestCase):
         n = read(res, self.rows(), text=PART1_CHANGE, created_at="2026-11-21T03:20:00.000Z")
         self.assertEqual(n["changes"], [{"field": "time_note", "before": PARTS_NOTE, "after": after}])
 
-    def test_changed_part_only_is_not_applied(self):
+    def test_changed_part_only_keeps_other_parts(self):
+        # 変わった 1 部だけを返しても、2 部は変更前の書き方で残す
         res = self.res([{"field": "time_note", "after": "1部：12:45〜グループ握手会、終了し次第ミニライブ"}],
                        "1部は12:45〜グループ握手会、終了し次第ミニライブに変更となります。")
-        self.assertIsNone(read(res, self.rows(), text=PART1_CHANGE, created_at="2026-11-21T03:20:00.000Z"))
+        n = read(res, self.rows(), text=PART1_CHANGE, created_at="2026-11-21T03:20:00.000Z")
+        self.assertEqual(n["changes"][0]["after"],
+                         "1部：12:45〜グループ握手会、終了し次第ミニライブ ／ 2部 15:30 START（優先エリア入場15:10）")
 
-    def test_part_start_is_not_event_start(self):
-        res = self.res([{"field": "start", "after": "15:45"}], "本日のリリースイベント2部の開始時間が変更となります。")
-        self.assertIsNone(read(res, self.rows(), text=PART2_CHANGE, created_at="2026-11-21T06:12:00.000Z"))
+    def test_unchanged_part_rewritten_without_time_is_restored(self):
+        res = self.res([{"field": "time_note", "after": "1部 12:45〜グループ握手会 ／ 2部 現状予定通り"}],
+                       "1部は12:45〜グループ握手会、終了し次第ミニライブに変更となります。")
+        n = read(res, self.rows(), text=PART1_CHANGE, created_at="2026-11-21T03:20:00.000Z")
+        self.assertEqual(n["changes"][0]["after"], "1部 12:45〜グループ握手会 ／ 2部 15:30 START（優先エリア入場15:10）")
+
+    def test_part_start_goes_into_time_note(self):
+        evidence = "本日のリリースイベント2部の開始時間が変更となります。"
+        n = read(self.res([{"field": "start", "after": "15:45"}, {"field": "open", "after": "15:25"}], evidence),
+                 self.rows(), text=PART2_CHANGE, created_at="2026-11-21T06:12:00.000Z")
+        self.assertEqual(n["changes"], [{"field": "time_note", "before": PARTS_NOTE,
+                                         "after": "1部 12:00 START（優先エリア入場11:40） ／ 2部 15:45 START（優先エリア入場15:25）"}])
         after = "1部 12:00 START（優先エリア入場11:40） ／ 2部 15:45 START（優先エリア入場15:25）"
-        n = read(self.res([{"field": "time_note", "after": after}], "本日のリリースイベント2部の開始時間が変更となります。"),
+        n = read(self.res([{"field": "time_note", "after": after}], evidence),
                  self.rows(), text=PART2_CHANGE, created_at="2026-11-21T06:12:00.000Z")
         self.assertEqual(n["changes"][0]["after"], after)
+
+    def test_part_start_with_unknown_part_is_not_applied(self):
+        # どの部の時刻か投稿から決まらなければ、予定全体の開演として書き込まない
+        text = "【時間変更のお知らせ】\n\n本日のリリースイベントの開始時間が変更となります。\n15:45 START"
+        res = self.res([{"field": "start", "after": "15:45"}], "本日のリリースイベントの開始時間が変更となります。")
+        self.assertIsNone(read(res, self.rows(), text=text, created_at="2026-11-21T06:12:00.000Z"))
+
+    def test_edit_part_times(self):
+        self.assertEqual(fs.edit_part_times("2部 15:30 START（優先エリア入場15:10）", {"start": "15:45"}),
+                         "2部 15:30 START（優先エリア入場15:10）".replace("15:30", "15:45"))
+        self.assertEqual(fs.edit_part_times("第2部 18:20～19:20", {"start": "18:30", "end": "19:30"}), "第2部 18:30～19:30")
+        self.assertEqual(fs.edit_part_times("②19:30", {"end": "20:00"}), "②19:30〜20:00")
+        self.assertIsNone(fs.edit_part_times("2部 15:30 START", {"open": "15:10"}))
+
+    def test_prompt_marks_events_with_parts(self):
+        t = tweet(PART2_CHANGE, "2026-11-21T06:12:00.000Z")
+        prompt = fs.x_change_prompt("本文", fs.x_posted(t), self.rows() + [row(date="2026-11-21")])
+        self.assertEqual(prompt.count("部ごとの時間あり"), 1)
 
     def test_start_change_without_parts(self):
         # 部のない予定の開演の変更は、これまでどおり反映する
