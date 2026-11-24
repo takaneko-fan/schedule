@@ -466,6 +466,10 @@ function memoHTML(memo) {
 // 開催日が付いていれば日付とイベント名、付いていなければイベント名の共通部分の長さで判定する
 const normName = s => s.normalize("NFKC").replace(/高嶺のなでしこ|たかねこ/g, "").replace(/[\s『』「」【】()（）・、。!！?？✿&＆]/g, "");
 
+// どの予定にも付く語（fetch_schedule.py の GENERIC_TITLE_RE と同じ）。開催日の付かない申込・締切を比べるときに除く
+const GENERIC_TITLE_RE = /高嶺のなでしこ|たかねこ|(?:ニュー)?(?:\d+(?:st|nd|rd|th)\s*)?(?:アルバム|シングル|ALBUM|Album|SINGLE|Single)\s*[『「][^』」]*[』」]|[『「][^』」]*[』」]\s*(?=(?:リリース|発売)記念)|(?:リリース|発売)記念|ニューアルバム/g;
+const coreName = s => normName(s.normalize("NFKC").replace(GENERIC_TITLE_RE, ""));
+
 function commonLength(a, b) {  // 最長の共通部分文字列の長さ
   let best = 0, prev = new Array(b.length + 1).fill(0);
   for (let i = 1; i <= a.length; i++) {
@@ -496,6 +500,13 @@ function deadlineScore(d, r) {
 //    ただし開催日の付いていない申込・締切は、毎月のオンラインお話し会のように同じ名前の回がいくつもあるので、
 //    別の記事から作られた予定には結び付けず、同点で何月の回か分からなければ、どの予定にも結び付けない
 // 「ニューアルバム『…』」のような共通の語だけで、同じ日のほかの予定（店舗のキャンペーンなど）に結び付かないようにもしている
+// 3. 開催日の付いていない申込・締切は、どの予定にも付く語を除いて比べ、共通部分が申込の名前の半分以上のときだけ結び付ける
+//    （「個別2ショット撮影会」やアルバム名だけが重なる、一覧にない別のイベントの申込を付けないように）
+function undatedMatches(d, x) {
+  if (d.core === undefined) d.core = coreName(d.event);
+  const common = commonLength(d.core, coreName(x.title));
+  return common >= 8 && common >= d.core.length / 2;
+}
 const ARTICLE = /^https:\/\/takanenonadeshiko\.jp\/(?!events\/)/;
 let dlLinks = null;
 function deadlinesFor(r) {
@@ -512,7 +523,7 @@ function deadlinesFor(r) {
       for (const x of rows) {
         if (!d.held && ARTICLE.test(d.url) && ARTICLE.test(x.url) && x.url !== d.url) continue;
         const s = deadlineScore(d, x);
-        if (!s) continue;
+        if (!s || (!d.held && !undatedMatches(d, x))) continue;
         const cmp = best ? s[0] - best[0] || s[1] - best[1] : 1;
         if (cmp > 0) { best = s; targets = [x]; } else if (cmp === 0) targets.push(x);
       }
