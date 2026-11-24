@@ -2331,6 +2331,8 @@ X_CHANGE_TYPE_WORDS = {"change": r"変更|繰り上げ|繰り下げ", "cancel": 
                        "absent": r"欠席|お休み", "postpone": r"延期"}
 X_CHANGE_FIELDS = ("open", "start", "end", "time_note", "venue")
 X_CHANGE_FIELD_LABELS = {"open": "時刻", "start": "時刻", "end": "時刻", "time_note": "時刻", "venue": "会場"}
+X_PART_LABEL_RE = re.compile(r"第?([1-9一二三四五])部|([①-⑨])")  # 時間の注記の部の番号
+FULLWIDTH_DIGITS = str.maketrans("１２３４５６７８９", "123456789")
 X_CHANGE_DAYS = (1, 120)  # AI に渡す予定の一覧: 投稿日の前日から 120 日後まで
 
 X_CHANGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなでしこ」の公式 X の投稿が、すでに発表されている予定の変更・中止・延期・欠席の告知かどうかを判断する係です。
@@ -2349,6 +2351,7 @@ X_CHANGE_INSTRUCTION = """あなたはアイドルグループ「高嶺のなで
 - date_text は when が date のとき、投稿に書かれた対象の予定の日付の表記をそのまま入れます。それ以外は空にします。
 - part は partial_cancel のとき、中止になる内容（例: ミニライブ）を投稿の表記のまま入れます。それ以外は空にします。
 - changes は type が change のとき、変わった項目ごとに field と変更後の値 after を入れます。field は open（開場）、start（開演・出演開始）、end（終了）、venue（会場）、time_note（部ごとの時間やタイムテーブルなど、ほかに当てはまらない時間）です。時刻は HH:MM にします。変わっていない項目は入れません。
+- 予定の一覧の時刻が「1部 … ／ 2部 …」のように部ごとに書かれた予定は、一部の部だけが変わったときも open・start・end ではなく time_note を変えます。time_note の after には、変わらない部も一覧の書き方のまま残した、変更後の時間の全体を入れます。
 - members は type が absent のとき、欠席するメンバーのフルネームの配列です。それ以外は空にします。
 - evidence は、変更・中止・延期・欠席が書かれた一文を投稿からそのまま抜き出します。"""
 
@@ -2432,8 +2435,9 @@ def x_change_reject(result, text, posted, events):
                 return "変更後の時刻が本文にない"
             if c["field"] == "venue" and normalize(after) not in normalize(text):
                 return "変更後の会場が本文にない"
-            if c["field"] == "time_note" and (len(after) > 80 or not all(
-                    x_time_in_text(t, text) for t in re.findall(r"\d{1,2}:\d{2}", after.replace("：", ":")))):
+            if c["field"] == "time_note" and (len(after) > len(event["time_note"]) + 80 or not all(
+                    x_time_in_text(t, text) or x_time_in_text(t, event["time_note"])  # 変わらない部の時間は予定のまま
+                    for t in re.findall(r"\d{1,2}:\d{2}", after.replace("：", ":")))):
                 return "変更後の時間が本文にない"
     if kind == "absent":
         names = [full for full, _, _ in MEMBERS]
@@ -2442,6 +2446,35 @@ def x_change_reject(result, text, posted, events):
     if kind == "partial_cancel" and (not result["part"] or normalize(result["part"]) not in normalize(text)):
         return "中止の内容が本文にない"
     return None
+
+
+def part_labels(text):
+    """時間の注記に書かれた部の番号（「1部」「第１部」「第一部」「①」→ "1"）。"""
+    labels = set()
+    for num, circled in X_PART_LABEL_RE.findall(text.translate(FULLWIDTH_DIGITS)):
+        if circled:
+            labels.add(str(ord(circled) - ord("①") + 1))
+        else:
+            labels.add(str("一二三四五".index(num) + 1) if num in "一二三四五" else num)
+    return labels
+
+
+def x_change_drops_parts(event, field, after, post_id):
+    """部ごとの時間が書かれた予定で、変更を書き込むと部の時間が崩れるなら True（その変更は反映しない）。
+    time_note の変更で今ある部が消えるとき（変わった部だけを返した読み取り）と、
+    一部の部の時刻を予定全体の開場・開演・終了として返した読み取りが当たる。"""
+    parts = part_labels(event["time_note"])
+    if field == "time_note":
+        lost = parts - part_labels(after)
+        if not lost:
+            return False
+        reason = f"{'・'.join(sorted(lost))}部の時間が消える"
+    elif field in ("open", "start", "end") and len(parts) >= 2:
+        reason = "部ごとの時間がある予定の開場・開演・終了"
+    else:
+        return False
+    print(f"  ! 変更の告知を反映しません（{reason}）: {event['date']} {event['title']} {field} → {after}  {post_id}")
+    return True
 
 
 def x_change_read(tweet, rows, provider, key, tokens):
@@ -2468,6 +2501,8 @@ def x_change_read(tweet, rows, provider, key, tokens):
         merged[c["field"]] = f"{merged[c['field']]} ／ {value}" if c["field"] == "time_note" and c["field"] in merged else value
     changes = [{"field": f, "before": event[f], "after": v} for f, v in merged.items()
                if normalize(v) != normalize(event[f])]
+    if any(x_change_drops_parts(event, c["field"], c["after"], tweet["id"]) for c in changes):
+        return None  # 一部だけ反映すると、残りの項目と食い違う
     if kind == "change" and not changes:
         print(f"  変更の告知ですが、予定はすでに告知どおりです: {event['date']} {event['title']}  {tweet['id']}")
         return None
