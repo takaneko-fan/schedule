@@ -363,11 +363,14 @@ def strip_emoji(text):
     return "".join(c for c in text if unicodedata.category(c) not in ("So", "Cn") and c not in "\u200d\ufe0f")
 
 
-def fetch_x_posts(token, since_id=None, days=X_FIRST_DAYS):
-    """公式 X の新しい投稿（リポスト・返信を除く）を古い順に返す。since_id がなければ days 日前から。"""
+def fetch_x_posts(token, since_id=None, days=X_FIRST_DAYS, period=None):
+    """公式 X の新しい投稿（リポスト・返信を除く）を古い順に返す。since_id がなければ days 日前から。
+    period（(開始, 終了) の datetime）を渡すと、その期間の投稿だけを読む（過去の期間の予定を足すとき）。"""
     params = {"max_results": 100, "exclude": "retweets,replies", "tweet.fields": "created_at,note_tweet,attachments",
               **X_MEDIA_PARAMS}
-    if since_id:
+    if period:
+        params["start_time"], params["end_time"] = (t.astimezone(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ") for t in period)
+    elif since_id:
         params["since_id"] = since_id
     else:
         start = datetime.now(timezone.utc) - timedelta(days=days)
