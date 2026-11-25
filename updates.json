@@ -1,5 +1,46 @@
 [
  {
+  "at": "2026-11-25T09:17",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "出演決定",
+    "date": "2026-11-25",
+    "title": "HIT STREET（FM大阪）",
+    "change": "涼海・籾山",
+    "uid": "7d63deac12327123",
+    "source": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/"
+   },
+   {
+    "level": "decided",
+    "kind": "出演決定",
+    "date": "2026-11-26",
+    "title": "HIT STREET（FM大阪）",
+    "change": "涼海・籾山",
+    "uid": "d6521d4f46eb359a",
+    "source": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-25",
+    "title": "キャッチ！（e-radio）",
+    "change": "17:00〜17:55",
+    "uid": "9db2209a0bfd01d9",
+    "source": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-30",
+    "title": "ヒダミノ（岐阜放送）",
+    "change": "18:00〜18:25",
+    "uid": "0fba5755446a71b0",
+    "source": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/"
+   }
+  ]
+ },
+ {
   "at": "2026-11-21T15:20",
   "items": [
    {
@@ -304,162 +345,6 @@
     "title": "なみだ色の消しごむ presents 『高嶺の猫と、世…",
     "change": "19:10〜19:40",
     "uid": "4eab799d1f6e94cc"
-   }
-  ]
- },
- {
-  "at": "2026-11-17T22:17",
-  "items": [
-   {
-    "level": "decided",
-    "kind": "会場の追記",
-    "date": "2026-12-15",
-    "title": "DRAMATIC POP DX",
-    "change": "品川プリンスホテル ステラボール",
-    "uid": "3eeb8ec2d016cf84"
-   }
-  ]
- },
- {
-  "at": "2026-11-17T21:17",
-  "items": [
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-12-15",
-    "title": "DRAMATIC POP DX",
-    "change": "OPEN 17:30 / START 18:15 ・ ステラボール",
-    "uid": "3eeb8ec2d016cf84"
-   }
-  ]
- },
- {
-  "at": "2026-11-17T19:12",
-  "items": [
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-17",
-    "title": "カリメン（RKBラジオ）",
-    "change": "21:00〜22:50",
-    "uid": "389eb73ca883ceac"
-   }
-  ]
- },
- {
-  "at": "2026-11-17T03:15",
-  "items": [
-   {
-    "level": "decided",
-    "kind": "時刻決定",
-    "date": "2026-11-17",
-    "title": "Colors（FM長崎）",
-    "change": "16:00〜18:54",
-    "uid": "4a39c50a3aa12789"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-17",
-    "title": "Colors（FM長崎）",
-    "change": "城月 → 城月・橋本",
-    "uid": "4a39c50a3aa12789"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-18",
-    "title": "ららぽーと立川立飛",
-    "change": "涼海 → 全員",
-    "uid": "f90e02494e2ef452"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-20",
-    "title": "オンラインサイン会＆オンラインお話会",
-    "change": "葉月 → 全員",
-    "uid": "b6510b85ae023851"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-21",
-    "title": "ステラタウン大宮",
-    "change": "東山 → 全員",
-    "uid": "ea2bb8a58d9224e6"
-   },
-   {
-    "level": "decided",
-    "kind": "会場決定",
-    "date": "2026-11-22",
-    "title": "個別特典イベント",
-    "change": "ベルサール飯田橋駅前",
-    "uid": "e0ddd46fe90b85c8"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-22",
-    "title": "個別特典イベント",
-    "change": "日向端 → 全員",
-    "uid": "e0ddd46fe90b85c8"
-   },
-   {
-    "level": "important",
-    "kind": "出演変更",
-    "date": "2026-11-23",
-    "title": "横浜ワールドポーターズ",
-    "change": "松本 → 全員",
-    "uid": "cae3dda54cf95a66"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-17",
-    "title": "タワーレコードキャンペーン：：城月菜央 プリントサイン…",
-    "change": "",
-    "uid": "5ccef23dd2655c82"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-18",
-    "title": "タワーレコードキャンペーン：：涼海すう プリントサイン…",
-    "change": "",
-    "uid": "a331570e6a711e9a"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-20",
-    "title": "タワーレコードキャンペーン：：葉月紗蘭 プリントサイン…",
-    "change": "",
-    "uid": "f3465667b88a59a5"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-21",
-    "title": "タワーレコードキャンペーン：：東山恵里沙 プリントサイ…",
-    "change": "",
-    "uid": "f8d212ac8a691dd3"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-22",
-    "title": "タワーレコードキャンペーン：：日向端ひな プリントサイ…",
-    "change": "",
-    "uid": "a2869c6155615972"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-23",
-    "title": "タワーレコードキャンペーン：：松本ももな プリントサイ…",
-    "change": "",
-    "uid": "8728ebbb644c4d2d"
    }
   ]
  }

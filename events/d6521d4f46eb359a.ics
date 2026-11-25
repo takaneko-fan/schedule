@@ -14,14 +14,16 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:d6521d4f46eb359a@takaneko-data-mine
-DTSTAMP:20261117T202048Z
+DTSTAMP:20261125T001736Z
 DTSTART;TZID=Asia/Tokyo:20261126T235500
 DTEND;TZID=Asia/Tokyo:20261127T000000
-SUMMARY:【ラジオ】HIT STREET（FM大阪）
-DESCRIPTION:時間: 23:55〜24:00\n出演: メンバー未記載\nカテゴ
- リ: 公式X / ラジオ / 画像読み取り\n情報元: https://x.com/ta
- kanenofficial/status/2122321289478382070
-URL:https://x.com/takanenofficial/status/2122321289478382070
+SUMMARY:【ラジオ】【涼海・籾山】HIT STREET（FM大阪）
+DESCRIPTION:時間: 23:55〜24:00\n出演: 涼海すう、籾山ひめり\n
+ カテゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報元: 
+ https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-sc
+ hedule/
+URL:https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign
+ -schedule/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

@@ -8,7 +8,7 @@
   "events": []
  },
  "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/": {
-  "hash": "c0d28c578d3f09fa7afdf70220813be3e14d911c",
+  "hash": "33364cf825ae34b6ff09694b6c8974d0cc8f22b8",
   "events": [
    {
     "date": "2026-10-31",
@@ -220,6 +220,25 @@
     "ai": true
    },
    {
+    "date": "2026-11-17",
+    "weekday": "火",
+    "open": "",
+    "start": "21:00",
+    "end": "22:50",
+    "time_note": "",
+    "title": "カリメン",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "カリメン"
+    ],
+    "media": "ラジオ",
+    "station": "RKBラジオ",
+    "ai": true
+   },
+   {
     "date": "2026-11-18",
     "weekday": "水",
     "open": "",
@@ -315,6 +334,101 @@
     "ai": true
    },
    {
+    "date": "2026-11-18",
+    "weekday": "水",
+    "open": "",
+    "start": "21:00",
+    "end": "22:50",
+    "time_note": "",
+    "title": "カリメン",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "カリメン"
+    ],
+    "media": "ラジオ",
+    "station": "RKBラジオ",
+    "ai": true
+   },
+   {
+    "date": "2026-11-19",
+    "weekday": "木",
+    "open": "",
+    "start": "21:00",
+    "end": "22:50",
+    "time_note": "",
+    "title": "カリメン",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "カリメン"
+    ],
+    "media": "ラジオ",
+    "station": "RKBラジオ",
+    "ai": true
+   },
+   {
+    "date": "2026-11-20",
+    "weekday": "金",
+    "open": "",
+    "start": "15:00",
+    "end": "19:00",
+    "time_note": "",
+    "title": "music × serendipity",
+    "category": "お知らせ記事",
+    "members": "城月菜央、松本ももな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "music × serendipity"
+    ],
+    "media": "ラジオ",
+    "station": "LOVE FM",
+    "ai": true
+   },
+   {
+    "date": "2026-11-21",
+    "weekday": "土",
+    "open": "",
+    "start": "20:00",
+    "end": "20:30",
+    "time_note": "",
+    "title": "Saturday Sonic Style",
+    "category": "お知らせ記事",
+    "members": "橋本桃呼、日向端ひな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "Saturday Sonic Style"
+    ],
+    "media": "ラジオ",
+    "station": "FM FUKUOKA",
+    "ai": true
+   },
+   {
+    "date": "2026-11-23",
+    "weekday": "月",
+    "open": "",
+    "start": "23:55",
+    "end": "24:00",
+    "time_note": "",
+    "title": "HIT STREET",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "HIT STREET"
+    ],
+    "media": "ラジオ",
+    "station": "FM大阪",
+    "ai": true
+   },
+   {
     "date": "2026-11-24",
     "weekday": "火",
     "open": "",
@@ -334,6 +448,63 @@
     "ai": true
    },
    {
+    "date": "2026-11-24",
+    "weekday": "火",
+    "open": "",
+    "start": "23:55",
+    "end": "24:00",
+    "time_note": "",
+    "title": "HIT STREET",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "HIT STREET"
+    ],
+    "media": "ラジオ",
+    "station": "FM大阪",
+    "ai": true
+   },
+   {
+    "date": "2026-11-25",
+    "weekday": "水",
+    "open": "",
+    "start": "17:00",
+    "end": "17:55",
+    "time_note": "",
+    "title": "キャッチ！",
+    "category": "お知らせ記事",
+    "members": "葉月紗蘭、松本ももな",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "キャッチ！"
+    ],
+    "media": "ラジオ",
+    "station": "e-radio",
+    "ai": true
+   },
+   {
+    "date": "2026-11-25",
+    "weekday": "水",
+    "open": "",
+    "start": "23:55",
+    "end": "24:00",
+    "time_note": "",
+    "title": "HIT STREET",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "HIT STREET"
+    ],
+    "media": "ラジオ",
+    "station": "FM大阪",
+    "ai": true
+   },
+   {
     "date": "2026-11-26",
     "weekday": "木",
     "open": "",
@@ -350,6 +521,44 @@
     ],
     "media": "ラジオ",
     "station": "FM NORTH WAVE",
+    "ai": true
+   },
+   {
+    "date": "2026-11-26",
+    "weekday": "木",
+    "open": "",
+    "start": "23:55",
+    "end": "24:00",
+    "time_note": "",
+    "title": "HIT STREET",
+    "category": "お知らせ記事",
+    "members": "涼海すう、籾山ひめり",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "HIT STREET"
+    ],
+    "media": "ラジオ",
+    "station": "FM大阪",
+    "ai": true
+   },
+   {
+    "date": "2026-11-30",
+    "weekday": "月",
+    "open": "",
+    "start": "18:00",
+    "end": "18:25",
+    "time_note": "",
+    "title": "ヒダミノ",
+    "category": "お知らせ記事",
+    "members": "葉月紗蘭、東山恵里沙",
+    "venue": "",
+    "url": "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/",
+    "names": [
+     "ヒダミノ"
+    ],
+    "media": "ラジオ",
+    "station": "岐阜放送",
     "ai": true
    }
   ]
