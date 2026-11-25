@@ -1,5 +1,25 @@
 [
  {
+  "at": "2026-11-25T14:30",
+  "items": [
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-03",
+    "title": "Ray 2月号",
+    "change": "受付締切（グッズ受注販売） 12/3(木) 23:59まで",
+    "source": "https://x.com/takanenofficial/status/2125461982761328890",
+    "deadline": {
+     "date": "2026-12-03",
+     "time": "23:59",
+     "kind": "受付締切",
+     "event": "Ray 2月号",
+     "url": "https://x.com/takanenofficial/status/2125461982761328890"
+    }
+   }
+  ]
+ },
+ {
   "at": "2026-11-25T09:17",
   "items": [
    {
