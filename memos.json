@@ -1,46 +1,4 @@
 {
- "2026-11-25|https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/": {
-  "generated": "2026-11-25",
-  "hash": "98b5d22d8ee71285f3e1cd3be7a1fd174926554b",
-  "memo": {
-   "flow": "販売：2026年11月21日(土)21:00〜／開催：2026年11月25日(水)18:00〜21:30",
-   "items": "",
-   "join": "高嶺のなでしこ公式LINEの販売ページでチケットを購入／メンバーごとに先着順／事前に公式LINEの友達登録が必要",
-   "notes": "不具合など開催時間中の問い合わせは公式LINEへ連絡",
-   "other": "SPACE MAKEを使用。使い方・よくある質問はSPACE MAKE案内で確認",
-   "parts": "①18:00-18:30／②18:35-19:05／③19:10-19:40／④19:50-20:20／⑤20:25-20:55／⑥21:00-21:30：城月・涼海・葉月",
-   "payment": "",
-   "price": "1枠60秒・3,300円(税込)／1メンバー30分あたり最大5枠まで購入可／各メンバー最大20枠",
-   "rules": "SPACE MAKEで1対1のオンライン個別お話し会（ビデオ通話）を実施",
-   "venue": ""
-  },
-  "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "f09d11a3703dadef46c8c343836043071cdab7aa",
-  "x_items": [],
-  "x_sources": []
- },
- "2026-11-25|https://takanenonadeshiko.jp/spacemake-202611/": {
-  "generated": "2026-11-21",
-  "hash": "75a81a1e4abb9a0aecafb5249ae03cdc823a6992",
-  "memo": {
-   "flow": "11月21日（土）21:00〜販売開始／11月25日（水）18:00〜21:30開催",
-   "items": "高嶺のなでしこ公式LINEアカウントの友達登録",
-   "join": "高嶺のなでしこ公式LINEアカウントを友達登録し、LINE上でオンライン個別お話し会のチケットを購入／メンバーごとに先着順",
-   "notes": "販売開始時刻は城月21:00、涼海21:10、葉月21:20／枠数には限りあり、先着順／購入上限はメンバー1名あたり最大5枠",
-   "other": "SPACE MAKEを使用",
-   "parts": "1〜6部（18:00/18:35/19:10/19:50/20:25/21:00）：城月・涼海・葉月",
-   "payment": "",
-   "price": "1枠60秒・3,300円（税込）／1名あたり30分内最大5枠／各メンバー最大20枠",
-   "rules": "SPACE MAKEで1対1のライブトーク（ビデオ通話）を実施",
-   "venue": ""
-  },
-  "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "a8df77eba376d1c33731f34ca7c3a9e4f9b18ea2",
-  "x_items": [],
-  "x_sources": []
- },
  "2026-11-26|https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/": {
   "generated": "2026-11-25",
   "hash": "65a978371a68645c433cd43f97f828b49ccb2999",
@@ -79,7 +37,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "28064068e8f0e0bad44113ccf47f1b4ee71aeccb",
+  "x_hash": "73187895f5c4d219ed58cc7deaffef8fe674eadc",
   "x_items": [],
   "x_sources": []
  },
