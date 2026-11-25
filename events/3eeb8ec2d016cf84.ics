@@ -14,20 +14,25 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:3eeb8ec2d016cf84@takaneko-data-mine
-DTSTAMP:20261123T185221Z
+DTSTAMP:20261125T031738Z
 DTSTART;TZID=Asia/Tokyo:20261215T181500
 DTEND;TZID=Asia/Tokyo:20261215T201500
-SUMMARY:DRAMATIC POP DX
+SUMMARY:ドラマチックレコードpresents 『 DRAMATIC POP DX 』
 LOCATION:ステラボール
 DESCRIPTION:時間: OPEN 17:30 / START 18:15\n出演: グループ（全員
- ）\nカテゴリ: 公式X\n情報元: https://x.com/takanenofficial/statu
- s/2122650959117435037\n\n【参加メモ】\n📣 公式 X の最新情報
- : 前方チケット7\,000円、一般チケット0円。当日券は各
- 券種＋1\,000円（11/17 の投稿）\n🔗 公式 X: 11/17 https://x.co
- m/takanenofficial/status/2122650959117435037\n🤖 公式の案内と公
- 式 X の投稿を AI が要約したものです。必ず情報元で確
- 認してください。
-URL:https://x.com/takanenofficial/status/2122650959117435037
+ ）\nカテゴリ: ライブ／イベント\n情報元: https://takanenona
+ deshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%8
+ 2%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx
+ -%e3%80%8f/\n\n【参加メモ】\n📍 会場: ステラボール\n🕙 
+ 当日の流れ: 2026年12月15日（火）17:30開場／18:15開演\n📣
+  公式 X の最新情報: 前方チケットは7\,000円、一般チケ
+ ットは0円。当日券は各券種＋1\,000円（11/17 の投稿）\n
+ 🔗 公式 X: 11/17 https://x.com/takanenofficial/status/2122650959117435
+ 037\n🤖 公式の案内と公式 X の投稿を AI が要約したもの
+ です。必ず情報元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e
+ 3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%
+ 80%8e-dramatic-pop-dx-%e3%80%8f/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

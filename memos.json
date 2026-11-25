@@ -133,15 +133,27 @@
    }
   ]
  },
- "2026-12-05|https://x.com/takanenofficial/status/2122298645781315975": {
-  "generated": "2026-11-18",
-  "hash": "",
-  "memo": {},
+ "2026-12-05|https://takanenonadeshiko.jp/events/event/tp-links-vol-1/": {
+  "generated": "2026-11-25",
+  "hash": "c7c0844f455d6076fa0b5e61fefda0f6a3d23158",
+  "memo": {
+   "flow": "2026年12月5日（土）OPEN 13:00／START 13:30",
+   "items": "",
+   "join": "ローソンチケット、イープラスで購入",
+   "notes": "",
+   "other": "",
+   "parts": "",
+   "payment": "",
+   "price": "",
+   "rules": "",
+   "venue": "KANDA SQUARE HALL"
+  },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "4f0a60b8e470df36eec5c5e6d52bbf658e3d7d12",
+  "x_hash": "4ee7bf7dc55dc6a64c51f9992afc7820cfce9c95",
   "x_items": [
-   "チケット受付は11月17日21:00から先着。前方7,500円、一般2,500円、女性専用エリア1,500円（D代別）（11/16 の投稿）"
+   "チケット受付は11月17日21:00から先着で開始（11/16 の投稿）",
+   "料金：前方7,500円、一般2,500円、女性専用エリア1,500円（D代別）（11/16 の投稿）"
   ],
   "x_sources": [
    {
@@ -211,15 +223,26 @@
    }
   ]
  },
- "2026-12-15|https://x.com/takanenofficial/status/2122650959117435037": {
-  "generated": "2026-11-18",
-  "hash": "",
-  "memo": {},
+ "2026-12-15|https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/": {
+  "generated": "2026-11-25",
+  "hash": "c6ef297ec63a1d2a8f171aec308f402cb15c91f4",
+  "memo": {
+   "flow": "2026年12月15日（火）17:30開場／18:15開演",
+   "items": "",
+   "join": "",
+   "notes": "",
+   "other": "",
+   "parts": "",
+   "payment": "",
+   "price": "",
+   "rules": "",
+   "venue": "ステラボール"
+  },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "8d869bce81247f7349bba8befafb3e7eff301f5f",
+  "x_hash": "8778a3f17865b190bc130e235624e28644d156ee",
   "x_items": [
-   "前方チケット7,000円、一般チケット0円。当日券は各券種＋1,000円（11/17 の投稿）"
+   "前方チケットは7,000円、一般チケットは0円。当日券は各券種＋1,000円（11/17 の投稿）"
   ],
   "x_sources": [
    {
