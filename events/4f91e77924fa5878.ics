@@ -1,0 +1,44 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:4f91e77924fa5878@takaneko-data-mine
+DTSTAMP:20261125T121803Z
+DTSTART;TZID=Asia/Tokyo:20261125T180000
+DTEND;TZID=Asia/Tokyo:20261125T213000
+SUMMARY:SPACE MAKE✿城月・涼海・葉月
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 城
+ 月菜央、涼海すう、葉月紗蘭\nカテゴリ: その他\n情報
+ 元: https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8
+ e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/\n\n【
+ 参加メモ】\n🕙 当日の流れ: 販売：2026年11月21日(土)21:0
+ 0〜／開催：2026年11月25日(水)18:00〜21:30\n👥 部とメンバ
+ ー: ①18:00-18:30／②18:35-19:05／③19:10-19:40／④19:50-20:20／
+ ⑤20:25-20:55／⑥21:00-21:30：城月・涼海・葉月\n🎫 参加方
+ 法・当日券: 高嶺のなでしこ公式LINEの販売ページでチ
+ ケットを購入／メンバーごとに先着順／事前に公式LINE
+ の友達登録が必要\n💴 料金: 1枠60秒・3\,300円(税込)／1
+ メンバー30分あたり最大5枠まで購入可／各メンバー最
+ 大20枠\n📸 ルール: SPACE MAKEで1対1のオンライン個別お話
+ し会（ビデオ通話）を実施\n⚠️ 注意: 不具合など開催
+ 時間中の問い合わせは公式LINEへ連絡\nℹ️ その他: SPACE
+  MAKEを使用。使い方・よくある質問はSPACE MAKE案内で確
+ 認\n🤖 公式の案内を AI が要約したものです。必ず情報
+ 元で確認してください。
+URL:https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%
+ e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

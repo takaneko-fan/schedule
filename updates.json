@@ -1,5 +1,46 @@
 [
  {
+  "at": "2026-11-25T21:18",
+  "items": [
+   {
+    "level": "decided",
+    "kind": "出演決定",
+    "date": "2026-12-16",
+    "title": "イベント✿涼海・松本・城月・東山",
+    "change": "城月・涼海・東山・松本",
+    "uid": "7fd904f5ed4f850d",
+    "source": "https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/"
+   },
+   {
+    "level": "decided",
+    "kind": "出演決定",
+    "date": "2026-12-17",
+    "title": "イベント✿日向端・籾山・橋本・葉月",
+    "change": "橋本・葉月・日向端・籾山",
+    "uid": "1bac2ea99a8f6703",
+    "source": "https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-25",
+    "title": "SPACE MAKE✿城月・涼海・葉月",
+    "change": "①18:00-18:30 ／ … ／ ⑥21:00-21:30",
+    "uid": "4f91e77924fa5878",
+    "source": "https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/"
+   },
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-11-26",
+    "title": "SPACE MAKE✿橋本・東山・日向端・松本・籾山",
+    "change": "①18:00-18:30 ／ … ／ ⑥21:00-21:30",
+    "uid": "b0d12c692880bcdf",
+    "source": "https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/"
+   }
+  ]
+ },
+ {
   "at": "2026-11-25T16:17",
   "items": [
    {

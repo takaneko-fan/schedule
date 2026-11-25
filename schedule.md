@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 115 件（うち済 87 件）
+- 件数: 117 件（うち済 87 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -87,14 +87,12 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 城月菜央
 
-個別 10 件 ／ グループ含む合計 75 件
+個別 12 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -108,7 +106,9 @@
 | ✅ | 2026-11-18(水) | 7:30〜10:40 | [【ラジオ】FMK poppin’ breakfast](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-18(水) | 17:00〜18:55 | [【ラジオ】Oita Sunset Groove（FM大分）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -178,6 +178,7 @@
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-02(水) | OPEN 18:15 / START 19:00 ／ [🎤 出演 19:10〜19:40](https://x.com/takanenofficial/status/2119403310088167464) | [なみだ色の消しごむ presents 『高嶺の猫と、世界の猫と、借りてきた猫。～借りてきた猫では終われない！～』](https://takanenonadeshiko.jp/events/event/%e3%81%aa%e3%81%bf%e3%81%a0%e8%89%b2%e3%81%ae%e6%b6%88%e3%81%97%e3%81%94%e3%82%80-presents-%e3%80%8e%e9%ab%98%e5%b6%ba%e3%81%ae%e7%8c%ab%e3%81%a8%e3%80%81%e4%b8%96%e7%95%8c%e3%81%ae%e7%8c%ab%e3%81%a8/) | Spotify O-WEST |
@@ -185,15 +186,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 涼海すう
 
-個別 9 件 ／ グループ含む合計 74 件
+個別 11 件 ／ グループ含む合計 74 件
 
 ### 個別スケジュール
 
@@ -204,9 +204,11 @@
 | ✅ | 2026-11-17(火) | 21:00〜22:50 | [【ラジオ】カリメン（RKBラジオ）](https://x.com/takanenofficial/status/2122532681196147005) |  |
 | ✅ | 2026-11-18(水) | 16:00〜17:50 | [【ラジオ】江本一真のゴッジ（広島FM）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-18(水) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：涼海すう プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -273,6 +275,7 @@
 | ✅ | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
@@ -282,15 +285,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 橋本桃呼
 
-個別 9 件 ／ グループ含む合計 74 件
+個別 11 件 ／ グループ含む合計 74 件
 
 ### 個別スケジュール
 
@@ -302,8 +304,10 @@
 | ✅ | 2026-11-17(火) | 16:00〜18:54 | [【ラジオ】Colors（FM長崎）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-19(木) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：橋本桃呼 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 | ✅ | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2027-06-28(月) |  | [✿橋本桃呼誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -371,6 +375,7 @@
 | ✅ | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
@@ -379,15 +384,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-06-28(月) |  | [✿橋本桃呼誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 葉月紗蘭
 
-個別 16 件 ／ グループ含む合計 81 件
+個別 18 件 ／ グループ含む合計 81 件
 
 ### 個別スケジュール
 
@@ -406,8 +410,10 @@
 | ✅ | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 | ✅ | 2026-11-20(金) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：葉月紗蘭 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-25(水) | 14:00〜18:00 | [【ラジオ】キャッチ！（e-radio）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノ（岐阜放送）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -482,6 +488,7 @@
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 14:00〜18:00 | [【ラジオ】キャッチ！（e-radio）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノ（岐阜放送）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
@@ -490,15 +497,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 東山恵里沙
 
-個別 17 件 ／ グループ含む合計 82 件
+個別 19 件 ／ グループ含む合計 82 件
 
 ### 個別スケジュール
 
@@ -516,10 +522,12 @@
 | ✅ | 2026-11-18(水) | 16:00〜19:00 | [【ラジオ】ドラ魂キング（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-18(水) | 21:00〜21:40 | [【ラジオ】らじお女子の「ラジオに恋して」（CBCラジオ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-21(土) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：東山恵里沙 プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダミノ（岐阜放送）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2027-05-28(金) |  | [✿東山恵里沙誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -593,6 +601,7 @@
 | ✅ | 2026-11-23(月) | 1部 12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10） | [高嶺のなでしこ ニューアルバム『A World in Our Colors』 リリース記念イベント at 横浜ワールドポーターズ](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%a2%e3%83%ab%e3%83%90%e3%83%a0%e3%80%8ea-world-in-our-colors%e3%80%8f-%e3%83%aa%e3%83%aa%e3%83%bc-10/) | 横浜ワールドポーターズ |
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
@@ -603,15 +612,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-05-28(金) |  | [✿東山恵里沙誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 日向端ひな
 
-個別 12 件 ／ グループ含む合計 77 件
+個別 14 件 ／ グループ含む合計 77 件
 
 ### 個別スケジュール
 
@@ -625,9 +633,11 @@
 | ✅ | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 | ✅ | 2026-11-22(日) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：日向端ひな プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 | ✅ | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
 |  | 2026-12-01(火) |  | [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) |  |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -697,6 +707,7 @@
 | ✅ | 2026-11-23(月) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) | 17:00〜18:00 | [【ラジオ】PASSAGE（FM岡山）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-29(日) |  | [Anime Festival Asia Singapore 2026✿東山・日向端](https://takanenonadeshiko.jp/events/event/anime-festival-asia-singapore-2026%e2%9c%bf%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/) | SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
@@ -706,15 +717,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 松本ももな
 
-個別 10 件 ／ グループ含む合計 75 件
+個別 12 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -726,9 +736,11 @@
 | ✅ | 2026-11-07(土) | OPEN 14:30 / START 16:00 | [LARME FES’26︎✿城月・松本](https://takanenonadeshiko.jp/events/event/larme-fes26%ef%b8%8e%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%9d%be%e6%9c%ac/) | 東京ガーデンシアター |
 | ✅ | 2026-11-23(月) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：松本ももな プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-25(水) | 14:00〜18:00 | [【ラジオ】キャッチ！（e-radio）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-28(土) |  | [mimilait (ミミレ)](https://x.com/takanenofficial/status/2123408451808227781) | 北参道-ROADSIDE- |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2027-10-12(火) |  | [✿松本ももな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -796,6 +808,7 @@
 | ✅ | 2026-11-23(月) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：松本ももな プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 |  | 2026-11-25(水) | 14:00〜18:00 | [【ラジオ】キャッチ！（e-radio）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-28(土) |  | [mimilait (ミミレ)](https://x.com/takanenofficial/status/2123408451808227781) | 北参道-ROADSIDE- |
@@ -805,15 +818,14 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-12(火) |  | [✿松本ももな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 籾山ひめり
 
-個別 12 件 ／ グループ含む合計 77 件
+個別 14 件 ／ グループ含む合計 77 件
 
 ### 個別スケジュール
 
@@ -828,8 +840,10 @@
 | ✅ | 2026-11-20(金) | 25:00〜25:30 | [【テレビ】BS10「なでしこドリーマーズ！！」✿橋本・葉月・日向端・籾山](https://takanenonadeshiko.jp/events/event/bs10%e3%80%8c%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e3%83%89%e3%83%aa%e3%83%bc%e3%83%9e%e3%83%bc%e3%82%ba%ef%bc%81%ef%bc%81%e3%80%8d%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e8%91%89%e6%9c%88%e3%83%bb/) |  |
 | ✅ | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ### 全スケジュール（グループ含む）
@@ -900,6 +914,7 @@
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  |
 | ✅ | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  |
 |  | 2026-11-30(月) | 18:00〜18:25 | [【ラジオ】ヒダノノ（岐阜放送）](https://x.com/takanenofficial/status/2122321289478382070) |  |
@@ -908,8 +923,7 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
@@ -917,6 +931,18 @@
 ## 参加メモ
 
 これからの予定のうち、公式の案内がある予定の要点を AI でまとめたものです。
+
+### 2026-11-25(水) [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/)
+
+- 🕙 当日の流れ: 販売：2026年11月21日(土)21:00〜／開催：2026年11月25日(水)18:00〜21:30
+- 👥 部とメンバー: ①18:00-18:30／②18:35-19:05／③19:10-19:40／④19:50-20:20／⑤20:25-20:55／⑥21:00-21:30：城月・涼海・葉月
+- 🎫 参加方法・当日券: 高嶺のなでしこ公式LINEの販売ページでチケットを購入／メンバーごとに先着順／事前に公式LINEの友達登録が必要
+- 💴 料金: 1枠60秒・3,300円(税込)／1メンバー30分あたり最大5枠まで購入可／各メンバー最大20枠
+- 📸 ルール: SPACE MAKEで1対1のオンライン個別お話し会（ビデオ通話）を実施
+- ⚠️ 注意: 不具合など開催時間中の問い合わせは公式LINEへ連絡
+- ℹ️ その他: SPACE MAKEを使用。使い方・よくある質問はSPACE MAKE案内で確認
+
+> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-11-25(水) [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/)
 
@@ -931,6 +957,19 @@
 
 > 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
+### 2026-11-26(木) [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/)
+
+- 🕙 当日の流れ: 2026年11月21日(土)21:00から公式LINEで販売／開催：18:00〜21:30
+- 👥 部とメンバー: ①18:00-18:30／②18:35-19:05／③19:10-19:40／④19:50-20:20／⑤20:25-20:55／⑥21:00-21:30：橋本・東山・日向端・松本・籾山
+- 🎫 参加方法・当日券: 公式LINEからオンライン個別お話し会のチケットを購入。メンバーごとに先着順／各メンバーの販売開始は橋本21:30、東山21:40、日向端21:50、松本22:00、籾山22:10
+- 💴 料金: 1枠60秒、1枠3,300円(税込)／1名あたり30分内最大20枠／購入上限：1メンバー・1開催枠あたり最大5枠
+- 🎒 持ち物: 事前に高嶺のなでしこ公式LINEアカウントとの友達登録が必要
+- 📸 ルール: SPACE MAKEを使用した1対1のオンライン個別お話し会（ビデオ通話）
+- ⚠️ 注意: SPACE MAKEの使い方・よくある質問を事前に確認／開催時間中の不具合等は公式LINEへ連絡
+- ℹ️ その他: SPACE MAKEを使用
+
+> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
+
 ### 2026-11-26(木) [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/)
 
 - 🕙 当日の流れ: 11月21日(土)21:00〜公式LINEで販売開始／11月26日(木)18:00〜21:30開催
@@ -941,9 +980,8 @@
 - 📸 ルール: SPACE MAKEによる1対1のライブトーク（ビデオ通話）／1枠60秒
 - ⚠️ 注意: メンバーごとに先着順で販売／購入上限はメンバー1名30分あたり最大5枠
 - ℹ️ その他: SPACE MAKEを使用して実施／SPACE MAKEの使い方・よくある質問は案内ページで確認
-- 📣 公式 X の最新情報: オンライン個別お話し会は11月25日(水)にも開催（[11/20 の投稿](https://x.com/takanenofficial/status/2123772282724389040)）
 
-> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
+> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-11-28(土) [mimilait (ミミレ)](https://x.com/takanenofficial/status/2123408451808227781)
 
@@ -1008,15 +1046,23 @@
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
-### 2026-12-16(水) [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785)
+### 2026-12-16(水) [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/)
 
-- 📣 公式 X の最新情報: 11月27日(金)18:00から先着販売開始（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／1冊券：サインなし通常本をメンバー1人から手渡し（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／2冊券：事前サイン本1冊をメンバー1人から手渡し、通常本1冊をスタッフからお渡し、ポストカード1枚付き（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／3冊券：2ショットスマホ撮影、事前サイン本をメンバー1人から手渡し、通常本2冊をスタッフからお渡し、ポストカード1枚付き（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）
+- 📍 会場: HMV&BOOKS SHIBUYA 5FイベントスペースA
+- 🕙 当日の流れ: 2026年12月16日（水）18:30〜／19:30〜
+- 👥 部とメンバー: 18:30：涼海・松本／19:30：城月・東山
+- ℹ️ その他: 詳細は主催者サイトで確認：https://www.hmv.co.jp/
+- 📣 公式 X の最新情報: 参加券は11月27日(金)18:00から先着販売開始（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／1冊券：サインなし通常本をメンバー1人から手渡し（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／2冊券：事前サイン本1冊をメンバー1人から手渡し、通常本1冊をスタッフからお渡し＋ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／3冊券：2ショットスマホ撮影、事前サイン本1冊、通常本2冊、ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
-### 2026-12-17(木) [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785)
+### 2026-12-17(木) [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/)
 
-- 📣 公式 X の最新情報: 11月27日(金)18:00から先着販売開始（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／1冊券：サインなし通常本をメンバー1人から手渡し（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／2冊券：事前サイン本1冊をメンバー1人から手渡し、通常本1冊をスタッフからお渡し。ポストカード1枚付き（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／3冊券：2ショットスマホ撮影、事前サイン本1冊、通常本2冊。ポストカード1枚付き（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）
+- 📍 会場: HMV&BOOKS SHIBUYA 6FイベントスペースA
+- 🕙 当日の流れ: 18:30〜／19:30〜
+- 👥 部とメンバー: 18:30〜：日向端・籾山／19:30〜：橋本・葉月
+- ℹ️ その他: 詳細は主催者サイト（https://www.hmv.co.jp/）で確認
+- 📣 公式 X の最新情報: 参加券は11月27日(金)18:00から先着販売開始（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／1冊券：サインなし通常本をメンバー1人から手渡し（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／2冊券：事前サイン本・通常本各1冊、ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／3冊券：2ショットスマホ撮影、事前サイン本1冊、通常本2冊、ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -1128,8 +1174,10 @@
 | ✅ | 2026-11-24(火) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://x.com/takanenofficial/status/2122321289478382070) |  | メンバー未記載 |
 | ✅ | 2026-11-24(火) |  | [高嶺のなでしこ ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン：：籾山ひめり プリントサイン入りスペシャルレシート](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-towerrecord-cp/) |  | 籾山ひめり |
 |  | 2026-11-25(水) | 14:00〜18:00 | [【ラジオ】キャッチ！（e-radio）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 葉月紗蘭、松本ももな |
+|  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿城月・涼海・葉月](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e5%9f%8e%e6%9c%88%e3%83%bb%e6%b6%bc%e6%b5%b7%e3%83%bb%e8%91%89%e6%9c%88/) |  | 城月菜央、涼海すう、葉月紗蘭 |
 |  | 2026-11-25(水) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  | 城月菜央、涼海すう、葉月紗蘭 |
 |  | 2026-11-25(水) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 涼海すう、籾山ひめり |
+|  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [SPACE MAKE✿橋本・東山・日向端・松本・籾山](https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/) |  | 橋本桃呼、東山恵里沙、日向端ひな、松本ももな、籾山ひめり |
 |  | 2026-11-26(木) | ①18:00-18:30 ／ … ／ ⑥21:00-21:30 | [高嶺のなでしこメンバーとオンライン個別お話し会](https://takanenonadeshiko.jp/spacemake-202611/) |  | 橋本桃呼、東山恵里沙、日向端ひな、松本ももな、籾山ひめり |
 |  | 2026-11-26(木) | 19:00〜21:00 | [【ラジオ】RADIO GROOVE（FM NORTH WAVE ）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 東山恵里沙、松本ももな |
 |  | 2026-11-26(木) | 23:55〜24:00 | [【ラジオ】HIT STREET（FM大阪）](https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/) |  | 涼海すう、籾山ひめり |
@@ -1143,8 +1191,8 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST | グループ（全員） |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ | グループ（全員） |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール | グループ（全員） |
-|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 5FイベントスペースA | グループ（全員） |
-|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [日経エンタテインメント！ アイドルSpecial GIRL POP VELOCITY](https://x.com/takanenofficial/status/2123665141783019785) | HMV&BOOKS SHIBUYA 6FイベントスペースA | グループ（全員） |
+|  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA | 城月菜央、涼海すう、東山恵里沙、松本ももな |
+|  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA | 橋本桃呼、葉月紗蘭、日向端ひな、籾山ひめり |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 | グループ（全員） |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 城月菜央 |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 葉月紗蘭 |

@@ -1,0 +1,49 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:b0d12c692880bcdf@takaneko-data-mine
+DTSTAMP:20261125T121803Z
+DTSTART;TZID=Asia/Tokyo:20261126T180000
+DTEND;TZID=Asia/Tokyo:20261126T213000
+SUMMARY:SPACE MAKE✿橋本・東山・日向端・松本・籾山
+DESCRIPTION:時間: ①18:00-18:30 ／ … ／ ⑥21:00-21:30\n出演: 橋
+ 本桃呼、東山恵里沙、日向端ひな、松本ももな、籾山
+ ひめり\nカテゴリ: その他\n情報元: https://takanenonadeshiko.j
+ p/events/event/space-make%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%9d%b1%e5%
+ b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3%83%bb%e6%9d%be%e6%9c%ac%e3%83
+ %bb%e7%b1%be%e5%b1%b1/\n\n【参加メモ】\n🕙 当日の流れ: 2026
+ 年11月21日(土)21:00から公式LINEで販売／開催：18:00〜21:30\
+ n👥 部とメンバー: ①18:00-18:30／②18:35-19:05／③19:10-19:40
+ ／④19:50-20:20／⑤20:25-20:55／⑥21:00-21:30：橋本・東山・
+ 日向端・松本・籾山\n🎫 参加方法・当日券: 公式LINEか
+ らオンライン個別お話し会のチケットを購入。メンバ
+ ーごとに先着順／各メンバーの販売開始は橋本21:30、東
+ 山21:40、日向端21:50、松本22:00、籾山22:10\n💴 料金: 1枠60
+ 秒、1枠3\,300円(税込)／1名あたり30分内最大20枠／購入上
+ 限：1メンバー・1開催枠あたり最大5枠\n🎒 持ち物: 事
+ 前に高嶺のなでしこ公式LINEアカウントとの友達登録が
+ 必要\n📸 ルール: SPACE MAKEを使用した1対1のオンライン
+ 個別お話し会（ビデオ通話）\n⚠️ 注意: SPACE MAKEの使
+ い方・よくある質問を事前に確認／開催時間中の不具
+ 合等は公式LINEへ連絡\nℹ️ その他: SPACE MAKEを使用\n🤖 
+ 公式の案内を AI が要約したものです。必ず情報元で確
+ 認してください。
+URL:https://takanenonadeshiko.jp/events/event/space-make%e2%9c%bf%e6%a9%8b%
+ e6%9c%ac%e3%83%bb%e6%9d%b1%e5%b1%b1%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af%e3
+ %83%bb%e6%9d%be%e6%9c%ac%e3%83%bb%e7%b1%be%e5%b1%b1/
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

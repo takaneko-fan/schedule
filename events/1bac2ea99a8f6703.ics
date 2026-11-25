@@ -14,26 +14,36 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:1bac2ea99a8f6703@takaneko-data-mine
-DTSTAMP:20261120T063107Z
+DTSTAMP:20261125T121803Z
 DTSTART;TZID=Asia/Tokyo:20261217T183000
 DTEND;TZID=Asia/Tokyo:20261217T213000
-SUMMARY:日経エンタテインメント！ アイドルSpecial GIRL POP V
- ELOCITY
+SUMMARY:『日経エンタテインメント！アイドルSpecial GIRL POP
+  VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉
+ 月
 LOCATION:HMV&BOOKS SHIBUYA 6FイベントスペースA
 DESCRIPTION:時間: ①18:30~ 日向端ひな、籾山ひめり ／ ②19:3
- 0~ 橋本桃呼、葉月紗蘭\n出演: グループ（全員）\nカテ
- ゴリ: 公式X\n情報元: https://x.com/takanenofficial/status/212366514
- 1783019785\n\n【参加メモ】\n📣 公式 X の最新情報: 11月27
- 日(金)18:00から先着販売開始（11/20 の投稿）／1冊券：サ
- インなし通常本をメンバー1人から手渡し（11/20 の投稿
- ）／2冊券：事前サイン本1冊をメンバー1人から手渡し
- 、通常本1冊をスタッフからお渡し。ポストカード1枚付
- き（11/20 の投稿）／3冊券：2ショットスマホ撮影、事前
- サイン本1冊、通常本2冊。ポストカード1枚付き（11/20 
- の投稿）\n🔗 公式 X: 11/20 https://x.com/takanenofficial/status/21
- 23665141783019785\n🤖 公式の案内と公式 X の投稿を AI が要
+ 0~ 橋本桃呼、葉月紗蘭\n出演: 橋本桃呼、葉月紗蘭、日
+ 向端ひな、籾山ひめり\nカテゴリ: ライブ／イベント\n
+ 情報元: https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7
+ %b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%8
+ 3%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80
+ girl-pop-velocity%e3%80%8f-2/\n\n【参加メモ】\n📍 会場: HMV&BOOK
+ S SHIBUYA 6FイベントスペースA\n🕙 当日の流れ: 18:30〜／19
+ :30〜\n👥 部とメンバー: 18:30〜：日向端・籾山／19:30〜
+ ：橋本・葉月\nℹ️ その他: 詳細は主催者サイト（https:
+ //www.hmv.co.jp/）で確認\n📣 公式 X の最新情報: 参加券は1
+ 1月27日(金)18:00から先着販売開始（11/20 の投稿）／1冊券
+ ：サインなし通常本をメンバー1人から手渡し（11/20 の
+ 投稿）／2冊券：事前サイン本・通常本各1冊、ポストカ
+ ード1枚（11/20 の投稿）／3冊券：2ショットスマホ撮影
+ 、事前サイン本1冊、通常本2冊、ポストカード1枚（11/20
+  の投稿）\n🔗 公式 X: 11/20 https://x.com/takanenofficial/status/2
+ 123665141783019785\n🤖 公式の案内と公式 X の投稿を AI が要
  約したものです。必ず情報元で確認してください。
-URL:https://x.com/takanenofficial/status/2123665141783019785
+URL:https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e
+ 3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%
+ 83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop
+ -velocity%e3%80%8f-2/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT

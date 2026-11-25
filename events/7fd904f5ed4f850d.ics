@@ -14,27 +14,37 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:7fd904f5ed4f850d@takaneko-data-mine
-DTSTAMP:20261120T063107Z
+DTSTAMP:20261125T121803Z
 DTSTART;TZID=Asia/Tokyo:20261216T183000
 DTEND;TZID=Asia/Tokyo:20261216T213000
-SUMMARY:日経エンタテインメント！ アイドルSpecial GIRL POP V
- ELOCITY
+SUMMARY:『日経エンタテインメント！アイドルSpecial GIRL POP
+  VELOCITY』 発売記念イベント✿涼海・松本・城月・東山
 LOCATION:HMV&BOOKS SHIBUYA 5FイベントスペースA
 DESCRIPTION:時間: ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 
- 城月菜央、東山恵里沙\n出演: グループ（全員）\nカテ
- ゴリ: 公式X\n情報元: https://x.com/takanenofficial/status/212366514
- 1783019785\n\n【参加メモ】\n📣 公式 X の最新情報: 11月27
- 日(金)18:00から先着販売開始（11/20 の投稿）／1冊券：サ
- インなし通常本をメンバー1人から手渡し（11/20 の投稿
- ）／2冊券：事前サイン本1冊をメンバー1人から手渡し
- 、通常本1冊をスタッフからお渡し、ポストカード1枚付
- き（11/20 の投稿）／3冊券：2ショットスマホ撮影、事前
- サイン本をメンバー1人から手渡し、通常本2冊をスタッ
- フからお渡し、ポストカード1枚付き（11/20 の投稿）\n
- 🔗 公式 X: 11/20 https://x.com/takanenofficial/status/2123665141783019
- 785\n🤖 公式の案内と公式 X の投稿を AI が要約したもの
- です。必ず情報元で確認してください。
-URL:https://x.com/takanenofficial/status/2123665141783019785
+ 城月菜央、東山恵里沙\n出演: 城月菜央、涼海すう、東
+ 山恵里沙、松本ももな\nカテゴリ: ライブ／イベント\n
+ 情報元: https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7
+ %b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%8
+ 3%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80
+ girl-pop-velocity%e3%80%8f/\n\n【参加メモ】\n📍 会場: HMV&BOOKS 
+ SHIBUYA 5FイベントスペースA\n🕙 当日の流れ: 2026年12月16
+ 日（水）18:30〜／19:30〜\n👥 部とメンバー: 18:30：涼海
+ ・松本／19:30：城月・東山\nℹ️ その他: 詳細は主催者
+ サイトで確認：https://www.hmv.co.jp/\n📣 公式 X の最新情報
+ : 参加券は11月27日(金)18:00から先着販売開始（11/20 の投
+ 稿）／1冊券：サインなし通常本をメンバー1人から手渡
+ し（11/20 の投稿）／2冊券：事前サイン本1冊をメンバー
+ 1人から手渡し、通常本1冊をスタッフからお渡し＋ポス
+ トカード1枚（11/20 の投稿）／3冊券：2ショットスマホ
+ 撮影、事前サイン本1冊、通常本2冊、ポストカード1枚
+ （11/20 の投稿）\n🔗 公式 X: 11/20 https://x.com/takanenofficial/
+ status/2123665141783019785\n🤖 公式の案内と公式 X の投稿を A
+ I が要約したものです。必ず情報元で確認してください
+ 。
+URL:https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e
+ 3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%
+ 83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop
+ -velocity%e3%80%8f/
 STATUS:CONFIRMED
 TRANSP:TRANSPARENT
 END:VEVENT
