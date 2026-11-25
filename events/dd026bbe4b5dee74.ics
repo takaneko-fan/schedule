@@ -14,10 +14,11 @@ END:STANDARD
 END:VTIMEZONE
 BEGIN:VEVENT
 UID:dd026bbe4b5dee74@takaneko-data-mine
-DTSTAMP:20261112T151813Z
+DTSTAMP:20261125T071736Z
 DTSTART;TZID=Asia/Tokyo:20261126T190000
 DTEND;TZID=Asia/Tokyo:20261126T210000
-SUMMARY:【ラジオ】【東山・松本】RADIO GROOVE（FM NORTH WAVE）
+SUMMARY:【ラジオ】【東山・松本】RADIO GROOVE（FM NORTH WAVE 
+ ）
 DESCRIPTION:時間: 19:00〜21:00\n出演: 東山恵里沙、松本もも
  な\nカテゴリ: お知らせ記事 / ラジオ / AI読み取り\n情報
  元: https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampai

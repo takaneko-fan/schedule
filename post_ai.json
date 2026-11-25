@@ -8,7 +8,7 @@
   "events": []
  },
  "https://takanenonadeshiko.jp/newalbum-aworldinourcolors-releasecampaign-schedule/": {
-  "hash": "33364cf825ae34b6ff09694b6c8974d0cc8f22b8",
+  "hash": "2f85e41d7081c85ed3ece5ab64eb0d1962d50f9c",
   "events": [
    {
     "date": "2026-10-31",
@@ -470,8 +470,8 @@
     "date": "2026-11-25",
     "weekday": "水",
     "open": "",
-    "start": "17:00",
-    "end": "17:55",
+    "start": "14:00",
+    "end": "18:00",
     "time_note": "",
     "title": "キャッチ！",
     "category": "お知らせ記事",
@@ -520,7 +520,7 @@
      "RADIO GROOVE"
     ],
     "media": "ラジオ",
-    "station": "FM NORTH WAVE",
+    "station": "FM NORTH WAVE ",
     "ai": true
    },
    {
