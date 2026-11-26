@@ -156,6 +156,20 @@ class DiffScheduleTest(unittest.TestCase):
         self.assertEqual((len(added), updated, len(removed)), (1, [], 1))
 
 
+    def test_merged_duplicate_is_not_removed(self):
+        """記事とカレンダーで分かれていた同じ予定がまとまって消えた方は、削除として知らせない。"""
+        same = dict(members="城月菜央、涼海すう", time_note="①18:00-18:30 ／ … ／ ⑥21:00-21:30")
+        old = [row(uid="cal", title="SPACE MAKE✿城月・涼海", **same),
+               row(uid="news", title="オンライン個別お話し会", url="https://example.invalid/news", **same)]
+        self.assertEqual(notify.diff_schedule(old, old[:1], TODAY), ([], [], []))
+
+    def test_removed_group_event_is_still_notified(self):
+        """グループ全員の予定は、同じ時刻の予定が残っていても削除として知らせる（手がかりが弱いため）。"""
+        old = [row(uid="a", title="ミニライブ", start="13:00"), row(uid="b", title="特典会", start="13:00",
+                                                                    url="https://example.invalid/b")]
+        self.assertEqual([r["uid"] for r in notify.diff_schedule(old, old[:1], TODAY)[2]], ["b"])
+
+
 class DiffDeadlinesTest(unittest.TestCase):
     def test_new_and_changed_rows_are_added(self):
         old = [deadline()]

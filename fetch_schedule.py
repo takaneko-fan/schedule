@@ -41,6 +41,8 @@ MEMBERS = [
     ("籾山ひめり", "籾山", "ひめり"),
 ]
 GROUP = "グループ（全員）"
+# 予定名に付くメンバーの名前（フルネーム・名字。長いものから）。名前（すう・ひな など）は、ほかの語の一部を削らないよう含めない
+MEMBER_NAMES_RE = re.compile("|".join(sorted({n for full, last, _ in MEMBERS for n in (full, last)}, key=len, reverse=True)))
 
 CATEGORY_LABELS = {
     "live": "ライブ／イベント",
@@ -1047,6 +1049,32 @@ GENERIC_TITLE_RE = re.compile(
     r"|[『「][^』」]*[』」]\s*(?=(?:リリース|発売)記念)|(?:リリース|発売)記念|ニューアルバム")
 
 
+def without_members(title):
+    """予定名からメンバーの名前を除く（「SPACE MAKE✿城月・涼海・葉月」→「SPACE MAKE✿」）。"""
+    return MEMBER_NAMES_RE.sub("", title)
+
+
+def same_slot_key(row):
+    """同じ予定が分かれていないかを見る手がかり（日付・メンバー・時刻）。グループ全員か時刻のない予定は None。
+    各部の時刻まで同じ別の催しは考えにくいので、まとめ損ねの目安にする（予定はまとめない）。"""
+    times = (row["open"], row["start"], row["time_note"])
+    if row["members"] == GROUP or not any(times):
+        return None
+    return (row["date"], row["members"], *times)
+
+
+def warn_duplicates(rows):
+    """同じ日・同じメンバー・同じ時刻の予定が 2 件以上あれば、まとめ損ねた可能性として実行ログに出す。"""
+    groups = {}
+    for r in rows:
+        key = same_slot_key(r)
+        if key:
+            groups.setdefault(key, []).append(r)
+    for (day, *_), same in groups.items():
+        if len(same) > 1:
+            print(f"  ! 同じ予定が分かれている可能性: {day} " + " ／ ".join(r["title"] for r in same))
+
+
 def event_phrase(text):
     """予定名から、どの予定にも付く語を除いた、その催しを表す部分。"""
     return GENERIC_TITLE_RE.sub(" ", text)
@@ -1264,7 +1292,7 @@ def same_event_strictly(a, b):
     venues = [v for v in (a["venue"], b["venue"]) if v and not TBD_VENUE_RE.search(v)]
     if len(venues) == 2 and x_same_venue(*venues):
         return True
-    name = normalize(event_phrase(b["title"]))
+    name = normalize(event_phrase(without_members(b["title"])))
     if len(name) >= 6 and name in normalize(event_phrase(a.get("post_text", ""))):
         return True
     return shares_phrase(event_phrase(a["title"].split("：")[-1]), event_phrase(b["title"]), 6)
@@ -1292,9 +1320,10 @@ def merge_post_rows(rows, post_rows):
             loose = []
         dups = [r for r in same_day
                 if r in loose
-                # 記事本文にカレンダーのタイトルがそのまま出てくる（例: SPACE MAKE）
-                or len(normalize(r["title"])) >= 6
-                and normalize(r["title"]) in normalize(pr.get("post_text", ""))
+                # 記事本文にカレンダーのタイトルがそのまま出てくる（例: SPACE MAKE）。予定名にメンバーの名前が
+                # 付いていても（「SPACE MAKE✿城月・涼海・葉月」）比べられるよう、名前は除く
+                or len(normalize(without_members(r["title"]))) >= 6
+                and normalize(without_members(r["title"])) in normalize(pr.get("post_text", ""))
                 # X の投稿の『』内の名前が予定名に含まれる（「個別握手会／東京都内某所」と
                 # 「『A World in Our Colors』リリース記念個別イベント／大崎ブライトコアホール」）
                 or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in pr.get("names", []))
@@ -3591,6 +3620,7 @@ def main():
     fill_tbd_venues(rows, posts)
     link_detail_posts(rows, posts)
     apply_x_notices(rows, x_notices)
+    warn_duplicates(rows)
     write_deadline_warnings(find_missed_venues(rows, posts, x_hints, today), MISSED_PATH)
     prev = load_prev_rows(args.csv)
     problem = None if args.force else check_drop(prev, rows, args.start, args.end, events_count)
