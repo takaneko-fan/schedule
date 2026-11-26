@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 117 件（うち済 91 件）
+- 件数: 118 件（うち済 91 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -87,12 +87,13 @@
 |  | 2026-12-07(月) | OPEN 14:00 / START 14:30 ／ [🎤 出演 19:50〜20:15](https://x.com/takanenofficial/status/2113533382886072741) | [MARQUEE祭 Vol.186](https://takanenonadeshiko.jp/events/event/marquee%e7%a5%ad-vol-186/) | 渋谷Spotify O-EAST |
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 城月菜央
 
-個別 12 件 ／ グループ含む合計 75 件
+個別 12 件 ／ グループ含む合計 76 件
 
 ### 個別スケジュール
 
@@ -187,13 +188,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 涼海すう
 
-個別 11 件 ／ グループ含む合計 74 件
+個別 11 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -286,13 +288,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 橋本桃呼
 
-個別 11 件 ／ グループ含む合計 74 件
+個別 11 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -385,13 +388,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-06-28(月) |  | [✿橋本桃呼誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 葉月紗蘭
 
-個別 18 件 ／ グループ含む合計 81 件
+個別 18 件 ／ グループ含む合計 82 件
 
 ### 個別スケジュール
 
@@ -498,13 +502,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 東山恵里沙
 
-個別 19 件 ／ グループ含む合計 82 件
+個別 19 件 ／ グループ含む合計 83 件
 
 ### 個別スケジュール
 
@@ -613,13 +618,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-05-28(金) |  | [✿東山恵里沙誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 日向端ひな
 
-個別 14 件 ／ グループ含む合計 77 件
+個別 14 件 ／ グループ含む合計 78 件
 
 ### 個別スケジュール
 
@@ -718,13 +724,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 松本ももな
 
-個別 12 件 ／ グループ含む合計 75 件
+個別 12 件 ／ グループ含む合計 76 件
 
 ### 個別スケジュール
 
@@ -819,13 +826,14 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-12(火) |  | [✿松本ももな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 籾山ひめり
 
-個別 14 件 ／ グループ含む合計 77 件
+個別 14 件 ／ グループ含む合計 78 件
 
 ### 個別スケジュール
 
@@ -924,6 +932,7 @@
 |  | 2026-12-10(木) | OPEN 11:30 / START 12:15 | [ッスッゴイライブ-8th Anniversary SP-](https://takanenonadeshiko.jp/events/event/%e3%83%83%e3%82%b9%e3%83%83%e3%82%b4%e3%82%a4%e3%83%a9%e3%82%a4%e3%83%96-8th-anniversary-sp/) | Shibuya LOVEZ |
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
@@ -1038,6 +1047,12 @@
 - 👥 部とメンバー: 18:30〜：日向端・籾山／19:30〜：橋本・葉月
 - ℹ️ その他: 詳細は主催者サイト（https://www.hmv.co.jp/）で確認
 - 📣 公式 X の最新情報: 参加券は11月27日(金)18:00から先着販売開始（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／1冊券：サインなし通常本をメンバー1人から手渡し（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／2冊券：事前サイン本・通常本各1冊、ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）／3冊券：2ショットスマホ撮影、事前サイン本1冊、通常本2冊、ポストカード1枚（[11/20 の投稿](https://x.com/takanenofficial/status/2123665141783019785)）
+
+> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
+
+### 2026-12-20(日) [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804)
+
+- 📣 公式 X の最新情報: チケット受付は11月26日21:30から（[11/26 の投稿](https://x.com/takanenofficial/status/2125771526616039804)）／チケット料金は前方9,500円、一般3,500円、女性3,000円（[11/26 の投稿](https://x.com/takanenofficial/status/2125771526616039804)）／早割チケットは2,000円。14:00までの入場が必須（[11/26 の投稿](https://x.com/takanenofficial/status/2125771526616039804)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -1168,6 +1183,7 @@
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール | グループ（全員） |
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA | 城月菜央、涼海すう、東山恵里沙、松本ももな |
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA | 橋本桃呼、葉月紗蘭、日向端ひな、籾山ひめり |
+|  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://x.com/takanenofficial/status/2125771526616039804) | KT Zepp Yokohama | グループ（全員） |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 | グループ（全員） |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 城月菜央 |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 葉月紗蘭 |

@@ -324,6 +324,25 @@
    }
   ]
  },
+ "2026-12-20|https://x.com/takanenofficial/status/2125771526616039804": {
+  "generated": "2026-11-26",
+  "hash": "",
+  "memo": {},
+  "model": "gpt-5.6-luna",
+  "x_changes": [],
+  "x_hash": "d419c0a8618caaad5683547d0b0cd03800c9691d",
+  "x_items": [
+   "チケット受付は11月26日21:30から（11/26 の投稿）",
+   "チケット料金は前方9,500円、一般3,500円、女性3,000円（11/26 の投稿）",
+   "早割チケットは2,000円。14:00までの入場が必須（11/26 の投稿）"
+  ],
+  "x_sources": [
+   {
+    "label": "11/26",
+    "url": "https://x.com/takanenofficial/status/2125771526616039804"
+   }
+  ]
+ },
  "2026-12-24|https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/": {
   "generated": "2026-11-22",
   "hash": "f38f3195f58f99aaa16636251a27ede4801790b4",
