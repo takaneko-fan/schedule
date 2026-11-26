@@ -16,7 +16,7 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_hash": "16e37900a914bb76a594b21b8bfeeff16d7e81b8",
+  "x_hash": "b5f09b9e66b7c511e015314722543a5271f1dabb",
   "x_items": [],
   "x_sources": []
  },
@@ -36,10 +36,28 @@
    "venue": ""
   },
   "model": "gpt-5.6-luna",
-  "x_changes": [],
-  "x_hash": "73187895f5c4d219ed58cc7deaffef8fe674eadc",
+  "x_changes": [
+   {
+    "field": "flow",
+    "old": "11月21日(土)21:00〜公式LINEで販売開始",
+    "posted": "11/26",
+    "text": "11月21日(土)21:30〜予約開始。メンバーによって販売開始時間が異なります"
+   },
+   {
+    "field": "join",
+    "old": "メンバーごとに11月21日(土)21:30〜22:10から販売、先着順",
+    "posted": "11/26",
+    "text": "11月21日(土)21:30〜予約開始。メンバーによって販売開始時間が異なります"
+   }
+  ],
+  "x_hash": "e09bdc3a4c55a7c6c185df592df2f96593abc1e4",
   "x_items": [],
-  "x_sources": []
+  "x_sources": [
+   {
+    "label": "11/26",
+    "url": "https://x.com/takanenofficial/status/2125763974964687156"
+   }
+  ]
  },
  "2026-11-28|https://x.com/takanenofficial/status/2123408451808227781": {
   "generated": "2026-11-20",
