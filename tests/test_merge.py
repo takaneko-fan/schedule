@@ -340,3 +340,25 @@ class WarnDuplicatesTest(unittest.TestCase):
             fs.warn_duplicates(rows)
         self.assertEqual(out.getvalue().splitlines(),
                          ["  ! 同じ予定が分かれている可能性: 2026-11-20 SPACE MAKE✿城月・涼海・葉月 ／ メンバーとオンライン個別お話し会"])
+
+
+class FindTimesTest(unittest.TestCase):
+    def test_part_without_label_is_kept(self):
+        """1 部にだけ部の表記がない（9/19 ららぽーとTOKYO-BAY）ときも、書かれた順に両方拾う。"""
+        lines = ["2026年9月19日（土）", "12:00 START（優先エリア入場11:40）", "内容：ミニライブ＆グループ特典会",
+                 "2部\u300015:30 START（優先エリア入場15:10）", "2026年9月19日(土)\u300010:00～"]
+        self.assertEqual(fs.find_part_times(lines), "12:00 START（優先エリア入場11:40） ／ 2部 15:30 START（優先エリア入場15:10）")
+
+    def test_parts_with_labels(self):
+        lines = ["1部 12:00 START（優先エリア入場11:40）", "2部 15:30 START（優先エリア入場15:10）"]
+        self.assertEqual(fs.find_part_times(lines), " ／ ".join(lines))
+
+    def test_time_line(self):
+        """「時間：15:00/ 優先エリアご入場開始：14:40」は開始（9/22 イオンレイクタウン）。"""
+        lines = ["■CD販売開始時間", "2026年9月22日(火/祝)\u300012:00～", "時間：15:00/ 優先エリアご入場開始：14:40"]
+        self.assertEqual(fs.find_time_line(lines), {"START": "15:00"})
+        self.assertEqual(fs.find_time_line(["◆開催時間：18:00〜20:00"]), {"START": "18:00", "END": "20:00"})
+
+    def test_other_time_lines_are_not_read(self):
+        lines = ["■CD販売開始時間", "受付時間：10:00〜17:00", "[受付時間] 月～金 (除く休日) 10:00～13:00", "集合時間になりましたら"]
+        self.assertEqual(fs.find_time_line(lines), {})

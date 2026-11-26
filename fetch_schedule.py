@@ -98,13 +98,12 @@ DATE_LINE_RE = re.compile(r"^\d{4}年\s*\d{1,2}月\s*\d{1,2}日\s*[(（][^)）]+
 
 
 def find_part_times(lines):
-    """「1部 12:00 START」「第一部[OPEN/START] 15:00/16:00」形式の時間を拾う。"""
+    """「1部 12:00 START」「第一部[OPEN/START] 15:00/16:00」形式の時間を拾う。
+    部の表記がなく「12:30 START（優先エリア入場12:10）」が並ぶ形式や、1 部にだけ部の表記がない形式
+    （「12:00 START（…）」「2部 15:30 START（…）」）も、書かれた順に拾う。"""
     parts = [re.sub(r"\s+", " ", ln) for ln in lines
-             if PART_RE.match(ln) and re.search(r"\d{1,2}[:：]\d{2}", ln)]
-    if not parts:
-        # 部の表記がなく「12:30 START（優先エリア入場12:10）」が並ぶ形式
-        parts = [re.sub(r"\s+", " ", ln) for ln in lines
-                 if re.match(r"^\d{1,2}[:：]\d{2}\s*START", ln, re.I)]
+             if PART_RE.match(ln) and re.search(r"\d{1,2}[:：]\d{2}", ln)
+             or re.match(r"^\d{1,2}[:：]\d{2}\s*START", ln, re.I)]
     if len(parts) > 3:
         parts = parts[:1] + ["…"] + parts[-1:]
     return " ／ ".join(parts)
@@ -129,6 +128,19 @@ def find_venue(detail):
         if i > 0 and "会場" in body[i - 1] and i + 1 < len(body):
             return body[i + 1]  # 「【開催日時・会場】」→ 日付行 → 会場行
     return ""
+
+
+# 本文の「時間：15:00/ 優先エリアご入場開始：14:40」の行（「■CD販売開始時間」のような見出しは除く）
+TIME_LINE_RE = re.compile(r"^[◆■●・\s]*(?:開催)?時間\s*[:：]\s*(\d{1,2}[:：]\d{2})(.*)$")
+
+
+def find_time_line(lines):
+    """本文の「時間：」の行の時刻（「15:00〜16:00」なら開始と終了、1 つだけなら開始）。最初の行だけ見る。"""
+    for ln in lines:
+        m = TIME_LINE_RE.match(ln)
+        if m:
+            return find_times([m.group(1) + m.group(2)]) or {"START": m.group(1).replace("：", ":")}
+    return {}
 
 
 def find_times(lines):
@@ -177,6 +189,8 @@ def build_rows(events, with_detail=True):
         times = find_times(detail.get("日時", []) + detail.get("時間", []))
         if not times:
             times = find_times([ln for ln in detail.get("本文", []) if "OPEN" in ln and "START" in ln][:1])
+        if not times:
+            times = find_time_line(detail.get("本文", []))
         # 全メンバーが対象なら個別扱いせずグループ扱いにする
         if len(members) == len(MEMBERS):
             members = []
