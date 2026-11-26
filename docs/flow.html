@@ -184,7 +184,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
             <div class="branch"><span class="when">【開催日】の記事・月ごとのスケジュール公開</span><span class="what">日付と予定名を読む</span><span class="tags"><span class="tag rule">ルール</span></span></div>
             <div class="branch"><span class="when">ルールで読めない記事（ラジオ出演のまとめなど）</span><span class="what">番組の予定を読む</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">post_ai.json</span></span></div>
           </div>
-          <p>読んだ予定は、公式カレンダーの同じ予定と 1 件にまとめる。同じ予定かは、どの予定にも付く語（グループ名・作品名・「リリース記念」など）を除いた予定名と会場で比べる。店舗のキャンペーンは、その日のイベントとは別の予定にする。</p>
+          <p>読んだ予定は、公式カレンダーの同じ予定と 1 件にまとめる。同じ予定かは、どの予定にも付く語（グループ名・作品名・「リリース記念」など）を除いた予定名と会場、記事の本文に公式の予定名（メンバーの名前は除く）があるかで比べる。店舗のキャンペーンは、その日のイベントとは別の予定にする。同じ日・同じメンバー・同じ時刻の予定が残れば、まとめ損ねの可能性として実行ログに出す。</p>
         </div>
       </li>
       <li class="step key">
@@ -282,7 +282,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
       <div class="branch highlight"><span class="when">予定に変化あり</span><span class="what">変化を Web 版の「最近の更新」に記録し（<code>notify.py --record</code>、<code>updates.json</code>）、takaneko-fan の名義でコミットして push し、前後のコミットの CSV を比べて通知する（<code>notify.py</code>）。push されると GitHub が自動で Pages を更新する</span><span class="tags"><span class="tag notify">通知</span></span></div>
     </div>
     <div class="notify-list" aria-label="更新の通知の区分">
-      <div class="notify-row"><span class="lv imp">⚠️ 重要</span><span>中止・延期・欠席、日付・時刻・会場・出演の変更、削除（優先度を上げて送る）</span></div>
+      <div class="notify-row"><span class="lv imp">⚠️ 重要</span><span>中止・延期・欠席、日付・時刻・会場・出演の変更、削除（分かれていた同じ予定がまとまって消えた方は除く。優先度を上げて送る）</span></div>
       <div class="notify-row"><span class="lv ok">✅ 決定</span><span>空だった時刻・会場が決まった（「東京都内某所」のような仮の会場を含む）、会場の表記が詳しくなった</span></div>
       <div class="notify-row"><span class="lv cnt">件数</span><span>新規の予定、参加メモなどの変更、申込・締切の追加</span></div>
     </div>

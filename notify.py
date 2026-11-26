@@ -26,7 +26,7 @@ import subprocess
 from datetime import date, datetime, timedelta
 
 from fetch_schedule import (GROUP, IMAGE_MEMBERS_LABEL, JST, MEMBERS, MISSED_PATH, NOTICE_PREFIX_RE, TBD_VENUE_RE, WARN_DAYS, WARNINGS_PATH, deadline_event, load_env,
-                            media_prefix, members_label, normalize, same_kind, shares_phrase, time_label)
+                            media_prefix, members_label, normalize, same_kind, same_slot_key, shares_phrase, time_label)
 
 NTFY_URL = "https://ntfy.sh/"
 SITE_URL = "https://takaneko-fan.github.io/schedule/"
@@ -90,7 +90,8 @@ def diff_schedule(old_rows, new_rows, today):
     """(追加, 変更の (前, 後) の組, 削除) を返す。
     ID は日付と情報元から作るので、日付や情報元が変わると削除と追加に見え、同じ記事・同じ日の予定が複数あると
     並びの変化で ID が入れ替わることもある。予定名が違う同じ ID は別の予定とし、削除と追加のうち
-    同じ情報元か同じ日付で予定名の近い組を、同じ予定の変更として扱う。"""
+    同じ情報元か同じ日付で予定名の近い組を、同じ予定の変更として扱う。
+    記事とカレンダーで分かれていた同じ予定がまとまって消えた方は、削除に入れない。"""
     old = {r["uid"]: r for r in old_rows}
     new = {r["uid"]: r for r in new_rows}
     same = {uid for uid in old.keys() & new.keys() if shares_phrase(old[uid]["title"], new[uid]["title"])
@@ -106,6 +107,9 @@ def diff_schedule(old_rows, new_rows, today):
             removed.remove(gone)
             added.remove(moved)
             updated.append((gone, moved))
+    # 分かれていた同じ予定がまとまって消えた方（同じ日・同じメンバー・同じ時刻の予定が残っている）は、削除として知らせない
+    kept = {same_slot_key(r) for r in new_rows} - {None}
+    removed = [r for r in removed if same_slot_key(r) not in kept]
     return added, updated, removed
 
 

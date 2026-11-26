@@ -300,7 +300,43 @@ class SameEventStrictlyTest(unittest.TestCase):
         rows = quiet(fs.merge_post_rows, [row(date="2026-10-26", title="✿SPACE MAKE✿", venue="")], [news])
         self.assertEqual((len(rows), rows[0]["members"]), (1, "城月菜央、橋本桃呼"))
 
+    def test_calendar_name_with_member_names_in_article_body(self):
+        """カレンダーの予定名にメンバーの名前が付いても、名前を除いた予定名が本文にあれば同じ催し（11/25・11/26 の SPACE MAKE）。"""
+        members = "橋本桃呼、東山恵里沙、日向端ひな、松本ももな、籾山ひめり"
+        parts = "①18:00-18:30 ／ … ／ ⑥21:00-21:30"
+        news = row(date="2026-11-26", title="高嶺のなでしこメンバーとオンライン個別お話し会", members=members, venue="",
+                   time_note=parts, url="https://example.invalid/news/1",
+                   post_text="11月26日(木) SPACE MAKEにて、オンライン個別お話し会を開催いたします。")
+        calendar = row(date="2026-11-26", title="SPACE MAKE✿橋本・東山・日向端・松本・籾山", members=members, venue="",
+                       time_note=parts)
+        rows = quiet(fs.merge_post_rows, [calendar], [news])
+        self.assertEqual([r["url"] for r in rows], [calendar["url"]])
+
+    def test_title_of_member_names_only_is_not_enough(self):
+        """名前を除くと短くなる予定名（6 文字未満）は、本文に出てきてもまとめない。"""
+        news = row(title="ファンクラブイベント", venue="", url="https://example.invalid/news/1",
+                   post_text="城月菜央 生誕祭の物販についてのお知らせ")
+        self.assertEqual(len(quiet(fs.merge_post_rows, [row(title="城月菜央 生誕祭", venue="")], [news])), 2)
+
+    def test_without_members(self):
+        self.assertEqual(fs.without_members("SPACE MAKE✿城月・涼海・葉月"), "SPACE MAKE✿・・")
+        self.assertEqual(fs.without_members("日向端ひな 生誕祭 ひなまつり"), " 生誕祭 ひなまつり")
+
     def test_generic_words_in_body_are_not_enough(self):
         news = row(title="タワーレコードキャンペーン：：涼海すう レシート", members="涼海すう", venue="",
                    post_text="ニューアルバム『A World in Our Colors』リリース記念 タワーレコードキャンペーン")
         self.assertFalse(fs.same_event_strictly(news, row(title="ニューアルバム『A World in Our Colors』リリース記念イベント")))
+
+
+class WarnDuplicatesTest(unittest.TestCase):
+    def test_same_members_and_times_are_reported(self):
+        parts = "①18:00-18:30 ／ … ／ ⑥21:00-21:30"
+        rows = [row(title="SPACE MAKE✿城月・涼海・葉月", members="城月菜央、涼海すう、葉月紗蘭", time_note=parts),
+                row(title="メンバーとオンライン個別お話し会", members="城月菜央、涼海すう、葉月紗蘭", time_note=parts),
+                row(title="全員のミニライブ", start="18:00"), row(title="全員の特典会", start="18:00"),
+                row(title="時刻のない予定", members="城月菜央"), row(title="時刻のない別の予定", members="城月菜央")]
+        out = io.StringIO()
+        with contextlib.redirect_stdout(out):
+            fs.warn_duplicates(rows)
+        self.assertEqual(out.getvalue().splitlines(),
+                         ["  ! 同じ予定が分かれている可能性: 2026-11-20 SPACE MAKE✿城月・涼海・葉月 ／ メンバーとオンライン個別お話し会"])
