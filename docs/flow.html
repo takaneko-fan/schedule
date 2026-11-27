@@ -197,7 +197,7 @@ footer { font-size: 13px; color: var(--muted); border-top: 1px solid var(--line)
             <div class="branch"><span class="when">画像付きで、本文に「タイムテーブル」「出演情報」「きょうの／あしたのたかねこ」「Schedule」など</span><span class="what">告知画像を 2 回読み、高嶺のなでしこの出演時間（2 回一致したものだけ）と、スケジュール一覧にしかない予定（ラジオ出演・イベントなど。局・会場も読む。2 回で同じイベントと判断できたものを、後の読み取りの内容で。新しい投稿の画像を優先。出演は「メンバー未記載」）、物販・特典会などの情報を取り出す（画像は保存しない）</span><span class="tags"><span class="tag ai">AI（画像）</span><span class="tag file">x_events.json・VPS の x_texts.json</span></span></div>
             <div class="branch highlight"><span class="when">本文に「変更・中止・欠席・延期」など（新しい予定としての読み取りとあわせて）</span><span class="what">時刻・会場の変更、書き方の決まっていない中止・欠席</span><span class="tags"><span class="tag ai">AI</span><span class="tag file">x_notices.json</span></span></div>
           </div>
-          <p>新しい予定は公式カレンダーの予定とまとめる。公式の値を優先し、公式に時刻がないときの会場・部制の時間、より詳しい会場名、仮の会場（「東京都内某所」）に代わる実際の会場、日ごとの担当メンバーだけを取り込む。</p>
+          <p>新しい予定は公式カレンダーの予定とまとめる。公式の値を優先し、公式に時刻がないときの会場・部制の時間、より詳しい会場名、仮の会場（「東京都内某所」）に代わる実際の会場、日ごとの担当メンバーだけを取り込む。同じ開始時刻で予定名が近いか局が同じ予定も、同じ予定とみなす（告知画像の読み違いを拾う）。</p>
         </div>
       </li>
       <li class="step">
