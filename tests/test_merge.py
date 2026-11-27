@@ -291,6 +291,59 @@ class SameEventMatchTest(unittest.TestCase):
         self.assertEqual(rows[0]["members"], "涼海すう、松本ももな")  # 同じ会場の詳細記事の担当は使う
 
 
+class SameSlotTest(unittest.TestCase):
+    def merge(self, rows, post_rows):
+        return quiet(fs.merge_post_rows, rows, post_rows)
+
+    def radio(self, **values):
+        return row(title="ヒダミノ", venue="", start="18:00", end="18:25", media="ラジオ", station="岐阜放送",
+                   category="お知らせ記事", members="葉月紗蘭、東山恵里沙", url="https://example.invalid/news/1", **values)
+
+    def test_misread_program_name_is_merged(self):
+        """告知画像で番組名を読み違えても、同じ局・同じ時刻なら記事の予定にまとめる。"""
+        image = x_row(title="ヒダノノ", venue="", start="18:00", end="18:25", media="ラジオ", station="岐阜放送")
+        rows = self.merge([self.radio()], [image])
+        self.assertEqual(len(rows), 1)
+        self.assertEqual(rows[0]["members"], "葉月紗蘭、東山恵里沙")
+        self.assertEqual(rows[0]["x_urls"], [image["url"]])
+
+    def test_other_time_or_station_is_added(self):
+        for values in ({"start": "19:00"}, {"title": "カリメン", "station": "RKBラジオ"}, {"title": "ヒダシマ", "station": ""},
+                       {"start": ""}):
+            with self.subTest(values=values):
+                other = x_row(title="ヒダノノ", venue="", start="18:00", media="ラジオ", station="岐阜放送")
+                other.update(values)
+                self.assertEqual(len(self.merge([self.radio()], [other])), 2)
+
+    def test_misread_name_without_station_is_merged(self):
+        """局がなくても、同じ時刻で予定名が近ければまとめる。局が同じなら名前が離れていてもまとめる。"""
+        for values in ({"title": "ヒダノノ", "station": ""}, {"title": "ヒダシマ"}):
+            with self.subTest(values=values):
+                image = x_row(venue="", start="18:00", media="ラジオ", station="岐阜放送")
+                image.update(values)
+                self.assertEqual(len(self.merge([self.radio()], [image])), 1)
+
+    def test_same_time_other_events_are_added(self):
+        """同じ時刻でも、別の局の番組、収録の放送とイベントはまとめない（2026-11-18 の実例）。"""
+        event = row(title="リリース記念イベント", start="17:00", venue="ららぽーと立川立飛2F イベント広場")
+        radio = row(title="Oita Sunset Groove", venue="", start="17:00", media="ラジオ", station="FM大分",
+                    members="城月菜央、日向端ひな", url="https://example.invalid/news/1")
+        self.assertEqual(len(self.merge([event], [radio])), 2)
+        a = self.radio(); a.update(title="ドラ魂キング", start="16:00", station="CBCラジオ")
+        b = self.radio(); b.update(title="江本一真のゴッジ", start="16:00", station="広島FM", url="https://example.invalid/news/2")
+        self.assertEqual(len(self.merge([a], [b])), 2)
+        a.update(title="らじお女子の「ラジオに恋して」", start="21:00")
+        c = x_row(title="カリメン", venue="", start="21:00", media="ラジオ", station="RKBラジオ")
+        self.assertEqual(len(self.merge([a], [c])), 2)  # 局の名前の「ラジオ」だけで近いとしない
+
+    def test_x_rows_are_left_to_newest_read(self):
+        """X どうしは、同じ局・同じ時刻でもここではまとめない（画像の読み直しは新しい読み取りを残すため）。"""
+        old = x_row(title="ヒダミノノ", venue="", start="18:00", media="ラジオ", station="岐阜放送")
+        new = x_row(title="ヒダカノ", venue="", start="18:00", media="ラジオ", station="岐阜放送",
+                    url="https://x.com/takanenofficial/status/2")
+        self.assertEqual(len(self.merge([old], [new])), 2)
+
+
 class SameEventStrictlyTest(unittest.TestCase):
     def test_calendar_name_in_article_body(self):
         """記事のタイトルは違っても、本文に公式の予定名がそのまま出てくれば同じ催し（SPACE MAKE の担当メンバー）。"""

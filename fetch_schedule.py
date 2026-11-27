@@ -1312,6 +1312,19 @@ def same_event_strictly(a, b):
     return shares_phrase(event_phrase(a["title"].split("：")[-1]), event_phrase(b["title"]), 6)
 
 
+def same_slot(a, b):
+    """同じ日の 2 つの予定が、同じ開始時刻で、予定名が近い（similar）か局が同じか。会場が両方にあって違えば別。
+    予定名の読み違い（告知画像の「ヒダミノ」→「ヒダノノ」「ヒダシマ」など）があっても同じ予定とみなす。
+    同じ時刻でも、メンバーが分かれて別の局に出る番組や、収録の放送とイベントは、名前も局も違うので別のまま。
+    局は表記の一致で比べる（similar では「CBCラジオ」と「RKBラジオ」が近いとされるため）。"""
+    if not (a["start"] and a["start"] == b["start"]):
+        return False
+    if a.get("venue") and b.get("venue") and not similar(a["venue"], b["venue"]):
+        return False
+    station = normalize(a.get("station", ""))
+    return similar(a["title"], b["title"]) or bool(station) and station == normalize(b.get("station", ""))
+
+
 def merge_post_rows(rows, post_rows):
     """カレンダーと同じ予定は統合し、カレンダーにないものだけ追加する。"""
     added = []
@@ -1341,7 +1354,9 @@ def merge_post_rows(rows, post_rows):
                 # X の投稿の『』内の名前が予定名に含まれる（「個別握手会／東京都内某所」と
                 # 「『A World in Our Colors』リリース記念個別イベント／大崎ブライトコアホール」）
                 or any(shares_phrase(r["title"], n, X_NAME_MIN) for n in pr.get("names", []))
-                or pr["category"] == X_CATEGORY and x_same_venue(pr["venue"], r["venue"])]
+                or pr["category"] == X_CATEGORY and x_same_venue(pr["venue"], r["venue"])
+                # X どうし（告知画像の読み直し）は、新しい読み取りを残す処理（read_x_posts）に任せる
+                or not pr["category"] == r["category"] == X_CATEGORY and same_slot(pr, r)]
         if pr["category"] == X_CATEGORY and len(dups) > 1:
             # 取り違えないよう、統合先が 1 件に決まらない X の予定は追加も統合もしない
             print(f"  ! X の予定を統合せず（同じ日の候補が複数）: {pr['date']} {pr['title']} {pr['url']}")
