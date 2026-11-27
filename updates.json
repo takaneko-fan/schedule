@@ -1,5 +1,49 @@
 [
  {
+  "at": "2026-11-27T22:31",
+  "items": [
+   {
+    "level": "added",
+    "kind": "新規",
+    "date": "2026-12-26",
+    "title": "個別2ショット撮影会",
+    "change": "1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 1… ・ TOC有明Convention Hall WESTホール",
+    "uid": "3d98738e8bca1c4e",
+    "source": "https://x.com/takanenofficial/status/2126307558872731670"
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-01",
+    "title": "年末大感謝祭 2026 個別2ショット撮影会・個別Ti…",
+    "change": "受付開始（1次受付） 12/1(火) 17:00〜",
+    "source": "https://x.com/takanenofficial/status/2126307558872731670",
+    "deadline": {
+     "date": "2026-12-01",
+     "time": "17:00",
+     "kind": "受付開始",
+     "event": "12/26 年末大感謝祭 2026 個別2ショット撮影会・個別TikTok撮影会",
+     "url": "https://x.com/takanenofficial/status/2126307558872731670"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-02",
+    "title": "年末大感謝祭 2026 個別2ショット撮影会・個別Ti…",
+    "change": "受付締切（1次受付） 12/2(水) 14:00まで",
+    "source": "https://x.com/takanenofficial/status/2126307558872731670",
+    "deadline": {
+     "date": "2026-12-02",
+     "time": "14:00",
+     "kind": "受付締切",
+     "event": "12/26 年末大感謝祭 2026 個別2ショット撮影会・個別TikTok撮影会",
+     "url": "https://x.com/takanenofficial/status/2126307558872731670"
+    }
+   }
+  ]
+ },
+ {
   "at": "2026-11-26T21:51",
   "items": [
    {
@@ -288,86 +332,6 @@
     "title": "mimilait (ミミレ)",
     "change": "北参道-ROADSIDE-",
     "uid": "b6377c770e66602b"
-   }
-  ]
- },
- {
-  "at": "2026-11-19T01:40",
-  "items": [
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-12-06",
-    "title": "MARQUEE祭 Vol.186",
-    "change": "受付締切（一般発売） 12/6(日) 23:59まで",
-    "deadline": {
-     "date": "2026-12-06",
-     "time": "23:59",
-     "kind": "受付締切",
-     "event": "12/7 MARQUEE祭 Vol.186",
-     "url": "https://x.com/takanenofficial/status/2113533382886072741"
-    }
-   }
-  ]
- },
- {
-  "at": "2026-11-19T01:39",
-  "items": [
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-11-23",
-    "title": "DRAMATIC POP DX",
-    "change": "抽選の締切 11/23(月) 23:59まで",
-    "deadline": {
-     "date": "2026-11-23",
-     "time": "23:59",
-     "kind": "受付締切",
-     "event": "12/15 DRAMATIC POP DX",
-     "url": "https://x.com/takanenofficial/status/2122650959117435037"
-    }
-   },
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-11-24",
-    "title": "タワーレコードCP",
-    "change": "抽選の締切 11/24(火)",
-    "deadline": {
-     "date": "2026-11-24",
-     "time": "",
-     "kind": "受付締切",
-     "event": "タワーレコードCP",
-     "url": "https://x.com/takanenofficial/status/2122258372385001958"
-    }
-   },
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-12-02",
-    "title": "リリース記念 ダウンロードキャンペーン",
-    "change": "応募の締切 12/2(水) 23:59まで",
-    "deadline": {
-     "date": "2026-12-02",
-     "time": "23:59",
-     "kind": "受付締切",
-     "event": "ニューアルバム『 A World in Our Colors 』リリース記念 ダウンロードキャンペーン",
-     "url": "https://x.com/takanenofficial/status/2122887526474023388"
-    }
-   },
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-12-09",
-    "title": "ッスッゴイライブ-8th Anniversary SP-",
-    "change": "受付締切（チケット受付） 12/9(水) 23:59まで",
-    "deadline": {
-     "date": "2026-12-09",
-     "time": "23:59",
-     "kind": "受付締切",
-     "event": "12/10 ッスッゴイライブ-8th Anniversary SP-",
-     "url": "https://x.com/takanenofficial/status/2119404568174104839"
-    }
    }
   ]
  }

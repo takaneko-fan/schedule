@@ -1,0 +1,40 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//takaneko-data//fetch_schedule.py//JA
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VTIMEZONE
+TZID:Asia/Tokyo
+BEGIN:STANDARD
+DTSTART:19700101T000000
+TZOFFSETFROM:+0900
+TZOFFSETTO:+0900
+TZNAME:JST
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+UID:3d98738e8bca1c4e@takaneko-data-mine
+DTSTAMP:20261127T133114Z
+DTSTART;TZID=Asia/Tokyo:20261226T110000
+DTEND;TZID=Asia/Tokyo:20261226T182000
+SUMMARY:個別2ショット撮影会
+LOCATION:TOC有明Convention Hall WESTホール
+DESCRIPTION:時間: 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6
+ 部 17:20~18:20 (受付終了：~18:00)\n出演: グループ（全員）\
+ nカテゴリ: 公式X\n情報元: https://x.com/takanenofficial/status/21
+ 26307558872731670\n\n【参加メモ】\n📣 公式 X の最新情報: 2
+ 部（撮影）：12:10〜13:10（受付終了〜12:50）（11/27 の投
+ 稿）／3部（TikTok撮影）：13:40〜14:40（受付終了〜14:20）
+ （11/27 の投稿）／4部（TikTok撮影）：14:50〜15:50（受付終
+ 了〜15:30）（11/27 の投稿）／5部（撮影）：16:10〜17:10（
+ 受付終了〜16:50）（11/27 の投稿）／1次受付：12月1日17:00
+ 〜12月2日14:00。着用衣装は1〜2部が過去衣装、3〜4部がMV
+ 衣装、5〜6部が私服（11/27 の投稿）\n🔗 公式 X: 11/27 http
+ s://x.com/takanenofficial/status/2126307558872731670\n🤖 公式の案内
+ と公式 X の投稿を AI が要約したものです。必ず情報元
+ で確認してください。
+URL:https://x.com/takanenofficial/status/2126307558872731670
+STATUS:CONFIRMED
+TRANSP:TRANSPARENT
+END:VEVENT
+END:VCALENDAR

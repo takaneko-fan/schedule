@@ -2,7 +2,7 @@
 
 - 取得元: https://takanenonadeshiko.jp/schedule/ （カレンダー）、https://takanenonadeshiko.jp/news/ （お知らせ記事）、公式X @takanenofficial （公式サイト未掲載の告知）
 - 掲載範囲: 過去の予定（✅ 済）と、取得した日から約1年先までの予定
-- 件数: 117 件（うち済 93 件）
+- 件数: 118 件（うち済 93 件）
 
 「済」に ✅ が付いている予定は終了済みです。開始日より前の予定は前回までの取得結果を引き継いでいます。
 
@@ -89,11 +89,12 @@
 |  | 2026-12-15(火) | OPEN 17:30 / START 18:15 | [ドラマチックレコードpresents  『 DRAMATIC POP DX 』](https://takanenonadeshiko.jp/events/event/%e3%83%89%e3%83%a9%e3%83%9e%e3%83%81%e3%83%83%e3%82%af%e3%83%ac%e3%82%b3%e3%83%bc%e3%83%89presents-%e3%80%8e-dramatic-pop-dx-%e3%80%8f/) | ステラボール |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 城月菜央
 
-個別 11 件 ／ グループ含む合計 75 件
+個別 11 件 ／ グループ含む合計 76 件
 
 ### 個別スケジュール
 
@@ -189,11 +190,12 @@
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 涼海すう
 
-個別 10 件 ／ グループ含む合計 74 件
+個別 10 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -286,12 +288,13 @@
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-22(日) |  | [✿涼海すう誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%b6%bc%e6%b5%b7%e3%81%99%e3%81%86%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 橋本桃呼
 
-個別 10 件 ／ グループ含む合計 74 件
+個別 10 件 ／ グループ含む合計 75 件
 
 ### 個別スケジュール
 
@@ -384,12 +387,13 @@
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-06-28(月) |  | [✿橋本桃呼誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%a9%8b%e6%9c%ac%e6%a1%83%e5%91%bc%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 葉月紗蘭
 
-個別 17 件 ／ グループ含む合計 81 件
+個別 17 件 ／ グループ含む合計 82 件
 
 ### 個別スケジュール
 
@@ -496,12 +500,13 @@
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 東山恵里沙
 
-個別 18 件 ／ グループ含む合計 82 件
+個別 18 件 ／ グループ含む合計 83 件
 
 ### 個別スケジュール
 
@@ -610,12 +615,13 @@
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-05-28(金) |  | [✿東山恵里沙誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 日向端ひな
 
-個別 13 件 ／ グループ含む合計 77 件
+個別 13 件 ／ グループ含む合計 78 件
 
 ### 個別スケジュール
 
@@ -714,12 +720,13 @@
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-30(土) |  | [✿日向端ひな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%97%a5%e5%90%91%e7%ab%af%e3%81%b2%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 松本ももな
 
-個別 12 件 ／ グループ含む合計 76 件
+個別 12 件 ／ グループ含む合計 77 件
 
 ### 個別スケジュール
 
@@ -816,12 +823,13 @@
 |  | 2026-12-16(水) | ①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿涼海・松本・城月・東山](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f/) | HMV&BOOKS SHIBUYA 5FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-10-12(火) |  | [✿松本ももな誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%be%e6%9c%ac%e3%82%82%e3%82%82%e3%81%aa%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
 ## 籾山ひめり
 
-個別 14 件 ／ グループ含む合計 78 件
+個別 14 件 ／ グループ含む合計 79 件
 
 ### 個別スケジュール
 
@@ -922,6 +930,7 @@
 |  | 2026-12-17(木) | ①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 | [『日経エンタテインメント！アイドルSpecial　GIRL POP VELOCITY』 発売記念イベント✿日向端・籾山・橋本・葉月](https://takanenonadeshiko.jp/events/event/%e3%80%8e%e6%97%a5%e7%b5%8c%e3%82%a8%e3%83%b3%e3%82%bf%e3%83%86%e3%82%a4%e3%83%b3%e3%83%a1%e3%83%b3%e3%83%88%ef%bc%81%e3%82%a2%e3%82%a4%e3%83%89%e3%83%abspecial%e3%80%80girl-pop-velocity%e3%80%8f-2/) | HMV&BOOKS SHIBUYA 6FイベントスペースA |
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 |  | 2027-08-07(土) |  | [✿高嶺のなでしこ誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  |
 
@@ -1033,6 +1042,12 @@
 - ⚠️ 注意: 入場時に持物検査・金属探知機検査・本人確認あり／購入者本人のみ入場可、譲渡・転売不可／本人確認不可・チケット紛失時は入場不可・再発行や払戻しなし／再入場不可／未就学児入場不可／小学生以下は保護者同伴必須／アルコール持込・飲酒入場禁止／ファンレター・プレゼントは受取不可
 - ℹ️ その他: 車椅子・着席観覧が必要な場合は公演前日までに問い合わせ／祝い花は「高嶺のなでしこ」宛のみ、納品9:00〜11:00・回収21:00〜22:00／会場内は撮影・公開される場合あり
 - 📣 公式 X の最新情報: 第二部の通常販売分はSOLD OUT（[11/14 の投稿](https://x.com/takanenofficial/status/2121566317262114904)）／第一部の通常指定席は残りわずか（[11/14 の投稿](https://x.com/takanenofficial/status/2121566317262114904)）／注釈付き指定席は、ステージ全体・一部演出・メンバーが見えにくい、または見えない場合あり（[11/14 の投稿](https://x.com/takanenofficial/status/2121566317262114904)）／販売対象は第一部の注釈付き女性専用エリア指定席、第二部の注釈付き通常指定席・女性専用エリア指定席（[11/15 の投稿](https://x.com/takanenofficial/status/2121770162164756663)）
+
+> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
+
+### 2026-12-26(土) [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670)
+
+- 📣 公式 X の最新情報: 2部（撮影）：12:10〜13:10（受付終了〜12:50）（[11/27 の投稿](https://x.com/takanenofficial/status/2126307558872731670)）／3部（TikTok撮影）：13:40〜14:40（受付終了〜14:20）（[11/27 の投稿](https://x.com/takanenofficial/status/2126307558872731670)）／4部（TikTok撮影）：14:50〜15:50（受付終了〜15:30）（[11/27 の投稿](https://x.com/takanenofficial/status/2126307558872731670)）／5部（撮影）：16:10〜17:10（受付終了〜16:50）（[11/27 の投稿](https://x.com/takanenofficial/status/2126307558872731670)）／1次受付：12月1日17:00〜12月2日14:00。着用衣装は1〜2部が過去衣装、3〜4部がMV衣装、5〜6部が私服（[11/27 の投稿](https://x.com/takanenofficial/status/2126307558872731670)）
 
 > 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
@@ -1149,6 +1164,7 @@
 |  | 2026-12-20(日) | OPEN 11:00 / START 12:00 | [YORU-FES vol.12](https://takanenonadeshiko.jp/events/event/yoru-fes-vol-12/) | KT Zepp Yokohama | グループ（全員） |
 |  | 2026-12-24(木) | 第一部[OPEN/START] 15:00/16:00 ／ 第二部[OPEN/START] 18:30/19:30 | [高嶺のなでしこ  たかねこクリスマスパーティ2026](https://takanenonadeshiko.jp/events/event/%e9%ab%98%e5%b6%ba%e3%81%ae%e3%81%aa%e3%81%a7%e3%81%97%e3%81%93-%e3%81%9f%e3%81%8b%e3%81%ad%e3%81%93%e3%82%af%e3%83%aa%e3%82%b9%e3%83%9e%e3%82%b9%e3%83%91%e3%83%bc%e3%83%86%e3%82%a32026/) | ヒューリックホール東京 | グループ（全員） |
 |  | 2026-12-25(金) |  | [✿城月菜央誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e5%9f%8e%e6%9c%88%e8%8f%9c%e5%a4%ae%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 城月菜央 |
+|  | 2026-12-26(土) | 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 17:20~18:20 (受付終了：~18:00) | [個別2ショット撮影会](https://x.com/takanenofficial/status/2126307558872731670) | TOC有明Convention Hall WESTホール | グループ（全員） |
 |  | 2027-03-03(水) |  | [✿葉月紗蘭誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e8%91%89%e6%9c%88%e7%b4%97%e8%98%ad%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 葉月紗蘭 |
 |  | 2027-03-22(月) |  | [✿籾山ひめり誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e7%b1%be%e5%b1%b1%e3%81%b2%e3%82%81%e3%82%8a%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 籾山ひめり |
 |  | 2027-05-28(金) |  | [✿東山恵里沙誕生日✿](https://takanenonadeshiko.jp/events/event/%e2%9c%bf%e6%9d%b1%e5%b1%b1%e6%81%b5%e9%87%8c%e6%b2%99%e8%aa%95%e7%94%9f%e6%97%a5%e2%9c%bf/) |  | 東山恵里沙 |
