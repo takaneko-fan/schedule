@@ -218,5 +218,24 @@
   "media": "",
   "ai": false,
   "station": ""
+ },
+ {
+  "date": "2026-12-26",
+  "title": "個別TikTok撮影会",
+  "venue": "TOC有明Convention Hall WESTホール",
+  "open": "",
+  "start": "13:40",
+  "end": "14:40",
+  "time_note": "",
+  "members": "グループ（全員）",
+  "names": [
+   "個別TikTok撮影会"
+  ],
+  "url": "https://x.com/takanenofficial/status/2126307994317279466",
+  "post_id": "2126307994317279466",
+  "posted": "2026-11-27T22:31+09:00",
+  "media": "",
+  "ai": true,
+  "station": ""
  }
 ]
