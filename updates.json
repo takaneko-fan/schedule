@@ -1,5 +1,124 @@
 [
  {
+  "at": "2026-11-28T00:17",
+  "items": [
+   {
+    "level": "important",
+    "kind": "時刻変更",
+    "date": "2026-12-26",
+    "title": "「高嶺のなでしこ」年末大感謝祭 2026 『個別2ショ…",
+    "change": "1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 1… → 1部 11:00~12:00 (受付終了：~11:40) ／ … ／ 6部 1…",
+    "uid": "3d98738e8bca1c4e",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-02",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "当落発表 12/2(水) 15:00",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-02",
+     "time": "15:00",
+     "kind": "当落発表",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-02",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "受付開始（個別TikTok撮影会） 12/2(水) 17:00〜",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-02",
+     "time": "17:00",
+     "kind": "受付開始",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-03",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "受付締切（個別TikTok撮影会） 12/3(木) 14:00まで",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-03",
+     "time": "14:00",
+     "kind": "受付締切",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-03",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "当落発表 12/3(木) 15:00",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-03",
+     "time": "15:00",
+     "kind": "当落発表",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-03",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "受付開始（個別TikTok撮影会） 12/3(木) 17:00〜",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-03",
+     "time": "17:00",
+     "kind": "受付開始",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-04",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "受付締切（個別TikTok撮影会） 12/4(金) 14:00まで",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-04",
+     "time": "14:00",
+     "kind": "受付締切",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   },
+   {
+    "level": "deadline",
+    "kind": "申込",
+    "date": "2026-12-04",
+    "title": "高嶺のなでしこ」年末大感謝祭 2026『個別2ショット…",
+    "change": "当落発表 12/4(金) 15:00",
+    "source": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/",
+    "deadline": {
+     "date": "2026-12-04",
+     "time": "15:00",
+     "kind": "当落発表",
+     "event": "「高嶺のなでしこ」年末大感謝祭 2026『個別2ショット撮影会』・『個別TikTok撮影会』",
+     "url": "https://takanenonadeshiko.jp/takaneko-satsueikai-261226/"
+    }
+   }
+  ]
+ },
+ {
   "at": "2026-11-27T22:42",
   "items": [
    {
@@ -279,73 +398,6 @@
     "title": "メンバーとオンライン個別お話し会",
     "change": "①18:00-18:30 ／ … ／ ⑥21:00-21:30",
     "uid": "ca7713122d0923c1"
-   }
-  ]
- },
- {
-  "at": "2026-11-20T22:41",
-  "items": [
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-11-21",
-    "title": "オンライン個別お話し会",
-    "change": "販売開始 11/21(土) 21:00〜",
-    "deadline": {
-     "date": "2026-11-21",
-     "time": "21:00",
-     "kind": "受付開始",
-     "event": "オンライン個別お話し会",
-     "url": "https://x.com/takanenofficial/status/2123772282724389040"
-    }
-   }
-  ]
- },
- {
-  "at": "2026-11-20T15:31",
-  "items": [
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-12-16",
-    "title": "日経エンタテインメント！ アイドルSpecial GI…",
-    "change": "①18:30~ 涼海すう、松本ももな ／ ②19:30~ 城月菜央、東山恵里沙 ・ HMV&BOOKS SHIBUYA 5FイベントスペースA",
-    "uid": "7fd904f5ed4f850d"
-   },
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-12-17",
-    "title": "日経エンタテインメント！ アイドルSpecial GI…",
-    "change": "①18:30~ 日向端ひな、籾山ひめり ／ ②19:30~ 橋本桃呼、葉月紗蘭 ・ HMV&BOOKS SHIBUYA 6FイベントスペースA",
-    "uid": "1bac2ea99a8f6703"
-   },
-   {
-    "level": "deadline",
-    "kind": "申込",
-    "date": "2026-11-27",
-    "title": "日経エンタテインメント! アイドルSpecial GI…",
-    "change": "先着販売の開始 11/27(金) 18:00〜",
-    "deadline": {
-     "date": "2026-11-27",
-     "time": "18:00",
-     "kind": "受付開始",
-     "event": "日経エンタテインメント! アイドルSpecial GIRL POP VELOCITY 発売記念イベント",
-     "url": "https://x.com/takanenofficial/status/2123665141783019785"
-    }
-   }
-  ]
- },
- {
-  "at": "2026-11-20T00:17",
-  "items": [
-   {
-    "level": "added",
-    "kind": "新規",
-    "date": "2026-11-28",
-    "title": "mimilait (ミミレ)",
-    "change": "北参道-ROADSIDE-",
-    "uid": "b6377c770e66602b"
    }
   ]
  }
