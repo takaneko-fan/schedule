@@ -1169,52 +1169,5 @@
  "https://takanenonadeshiko.jp/hanahatikaiwowasurenai-newrelease/": {
   "hash": "362afe8848ca35c86ed0dec08b1c9443d3f91ede",
   "events": []
- },
- "https://takanenonadeshiko.jp/miagerutabinikoiwosuru-1130-2/": {
-  "hash": "8c8b347b68320d34364fe935d494a835b30f33fd",
-  "events": []
- },
- "https://takanenonadeshiko.jp/miagerutabinikoiwosuru-1130/": {
-  "hash": "70e3450e12820363a31af5808146199dcd344499",
-  "events": [
-   {
-    "date": "2025-11-30",
-    "weekday": "日",
-    "open": "",
-    "start": "16:00",
-    "end": "",
-    "time_note": "",
-    "title": "「見上げるたびに、恋をする。」リリース記念生配信 1部",
-    "category": "お知らせ記事",
-    "members": "グループ（全員）",
-    "venue": "",
-    "url": "https://takanenonadeshiko.jp/miagerutabinikoiwosuru-1130/",
-    "names": [
-     "「見上げるたびに、恋をする。」リリース記念生配信 1部"
-    ],
-    "media": "配信",
-    "station": "YouTube",
-    "ai": true
-   },
-   {
-    "date": "2025-11-30",
-    "weekday": "日",
-    "open": "",
-    "start": "18:00",
-    "end": "",
-    "time_note": "",
-    "title": "「見上げるたびに、恋をする。」リリース記念生配信 2部",
-    "category": "お知らせ記事",
-    "members": "グループ（全員）",
-    "venue": "",
-    "url": "https://takanenonadeshiko.jp/miagerutabinikoiwosuru-1130/",
-    "names": [
-     "「見上げるたびに、恋をする。」リリース記念生配信 2部"
-    ],
-    "media": "配信",
-    "station": "YouTube",
-    "ai": true
-   }
-  ]
  }
 }
