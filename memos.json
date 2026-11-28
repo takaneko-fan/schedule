@@ -33,8 +33,17 @@
   },
   "model": "gpt-5.6-luna",
   "x_changes": [],
-  "x_items": [],
-  "x_sources": []
+  "x_hash": "a14d352a4412c4937ba2dcfa4c0d8dc0dd863ed2",
+  "x_items": [
+   "OPEN 10:00（11/28 の投稿）",
+   "HoneyWorks Vocal All Starsによるスペシャルステージに出演（11/28 の投稿）"
+  ],
+  "x_sources": [
+   {
+    "label": "11/28",
+    "url": "https://x.com/takanenofficial/status/2126677491917939113"
+   }
+  ]
  },
  "2026-12-01|https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/": {
   "generated": "2026-11-18",

@@ -939,8 +939,9 @@
 
 - 📍 会場: SUNTEC SINGAPORE CONVENTION & EXHIBITION CENTRE
 - ℹ️ その他: 詳細は主催者サイト（https://animefestival.asia/afasg26/）で確認
+- 📣 公式 X の最新情報: OPEN 10:00（[11/28 の投稿](https://x.com/takanenofficial/status/2126677491917939113)）／HoneyWorks Vocal All Starsによるスペシャルステージに出演（[11/28 の投稿](https://x.com/takanenofficial/status/2126677491917939113)）
 
-> 🤖 公式の案内を AI が要約したものです。必ず情報元で確認してください。
+> 🤖 公式の案内と公式 X の投稿を AI が要約したものです。必ず情報元で確認してください。
 
 ### 2026-12-01(火) [オシグラフ vol.5✿橋本・日向端](https://takanenonadeshiko.jp/events/event/%e3%82%aa%e3%82%b7%e3%82%b0%e3%83%a9%e3%83%95-vol-5%e2%9c%bf%e6%a9%8b%e6%9c%ac%e3%83%bb%e6%97%a5%e5%90%91%e7%ab%af/)
 
